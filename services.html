@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services | Naavera</title>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body {
+      scroll-behavior: smooth;
+    }
+
+    .service-card {
+      transition: all 0.3s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #667eea, #764ba2);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+
+    .service-card:hover::before {
+      transform: scaleX(1);
+    }
+  </style>
+</head>
+<body class="bg-gray-50">
+
+  <!-- COMMON HEADER -->
+  <div id="header"></div>
+
+  <!-- PAGE CONTENT -->
+  <main class="max-w-7xl mx-auto px-6 py-16">
+    <!-- Hero Section -->
+    <section class="mb-16 text-center">
+      <h1 class="text-5xl font-bold text-gray-900 mb-6">Our Services</h1>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+        Comprehensive digital solutions tailored to meet your business needs
+      </p>
+    </section>
+
+    <!-- Services Grid -->
+    <section class="mb-20">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+        <div class="service-card relative bg-white p-8 rounded-lg shadow-md">
+          <div class="text-5xl mb-6">💻</div>
+          <h3 class="text-2xl font-bold text-gray-900 mb-4">Web Development</h3>
+          <p class="text-gray-600 leading-relaxed">Build responsive, fast, and secure websites using modern technologies and best practices.</p>
+        </div>
+
+        <div class="service-card relative bg-white p-8 rounded-lg shadow-md">
+          <div class="text-5xl mb-6">🎨</div>
+          <h3 class="text-2xl font-bold text-gray-900 mb-4">UI/UX Design</h3>
+          <p class="text-gray-600 leading-relaxed">Create beautiful and intuitive user interfaces that engage and delight your users.</p>
+        </div>
+
+        <div class="service-card relative bg-white p-8 rounded-lg shadow-md">
+          <div class="text-5xl mb-6">📱</div>
+          <h3 class="text-2xl font-bold text-gray-900 mb-4">Mobile Apps</h3>
+          <p class="text-gray-600 leading-relaxed">Develop native and cross-platform mobile applications for iOS and Android.</p>
+        </div>
+
+        <div class="service-card relative bg-white p-8 rounded-lg shadow-md">
+          <div class="text-5xl mb-6">🔍</div>
+          <h3 class="text-2xl font-bold text-gray-900 mb-4">SEO Optimization</h3>
+          <p class="text-gray-600 leading-relaxed">Improve your online visibility and rank higher on search engines with our SEO strategies.</p>
+        </div>
+
+        <div class="service-card relative bg-white p-8 rounded-lg shadow-md">
+          <div class="text-5xl mb-6">🛒</div>
+          <h3 class="text-2xl font-bold text-gray-900 mb-4">E-Commerce</h3>
+          <p class="text-gray-600 leading-relaxed">Build and manage powerful e-commerce platforms to boost your online sales.</p>
+        </div>
+
+        <div class="service-card relative bg-white p-8 rounded-lg shadow-md">
+          <div class="text-5xl mb-6">⚙️</div>
+          <h3 class="text-2xl font-bold text-gray-900 mb-4">Maintenance & Support</h3>
+          <p class="text-gray-600 leading-relaxed">Keep your digital assets running smoothly with our comprehensive support services.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-16 px-8 rounded-lg text-center">
+      <h2 class="text-3xl font-bold mb-4">Ready to Transform Your Business?</h2>
+      <p class="text-lg mb-8 text-gray-100">Let's discuss how our services can help you achieve your goals</p>
+      <button class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-all duration-300 transform hover:scale-105">
+        Schedule a Consultation
+      </button>
+    </section>
+  </main>
+
+  <!-- COMMON FOOTER -->
+  <div id="footer"></div>
+
+  <script src="header/header.js"></script>
+  <script src="footer/footer.js"></script>
+</body>
+</html>

@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us | Naavera - Precision Pipe Fittings</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary: #1c1c1c;
+        --background: #f9f7f3;
+        --accent: #e6e2d8;
+        --headings: #111111;
+        --icon: #c9a227;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: var(--background);
+        color: var(--headings);
+        overflow-x: hidden;
+      }
+
+      /* Hide scrollbar for all browsers */
+      body::-webkit-scrollbar {
+        display: none;
+      }
+
+      body {
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+      }
+
+      /* Banner Section */
+      .banner-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.7s ease;
+      }
+
+      .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          to right,
+          rgba(0, 0, 0, 0.7) 0%,
+          rgba(0, 0, 0, 0.3) 100%
+        );
+      }
+
+      .banner-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+        z-index: 10;
+        width: 90%;
+        max-width: 900px;
+        text-align: center;
+        padding: 20px;
+      }
+
+      /* New Banner Animations */
+      .fade-slide-up {
+        opacity: 0;
+        transform: translateY(40px);
+        animation: fadeSlideUp 1s ease forwards;
+      }
+
+      .zoom-in {
+        opacity: 0;
+        transform: scale(0.9);
+        animation: zoomIn 1.2s ease forwards;
+      }
+
+      .stagger-delay-1 {
+        animation-delay: 0.2s !important;
+      }
+      .stagger-delay-2 {
+        animation-delay: 0.4s !important;
+      }
+      .stagger-delay-3 {
+        animation-delay: 0.6s !important;
+      }
+      .stagger-delay-4 {
+        animation-delay: 0.8s !important;
+      }
+
+      @keyframes fadeSlideUp {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes zoomIn {
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      /* Gold shimmer effect for highlighted text */
+      .gold-shimmer {
+        position: relative;
+        display: inline-block;
+        background: linear-gradient(
+          90deg,
+          #c9a227 0%,
+          #ffd700 50%,
+          #c9a227 100%
+        );
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        animation: shimmer 3s linear infinite;
+      }
+
+      @keyframes shimmer {
+        0% {
+          background-position: 0% center;
+        }
+        100% {
+          background-position: 200% center;
+        }
+      }
+
+      /* Scroll animations */
+      .section-hidden {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s ease-out;
+      }
+
+      .section-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Custom animations */
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+
+      .animate-float {
+        animation: float 3s ease-in-out infinite;
+      }
+
+      /* Gradient text */
+      .gradient-text {
+        background: linear-gradient(135deg, var(--icon) 0%, #e6b800 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      /* Stat counter animation */
+      .counter {
+        font-variant-numeric: tabular-nums;
+      }
+
+      /* Responsive image containers */
+      .image-container {
+        position: relative;
+        overflow: hidden;
+        border-radius: 12px;
+      }
+
+      .image-container img {
+        transition: transform 0.7s ease;
+      }
+
+      .image-container:hover img {
+        transform: scale(1.05);
+      }
+
+      /* Card hover effects */
+      .hover-lift {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .hover-lift:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(28, 28, 28, 0.12);
+      }
+
+      /* Section divider */
+      .section-divider {
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent 0%,
+          var(--accent) 20%,
+          var(--accent) 80%,
+          transparent 100%
+        );
+      }
+
+      /* Timeline styling */
+      .timeline-item::before {
+        content: "";
+        position: absolute;
+        left: -24px;
+        top: 8px;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: var(--icon);
+      }
+
+      /* Milestone counter */
+      .milestone-number {
+        font-size: 3.5rem;
+        font-weight: 800;
+        line-height: 1;
+        color: var(--icon);
+        position: relative;
+        display: inline-block;
+      }
+
+      .milestone-number::after {
+        content: "+";
+        font-size: 2rem;
+        position: absolute;
+        top: -10px;
+        right: -20px;
+      }
+
+      /* Loading animation for images */
+      .loading-img {
+        background: linear-gradient(
+          90deg,
+          var(--accent) 25%,
+          #f0f0f0 50%,
+          var(--accent) 75%
+        );
+        background-size: 200% 100%;
+        animation: shimmer 1.5s infinite;
+      }
+
+      /* FIXED Banner text responsive sizing */
+      .banner-title {
+        font-size: clamp(2rem, 4.5vw, 3.5rem);
+        line-height: 1.1;
+        margin-bottom: 1rem;
+      }
+
+      .banner-subtitle {
+        font-size: clamp(0.9rem, 1.8vw, 1.1rem);
+        line-height: 1.5;
+        margin-bottom: 1.5rem;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      /* Button responsive sizing */
+      .banner-button {
+        padding: 0.6rem 1.5rem;
+        font-size: clamp(0.8rem, 1.2vw, 0.9rem);
+        white-space: nowrap;
+      }
+
+      /* Mobile-specific adjustments */
+      @media (max-width: 768px) {
+        .banner-content {
+          padding: 15px;
+          width: 95%;
+        }
+
+        .banner-title {
+          font-size: 2rem;
+          line-height: 1.2;
+          margin-bottom: 0.8rem;
+        }
+
+        .banner-subtitle {
+          font-size: 0.95rem;
+          line-height: 1.4;
+          margin-bottom: 1.2rem;
+        }
+
+        .banner-button {
+          padding: 0.5rem 1.2rem;
+          font-size: 0.85rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .banner-title {
+          font-size: 1.7rem;
+        }
+
+        .banner-subtitle {
+          font-size: 0.85rem;
+        }
+
+        .banner-button {
+          padding: 0.4rem 1rem;
+          font-size: 0.8rem;
+        }
+
+        .banner-content {
+          width: 98%;
+          padding: 10px;
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-background">
+    <!-- COMMON HEADER -->
+    <div id="header"></div>
+
+    <!-- Hero Section - Split Text Reveal -->
+    <section class="pt-1 pb-6 bg-slate-50 px-1 sm:px-1">
+      <div
+        class="relative max-w-7xl mx-auto h-[540px] rounded-3xl overflow-hidden shadow-2xl"
+      >
+        <!-- SINGLE BANNER SLIDE -->
+        <div class="relative w-full h-full">
+          <img
+            src="images/banner1.jfif"
+            class="banner-img"
+            alt="Naavera Precision Engineering"
+          />
+          <div class="overlay"></div>
+          <div class="banner-content">
+            <h1 class="banner-title font-bold overflow-hidden">
+              <span class="split-text slide-in-from-left">Engineering</span>
+              <span class="split-text slide-in-from-right stagger-delay-1"
+                >Excellence</span
+              >
+              <span class="split-text slide-in-from-left stagger-delay-2"
+                >in</span
+              >
+              <span class="split-text slide-in-from-right stagger-delay-3"
+                >Every</span
+              >
+              <span class="split-text slide-in-from-left stagger-delay-4"
+                >Fitting</span
+              >
+            </h1>
+            <p
+              class="banner-subtitle text-white/90 fade-scale-in stagger-delay-5"
+            >
+              For over two decades, Naavera has been at the forefront of
+              precision pipe fitting manufacturing, delivering unmatched quality
+              and reliability to industries worldwide.
+            </p>
+            <div class="flex flex-wrap justify-center gap-3 mt-8">
+              <a
+                href="#story"
+                class="banner-button bg-[#C9A227] text-white rounded-lg font-medium hover:bg-[#b8911f] transition-colors border-2 border-[#C9A227] slide-up-in stagger-delay-6"
+              >
+                Our Story
+              </a>
+              <a
+                href="#mission"
+                class="banner-button bg-transparent border-2 border-white text-white rounded-lg font-medium hover:bg-white/10 transition-colors slide-up-in stagger-delay-7"
+              >
+                Mission & Vision
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Animated Background Elements -->
+        <div
+          class="absolute top-1/4 left-10 w-64 h-64 rounded-full bg-gradient-to-r from-[#C9A227]/5 to-transparent blur-3xl -z-10"
+        ></div>
+        <div
+          class="absolute bottom-1/4 right-10 w-80 h-80 rounded-full bg-gradient-to-l from-[#C9A227]/5 to-transparent blur-3xl -z-10"
+        ></div>
+      </div>
+    </section>
+
+    <style>
+      /* Split Text Animation */
+      .split-text {
+        display: inline-block;
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      .slide-in-from-left {
+        animation: slideInFromLeft 0.8s ease forwards;
+      }
+
+      .slide-in-from-right {
+        animation: slideInFromRight 0.8s ease forwards;
+      }
+
+      .fade-scale-in {
+        opacity: 0;
+        transform: scale(0.9);
+        animation: fadeScaleIn 1s ease forwards;
+      }
+
+      .slide-up-in {
+        opacity: 0;
+        transform: translateY(20px);
+        animation: slideUpIn 0.6s ease forwards;
+      }
+
+      .stagger-delay-5 {
+        animation-delay: 0.8s !important;
+      }
+      .stagger-delay-6 {
+        animation-delay: 1s !important;
+      }
+      .stagger-delay-7 {
+        animation-delay: 1.2s !important;
+      }
+
+      @keyframes slideInFromLeft {
+        from {
+          opacity: 0;
+          transform: translateX(-100px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes slideInFromRight {
+        from {
+          opacity: 0;
+          transform: translateX(100px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes fadeScaleIn {
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      @keyframes slideUpIn {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+
+    <!-- Stats Section - Radial Progress (No Cards) -->
+    <section
+      class="relative py-20 bg-gradient-to-b from-[#fdfbf6] to-[#f6f3ea] overflow-hidden"
+    >
+      <!-- Soft Background Glow -->
+      <div
+        class="absolute top-10 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-[#C9A227]/10 rounded-full blur-3xl"
+      ></div>
+
+      <div class="relative max-w-7xl mx-auto px-6">
+        <!-- Section Heading -->
+        <div class="text-center mb-14 -mt-10">
+          <span
+            class="inline-block px-5 py-2 bg-[#FFF9E6] text-[#C9A227] font-semibold rounded-full text-sm uppercase tracking-wider mb-3"
+          >
+            Our Achievements
+          </span>
+          <h2 class="text-3xl md:text-4xl font-medium text-[#111111] mb-3">
+            Excellence <span class="text-[#C9A227]">in Numbers</span>
+          </h2>
+          <p class="text-gray-600 max-w-xl mx-auto font-thin text-sm">
+            Quantifying two decades of industry leadership and global impact
+          </p>
+        </div>
+
+        <!-- Stats Row -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
+          <!-- Stat 1 -->
+          <div>
+            <div class="relative w-28 h-28 mx-auto mb-4">
+              <svg class="w-full h-full -rotate-90" viewBox="0 0 120 120">
+                <circle
+                  cx="60"
+                  cy="60"
+                  r="54"
+                  fill="none"
+                  stroke="#e7e2d6"
+                  stroke-width="6"
+                />
+                <circle
+                  cx="60"
+                  cy="60"
+                  r="54"
+                  fill="none"
+                  stroke="#C9A227"
+                  stroke-width="6"
+                  stroke-linecap="round"
+                  stroke-dasharray="339"
+                  stroke-dashoffset="339"
+                  class="progress-1"
+                />
+              </svg>
+              <div class="absolute inset-0 flex items-center justify-center">
+                <span class="text-2xl font-light text-[#111]">20+</span>
+              </div>
+            </div>
+            <p class="font-medium text-gray-800">Years Experience</p>
+          </div>
+
+          <!-- Stat 2 -->
+          <div>
+            <div class="relative w-28 h-28 mx-auto mb-4">
+              <svg class="w-full h-full -rotate-90" viewBox="0 0 120 120">
+                <circle
+                  cx="60"
+                  cy="60"
+                  r="54"
+                  fill="none"
+                  stroke="#e7e2d6"
+                  stroke-width="6"
+                />
+                <circle
+                  cx="60"
+                  cy="60"
+                  r="54"
+                  fill="none"
+                  stroke="#C9A227"
+                  stroke-width="6"
+                  stroke-linecap="round"
+                  stroke-dasharray="339"
+                  stroke-dashoffset="339"
+                  class="progress-2"
+                />
+              </svg>
+              <div class="absolute inset-0 flex items-center justify-center">
+                <span class="text-2xl font-light text-[#111]">5000+</span>
+              </div>
+            </div>
+            <p class="font-medium text-gray-800">Projects Completed</p>
+          </div>
+
+          <!-- Stat 3 -->
+          <div>
+            <div class="relative w-28 h-28 mx-auto mb-4">
+              <svg class="w-full h-full -rotate-90" viewBox="0 0 120 120">
+                <circle
+                  cx="60"
+                  cy="60"
+                  r="54"
+                  fill="none"
+                  stroke="#e7e2d6"
+                  stroke-width="6"
+                />
+                <circle
+                  cx="60"
+                  cy="60"
+                  r="54"
+                  fill="none"
+                  stroke="#C9A227"
+                  stroke-width="6"
+                  stroke-linecap="round"
+                  stroke-dasharray="339"
+                  stroke-dashoffset="339"
+                  class="progress-3"
+                />
+              </svg>
+              <div class="absolute inset-0 flex items-center justify-center">
+                <span class="text-2xl font-light text-[#111]">150+</span>
+              </div>
+            </div>
+            <p class="font-medium text-gray-800">Countries Served</p>
+          </div>
+
+          <!-- Stat 4 -->
+          <div>
+            <div class="relative w-28 h-28 mx-auto mb-4">
+              <svg class="w-full h-full -rotate-90" viewBox="0 0 120 120">
+                <circle
+                  cx="60"
+                  cy="60"
+                  r="54"
+                  fill="none"
+                  stroke="#e7e2d6"
+                  stroke-width="6"
+                />
+                <circle
+                  cx="60"
+                  cy="60"
+                  r="54"
+                  fill="none"
+                  stroke="#C9A227"
+                  stroke-width="6"
+                  stroke-linecap="round"
+                  stroke-dasharray="339"
+                  stroke-dashoffset="339"
+                  class="progress-4"
+                />
+              </svg>
+              <div class="absolute inset-0 flex items-center justify-center">
+                <span class="text-2xl font-light text-[#111]">99%</span>
+              </div>
+            </div>
+            <p class="font-medium text-gray-800">Quality Rate</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <style>
+      .progress-1 {
+        animation: fill1 2s ease forwards;
+      }
+      .progress-2 {
+        animation: fill2 2s ease forwards 0.3s;
+      }
+      .progress-3 {
+        animation: fill3 2s ease forwards 0.6s;
+      }
+      .progress-4 {
+        animation: fill4 2s ease forwards 0.9s;
+      }
+
+      @keyframes fill1 {
+        to {
+          stroke-dashoffset: 135;
+        }
+      } /* ~60% */
+      @keyframes fill2 {
+        to {
+          stroke-dashoffset: 34;
+        }
+      } /* ~90% */
+      @keyframes fill3 {
+        to {
+          stroke-dashoffset: 237;
+        }
+      } /* ~30% */
+      @keyframes fill4 {
+        to {
+          stroke-dashoffset: 3;
+        }
+      } /* ~99% */
+    </style>
+
+    <!-- Our Story Section -->
+    <section id="story" class="pt-20 pb-10">
+      <div class="container mx-auto px-4">
+        <!-- shift whole content slightly up -->
+        <div class="max-w-6xl mx-auto -mt-10">
+          <!-- Heading -->
+          <div class="text-center mb-10">
+            <span class="text-[#C9A227] font-semibold uppercase tracking-wider">
+              Our Journey
+            </span>
+            <h2
+              class="text-3xl md:text-4xl font-normal mt-1 mb-2 section-hidden"
+              data-animation="fadeInUp"
+            >
+              From Humble Beginnings to Industry Leadership
+            </h2>
+            <div class="section-divider w-20 mx-auto mt-4"></div>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="section-hidden" data-animation="fadeInLeft">
+              <div class="image-container h-96">
+                <div class="loading-img w-full h-full rounded-2xl"></div>
+              </div>
+            </div>
+
+            <div class="section-hidden" data-animation="fadeInRight">
+              <h3 class="text-2xl font-light mb-4">
+                Building Excellence Since 2003
+              </h3>
+              <p class="text-gray-600 font-normal mb-4">
+                Founded with a vision to revolutionize the pipe fitting
+                industry, Naavera began as a small workshop with a big dream
+                delivering precision-engineered solutions that set new
+                benchmarks for quality and reliability. Through continuous
+                innovation, skilled craftsmanship, and a customer-first
+                approach, we steadily evolved into a trusted manufacturing
+                partner for diverse industrial sectors.
+              </p>
+
+              <p class="text-gray-600 font-normal mb-6">
+                Our journey is marked by continuous innovation, an unwavering
+                commitment to quality, and a deep understanding of our clients'
+                evolving needs. Every solution we deliver reflects our focus on
+                precision, performance, and long-term reliability across
+                demanding industrial applications.
+              </p>
+
+              <div class="space-y-4">
+                <!-- badges unchanged -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mission & Vision Section -->
+    <section id="mission" class="py-16 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="max-w-6xl mx-auto">
+          <!-- Heading -->
+          <div class="text-center mb-10 -mt-6">
+            <span class="text-[#C9A227] font-semibold uppercase tracking-wider">
+              Our Core
+            </span>
+            <h2
+              class="text-3xl md:text-4xl font-normal mt-1 mb-2 section-hidden"
+              data-animation="fadeInUp"
+            >
+              Mission & Vision
+            </h2>
+            <p
+              class="text-gray-600 font-thin max-w-2xl mx-auto section-hidden text-sm"
+              data-animation="fadeInUp"
+              data-delay="200"
+            >
+              Driving innovation while maintaining the highest standards of
+              quality and reliability
+            </p>
+          </div>
+
+          <!-- Cards -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Mission Card -->
+            <div
+              class="bg-gradient-to-br from-[#f9f7f3] to-white p-6 rounded-2xl border border-[#e6e2d8] hover-lift section-hidden"
+              data-animation="fadeInUp"
+            >
+              <div
+                class="w-14 h-14 rounded-xl bg-[#FFF9E6] flex items-center justify-center mb-4"
+              >
+                <i class="fas fa-bullseye text-2xl text-[#C9A227]"></i>
+              </div>
+              <h3 class="text-xl font-medium mb-3">Our Mission</h3>
+              <p class="text-gray-600 mb-4">
+                To deliver precision-engineered pipe fittings that exceed
+                industry standards, ensuring safety, reliability, and efficiency
+                in every pipeline system we serve.
+              </p>
+              <ul class="space-y-2 text-sm">
+                <li class="flex items-center">
+                  <i class="fas fa-check text-[#C9A227] mr-2"></i>
+                  <span>Innovative engineering solutions</span>
+                </li>
+                <li class="flex items-center">
+                  <i class="fas fa-check text-[#C9A227] mr-2"></i>
+                  <span>Uncompromising quality control</span>
+                </li>
+                <li class="flex items-center">
+                  <i class="fas fa-check text-[#C9A227] mr-2"></i>
+                  <span>Sustainable manufacturing practices</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Vision Card -->
+            <div
+              class="bg-gradient-to-br from-[#f9f7f3] to-white p-6 rounded-2xl border border-[#e6e2d8] hover-lift section-hidden"
+              data-animation="fadeInUp"
+              data-delay="200"
+            >
+              <div
+                class="w-14 h-14 rounded-xl bg-[#FFF9E6] flex items-center justify-center mb-4"
+              >
+                <i class="fas fa-eye text-2xl text-[#C9A227]"></i>
+              </div>
+              <h3 class="text-xl font-medium mb-3">Our Vision</h3>
+              <p class="text-gray-600 mb-4">
+                To be the global benchmark for excellence in pipe fitting
+                manufacturing, pioneering sustainable solutions that shape the
+                future of industrial infrastructure.
+              </p>
+              <ul class="space-y-2 text-sm">
+                <li class="flex items-center">
+                  <i class="fas fa-check text-[#C9A227] mr-2"></i>
+                  <span>Global industry leadership</span>
+                </li>
+                <li class="flex items-center">
+                  <i class="fas fa-check text-[#C9A227] mr-2"></i>
+                  <span>Technological innovation</span>
+                </li>
+                <li class="flex items-center">
+                  <i class="fas fa-check text-[#C9A227] mr-2"></i>
+                  <span>Environmental stewardship</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="py-20">
+      <div class="container mx-auto px-4">
+        <div class="max-w-6xl mx-auto -mt-6">
+          <!-- Shift content upwards -->
+          <!-- Heading -->
+          <div class="text-center mb-10">
+            <!-- Reduced bottom margin -->
+            <span class="text-[#C9A227] font-semibold uppercase tracking-wider">
+              Our Values
+            </span>
+            <h2
+              class="text-3xl md:text-4xl font-normal mt-1 mb-2 section-hidden"
+              data-animation="fadeInUp"
+            >
+              The Principles That Guide Us
+            </h2>
+          </div>
+
+          <!-- Values Grid -->
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Reduced gap -->
+            <div
+              class="p-6 rounded-xl border border-[#e6e2d8] hover-lift section-hidden"
+              data-animation="fadeInUp"
+            >
+              <div
+                class="w-12 h-12 rounded-lg bg-[#FFF9E6] flex items-center justify-center mb-4"
+              >
+                <i class="fas fa-gem text-[#C9A227] text-xl"></i>
+              </div>
+              <h3 class="text-xl font-light mb-3">Quality First</h3>
+              <p class="text-gray-600 font-light">
+                Every fitting undergoes rigorous testing to ensure it meets the
+                highest standards of durability and performance.
+              </p>
+            </div>
+
+            <div
+              class="p-6 rounded-xl border border-[#e6e2d8] hover-lift section-hidden"
+              data-animation="fadeInUp"
+              data-delay="200"
+            >
+              <div
+                class="w-12 h-12 rounded-lg bg-[#FFF9E6] flex items-center justify-center mb-4"
+              >
+                <i class="fas fa-lightbulb text-[#C9A227] text-xl"></i>
+              </div>
+              <h3 class="text-xl font-light mb-3">Innovation</h3>
+              <p class="text-gray-600 font-light">
+                Continuously developing new techniques and materials to stay
+                ahead of industry demands.
+              </p>
+            </div>
+
+            <div
+              class="p-6 rounded-xl border border-[#e6e2d8] hover-lift section-hidden"
+              data-animation="fadeInUp"
+              data-delay="400"
+            >
+              <div
+                class="w-12 h-12 rounded-lg bg-[#FFF9E6] flex items-center justify-center mb-4"
+              >
+                <i class="fas fa-users text-[#C9A227] text-xl"></i>
+              </div>
+              <h3 class="text-xl font-light mb-3">Customer Focus</h3>
+              <p class="text-gray-600 font-light">
+                Building lasting relationships by understanding and exceeding
+                customer expectations.
+              </p>
+            </div>
+
+            <div
+              class="p-6 rounded-xl border border-[#e6e2d8] hover-lift section-hidden"
+              data-animation="fadeInUp"
+              data-delay="600"
+            >
+              <div
+                class="w-12 h-12 rounded-lg bg-[#FFF9E6] flex items-center justify-center mb-4"
+              >
+                <i class="fas fa-shield-alt text-[#C9A227] text-xl"></i>
+              </div>
+              <h3 class="text-xl font-light mb-3">Safety</h3>
+              <p class="text-gray-600 font-light">
+                Prioritizing the safety of our products, people, and the
+                environments where they operate.
+              </p>
+            </div>
+
+            <div
+              class="p-6 rounded-xl border border-[#e6e2d8] hover-lift section-hidden"
+              data-animation="fadeInUp"
+              data-delay="800"
+            >
+              <div
+                class="w-12 h-12 rounded-lg bg-[#FFF9E6] flex items-center justify-center mb-4"
+              >
+                <i class="fas fa-leaf text-[#C9A227] text-xl"></i>
+              </div>
+              <h3 class="text-xl font-light mb-3">Sustainability</h3>
+              <p class="text-gray-600 font-light">
+                Implementing eco-friendly practices throughout our manufacturing
+                processes.
+              </p>
+            </div>
+
+            <div
+              class="p-6 rounded-xl border border-[#e6e2d8] hover-lift section-hidden"
+              data-animation="fadeInUp"
+              data-delay="1000"
+            >
+              <div
+                class="w-12 h-12 rounded-lg bg-[#FFF9E6] flex items-center justify-center mb-4"
+              >
+                <i class="fas fa-handshake text-[#C9A227] text-xl"></i>
+              </div>
+              <h3 class="text-xl font-light mb-3">Integrity</h3>
+              <p class="text-gray-600 font-light">
+                Conducting business with honesty, transparency, and ethical
+                practices.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <!-- <section class="py-20">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto text-center">
+          <div
+            class="bg-gradient-to-r from-[#1C1C1C] to-[#111111] rounded-2xl p-12 section-hidden"
+            data-animation="fadeInUp"
+          >
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
+              Partner With Excellence
+            </h2>
+            <p class="text-gray-300 mb-8 max-w-2xl mx-auto">
+              Join thousands of satisfied clients who trust Naavera for their
+              precision pipe fitting needs.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href="contact.html"
+                class="bg-[#C9A227] text-white px-8 py-3 rounded-lg font-medium hover:bg-[#b8911f] transition-colors"
+              >
+                Contact Us
+              </a>
+              <a
+                href="products.html"
+                class="bg-transparent border border-white text-white px-8 py-3 rounded-lg font-medium hover:bg-white/10 transition-colors"
+              >
+                Browse Products
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section> -->
+
+    <!-- Footer -->
+    <div id="footer"></div>
+
+    <script>
+      // Banner animations - automatically trigger on page load
+      document.addEventListener("DOMContentLoaded", () => {
+        // Trigger banner animations immediately
+        const bannerElements = document.querySelectorAll(
+          ".zoom-in, .fade-slide-up"
+        );
+        bannerElements.forEach((el) => {
+          el.style.animationPlayState = "running";
+        });
+
+        // Initialize scroll animations
+        initializeScrollAnimations();
+        initializeCounters();
+      });
+
+      // Scroll animations for other sections
+      function initializeScrollAnimations() {
+        const observerOptions = {
+          threshold: 0.1,
+          rootMargin: "0px 0px -50px 0px",
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const element = entry.target;
+              const animation = element.getAttribute("data-animation");
+              const delay = element.getAttribute("data-delay") || 0;
+
+              setTimeout(() => {
+                element.classList.add("section-visible");
+                if (animation) {
+                  element.style.animation = `${animation} 0.8s ease forwards`;
+                }
+              }, parseInt(delay));
+
+              observer.unobserve(element);
+            }
+          });
+        }, observerOptions);
+
+        // Observe all animated sections
+        document.querySelectorAll(".section-hidden").forEach((section) => {
+          observer.observe(section);
+        });
+      }
+
+      // Counter Animation
+      function initializeCounters() {
+        const counters = document.querySelectorAll(".counter");
+
+        const counterObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const counter = entry.target;
+                const target = parseInt(counter.getAttribute("data-target"));
+                const duration = 2000;
+                const increment = target / (duration / 16);
+                let current = 0;
+
+                const timer = setInterval(() => {
+                  current += increment;
+                  if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                  }
+                  counter.textContent = Math.floor(current);
+                }, 16);
+
+                counterObserver.unobserve(counter);
+              }
+            });
+          },
+          { threshold: 0.5 }
+        );
+
+        counters.forEach((counter) => counterObserver.observe(counter));
+      }
+    </script>
+
+    <script src="header/header.js"></script>
+    <script src="footer/footer.js"></script>
+  </body>
+</html>

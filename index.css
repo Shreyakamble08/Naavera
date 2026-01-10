@@ -1,0 +1,317 @@
+body {
+  scroll-behavior: smooth;
+}
+
+.hero-gradient {
+  background: linear-gradient(135deg, #aeb0ba 0%, #72697b 100%);
+}
+
+.card {
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+/*************banner styling**************/
+.banner-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+.banner-slide.active {
+  opacity: 1;
+  z-index: 1;
+}
+
+.banner-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.521);
+}
+
+/* CONTENT */
+.content {
+  position: relative;
+  z-index: 10;
+  height: 100%;
+  max-width: 700px;
+  margin: auto;
+  text-align: center;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  padding: 0 1rem;
+}
+
+.content h1 {
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  font-weight: 600;
+}
+
+.content p {
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  font-weight: 300;
+  font-style: italic;
+  color: #e5e7eb;
+}
+
+.cta-btn {
+  align-self: center;
+  padding: 14px 32px;
+  background: #d4af37;
+  color: #0f172a;
+  font-weight: 700;
+  border-radius: 12px;
+  transition: transform 0.3s ease;
+}
+
+.cta-btn:hover {
+  transform: scale(1.05);
+}
+
+/* SLIDE TEXT ANIMATIONS */
+.from-left {
+  animation: slideLeft 1.2s ease forwards;
+}
+
+.from-right {
+  animation: slideRight 1.2s ease forwards;
+}
+
+@keyframes slideLeft {
+  from {
+    transform: translateX(-60px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideRight {
+  from {
+    transform: translateX(60px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* TYPING */
+.typing-text {
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.cursor {
+  display: inline-block;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+/* DOTS */
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+}
+
+.dot.active {
+  background: #d4af37;
+}
+
+/*animation*/
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fade-up {
+  animation: fadeUp 1s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 1.1s ease-out forwards;
+}
+
+.reveal {
+  opacity: 0;
+  transition: all 0.8s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: none;
+}
+
+.fade-up {
+  transform: translateY(40px);
+}
+
+.fade-left {
+  transform: translateX(-40px);
+}
+
+.fade-right {
+  transform: translateX(40px);
+}
+
+/* Infinite Auto Scroll */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll {
+  width: max-content;
+  animation: scroll 40s linear infinite;
+}
+
+/* Mobile Optimization */
+@media (max-width: 768px) {
+  .animate-scroll {
+    animation-duration: 25s;
+  }
+}
+
+@media (max-width: 640px) {
+  .animate-scroll {
+    animation-duration: 30s;
+  }
+}
+
+/* Hide scrollbar */
+#productSlider::-webkit-scrollbar {
+  display: none;
+}
+
+#productSlider {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Auto scrolling animation */
+@keyframes autoScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll {
+  animation: autoScroll 30s linear infinite;
+}
+
+/* Pause animation on hover */
+.pause-on-hover:hover .animate-scroll {
+  animation-play-state: paused;
+}
+
+/*product styling*/
+.product-page {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 260px;
+  background: #f4f4f4;
+  padding: 20px;
+}
+
+.sidebar-item {
+  padding: 12px;
+  cursor: pointer;
+  border-bottom: 1px solid #ddd;
+}
+
+.sidebar-item:hover {
+  background: #eaeaea;
+}
+
+.content {
+  flex: 1;
+}
+
+.banner img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+}
+
+.details {
+  padding: 30px;
+}
+
+.product-img {
+  width: 300px;
+  margin: 20px 0;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td {
+  border: 1px solid #ddd;
+  padding: 10px;
+}
