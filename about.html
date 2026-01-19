@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -14,7 +14,7 @@
       rel="stylesheet"
     />
 
-   <script>
+    <script>
       tailwind.config = {
         theme: {
           extend: {
@@ -218,7 +218,9 @@
 
       /* Card hover effects */
       .hover-lift {
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
       }
 
       .hover-lift:hover {
@@ -367,7 +369,7 @@
           />
           <div class="overlay"></div>
           <div class="banner-content">
-            <h1 class="banner-title font-bold overflow-hidden">
+            <h1 class="banner-title font-semibold overflow-hidden">
               <span class="split-text slide-in-from-left">Engineering</span>
               <span class="split-text slide-in-from-right stagger-delay-1"
                 >Excellence</span
@@ -383,7 +385,7 @@
               >
             </h1>
             <p
-              class="banner-subtitle text-white/90 fade-scale-in stagger-delay-5"
+              class="banner-subtitle text-white/90 font-light fade-scale-in stagger-delay-5"
             >
               For over two decades, Naavera has been at the forefront of
               precision pipe fitting manufacturing, delivering unmatched quality
@@ -1007,7 +1009,7 @@
       document.addEventListener("DOMContentLoaded", () => {
         // Trigger banner animations immediately
         const bannerElements = document.querySelectorAll(
-          ".zoom-in, .fade-slide-up"
+          ".zoom-in, .fade-slide-up",
         );
         bannerElements.forEach((el) => {
           el.style.animationPlayState = "running";
@@ -1077,7 +1079,7 @@
               }
             });
           },
-          { threshold: 0.5 }
+          { threshold: 0.5 },
         );
 
         counters.forEach((counter) => counterObserver.observe(counter));
