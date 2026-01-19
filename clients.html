@@ -1,0 +1,602 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Clients | Naavera</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            heading: ['"Alan Sans"', "sans-serif"],
+            serif: ['"DM Serif Text"', "serif"],
+            body: ['"Noto Sans"', "sans-serif"],
+            editorial: ['"Noto Serif"', "serif"],
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    body {
+      background-color: #f9f7f3;
+      color: #1c1c1c;
+    }
+
+    /* Elegant hover effects */
+    .client-card {
+      transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+      background: linear-gradient(145deg, #ffffff, #f9f7f3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .client-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, #c9a229, #d4b65d);
+      transform: scaleX(0);
+      transition: transform 0.6s ease;
+    }
+
+    .client-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .client-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(28, 28, 28, 0.08);
+    }
+
+    /* Minimal divider */
+    .divider {
+      width: 60px;
+      height: 2px;
+      background: #c9a229;
+      margin: 0 auto;
+    }
+
+    /* Icon styling */
+    .icon-wrapper {
+      background: linear-gradient(135deg, #f9f7f3 0%, #e6e2d8 100%);
+      border: 1px solid rgba(201, 162, 41, 0.1);
+    }
+
+    /* Stat counter animation */
+    .stat-number {
+      position: relative;
+    }
+
+    /* Smooth reveal animation */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease-out;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Elegant border radius */
+    .elegant-radius {
+      border-radius: 12px;
+    }
+
+    /* Gold accent text */
+    .gold-text {
+      color: #c9a229;
+    }
+
+    /* Subtle pattern overlay */
+    .pattern-overlay {
+      background-image: radial-gradient(#e6e2d8 1px, transparent 1px);
+      background-size: 20px 20px;
+      opacity: 0.3;
+    }
+
+    /* Banner styling */
+    /* Animation classes */
+    .split-text {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .slide-in-from-left {
+      animation: slideFromLeft 0.8s ease-out forwards;
+    }
+
+    .slide-in-from-right {
+      animation: slideFromRight 0.8s ease-out forwards;
+    }
+
+    .stagger-delay-1 {
+      animation-delay: 0.2s;
+    }
+
+    .stagger-delay-2 {
+      animation-delay: 0.4s;
+    }
+
+    .stagger-delay-3 {
+      animation-delay: 0.6s;
+    }
+
+    .stagger-delay-4 {
+      animation-delay: 0.8s;
+    }
+
+    .fade-scale-in {
+      opacity: 0;
+      transform: scale(0.95);
+      animation: fadeScaleIn 0.8s ease-out 0.9s forwards;
+    }
+
+    .slide-up-in {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: slideUpIn 0.6s ease-out 1s forwards;
+    }
+
+    @keyframes slideFromLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-50px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes slideFromRight {
+      from {
+        opacity: 0;
+        transform: translateX(50px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes fadeScaleIn {
+      from {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes slideUpIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Banner specific styles */
+    .banner-title {
+      line-height: 1.1;
+    }
+
+    .banner-subtitle {
+      line-height: 1.6;
+    }
+
+    .banner-button {
+      transition: all 0.3s ease;
+    }
+  </style>
+</head>
+
+<body class="antialiased">
+  <!-- common header -->
+  <div id="header"></div>
+
+  <!-- Hero Section -->
+  <section class="pt-1 pb-6 bg-slate-50 px-1 sm:px-1">
+    <div class="relative max-w-7xl mx-auto h-[540px] rounded-3xl overflow-hidden shadow-2xl">
+      <!-- SINGLE BANNER SLIDE -->
+      <div class="relative w-full h-full">
+        <!-- Background Image -->
+        <img src="images/clientsbg.jfif" class="absolute inset-0 w-full h-full object-cover"
+          alt="Naavera Clients and Partnerships" />
+
+        <!-- Dark Overlay -->
+        <div class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent"></div>
+
+        <!-- Content -->
+        <div class="relative h-full flex items-center justify-center px-8 sm:px-12 lg:px-20">
+          <div class="max-w-2xl text-center">
+            <h1 class="banner-title font-normal font-serif text-white mt-4 overflow-hidden">
+              <!-- First line: Building Lasting -->
+              <span class="block whitespace-nowrap">
+                <span class="split-text slide-in-from-left text-5xl sm:text-6xl lg:text-7xl inline-block">
+                  Building
+                </span>
+                <span
+                  class="split-text slide-in-from-right stagger-delay-1 text-5xl sm:text-6xl lg:text-7xl text-[#C9A229] inline-block ml-3">
+                  Lasting
+                </span>
+              </span>
+
+              <!-- Second line -->
+              <span class="split-text slide-in-from-left stagger-delay-2 text-5xl sm:text-6xl lg:text-7xl block">
+                Relationships
+              </span>
+            </h1>
+
+            <p
+              class="banner-subtitle font-light text-white/90 fade-scale-in stagger-delay-3 text-lg sm:text-xl max-w-xl mx-auto mt-4 mb-6">
+              With industry leaders across India. Our commitment to quality
+              steel solutions has earned the trust of the nation’s top
+              enterprises.
+            </p>
+
+            <div class="flex flex-wrap justify-center gap-4 stagger-delay-4">
+              <a href="#client-showcase"
+                class="banner-button bg-[#C9A229] text-white px-8 py-4 rounded-full font-normal hover:bg-[#b8911f] transition-all duration-300 border-2 border-[#C9A229] slide-up-in">
+                View Our Clients
+              </a>
+              <a href="contact.html"
+                class="banner-button bg-transparent border-2 border-white text-white px-8 py-4 rounded-full font-normal hover:bg-white/10 transition-all duration-300 slide-up-in">
+                Become a Partner
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="absolute bottom-1/4 right-10 w-80 h-80 rounded-full bg-gradient-to-l from-[#C9A229]/10 to-transparent blur-3xl -z-10">
+      </div>
+    </div>
+  </section>
+  <!-- Client Showcase -->
+  <section id="client-showcase" class="py-16 md:py-20 relative bg-[#f9f7f3] overflow-hidden">
+    <!-- Subtle grid background -->
+    <div class="absolute inset-0 pointer-events-none">
+      <div
+        class="w-full h-full bg-[linear-gradient(to_right,#e2e0db_1px,transparent_1px), linear-gradient(to_bottom,#e2e0db_1px,transparent_1px)] bg-[size:40px_40px] opacity-[0.28]">
+      </div>
+    </div>
+
+    <!-- Main content -->
+    <div class="container mx-auto px-5 sm:px-6 lg:px-8 relative z-10">
+      <div class="text-center mb-14 md:mb-16">
+        <h2 class="text-4xl md:text-5xl font-normal tracking-tight mb-5">
+          Trusted by <span class="gold-text">Industry Leaders</span>
+        </h2>
+        <p class="text-lg md:text-xl text-[#1C1C1C]/70 max-w-3xl mx-auto">
+          Delivering premium steel solutions to India's most respected names
+          in infrastructure, manufacturing, energy & construction.
+        </p>
+        <div class="w-16 h-1 bg-[#C9A227] mx-auto mt-8 rounded-full"></div>
+      </div>
+
+      <!-- Minimal Client Cards Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        <!-- Client Card 1 -->
+        <div
+          class="client-card group bg-white rounded-2xl p-7 md:p-8 shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-[#C9A227]/30">
+          <div class="flex items-center mb-5">
+            <div
+              class="w-12 h-12 rounded-xl bg-[#C9A227]/10 flex items-center justify-center mr-4 group-hover:bg-[#C9A227]/20 transition-colors">
+              <i class="fas fa-industry text-xl text-[#C9A227]"></i>
+            </div>
+            <div>
+              <h3 class="text-xl font-semibold text-[#111] group-hover:text-[#C9A227] transition-colors">
+                InfraBuild Corporation
+              </h3>
+              <p class="text-sm text-[#444] mt-0.5">
+                Infrastructure Development
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Client Card 2 -->
+        <div
+          class="client-card group bg-white rounded-2xl p-7 md:p-8 shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-[#C9A227]/30">
+          <div class="flex items-center mb-5">
+            <div
+              class="w-12 h-12 rounded-xl bg-[#C9A227]/10 flex items-center justify-center mr-4 group-hover:bg-[#C9A227]/20 transition-colors">
+              <i class="fas fa-car text-xl text-[#C9A227]"></i>
+            </div>
+            <div>
+              <h3 class="text-xl font-semibold text-[#111] group-hover:text-[#C9A227] transition-colors">
+                AutoSteel India
+              </h3>
+              <p class="text-sm text-[#444] mt-0.5">
+                Automotive Manufacturing
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Client Card 3 -->
+        <div
+          class="client-card group bg-white rounded-2xl p-7 md:p-8 shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-[#C9A227]/30">
+          <div class="flex items-center mb-5">
+            <div
+              class="w-12 h-12 rounded-xl bg-[#C9A227]/10 flex items-center justify-center mr-4 group-hover:bg-[#C9A227]/20 transition-colors">
+              <i class="fas fa-building text-xl text-[#C9A227]"></i>
+            </div>
+            <div>
+              <h3 class="text-xl font-semibold text-[#111] group-hover:text-[#C9A227] transition-colors">
+                ConstructPlus Ltd
+              </h3>
+              <p class="text-sm text-[#444] mt-0.5">
+                Commercial Construction
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Client Card 4 -->
+        <div
+          class="client-card group bg-white rounded-2xl p-7 md:p-8 shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-[#C9A227]/30">
+          <div class="flex items-center mb-5">
+            <div
+              class="w-12 h-12 rounded-xl bg-[#C9A227]/10 flex items-center justify-center mr-4 group-hover:bg-[#C9A227]/20 transition-colors">
+              <i class="fas fa-bolt text-xl text-[#C9A227]"></i>
+            </div>
+            <div>
+              <h3 class="text-xl font-semibold text-[#111] group-hover:text-[#C9A227] transition-colors">
+                PowerGrid Solutions
+              </h3>
+              <p class="text-sm text-[#444] mt-0.5">Energy Infrastructure</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Client Card 5 -->
+        <div
+          class="client-card group bg-white rounded-2xl p-7 md:p-8 shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-[#C9A227]/30">
+          <div class="flex items-center mb-5">
+            <div
+              class="w-12 h-12 rounded-xl bg-[#C9A227]/10 flex items-center justify-center mr-4 group-hover:bg-[#C9A227]/20 transition-colors">
+              <i class="fas fa-train text-xl text-[#C9A227]"></i>
+            </div>
+            <div>
+              <h3 class="text-xl font-semibold text-[#111] group-hover:text-[#C9A227] transition-colors">
+                RailTech Corporation
+              </h3>
+              <p class="text-sm text-[#444] mt-0.5">Railway Infrastructure</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Client Card 6 -->
+        <div
+          class="client-card group bg-white rounded-2xl p-7 md:p-8 shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-[#C9A227]/30">
+          <div class="flex items-center mb-5">
+            <div
+              class="w-12 h-12 rounded-xl bg-[#C9A227]/10 flex items-center justify-center mr-4 group-hover:bg-[#C9A227]/20 transition-colors">
+              <i class="fas fa-ship text-xl text-[#C9A227]"></i>
+            </div>
+            <div>
+              <h3 class="text-xl font-semibold text-[#111] group-hover:text-[#C9A227] transition-colors">
+                MarineWorks Ltd
+              </h3>
+              <p class="text-sm text-[#444] mt-0.5">Shipbuilding & Marine</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!--Trusted-->
+  <!-- Trusted Clients Auto Scroll -->
+  <section class="py-20 bg-[#FAFAFA] overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6">
+
+      <!-- Heading -->
+      <div class="text-center mb-14">
+        <h3 class="text-2xl md:text-3xl font-normal text-[#111] mb-3">
+          Trusted by Industry Leaders
+        </h3>
+        <p class="text-sm md:text-base text-gray-500 max-w-2xl mx-auto">
+          Building long-term partnerships across infrastructure, energy, and
+          industrial sectors.
+        </p>
+      </div>
+
+      <!-- Marquee Wrapper -->
+      <div class="relative overflow-hidden">
+        <div class="flex w-max gap-10 animate-clients items-center">
+
+          <!-- Client Card -->
+          <div class="bg-white border border-gray-200 rounded-2xl h-28 w-48 flex items-center justify-center">
+            <img src="images/client1.png" class="h-20 md:h-24 object-contain" />
+          </div>
+
+          <div class="bg-white border border-gray-200 rounded-2xl h-28 w-48 flex items-center justify-center">
+            <img src="images/client2.png" class="h-20 md:h-24 object-contain" />
+          </div>
+
+          <div class="bg-white border border-gray-200 rounded-2xl h-28 w-48 flex items-center justify-center">
+            <img src="images/client3.png" class="h-20 md:h-24 object-contain" />
+          </div>
+
+          <div class="bg-white border border-gray-200 rounded-2xl h-28 w-48 flex items-center justify-center">
+            <img src="images/client4.png" class="h-20 md:h-24 object-contain" />
+          </div>
+
+          <div class="bg-white border border-gray-200 rounded-2xl h-28 w-48 flex items-center justify-center">
+            <img src="images/client5.png" class="h-20 md:h-24 object-contain" />
+          </div>
+
+          <div class="bg-white border border-gray-200 rounded-2xl h-28 w-48 flex items-center justify-center">
+            <img src="images/client6.png" class="h-20 md:h-24 object-contain" />
+          </div>
+
+          <!-- Duplicate for seamless loop -->
+          <div class="bg-white border border-gray-200 rounded-2xl h-28 w-48 flex items-center justify-center">
+            <img src="images/client1.png" class="h-20 md:h-24 object-contain" />
+          </div>
+          <div class="bg-white border border-gray-200 rounded-2xl h-28 w-48 flex items-center justify-center">
+            <img src="images/client2.png" class="h-20 md:h-24 object-contain" />
+          </div>
+          <div class="bg-white border border-gray-200 rounded-2xl h-28 w-48 flex items-center justify-center">
+            <img src="images/client3.png" class="h-20 md:h-24 object-contain" />
+          </div>
+          <div class="bg-white border border-gray-200 rounded-2xl h-28 w-48 flex items-center justify-center">
+            <img src="images/client4.png" class="h-20 md:h-24 object-contain" />
+          </div>
+          <div class="bg-white border border-gray-200 rounded-2xl h-28 w-48 flex items-center justify-center">
+            <img src="images/client5.png" class="h-20 md:h-24 object-contain" />
+          </div>
+          <div class="bg-white border border-gray-200 rounded-2xl h-28 w-48 flex items-center justify-center">
+            <img src="images/client6.png" class="h-20 md:h-24 object-contain" />
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <style>
+      @keyframes clients-scroll {
+        0% {
+          transform: translateX(0);
+        }
+
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+
+      .animate-clients {
+        animation: clients-scroll 30s linear infinite;
+      }
+
+      .animate-clients:hover {
+        animation-play-state: paused;
+      }
+    </style>
+  </section>
+
+
+  <!-- Footer -->
+  <div id="footer"></div>
+
+  <!-- Scripts -->
+  <script src="/header/header.js"></script>
+  <script src="/footer/footer.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Scroll reveal animation
+      const revealElements = document.querySelectorAll(".reveal");
+
+      const revealOnScroll = () => {
+        revealElements.forEach((element) => {
+          const elementTop = element.getBoundingClientRect().top;
+          const windowHeight = window.innerHeight;
+
+          if (elementTop < windowHeight - 100) {
+            element.classList.add("active");
+          }
+        });
+      };
+
+      // Initial check
+      revealOnScroll();
+
+      // Check on scroll
+      window.addEventListener("scroll", revealOnScroll);
+
+      // Stat counter animation (simplified)
+      const statNumbers = document.querySelectorAll(".stat-number");
+
+      const animateStats = () => {
+        statNumbers.forEach((stat) => {
+          const target = parseInt(stat.getAttribute("data-target"));
+          const current = parseInt(stat.textContent);
+
+          if (current < target) {
+            stat.textContent =
+              target + (stat.textContent.includes("+") ? "+" : "");
+          }
+        });
+      };
+
+      // Animate stats when they come into view
+      const statsObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              animateStats();
+            }
+          });
+        },
+        { threshold: 0.5 },
+      );
+
+      statNumbers.forEach((stat) => statsObserver.observe(stat));
+
+      // Mobile menu toggle
+      const mobileMenuButton = document.querySelector("button.md\\:hidden");
+      const navMenu = document.querySelector(".hidden.md\\:flex");
+
+      if (mobileMenuButton && navMenu) {
+        mobileMenuButton.addEventListener("click", function () {
+          navMenu.classList.toggle("hidden");
+          navMenu.classList.toggle("absolute");
+          navMenu.classList.toggle("top-full");
+          navMenu.classList.toggle("left-0");
+          navMenu.classList.toggle("right-0");
+          navMenu.classList.toggle("bg-[#111111]");
+          navMenu.classList.toggle("p-6");
+          navMenu.classList.toggle("shadow-xl");
+          navMenu.classList.toggle("flex-col");
+          navMenu.classList.toggle("space-y-4");
+        });
+      }
+
+      // Smooth scroll for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const targetId = this.getAttribute("href");
+          if (targetId === "#") return;
+
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            window.scrollTo({
+              top: targetElement.offsetTop - 80,
+              behavior: "smooth",
+            });
+          }
+        });
+      });
+    });
+  </script>
+</body>
+
+</html>
