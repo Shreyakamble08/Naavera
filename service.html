@@ -1,0 +1,595 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Service | Naavera</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              heading: ['"Alan Sans"', "sans-serif"],
+              serif: ['"DM Serif Text"', "serif"],
+              body: ['"Noto Sans"', "sans-serif"],
+              editorial: ['"Noto Serif"', "serif"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      body {
+        background-color: #f9f7f3;
+        color: #1c1c1c;
+      }
+
+      /* Elegant hover effects */
+      .client-card {
+        transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        background: linear-gradient(145deg, #ffffff, #f9f7f3);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .client-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: linear-gradient(90deg, #c9a229, #d4b65d);
+        transform: scaleX(0);
+        transition: transform 0.6s ease;
+      }
+
+      .client-card:hover::before {
+        transform: scaleX(1);
+      }
+
+      .client-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(28, 28, 28, 0.08);
+      }
+
+      /* Minimal divider */
+      .divider {
+        width: 60px;
+        height: 2px;
+        background: #c9a229;
+        margin: 0 auto;
+      }
+
+      /* Icon styling */
+      .icon-wrapper {
+        background: linear-gradient(135deg, #f9f7f3 0%, #e6e2d8 100%);
+        border: 1px solid rgba(201, 162, 41, 0.1);
+      }
+
+      /* Stat counter animation */
+      .stat-number {
+        position: relative;
+      }
+
+      /* Smooth reveal animation */
+      .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s ease-out;
+      }
+
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Elegant border radius */
+      .elegant-radius {
+        border-radius: 12px;
+      }
+
+      /* Gold accent text */
+      .gold-text {
+        color: #c9a229;
+      }
+
+      /* Subtle pattern overlay */
+      .pattern-overlay {
+        background-image: radial-gradient(#e6e2d8 1px, transparent 1px);
+        background-size: 20px 20px;
+        opacity: 0.3;
+      }
+
+      /* Banner styling */
+      /* Animation classes */
+      .split-text {
+        display: inline-block;
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      .slide-in-from-left {
+        animation: slideFromLeft 0.8s ease-out forwards;
+      }
+
+      .slide-in-from-right {
+        animation: slideFromRight 0.8s ease-out forwards;
+      }
+
+      .stagger-delay-1 {
+        animation-delay: 0.2s;
+      }
+
+      .stagger-delay-2 {
+        animation-delay: 0.4s;
+      }
+
+      .stagger-delay-3 {
+        animation-delay: 0.6s;
+      }
+
+      .stagger-delay-4 {
+        animation-delay: 0.8s;
+      }
+
+      .fade-scale-in {
+        opacity: 0;
+        transform: scale(0.95);
+        animation: fadeScaleIn 0.8s ease-out 0.9s forwards;
+      }
+
+      .slide-up-in {
+        opacity: 0;
+        transform: translateY(20px);
+        animation: slideUpIn 0.6s ease-out 1s forwards;
+      }
+
+      @keyframes slideFromLeft {
+        from {
+          opacity: 0;
+          transform: translateX(-50px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes slideFromRight {
+        from {
+          opacity: 0;
+          transform: translateX(50px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes fadeScaleIn {
+        from {
+          opacity: 0;
+          transform: scale(0.95);
+        }
+
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      @keyframes slideUpIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Banner specific styles */
+      .banner-title {
+        line-height: 1.1;
+      }
+
+      .banner-subtitle {
+        line-height: 1.6;
+      }
+
+      .banner-button {
+        transition: all 0.3s ease;
+      }
+    </style>
+  </head>
+
+  <body class="antialiased">
+    <!-- common header -->
+    <div id="header"></div>
+
+    <!-- Hero Section -->
+    <section class="pt-1 pb-6 bg-slate-50 px-1 sm:px-1">
+      <div
+        class="relative max-w-7xl mx-auto h-[540px] rounded-3xl overflow-hidden shadow-2xl"
+      >
+        <!-- SINGLE BANNER SLIDE -->
+        <div class="relative w-full h-full">
+          <!-- Background Image -->
+          <img
+            src="images/servicebanner.jpg"
+            class="absolute inset-0 w-full h-full object-cover"
+            alt="Naavera Steel Manufacturing and Supply Services"
+          />
+
+          <!-- Dark Overlay -->
+          <div
+            class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent"
+          ></div>
+
+          <!-- Content -->
+          <div
+            class="relative h-full flex items-center justify-center px-8 sm:px-12 lg:px-20"
+          >
+            <div class="max-w-2xl text-center">
+              <h1
+                class="banner-title font-normal text-white mt-4 overflow-hidden"
+              >
+                <!-- First line -->
+                <span class="block whitespace-nowrap">
+                  <span
+                    class="split-text slide-in-from-left text-5xl sm:text-6xl lg:text-7xl inline-block"
+                  >
+                    Engineering
+                  </span>
+                  <span
+                    class="split-text slide-in-from-right stagger-delay-1 text-5xl sm:text-6xl lg:text-7xl text-[#C9A229] inline-block ml-3"
+                  >
+                    Reliable
+                  </span>
+                </span>
+
+                <!-- Second line -->
+                <span
+                  class="split-text slide-in-from-left stagger-delay-2 text-5xl sm:text-6xl lg:text-7xl block"
+                >
+                  Steel Solutions
+                </span>
+              </h1>
+
+              <p
+                class="banner-subtitle font-light text-white/90 fade-scale-in stagger-delay-3 text-lg sm:text-xl max-w-xl mx-auto mt-4 mb-6"
+              >
+                Delivering end-to-end stainless steel, carbon steel, alloy
+                steel, and nickel alloy solutions — from manufacturing and
+                processing to precision supply for critical industrial
+                applications.
+              </p>
+
+              <div class="flex flex-wrap justify-center gap-4 stagger-delay-4">
+                <a
+                  href="#services"
+                  class="banner-button bg-[#C9A229] text-white px-8 py-4 rounded-full font-normal hover:bg-[#b8911f] transition-all duration-300 border-2 border-[#C9A229] slide-up-in"
+                >
+                  Our Services
+                </a>
+                <a
+                  href="contact.html"
+                  class="banner-button bg-transparent border-2 border-white text-white px-8 py-4 rounded-full font-normal hover:bg-white/10 transition-all duration-300 slide-up-in"
+                >
+                  Request a Quote
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Decorative Element -->
+        <div
+          class="absolute bottom-1/4 right-10 w-80 h-80 rounded-full bg-gradient-to-l from-[#C9A229]/10 to-transparent blur-3xl -z-10"
+        ></div>
+      </div>
+    </section>
+
+    <!-- Naavera Services -->
+    <section
+      id="services"
+      class="py-14 md:py-20 relative bg-[#f9f7f3] overflow-hidden"
+    >
+      <!-- Subtle grid background -->
+      <div class="absolute inset-0 pointer-events-none">
+        <div
+          class="w-full h-full bg-[linear-gradient(to_right,#e2e0db_1px,transparent_1px), linear-gradient(to_bottom,#e2e0db_1px,transparent_1px)] bg-[size:40px_40px] opacity-[0.28]"
+        ></div>
+      </div>
+
+      <!-- Main content -->
+      <div class="container mx-auto px-5 sm:px-6 lg:px-8 relative z-10 -mt-10">
+        <div class="text-center mb-14 md:mb-16">
+          <h2 class="text-4xl md:text-5xl font-normal tracking-tight mb-5">
+            Naavera <span class="gold-text">Import & Export Services</span>
+          </h2>
+          <p class="text-lg md:text-xl text-[#1C1C1C]/70 max-w-3xl mx-auto">
+            At Naavera, we specialize in manufacturing and exporting
+            high-quality steel products that meet global standards, delivering
+            strength, precision, and reliability worldwide.
+          </p>
+          <div class="w-16 h-1 bg-[#C9A227] mx-auto mt-8 rounded-full"></div>
+        </div>
+
+        <!-- Service Cards -->
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+        >
+          <!-- Service Card 1 -->
+          <div
+            class="group bg-white rounded-2xl p-7 md:p-8 shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-[#C9A227]/30"
+          >
+            <div class="flex items-center mb-5">
+              <div
+                class="w-12 h-12 rounded-xl bg-[#C9A227]/10 flex items-center justify-center mr-4 group-hover:bg-[#C9A227]/20 transition-colors"
+              >
+                <i class="fas fa-industry text-xl text-[#C9A227]"></i>
+              </div>
+              <h3
+                class="text-xl font-semibold text-[#111] group-hover:text-[#C9A227] transition-colors"
+              >
+                Steel Manufacturing
+              </h3>
+            </div>
+            <p class="text-sm text-[#444] leading-relaxed">
+              Advanced manufacturing facilities backed by strict quality control
+              ensure durable, high-performance steel products for demanding
+              industrial applications.
+            </p>
+          </div>
+
+          <!-- Service Card 2 -->
+          <div
+            class="group bg-white rounded-2xl p-7 md:p-8 shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-[#C9A227]/30"
+          >
+            <div class="flex items-center mb-5">
+              <div
+                class="w-12 h-12 rounded-xl bg-[#C9A227]/10 flex items-center justify-center mr-4 group-hover:bg-[#C9A227]/20 transition-colors"
+              >
+                <i class="fas fa-globe text-xl text-[#C9A227]"></i>
+              </div>
+              <h3
+                class="text-xl font-semibold text-[#111] group-hover:text-[#C9A227] transition-colors"
+              >
+                Global Export
+              </h3>
+            </div>
+            <p class="text-sm text-[#444] leading-relaxed">
+              Seamless export operations ensure timely delivery of steel
+              products that comply with international specifications and global
+              industry standards.
+            </p>
+          </div>
+
+          <!-- Service Card 3 -->
+          <div
+            class="group bg-white rounded-2xl p-7 md:p-8 shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-[#C9A227]/30"
+          >
+            <div class="flex items-center mb-5">
+              <div
+                class="w-12 h-12 rounded-xl bg-[#C9A227]/10 flex items-center justify-center mr-4 group-hover:bg-[#C9A227]/20 transition-colors"
+              >
+                <i class="fas fa-check-circle text-xl text-[#C9A227]"></i>
+              </div>
+              <h3
+                class="text-xl font-semibold text-[#111] group-hover:text-[#C9A227] transition-colors"
+              >
+                Quality Assurance
+              </h3>
+            </div>
+            <p class="text-sm text-[#444] leading-relaxed">
+              Every shipment undergoes rigorous inspection and testing, ensuring
+              consistent quality, reliability, and long-term performance.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quality Commitment Section -->
+    <section class="py-12 md:py-16 bg-white relative overflow-hidden">
+      <!-- Soft background accent -->
+      <div
+        class="absolute top-0 right-0 w-96 h-96 bg-[#C9A227]/10 rounded-full blur-3xl -z-10"
+      ></div>
+
+      <!-- Center Logo Watermark -->
+      <div
+        class="absolute inset-0 flex items-center justify-center pointer-events-none"
+      >
+        <img
+          src="logo.png"
+          alt="Naavera Watermark"
+          class="w-72 md:w-96 opacity-[0.06]"
+        />
+      </div>
+
+      <div class="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <!-- Left Content -->
+          <div>
+            <span
+              class="text-sm tracking-widest text-[#C9A227] uppercase font-medium"
+            >
+              Our Quality
+            </span>
+
+            <h2
+              class="text-4xl md:text-5xl font-normal tracking-tight mt-3 mb-6"
+            >
+              Quality Is Not a Process —
+              <span class="gold-text">It’s Our Commitment</span>
+            </h2>
+
+            <p class="text-sm text-[#1C1C1C]/75 leading-relaxed mb-6">
+              At Naavera, quality lies at the core of everything we do. We
+              specialize in manufacturing and exporting high-performance steel
+              products that meet the most stringent global standards.
+            </p>
+
+            <p class="text-sm text-[#1C1C1C]/70 leading-relaxed mb-6">
+              We work with stainless steel, carbon steel, alloy steel, and
+              nickel alloys, engineered to perform under demanding industrial
+              conditions with consistent strength and durability.
+            </p>
+
+            <p class="text-sm text-[#1C1C1C]/70 leading-relaxed">
+              Only premium-grade raw materials are sourced, followed by strict
+              verification and compliance with ASTM, ASME, and DIN standards.
+            </p>
+          </div>
+
+          <!-- Right Highlight Column -->
+          <div class="border-l-2 border-[#C9A227]/40 pl-8 space-y-6 mt-8">
+            <div>
+              <h4 class="text-xl font-semibold text-[#111] mb-2">
+                Precision & Reliability
+              </h4>
+              <p class="text-sm text-[#444] leading-relaxed">
+                Controlled manufacturing processes ensure dimensional accuracy
+                and consistent mechanical performance.
+              </p>
+            </div>
+
+            <div>
+              <h4 class="text-xl font-semibold text-[#111] mb-2">
+                Global Standards
+              </h4>
+              <p class="text-sm text-[#444] leading-relaxed">
+                Products comply with internationally recognized standards for
+                seamless global acceptance.
+              </p>
+            </div>
+
+            <div>
+              <h4 class="text-xl font-semibold text-[#111] mb-2">
+                Commitment to Excellence
+              </h4>
+              <p class="text-sm text-[#444] leading-relaxed">
+                From material selection to final dispatch, quality and trust
+                remain our promise.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <div id="footer"></div>
+
+    <!-- Scripts -->
+    <script src="/header/header.js"></script>
+    <script src="/footer/footer.js"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Scroll reveal animation
+        const revealElements = document.querySelectorAll(".reveal");
+
+        const revealOnScroll = () => {
+          revealElements.forEach((element) => {
+            const elementTop = element.getBoundingClientRect().top;
+            const windowHeight = window.innerHeight;
+
+            if (elementTop < windowHeight - 100) {
+              element.classList.add("active");
+            }
+          });
+        };
+
+        // Initial check
+        revealOnScroll();
+
+        // Check on scroll
+        window.addEventListener("scroll", revealOnScroll);
+
+        // Stat counter animation (simplified)
+        const statNumbers = document.querySelectorAll(".stat-number");
+
+        const animateStats = () => {
+          statNumbers.forEach((stat) => {
+            const target = parseInt(stat.getAttribute("data-target"));
+            const current = parseInt(stat.textContent);
+
+            if (current < target) {
+              stat.textContent =
+                target + (stat.textContent.includes("+") ? "+" : "");
+            }
+          });
+        };
+
+        // Animate stats when they come into view
+        const statsObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                animateStats();
+              }
+            });
+          },
+          { threshold: 0.5 },
+        );
+
+        statNumbers.forEach((stat) => statsObserver.observe(stat));
+
+        // Mobile menu toggle
+        const mobileMenuButton = document.querySelector("button.md\\:hidden");
+        const navMenu = document.querySelector(".hidden.md\\:flex");
+
+        if (mobileMenuButton && navMenu) {
+          mobileMenuButton.addEventListener("click", function () {
+            navMenu.classList.toggle("hidden");
+            navMenu.classList.toggle("absolute");
+            navMenu.classList.toggle("top-full");
+            navMenu.classList.toggle("left-0");
+            navMenu.classList.toggle("right-0");
+            navMenu.classList.toggle("bg-[#111111]");
+            navMenu.classList.toggle("p-6");
+            navMenu.classList.toggle("shadow-xl");
+            navMenu.classList.toggle("flex-col");
+            navMenu.classList.toggle("space-y-4");
+          });
+        }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+          anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute("href");
+            if (targetId === "#") return;
+
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+              window.scrollTo({
+                top: targetElement.offsetTop - 80,
+                behavior: "smooth",
+              });
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
