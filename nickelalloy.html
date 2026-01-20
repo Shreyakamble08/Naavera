@@ -1,0 +1,963 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nickle Alloy | Naavera - Precision Pipe Fittings</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              heading: ['"Alan Sans"', "sans-serif"],
+              serif: ['"DM Serif Text"', "serif"],
+              body: ['"Noto Sans"', "sans-serif"],
+              editorial: ['"Noto Serif"', "serif"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      :root {
+        --primary: #1c1c1c;
+        --background: #f9f7f3;
+        --accent: #e6e2d8;
+        --headings: #111111;
+        --icon: #c9a227;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: var(--background);
+        color: var(--headings);
+        overflow-x: hidden;
+      }
+
+      /* Hide scrollbar for all browsers */
+      body::-webkit-scrollbar {
+        display: none;
+      }
+
+      body {
+        -ms-overflow-style: none;
+        /* IE and Edge */
+        scrollbar-width: none;
+        /* Firefox */
+      }
+
+      /* Banner Section */
+      .banner-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.7s ease;
+      }
+
+      .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          to right,
+          rgba(0, 0, 0, 0.521) 0%,
+          rgba(0, 0, 0, 0.3) 100%
+        );
+      }
+
+      .banner-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+        z-index: 10;
+        width: 90%;
+        max-width: 900px;
+        text-align: center;
+        padding: 20px;
+      }
+
+      /* New Banner Animations */
+      .fade-slide-up {
+        opacity: 0;
+        transform: translateY(40px);
+        animation: fadeSlideUp 1s ease forwards;
+      }
+
+      .zoom-in {
+        opacity: 0;
+        transform: scale(0.9);
+        animation: zoomIn 1.2s ease forwards;
+      }
+
+      .stagger-delay-1 {
+        animation-delay: 0.2s !important;
+      }
+
+      .stagger-delay-2 {
+        animation-delay: 0.4s !important;
+      }
+
+      .stagger-delay-3 {
+        animation-delay: 0.6s !important;
+      }
+
+      .stagger-delay-4 {
+        animation-delay: 0.8s !important;
+      }
+
+      @keyframes fadeSlideUp {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes zoomIn {
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      /* Gold shimmer effect for highlighted text */
+      .gold-shimmer {
+        position: relative;
+        display: inline-block;
+        background: linear-gradient(
+          90deg,
+          #c9a227 0%,
+          #ffd700 50%,
+          #c9a227 100%
+        );
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        animation: shimmer 3s linear infinite;
+      }
+
+      @keyframes shimmer {
+        0% {
+          background-position: 0% center;
+        }
+
+        100% {
+          background-position: 200% center;
+        }
+      }
+
+      /* Scroll animations */
+      .section-hidden {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s ease-out;
+      }
+
+      .section-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Custom animations */
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+
+      .animate-float {
+        animation: float 3s ease-in-out infinite;
+      }
+
+      /* Gradient text */
+      .gradient-text {
+        background: linear-gradient(135deg, var(--icon) 0%, #e6b800 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      /* Stat counter animation */
+      .counter {
+        font-variant-numeric: tabular-nums;
+      }
+
+      /* Responsive image containers */
+      .image-container {
+        position: relative;
+        overflow: hidden;
+        border-radius: 12px;
+      }
+
+      .image-container img {
+        transition: transform 0.7s ease;
+      }
+
+      .image-container:hover img {
+        transform: scale(1.05);
+      }
+
+      /* Card hover effects */
+      .hover-lift {
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+
+      .hover-lift:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(28, 28, 28, 0.12);
+      }
+
+      /* Section divider */
+      .section-divider {
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent 0%,
+          var(--accent) 20%,
+          var(--accent) 80%,
+          transparent 100%
+        );
+      }
+
+      /* Timeline styling */
+      .timeline-item::before {
+        content: "";
+        position: absolute;
+        left: -24px;
+        top: 8px;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: var(--icon);
+      }
+
+      /* Milestone counter */
+      .milestone-number {
+        font-size: 3.5rem;
+        font-weight: 800;
+        line-height: 1;
+        color: var(--icon);
+        position: relative;
+        display: inline-block;
+      }
+
+      .milestone-number::after {
+        content: "+";
+        font-size: 2rem;
+        position: absolute;
+        top: -10px;
+        right: -20px;
+      }
+
+      /* Loading animation for images */
+      .loading-img {
+        background: linear-gradient(
+          90deg,
+          var(--accent) 25%,
+          #f0f0f0 50%,
+          var(--accent) 75%
+        );
+        background-size: 200% 100%;
+        animation: shimmer 1.5s infinite;
+      }
+
+      /* FIXED Banner text responsive sizing */
+      .banner-title {
+        font-size: clamp(2rem, 4.5vw, 3.5rem);
+        line-height: 1.1;
+        margin-bottom: 1rem;
+      }
+
+      .banner-subtitle {
+        font-size: clamp(0.9rem, 1.8vw, 1.1rem);
+        line-height: 1.5;
+        margin-bottom: 1.5rem;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      /* Button responsive sizing */
+      .banner-button {
+        padding: 0.6rem 1.5rem;
+        font-size: clamp(0.8rem, 1.2vw, 0.9rem);
+        white-space: nowrap;
+      }
+
+      /* Mobile-specific adjustments */
+      @media (max-width: 768px) {
+        .banner-content {
+          padding: 15px;
+          width: 95%;
+        }
+
+        .banner-title {
+          font-size: 2rem;
+          line-height: 1.2;
+          margin-bottom: 0.8rem;
+        }
+
+        .banner-subtitle {
+          font-size: 0.95rem;
+          line-height: 1.4;
+          margin-bottom: 1.2rem;
+        }
+
+        .banner-button {
+          padding: 0.5rem 1.2rem;
+          font-size: 0.85rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .banner-title {
+          font-size: 1.7rem;
+        }
+
+        .banner-subtitle {
+          font-size: 0.85rem;
+        }
+
+        .banner-button {
+          padding: 0.4rem 1rem;
+          font-size: 0.8rem;
+        }
+
+        .banner-content {
+          width: 98%;
+          padding: 10px;
+        }
+      }
+
+      /*information section styles*/
+      .info-card {
+        background-color: #f8fafc;
+        border: 1px solid #e5e7eb;
+        border-radius: 16px;
+        padding: 1.25rem;
+        /* p-5 */
+      }
+
+      .info-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.08);
+      }
+
+      .card-title {
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: #1c1c1c;
+        margin-bottom: 0.25rem;
+      }
+
+      .card-text {
+        font-size: 15px;
+        color: #374151;
+        line-height: 1.6;
+      }
+
+      /*watermark styles*/
+      #nickel-alloy-section {
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* Watermark logo */
+      #nickel-alloy-section::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: url("logo.png") no-repeat center;
+        background-size: 340px; /* adjust size */
+        opacity: 0.08; /* watermark effect */
+        pointer-events: none;
+        z-index: 0;
+      }
+    </style>
+  </head>
+
+  <body class="bg-background">
+    <!-- COMMON HEADER -->
+    <div id="header"></div>
+
+    <!-- Hero Section - Split Text Reveal -->
+    <section class="pt-1 pb-6 bg-slate-50 px-1 sm:px-1">
+      <div
+        class="relative max-w-7xl mx-auto h-[540px] rounded-3xl overflow-hidden shadow-2xl"
+      >
+        <!-- SINGLE BANNER SLIDE -->
+        <div class="relative w-full h-full">
+          <img
+            src="images/nickelalloybanner.jfif"
+            class="banner-img"
+            alt="Nickel Alloy Pipe Fittings Manufacturer"
+          />
+          <div class="overlay"></div>
+
+          <div class="banner-content">
+            <h1 class="banner-title font-normal overflow-hidden">
+              <span class="split-text slide-in-from-left">Precision</span>
+              <span class="split-text slide-in-from-right stagger-delay-1"
+                >Nickel</span
+              >
+              <span
+                class="split-text slide-in-from-left text-[#C9A229] stagger-delay-2"
+                >Alloy</span
+              >
+              <span
+                class="split-text slide-in-from-right text-[#C9A229] stagger-delay-3"
+                >Pipe</span
+              >
+              <span class="split-text slide-in-from-left stagger-delay-4"
+                >Fittings</span
+              >
+            </h1>
+
+            <p
+              class="banner-subtitle text-white/90 font-light fade-scale-in stagger-delay-5"
+            >
+              Manufacturing premium-grade nickel alloy forged fittings, flanges,
+              and buttweld components designed for exceptional resistance to
+              heat, pressure, and corrosion in the most demanding industrial
+              environments.
+            </p>
+
+            <div class="flex flex-wrap justify-center gap-3 mt-8">
+              <a
+                href="#nickel-alloy-section"
+                class="banner-button bg-[#C9A227] text-white rounded-lg font-medium hover:bg-[#b8911f] transition-colors border-2 border-[#C9A227] slide-up-in stagger-delay-6"
+              >
+                Our Products
+              </a>
+              <a
+                href="#quality-standards"
+                class="banner-button bg-transparent border-2 border-white text-white rounded-lg font-medium hover:bg-white/10 transition-colors slide-up-in stagger-delay-7"
+              >
+                Quality Standards
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Animated Background Elements -->
+        <div
+          class="absolute top-1/4 left-10 w-64 h-64 rounded-full bg-gradient-to-r from-[#C9A227]/5 to-transparent blur-3xl -z-10"
+        ></div>
+        <div
+          class="absolute bottom-1/4 right-10 w-80 h-80 rounded-full bg-gradient-to-l from-[#C9A227]/5 to-transparent blur-3xl -z-10"
+        ></div>
+      </div>
+    </section>
+
+    <!-- About info -->
+    <section
+      id="nickel-alloy-section"
+      class="py-12 bg-white opacity-0 translate-y-6 transition-all duration-700"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Section Heading -->
+        <div class="max-w-3xl mb-8">
+          <span
+            class="inline-block mb-1 text-xs font-semibold tracking-widest uppercase text-[#C9A229]"
+          >
+            Material Expertise
+          </span>
+
+          <h2 class="text-2xl md:text-3xl font-bold text-[#1C1C1C] relative">
+            Nickel Alloy
+            <span
+              class="block mt-2 w-14 h-1 rounded-full bg-gradient-to-r from-[#C9A229] to-[#E5C35A]"
+            ></span>
+          </h2>
+
+          <p class="mt-4 text-gray-700 leading-relaxed text-[15px]">
+            Nickel Alloy is a high-performance material known for its excellent
+            resistance to corrosion, high-temperature strength, and durability,
+            making it ideal for critical applications in chemical processing,
+            petrochemical industries, oil and gas, power generation, and marine
+            environments.
+          </p>
+        </div>
+
+        <!-- Product Info Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Card -->
+          <div
+            class="info-card opacity-0 translate-y-6 transition-all duration-700 delay-100"
+          >
+            <h3 class="card-title">Buttweld Fittings</h3>
+            <p class="card-text">
+              Nickel alloy buttweld fittings provide superior corrosion and heat
+              resistance, ensuring structural integrity and leak-proof
+              performance in extreme pressure and temperature conditions.
+            </p>
+          </div>
+
+          <div
+            class="info-card opacity-0 translate-y-6 transition-all duration-700 delay-200"
+          >
+            <h3 class="card-title">Forged Fittings</h3>
+            <p class="card-text">
+              Forged nickel alloy fittings offer exceptional strength and
+              durability, making them suitable for high-stress piping systems
+              operating in harsh industrial environments.
+            </p>
+          </div>
+
+          <div
+            class="info-card opacity-0 translate-y-6 transition-all duration-700 delay-300"
+          >
+            <h3 class="card-title">Forged Flanges</h3>
+            <p class="card-text">
+              Nickel alloy forged flanges provide secure and reliable
+              connections, offering excellent resistance to corrosion, heat, and
+              mechanical fatigue.
+            </p>
+          </div>
+
+          <div
+            class="info-card opacity-0 translate-y-6 transition-all duration-700 delay-400"
+          >
+            <h3 class="card-title">Pipe Fittings</h3>
+            <p class="card-text">
+              Nickel alloy pipe fittings ensure long-term performance by
+              withstanding corrosive fluids, high pressure, and thermal cycling
+              in demanding applications.
+            </p>
+          </div>
+        </div>
+
+        <!-- Closing Statement -->
+        <div
+          class="mt-8 max-w-4xl border-l-4 border-[#C9A229] bg-slate-50 p-4 rounded-lg opacity-0 translate-y-6 transition-all duration-700 delay-500"
+        >
+          <p class="text-gray-700 text-[15px] leading-relaxed">
+            Common nickel alloys such as Inconel, Monel, and Hastelloy are
+            widely used for industrial piping systems, offering exceptional
+            longevity, minimal maintenance, and reliable performance under
+            extreme operating conditions.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Material grades Section -->
+    <section class="py-10 bg-slate-50" id="material-grades">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Heading -->
+        <div
+          class="mb-8 opacity-0 translate-y-6 transition-all duration-700"
+          data-animate
+        >
+          <span
+            class="text-xs uppercase tracking-widest text-[#C9A229] font-semibold"
+          >
+            Material Specifications
+          </span>
+          <h2 class="text-2xl md:text-3xl font-bold text-[#1C1C1C] mt-1">
+            Nickel Alloy Material Grades
+          </h2>
+          <div
+            class="w-20 h-1 mt-2 bg-gradient-to-r from-[#C9A229] to-[#E5C35A] rounded-full"
+          ></div>
+        </div>
+
+        <!-- Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- TABLE CARD -->
+          <div
+            class="bg-white rounded-xl border border-[#E5C35A]/40 overflow-hidden opacity-0 translate-y-8 transition-all duration-700"
+            data-animate
+          >
+            <!-- Card Heading -->
+            <h3
+              class="px-5 py-3 font-semibold text-sm md:text-base text-[#1C1C1C] bg-gradient-to-r from-[#FFF7D6] to-[#FFFDF4] border-b border-[#E5C35A]/40"
+            >
+              Nickel Alloy Forged Flanges
+              <span class="block text-xs text-gray-500 font-normal">
+                ASTM / ASME SB
+              </span>
+            </h3>
+
+            <!-- Table -->
+            <div class="overflow-x-auto">
+              <table class="w-full text-sm border-collapse">
+                <tbody class="divide-y divide-[#E5C35A]/30">
+                  <!-- Row 1 -->
+                  <tr class="divide-x divide-[#E5C35A]/30">
+                    <td class="px-4 py-2 font-medium">
+                      ASTM / ASME SB 564 / 160 / 472<br />
+                      ASTM SB564
+                    </td>
+                    <td class="px-4 py-2">SB160</td>
+                    <td class="px-4 py-2">SB472</td>
+                    <td class="px-4 py-2">
+                      SB162 Nickel 200<br />(UNS No. N02200)
+                    </td>
+                    <td class="px-4 py-2">Nickel 201<br />(UNS No. N02201)</td>
+                  </tr>
+
+                  <!-- Row 2 -->
+                  <tr class="divide-x divide-[#E5C35A]/30">
+                    <td class="px-4 py-2">Monel 400<br />(UNS No. N04400)</td>
+                    <td class="px-4 py-2">Monel 500<br />(UNS No. N05500)</td>
+                    <td class="px-4 py-2">Monel 500<br />(UNS No. N05500)</td>
+                    <td class="px-4 py-2">Inconel 800<br />(UNS No. N08800)</td>
+                    <td class="px-4 py-2">Inconel 825<br />(UNS No. N08825)</td>
+                  </tr>
+
+                  <!-- Row 3 -->
+                  <tr class="divide-x divide-[#E5C35A]/30">
+                    <td class="px-4 py-2">Inconel 600<br />(UNS No. N06600)</td>
+                    <td class="px-4 py-2">Inconel 625<br />(UNS No. N06625)</td>
+                    <td class="px-4 py-2">Inconel 601<br />(UNS No. N06601)</td>
+                    <td class="px-4 py-2">
+                      Hastelloy C 276<br />(UNS No. N10276)
+                    </td>
+                    <td class="px-4 py-2">Alloy 20<br />(UNS No. N08020)</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- TABLE CARD -->
+          <div
+            class="bg-white rounded-xl border border-[#E5C35A]/40 overflow-hidden opacity-0 translate-y-8 transition-all duration-700 delay-100"
+            data-animate
+          >
+            <h3
+              class="px-5 py-3 font-semibold text-sm md:text-base text-[#1C1C1C] bg-gradient-to-r from-[#FFF7D6] to-[#FFFDF4] border-b border-[#E5C35A]/40"
+            >
+              Nickel Alloy Forged Fittings
+              <span class="block text-xs text-gray-500 font-normal">
+                ASTM / ASME SB
+              </span>
+            </h3>
+
+            <table class="w-full text-sm border-collapse">
+              <tbody class="divide-y divide-[#E5C35A]/30">
+                <!-- Row 1 -->
+                <tr class="divide-x divide-[#E5C35A]/30">
+                  <td class="px-4 py-2 font-medium">
+                    ASTM / ASME SB 564 / 160 / 472<br />
+                    ASTM SB564
+                  </td>
+                  <td class="px-4 py-2">SB160</td>
+                  <td class="px-4 py-2">SB472</td>
+                  <td class="px-4 py-2">
+                    SB162 Nickel 200<br />(UNS No. N02200)
+                  </td>
+                  <td class="px-4 py-2">Nickel 201<br />(UNS No. N02201)</td>
+                </tr>
+
+                <!-- Row 2 -->
+                <tr class="divide-x divide-[#E5C35A]/30">
+                  <td class="px-4 py-2">Monel 400<br />(UNS No. N04400)</td>
+                  <td class="px-4 py-2">Monel 500<br />(UNS No. N05500)</td>
+                  <td class="px-4 py-2">Inconel 800<br />(UNS No. N08800)</td>
+                  <td class="px-4 py-2">Inconel 825<br />(UNS No. N08825)</td>
+                  <td class="px-4 py-2">Inconel 600<br />(UNS No. N06600)</td>
+                </tr>
+
+                <!-- Row 3 -->
+                <tr class="divide-x divide-[#E5C35A]/30">
+                  <td class="px-4 py-2">Inconel 625<br />(UNS No. N06625)</td>
+                  <td class="px-4 py-2">Inconel 601<br />(UNS No. N06601)</td>
+                  <td class="px-4 py-2">
+                    Hastelloy C 276<br />(UNS No. N10276)
+                  </td>
+                  <td class="px-4 py-2">Alloy 20<br />(UNS No. N08020)</td>
+                  <td class="px-4 py-2"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- TABLE CARD -->
+          <div
+            class="bg-white rounded-xl border border-[#E5C35A]/40 overflow-hidden opacity-0 translate-y-8 transition-all duration-700 delay-100"
+            data-animate
+          >
+            <h3
+              class="px-5 py-3 font-semibold text-sm md:text-base text-[#1C1C1C] bg-gradient-to-r from-[#FFF7D6] to-[#FFFDF4] border-b border-[#E5C35A]/40"
+            >
+              Nickel Alloy Buttweld Fittings
+              <span class="block text-xs text-gray-500 font-normal">
+                ASTM / ASME SB
+              </span>
+            </h3>
+
+            <table class="w-full text-sm border-collapse">
+              <tbody class="divide-y divide-[#E5C35A]/30">
+                <!-- Row 1 -->
+                <tr class="divide-x divide-[#E5C35A]/30">
+                  <td class="px-4 py-2 font-medium">
+                    ASTM / ASME SB 336<br />
+                    UNS 2200 (Nickel 200)
+                  </td>
+                  <td class="px-4 py-2">UNS 2201<br />(Nickel 201)</td>
+                  <td class="px-4 py-2">UNS 4400<br />(Monel 400)</td>
+                  <td class="px-4 py-2">
+                    UNS 8020<br />
+                    Alloy 20 / 20 CB 3
+                  </td>
+                  <td class="px-4 py-2">
+                    UNS 8825<br />
+                    Inconel (825)
+                  </td>
+                </tr>
+
+                <!-- Row 2 -->
+                <tr class="divide-x divide-[#E5C35A]/30">
+                  <td class="px-4 py-2">UNS 6600<br />(Inconel 600)</td>
+                  <td class="px-4 py-2">UNS 6601<br />(Inconel 601)</td>
+                  <td class="px-4 py-2">UNS 6625<br />(Inconel 625)</td>
+                  <td class="px-4 py-2"></td>
+                  <td class="px-4 py-2"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- TABLE CARD -->
+          <!-- <div
+            class="bg-white rounded-xl border border-[#E5C35A]/40 overflow-hidden opacity-0 translate-y-8 transition-all duration-700 delay-100"
+            data-animate
+          >
+            <h3
+              class="px-5 py-3 font-semibold text-sm md:text-base text-[#1C1C1C] bg-gradient-to-r from-[#FFF7D6] to-[#FFFDF4] border-b border-[#E5C35A]/40"
+            >
+              Stainless Steel Pipes
+            </h3>
+
+            <table class="w-full text-sm border-collapse">
+              <tbody class="divide-y divide-[#E5C35A]/30"> -->
+          <!-- Row 1 -->
+          <!-- <tr class="divide-x divide-[#E5C35A]/30">
+                  <td class="px-4 py-2">ASTM / ASME 201</td>
+                  <td class="px-4 py-2">202</td>
+                  <td class="px-4 py-2">301</td>
+                  <td class="px-4 py-2">304</td>
+                  <td class="px-4 py-2">304L</td>
+                </tr> -->
+
+          <!-- Row 2 -->
+          <!-- <tr class="divide-x divide-[#E5C35A]/30">
+                  <td class="px-4 py-2">310</td>
+                  <td class="px-4 py-2">310S</td>
+                  <td class="px-4 py-2">316L</td>
+                  <td class="px-4 py-2">316TI</td>
+                  <td class="px-4 py-2">317</td>
+                </tr> -->
+
+          <!-- Row 3 -->
+          <!-- <tr class="divide-x divide-[#E5C35A]/30">
+                  <td class="px-4 py-2">317L</td>
+                  <td class="px-4 py-2">321</td>
+                  <td class="px-4 py-2">347</td>
+                  <td class="px-4 py-2">409</td>
+                  <td class="px-4 py-2">409M</td>
+                </tr> -->
+
+          <!-- Row 4 -->
+          <!-- <tr class="divide-x divide-[#E5C35A]/30">
+                  <td class="px-4 py-2">409L</td>
+                  <td class="px-4 py-2">410</td>
+                  <td class="px-4 py-2">410S</td>
+                  <td class="px-4 py-2">420</td>
+                  <td class="px-4 py-2">430</td>
+                </tr> -->
+
+          <!-- Row 5 -->
+          <!-- <tr class="divide-x divide-[#E5C35A]/30">
+                  <td class="px-4 py-2">431</td>
+                  <td class="px-4 py-2">441</td>
+                  <td class="px-4 py-2">444</td>
+                  <td class="px-4 py-2">446</td>
+                  <td class="px-4 py-2">17.4PH</td>
+                </tr> -->
+
+          <!-- Row 6 -->
+          <!-- <tr class="divide-x divide-[#E5C35A]/30">
+                  <td class="px-4 py-2">
+                    904L ASTM / ASME SA 790<br />UNS NO S 31803
+                  </td>
+                  <td class="px-4 py-2">S 32205</td>
+                  <td class="px-4 py-2">S 32550</td>
+                  <td class="px-4 py-2">S 32750</td>
+                  <td class="px-4 py-2">S 32760</td>
+                </tr>
+              </tbody>
+            </table>
+          </div> -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <div id="footer"></div>
+
+    <script>
+      // Banner animations - automatically trigger on page load
+      document.addEventListener("DOMContentLoaded", () => {
+        // Trigger banner animations immediately
+        const bannerElements = document.querySelectorAll(
+          ".zoom-in, .fade-slide-up",
+        );
+        bannerElements.forEach((el) => {
+          el.style.animationPlayState = "running";
+        });
+
+        // Initialize scroll animations
+        initializeScrollAnimations();
+        initializeCounters();
+      });
+
+      // Scroll animations for other sections
+      function initializeScrollAnimations() {
+        const observerOptions = {
+          threshold: 0.1,
+          rootMargin: "0px 0px -50px 0px",
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const element = entry.target;
+              const animation = element.getAttribute("data-animation");
+              const delay = element.getAttribute("data-delay") || 0;
+
+              setTimeout(() => {
+                element.classList.add("section-visible");
+                if (animation) {
+                  element.style.animation = `${animation} 0.8s ease forwards`;
+                }
+              }, parseInt(delay));
+
+              observer.unobserve(element);
+            }
+          });
+        }, observerOptions);
+
+        // Observe all animated sections
+        document.querySelectorAll(".section-hidden").forEach((section) => {
+          observer.observe(section);
+        });
+      }
+
+      // Counter Animation
+      function initializeCounters() {
+        const counters = document.querySelectorAll(".counter");
+
+        const counterObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const counter = entry.target;
+                const target = parseInt(counter.getAttribute("data-target"));
+                const duration = 2000;
+                const increment = target / (duration / 16);
+                let current = 0;
+
+                const timer = setInterval(() => {
+                  current += increment;
+                  if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                  }
+                  counter.textContent = Math.floor(current);
+                }, 16);
+
+                counterObserver.unobserve(counter);
+              }
+            });
+          },
+          { threshold: 0.5 },
+        );
+
+        counters.forEach((counter) => counterObserver.observe(counter));
+      }
+
+      //material gardes animations
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const items = document.querySelectorAll("[data-animate]");
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.remove(
+                  "opacity-0",
+                  "translate-y-6",
+                  "translate-y-8",
+                );
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.15 },
+        );
+
+        items.forEach((item) => observer.observe(item));
+      });
+
+      //Information section animations
+      const section = document.querySelector("#nickel-alloy-section");
+      const animatedItems = section.querySelectorAll(".info-card, .border-l-4");
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              section.classList.remove("opacity-0", "translate-y-6");
+              section.classList.add("opacity-100", "translate-y-0");
+
+              animatedItems.forEach((el) => {
+                el.classList.remove("opacity-0", "translate-y-6");
+                el.classList.add("opacity-100", "translate-y-0");
+              });
+
+              observer.unobserve(section); // run once
+            }
+          });
+        },
+        { threshold: 0.2 },
+      );
+
+      observer.observe(section);
+    </script>
+
+    <script src="header/header.js"></script>
+    <script src="footer/footer.js"></script>
+  </body>
+</html>
