@@ -2,9 +2,8 @@
   .footer-link {
     transition: all 0.3s ease;
   }
-
   .footer-link:hover {
-    color: #60a5fa;
+    color: #c9a227;
     transform: translateX(4px);
   }
 
@@ -15,100 +14,111 @@
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(201, 162, 39, 0.12);
     transition: all 0.3s ease;
   }
-
   .social-link:hover {
-    background-color: #2563eb;
+    background-color: #c9a227;
+    color: #111111;
     transform: translateY(-3px);
+  }
+
+  details summary {
+    cursor: pointer;
+    list-style: none;
+  }
+  details summary::-webkit-details-marker {
+    display: none;
   }
 </style>
 
-<footer class="bg-gradient-to-b from-gray-900 to-gray-950 text-white">
+<footer class="bg-[#1C1C1C] text-[#f9f7f3]">
   <div class="max-w-7xl mx-auto px-6 py-16">
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
-      <!-- Column 1 - Brand -->
-      <div>
-        <h2
-          class="text-2xl font-bold bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent mb-4"
-        >
-          Naavera
-        </h2>
-        <p class="text-gray-400 leading-relaxed">
-          Building amazing digital experiences with modern design and
-          cutting-edge technology.
+    <!-- Top Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-5 gap-10 mb-12">
+      <!-- Brand -->
+      <div class="md:col-span-1">
+        <img src="logo.png" alt="Naavera Logo" class="w-20 mb-4" />
+        <p class="text-sm text-[#e6e2d8] leading-relaxed">
+          Manufacturing and exporting premium steel solutions trusted across
+          global industries.
         </p>
       </div>
 
-      <!-- Column 2 - Quick Links -->
+      <!-- Quick Links -->
       <div>
-        <h3 class="text-lg font-bold mb-6 text-white">Quick Links</h3>
-        <ul class="flex flex-col gap-3">
-          <li>
-            <a href="index.html" class="footer-link text-gray-400">Home</a>
-          </li>
-          <li>
-            <a href="about.html" class="footer-link text-gray-400">About</a>
-          </li>
-          <li>
-            <a href="services.html" class="footer-link text-gray-400"
-              >Services</a
-            >
-          </li>
+        <h3 class="text-lg font-semibold mb-5 text-[#C9A227]">Quick Links</h3>
+        <ul class="space-y-3 text-sm">
+          <li><a href="index.html" class="footer-link">Home</a></li>
+          <li><a href="about.html" class="footer-link">About</a></li>
+          <li><a href="services.html" class="footer-link">Services</a></li>
+          <li><a href="contact.html" class="footer-link">Contact</a></li>
         </ul>
       </div>
 
-      <!-- Column 3 - Resources -->
+      <!-- Materials -->
       <div>
-        <h3 class="text-lg font-bold mb-6 text-white">Resources</h3>
-        <ul class="flex flex-col gap-3">
-          <li>
-            <a href="#" class="footer-link text-gray-400">Documentation</a>
-          </li>
-          <li><a href="#" class="footer-link text-gray-400">Blog</a></li>
-          <li><a href="#" class="footer-link text-gray-400">Support</a></li>
+        <h3 class="text-lg font-semibold mb-5 text-[#C9A227]">Materials</h3>
+        <ul class="space-y-3 text-sm">
+          <li>Stainless Steel</li>
+          <li>Carbon Steel</li>
+          <li>Alloy Steel</li>
+          <li>Nickel Steel</li>
         </ul>
       </div>
 
-      <!-- Column 4 - Contact -->
+      <!-- Manufacturing (Dropdowns) -->
       <div>
-        <h3 class="text-lg font-bold mb-6 text-white">Contact</h3>
-        <div class="flex flex-col gap-3 text-gray-400">
-          <p><span class="text-blue-400">📧</span> info@naavera.com</p>
-          <p><span class="text-blue-400">📱</span> +1 (555) 123-4567</p>
-          <p><span class="text-blue-400">📍</span> Your City, Country</p>
+        <h3 class="text-lg font-semibold mb-5 text-[#C9A227]">Manufacturing</h3>
+        <div class="space-y-3 text-sm">
+          <details>
+            <summary class="footer-link">Buttweld Fittings</summary>
+          </details>
+          <details>
+            <summary class="footer-link">Forged Fittings</summary>
+          </details>
+          <details>
+            <summary class="footer-link">Forged Flanges</summary>
+          </details>
+        </div>
+      </div>
+
+      <!-- Contact -->
+      <div>
+        <h3 class="text-lg font-semibold mb-5 text-[#C9A227]">Contact</h3>
+        <div class="text-sm text-[#e6e2d8] space-y-3">
+          <p>📍 Pune, Maharashtra, India.</p>
+          <p>📍 Lewisville,United States.</p>
+          <p>📞 +91 98765 43210</p>
+          <p>📧 info@naavera.com</p>
         </div>
       </div>
     </div>
 
     <!-- Divider -->
-    <div class="border-t border-gray-700 pt-8 mb-8"></div>
+    <div class="border-t border-[#e6e2d8]/30 my-8"></div>
 
-    <!-- Bottom Section -->
-    <div class="flex flex-col md:flex-row justify-between items-center gap-6">
-      <p class="text-gray-400 text-sm">
-        &copy; 2026 Naavera. All rights reserved.
+    <!-- Bottom Bar -->
+    <div
+      class="flex flex-col md:flex-row justify-between items-center gap-6 text-sm"
+    >
+      <p class="text-[#e6e2d8]">© 2026 Naavera. All rights reserved.</p>
+
+      <p class="text-[#e6e2d8]">
+        Developed by
+        <a
+          href="https://kunashmediasolutions.com"
+          target="_blank"
+          class="text-[#C9A227] hover:underline"
+        >
+          Kunash Media Solutions
+        </a>
       </p>
+
       <div class="flex gap-4">
-        <a
-          href="#"
-          class="social-link text-gray-400 hover:text-white"
-          title="Facebook"
-          >f</a
-        >
-        <a
-          href="#"
-          class="social-link text-gray-400 hover:text-white"
-          title="Twitter"
-          >𝕏</a
-        >
-        <a
-          href="#"
-          class="social-link text-gray-400 hover:text-white"
-          title="LinkedIn"
-          >in</a
-        >
+        <a href="#" class="social-link" title="LinkedIn">in</a>
+        <a href="#" class="social-link" title="Instagram">ig</a>
+        <a href="#" class="social-link" title="Facebook">f</a>
       </div>
     </div>
   </div>
