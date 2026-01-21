@@ -1,0 +1,590 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact | Naavera</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              heading: ['"Alan Sans"', "sans-serif"],
+              serif: ['"DM Serif Text"', "serif"],
+              body: ['"Noto Sans"', "sans-serif"],
+              editorial: ['"Noto Serif"', "serif"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      body {
+        background-color: #f9f7f3;
+        color: #1c1c1c;
+      }
+
+      /* Elegant hover effects */
+      .client-card {
+        transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        background: linear-gradient(145deg, #ffffff, #f9f7f3);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .client-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: linear-gradient(90deg, #c9a229, #d4b65d);
+        transform: scaleX(0);
+        transition: transform 0.6s ease;
+      }
+
+      .client-card:hover::before {
+        transform: scaleX(1);
+      }
+
+      .client-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(28, 28, 28, 0.08);
+      }
+
+      /* Minimal divider */
+      .divider {
+        width: 60px;
+        height: 2px;
+        background: #c9a229;
+        margin: 0 auto;
+      }
+
+      /* Icon styling */
+      .icon-wrapper {
+        background: linear-gradient(135deg, #f9f7f3 0%, #e6e2d8 100%);
+        border: 1px solid rgba(201, 162, 41, 0.1);
+      }
+
+      /* Stat counter animation */
+      .stat-number {
+        position: relative;
+      }
+
+      /* Smooth reveal animation */
+      .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s ease-out;
+      }
+
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Elegant border radius */
+      .elegant-radius {
+        border-radius: 12px;
+      }
+
+      /* Gold accent text */
+      .gold-text {
+        color: #c9a229;
+      }
+
+      /* Subtle pattern overlay */
+      .pattern-overlay {
+        background-image: radial-gradient(#e6e2d8 1px, transparent 1px);
+        background-size: 20px 20px;
+        opacity: 0.3;
+      }
+
+      /* Banner styling */
+      /* Animation classes */
+      .split-text {
+        display: inline-block;
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      .slide-in-from-left {
+        animation: slideFromLeft 0.8s ease-out forwards;
+      }
+
+      .slide-in-from-right {
+        animation: slideFromRight 0.8s ease-out forwards;
+      }
+
+      .stagger-delay-1 {
+        animation-delay: 0.2s;
+      }
+
+      .stagger-delay-2 {
+        animation-delay: 0.4s;
+      }
+
+      .stagger-delay-3 {
+        animation-delay: 0.6s;
+      }
+
+      .stagger-delay-4 {
+        animation-delay: 0.8s;
+      }
+
+      .fade-scale-in {
+        opacity: 0;
+        transform: scale(0.95);
+        animation: fadeScaleIn 0.8s ease-out 0.9s forwards;
+      }
+
+      .slide-up-in {
+        opacity: 0;
+        transform: translateY(20px);
+        animation: slideUpIn 0.6s ease-out 1s forwards;
+      }
+
+      @keyframes slideFromLeft {
+        from {
+          opacity: 0;
+          transform: translateX(-50px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes slideFromRight {
+        from {
+          opacity: 0;
+          transform: translateX(50px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes fadeScaleIn {
+        from {
+          opacity: 0;
+          transform: scale(0.95);
+        }
+
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      @keyframes slideUpIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Banner specific styles */
+      .banner-title {
+        line-height: 1.1;
+      }
+
+      .banner-subtitle {
+        line-height: 1.6;
+      }
+
+      .banner-button {
+        transition: all 0.3s ease;
+      }
+    </style>
+  </head>
+
+  <body class="antialiased">
+    <!-- common header -->
+    <div id="header"></div>
+
+    <!-- Hero Section -->
+    <section class="pt-1 pb-6 bg-slate-50 px-1 sm:px-1">
+      <div
+        class="relative max-w-7xl mx-auto h-[540px] rounded-3xl overflow-hidden shadow-2xl"
+      >
+        <div class="relative w-full h-full">
+          <img
+            src="images/contactbanner.jfif"
+            class="absolute inset-0 w-full h-full object-cover"
+            alt="Contact Naavera Steel Solutions"
+          />
+
+          <div
+            class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent"
+          ></div>
+
+          <div
+            class="relative h-full flex items-center justify-center px-6 sm:px-12 lg:px-20"
+          >
+            <div class="max-w-2xl text-center">
+              <!-- Heading -->
+              <h1
+                class="banner-title font-normal text-white mt-4 overflow-hidden leading-tight"
+              >
+                <span class="block whitespace-normal sm:whitespace-nowrap">
+                  <span
+                    class="split-text slide-in-from-left text-4xl sm:text-6xl lg:text-7xl inline-block"
+                  >
+                    Contact
+                  </span>
+                  <span
+                    class="split-text slide-in-from-right stagger-delay-1 text-4xl sm:text-6xl lg:text-7xl text-[#C9A229] inline-block ml-2 sm:ml-3"
+                  >
+                    Naavera
+                  </span>
+                </span>
+
+                <span
+                  class="split-text slide-in-from-left stagger-delay-2 text-4xl sm:text-6xl lg:text-7xl block"
+                >
+                  Steel Solutions
+                </span>
+              </h1>
+
+              <!-- Description -->
+              <p
+                class="banner-subtitle font-light text-white/90 fade-scale-in stagger-delay-3 text-base sm:text-xl max-w-xl mx-auto mt-4 mb-5 px-2 sm:px-0"
+              >
+                Get in touch with our team for manufacturing, export enquiries,
+                technical support, or custom steel solutions tailored to your
+                industry requirements.
+              </p>
+
+              <!-- Buttons -->
+              <div
+                class="flex flex-wrap justify-center gap-3 sm:gap-4 stagger-delay-4"
+              >
+                <a
+                  href="contact.html"
+                  class="banner-button bg-[#C9A229] text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-normal hover:bg-[#b8911f] transition-all duration-300 border-2 border-[#C9A229] slide-up-in"
+                >
+                  Contact Us
+                </a>
+
+                <a
+                  href="tel:+919876543210"
+                  class="banner-button bg-transparent border-2 border-white text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-normal hover:bg-white/10 transition-all duration-300 slide-up-in"
+                >
+                  Call Now
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="absolute bottom-1/4 right-6 sm:right-10 w-64 sm:w-80 h-64 sm:h-80 rounded-full bg-gradient-to-l from-[#C9A229]/10 to-transparent blur-3xl -z-10"
+        ></div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section
+      id="contact"
+      class="py-10 md:py-14 relative bg-[#f9f7f3] overflow-hidden"
+    >
+      <!-- Subtle grid background -->
+      <div class="absolute inset-0 pointer-events-none">
+        <div
+          class="w-full h-full bg-[linear-gradient(to_right,#e2e0db_1px,transparent_1px),linear-gradient(to_bottom,#e2e0db_1px,transparent_1px)] bg-[size:40px_40px] opacity-[0.28]"
+        ></div>
+      </div>
+
+      <div class="container mx-auto px-5 sm:px-6 lg:px-8 relative z-10">
+        <!-- Heading -->
+        <div class="text-center mb-10">
+          <h2 class="text-4xl md:text-5xl font-normal tracking-tight mb-4">
+            Get in <span class="gold-text">Touch</span>
+          </h2>
+          <p class="text-lg md:text-xl text-[#1C1C1C]/70 max-w-3xl mx-auto">
+            Reach out to Naavera for manufacturing, export enquiries, or custom
+            steel solutions. Our team is ready to assist you.
+          </p>
+          <div class="w-16 h-1 bg-[#C9A227] mx-auto mt-6 rounded-full"></div>
+        </div>
+
+        <!-- Contact Grid -->
+        <div
+          class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 items-stretch"
+        >
+          <!-- Contact Details Card -->
+          <div
+            class="bg-white rounded-2xl p-7 md:p-8 shadow-sm border border-gray-100"
+          >
+            <h3 class="text-2xl font-semibold text-[#111] mb-6 text-center">
+              Contact Information
+            </h3>
+
+            <!-- Offices Container -->
+            <div class="flex flex-col lg:flex-row gap-8 lg:gap-10">
+              <!-- Pune Office -->
+              <div class="flex-1 space-y-4">
+                <h4 class="text-lg font-medium text-[#111] mb-2">
+                  Pune, India
+                </h4>
+
+                <p class="text-sm text-[#444] flex items-start gap-2">
+                  <i class="fas fa-map-marker-alt mt-1 text-[#C9A227]"></i>
+                  <span
+                    >906, City Avenue, Wakad,<br />Pune, Maharashtra,<br />India</span
+                  >
+                </p>
+
+                <p class="text-sm text-[#444] flex items-center gap-2">
+                  <i class="fas fa-phone text-[#C9A227]"></i>
+                  <a href="tel:+919372156296" class="hover:underline"
+                    >+91 937 215 6296</a
+                  >
+                </p>
+                <p class="text-sm text-[#444] flex items-center gap-2">
+                  <i class="fas fa-phone text-[#C9A227]"></i>
+                  <a href="tel:+917903257705" class="hover:underline"
+                    >+91 790 325 7705</a
+                  >
+                </p>
+
+                <p class="text-sm text-[#444] flex items-center gap-2">
+                  <i class="fas fa-envelope text-[#C9A227]"></i>
+                  <a href="mailto:info@naavera.com" class="hover:underline"
+                    >info@naavera.com</a
+                  >
+                </p>
+              </div>
+
+              <!-- Vertical Divider -->
+              <div class="hidden lg:block w-px bg-gray-300"></div>
+
+              <!-- USA Office -->
+              <div class="flex-1 space-y-4">
+                <h4 class="text-lg font-medium text-[#111] mb-2">
+                  Lewisville, USA
+                </h4>
+
+                <p class="text-sm text-[#444] flex items-start gap-2">
+                  <i class="fas fa-map-marker-alt mt-1 text-[#C9A227]"></i>
+                  <span
+                    >2520 Dover Drive,<br />Lewisville, TX 75056,<br />United
+                    States</span
+                  >
+                </p>
+
+                <p class="text-sm text-[#444] flex items-center gap-2">
+                  <i class="fas fa-phone text-[#C9A227]"></i>
+                  <a href="tel:+17324069989" class="hover:underline"
+                    >+1 (732) 406-9989</a
+                  >
+                </p>
+
+                <p class="text-sm text-[#444] flex items-center gap-2">
+                  <i class="fas fa-envelope text-[#C9A227]"></i>
+                  <a href="mailto:info@naavera.com" class="hover:underline"
+                    >info@naavera.com</a
+                  >
+                </p>
+              </div>
+            </div>
+
+            <!-- Horizontal Divider -->
+            <div class="my-6 border-t border-gray-300"></div>
+
+            <!-- Social Media Icons -->
+            <div class="flex justify-center gap-4">
+              <a
+                href="#"
+                target="_blank"
+                class="w-10 h-10 flex items-center justify-center rounded-full bg-[#555] text-white hover:bg-[#5a3d0f] transition-all duration-300"
+              >
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a
+                href="#"
+                target="_blank"
+                class="w-10 h-10 flex items-center justify-center rounded-full bg-[#555] text-white hover:bg-[#5a3d0f] transition-all duration-300"
+              >
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a
+                href="#"
+                target="_blank"
+                class="w-10 h-10 flex items-center justify-center rounded-full bg-[#555] text-white hover:bg-[#5a3d0f] transition-all duration-300"
+              >
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+              <a
+                href="#"
+                target="_blank"
+                class="w-10 h-10 flex items-center justify-center rounded-full bg-[#555] text-white hover:bg-[#5a3d0f] transition-all duration-300"
+              >
+                <i class="fab fa-instagram"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Contact Form -->
+          <div
+            class="bg-white rounded-2xl p-7 md:p-8 shadow-sm border border-gray-100 h-full"
+          >
+            <h3 class="text-2xl font-semibold text-[#111] mb-6">
+              Send Us a Message
+            </h3>
+
+            <form class="space-y-4">
+              <input
+                type="text"
+                placeholder="Your Name"
+                class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:border-[#C9A227]"
+              />
+
+              <input
+                type="email"
+                placeholder="Your Email"
+                class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:border-[#C9A227]"
+              />
+
+              <input
+                type="tel"
+                placeholder="Phone Number"
+                class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:border-[#C9A227]"
+              />
+
+              <textarea
+                rows="4"
+                placeholder="Your Message"
+                class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:border-[#C9A227]"
+              ></textarea>
+
+              <button
+                type="submit"
+                class="bg-[#C9A227] text-white px-8 py-3 rounded-full hover:bg-[#b8911f] transition-all duration-300"
+              >
+                Submit Enquiry
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <div id="footer"></div>
+
+    <!-- Scripts -->
+    <script src="/header/header.js"></script>
+    <script src="/footer/footer.js"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Scroll reveal animation
+        const revealElements = document.querySelectorAll(".reveal");
+
+        const revealOnScroll = () => {
+          revealElements.forEach((element) => {
+            const elementTop = element.getBoundingClientRect().top;
+            const windowHeight = window.innerHeight;
+
+            if (elementTop < windowHeight - 100) {
+              element.classList.add("active");
+            }
+          });
+        };
+
+        // Initial check
+        revealOnScroll();
+
+        // Check on scroll
+        window.addEventListener("scroll", revealOnScroll);
+
+        // Stat counter animation (simplified)
+        const statNumbers = document.querySelectorAll(".stat-number");
+
+        const animateStats = () => {
+          statNumbers.forEach((stat) => {
+            const target = parseInt(stat.getAttribute("data-target"));
+            const current = parseInt(stat.textContent);
+
+            if (current < target) {
+              stat.textContent =
+                target + (stat.textContent.includes("+") ? "+" : "");
+            }
+          });
+        };
+
+        // Animate stats when they come into view
+        const statsObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                animateStats();
+              }
+            });
+          },
+          { threshold: 0.5 },
+        );
+
+        statNumbers.forEach((stat) => statsObserver.observe(stat));
+
+        // Mobile menu toggle
+        const mobileMenuButton = document.querySelector("button.md\\:hidden");
+        const navMenu = document.querySelector(".hidden.md\\:flex");
+
+        if (mobileMenuButton && navMenu) {
+          mobileMenuButton.addEventListener("click", function () {
+            navMenu.classList.toggle("hidden");
+            navMenu.classList.toggle("absolute");
+            navMenu.classList.toggle("top-full");
+            navMenu.classList.toggle("left-0");
+            navMenu.classList.toggle("right-0");
+            navMenu.classList.toggle("bg-[#111111]");
+            navMenu.classList.toggle("p-6");
+            navMenu.classList.toggle("shadow-xl");
+            navMenu.classList.toggle("flex-col");
+            navMenu.classList.toggle("space-y-4");
+          });
+        }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+          anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute("href");
+            if (targetId === "#") return;
+
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+              window.scrollTo({
+                top: targetElement.offsetTop - 80,
+                behavior: "smooth",
+              });
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
