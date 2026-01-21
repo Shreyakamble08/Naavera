@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -8,6 +8,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
 
     <style>
+      /* Your original styles – unchanged except additions at the end */
+
       /* 1. Drawer Backdrop */
       #drawer-backdrop {
         position: fixed;
@@ -125,6 +127,73 @@
 
       .mobile-dropdown.show {
         max-height: 500px;
+      }
+
+      .subcategory {
+        display: none; /* fallback */
+      }
+
+      .subcategory.hidden {
+        display: none;
+      }
+
+      .subcategory:not(.hidden) {
+        display: block;
+      }
+
+      /* Optional transition */
+      .subcategory {
+        transition:
+          max-height 0.3s ease-out,
+          opacity 0.25s ease;
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+      }
+
+      .subcategory:not(.hidden) {
+        max-height: 1200px;
+        opacity: 1;
+      }
+
+      .mobile-dropdown .subcategory.hidden {
+        display: none !important;
+      }
+
+      .mobile-dropdown .subcategory:not(.hidden) {
+        display: block !important;
+      }
+
+      /* ── DEBUG + FIX OVERRIDES ── */
+      .subcategory-toggle {
+        position: relative;
+        z-index: 100 !important;
+        pointer-events: auto !important;
+        touch-action: manipulation !important;
+      }
+
+      .subcategory {
+        min-height: 100px !important;
+        pointer-events: auto !important;
+      }
+
+      /* Strongest visibility force */
+      .subcategory:not(.hidden) {
+        display: block !important;
+        max-height: 2000px !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+      }
+
+      /* Critical mobile fix – prevent blocking of inner clicks */
+      #mobile-menu,
+      #mobile-menu *,
+      .space-y-2,
+      .overflow-y-auto,
+      .flex-col {
+        pointer-events: auto !important;
+        touch-action: auto !important;
+        -webkit-tap-highlight-color: transparent;
       }
     </style>
   </head>
@@ -655,7 +724,7 @@
                 >Clients</a
               >
 
-               <a
+              <a
                 href="certifications.html"
                 class="block py-3 px-4 text-sm text-slate-600 border-l-2 border-slate-100 ml-2"
                 >Certifications</a
@@ -963,140 +1032,282 @@
 
     <script>
       document.addEventListener("DOMContentLoaded", () => {
+        console.log("[INIT] DOMContentLoaded fired – starting script setup");
+
         const hamburger = document.getElementById("hamburger");
         const mobileMenu = document.getElementById("mobile-menu");
         const backdrop = document.getElementById("drawer-backdrop");
         const mobileClose = document.getElementById("mobile-close");
 
+        console.log("[INIT] Element lookup:", {
+          hamburger: !!hamburger,
+          mobileMenu: !!mobileMenu,
+          backdrop: !!backdrop,
+          mobileClose: !!mobileClose,
+        });
+
         // Toggle Drawer
         function toggleMenu() {
+          console.log("[toggleMenu] Called");
           const isOpen = mobileMenu.classList.toggle("show");
+          console.log("[toggleMenu] Menu is now:", isOpen ? "OPEN" : "CLOSED");
           hamburger.classList.toggle("open");
           backdrop.classList.toggle("show");
           document.body.style.overflow = isOpen ? "hidden" : "";
+          console.log(
+            "[toggleMenu] Body overflow set to:",
+            document.body.style.overflow,
+          );
         }
 
         function closeMenu() {
+          console.log("[closeMenu] Called");
           mobileMenu.classList.remove("show");
           hamburger.classList.remove("open");
           backdrop.classList.remove("show");
           document.body.style.overflow = "";
+          console.log("[closeMenu] Menu closed, body overflow reset");
         }
 
-        hamburger.addEventListener("click", toggleMenu);
-        backdrop.addEventListener("click", closeMenu);
-        mobileClose.addEventListener("click", closeMenu);
+        if (hamburger) {
+          hamburger.addEventListener("click", () => {
+            console.log("[Hamburger] Click detected");
+            toggleMenu();
+          });
+        } else {
+          console.warn(
+            "[Hamburger] Element not found – click listener not attached",
+          );
+        }
 
-        // Mobile Accordion Logic - SINGLE VERSION
+        if (backdrop)
+          backdrop.addEventListener("click", () => {
+            console.log("[Backdrop] Click detected – closing menu");
+            closeMenu();
+          });
+        if (mobileClose)
+          mobileClose.addEventListener("click", () => {
+            console.log("[Close button] Click detected – closing menu");
+            closeMenu();
+          });
+
+        // Mobile main Accordion (About, Manufacturing, Materials)
+        console.log(
+          "[Main Accordion] Attaching listeners to .mobile-dropdown-toggle",
+        );
         document
           .querySelectorAll(".mobile-dropdown-toggle")
-          .forEach((toggle) => {
+          .forEach((toggle, i) => {
+            console.log(
+              `[Main Accordion] Attaching listener to toggle #${i + 1}:`,
+              toggle.textContent.trim().slice(0, 30) + "...",
+            );
+
             toggle.addEventListener("click", function (e) {
+              console.log(
+                "[Main Accordion] Click on:",
+                this.textContent.trim().slice(0, 30) + "...",
+              );
               e.preventDefault();
               e.stopPropagation();
 
               const dropdown = this.nextElementSibling;
               const icon = this.querySelector("svg");
-              const isHidden = dropdown.classList.contains("hidden");
+              const isHidden = dropdown?.classList.contains("hidden");
 
-              // Close all other dropdowns first
+              console.log(
+                "[Main Accordion] Current dropdown hidden?",
+                isHidden,
+              );
+
               document
                 .querySelectorAll(".mobile-dropdown")
-                .forEach((otherDropdown) => {
-                  if (otherDropdown !== dropdown) {
-                    otherDropdown.classList.add("hidden");
+                .forEach((other, idx) => {
+                  if (other !== dropdown) {
+                    console.log(
+                      `[Main Accordion] Closing other dropdown #${idx + 1}`,
+                    );
+                    other.classList.add("hidden");
                     const otherIcon =
-                      otherDropdown.previousElementSibling.querySelector("svg");
+                      other.previousElementSibling?.querySelector("svg");
                     if (otherIcon) otherIcon.style.transform = "rotate(0deg)";
                   }
                 });
 
-              // Toggle current dropdown
-              if (isHidden) {
-                dropdown.classList.remove("hidden");
-                icon.style.transform = "rotate(180deg)";
+              if (dropdown) {
+                if (isHidden) {
+                  console.log("[Main Accordion] Opening current dropdown");
+                  dropdown.classList.remove("hidden");
+                  if (icon) icon.style.transform = "rotate(180deg)";
+                } else {
+                  console.log("[Main Accordion] Closing current dropdown");
+                  dropdown.classList.add("hidden");
+                  if (icon) icon.style.transform = "rotate(0deg)";
+                }
               } else {
-                dropdown.classList.add("hidden");
-                icon.style.transform = "rotate(0deg)";
+                console.warn("[Main Accordion] No nextElementSibling found");
               }
 
-              // Also close all subcategories when closing main dropdown
+              // Close subcategories when main closes
               if (!isHidden) {
+                console.log(
+                  "[Main Accordion] Closing all subcategories because main is being closed",
+                );
                 document.querySelectorAll(".subcategory").forEach((sub) => {
                   sub.classList.add("hidden");
+                  console.log(
+                    "[Subcategory] Forced hidden on:",
+                    sub.previousElementSibling?.textContent.trim() || "unknown",
+                  );
                 });
                 document
                   .querySelectorAll(".subcategory-toggle svg")
-                  .forEach((subIcon) => {
-                    subIcon.style.transform = "rotate(0deg)";
+                  .forEach((i) => {
+                    i.style.transform = "rotate(0deg)";
                   });
               }
             });
           });
 
-        // Subcategory toggle logic
-        document.querySelectorAll(".subcategory-toggle").forEach((btn) => {
-          btn.addEventListener("click", function (e) {
+        // ── Subcategory delegated handler with full logging ──
+        const menuContainer = document.getElementById("mobile-menu");
+        if (menuContainer) {
+          console.log(
+            "[Subcategory] Mobile menu container found – attaching delegated listener",
+          );
+
+          menuContainer.addEventListener("click", function (e) {
+            const toggleBtn = e.target.closest(".subcategory-toggle");
+            if (!toggleBtn) {
+              // console.log("[Subcategory] Click somewhere in menu, but not on .subcategory-toggle");
+              return;
+            }
+
+            console.log(
+              "[Subcategory] CLICK CAPTURED on:",
+              toggleBtn.textContent.trim(),
+            );
+
+            // Visual debug
+            toggleBtn.style.backgroundColor = "#fed7aa";
+            setTimeout(() => {
+              toggleBtn.style.backgroundColor = "#fff3cd";
+            }, 400);
+
             e.preventDefault();
             e.stopPropagation();
 
-            const list = this.nextElementSibling;
-            const icon = this.querySelector("svg");
-            const isHidden = list.classList.contains("hidden");
-
-            // Toggle current subcategory
-            if (isHidden) {
-              list.classList.remove("hidden");
-              icon.style.transform = "rotate(180deg)";
-            } else {
-              list.classList.add("hidden");
-              icon.style.transform = "rotate(0deg)";
+            const subcategoryList = toggleBtn.nextElementSibling;
+            if (!subcategoryList?.classList.contains("subcategory")) {
+              console.warn(
+                "[Subcategory] No valid .subcategory sibling found for:",
+                toggleBtn.textContent.trim(),
+              );
+              return;
             }
+
+            console.log(
+              "[Subcategory] Found list – current hidden state:",
+              subcategoryList.classList.contains("hidden"),
+            );
+
+            const arrow = toggleBtn.querySelector("svg");
+
+            const becomingVisible = subcategoryList.classList.toggle("hidden");
+            console.log(
+              "[Subcategory] After toggle – becoming visible?",
+              !becomingVisible,
+            );
+
+            if (arrow) {
+              arrow.style.transform = becomingVisible
+                ? "rotate(0deg)"
+                : "rotate(180deg)";
+              console.log(
+                "[Subcategory] Arrow rotated to:",
+                becomingVisible ? "down" : "up",
+              );
+            }
+
+            // Force style override
+            subcategoryList.style.display = becomingVisible ? "none" : "block";
+            console.log(
+              "[Subcategory] Forced display to:",
+              subcategoryList.style.display,
+            );
+
+            // Close other subcategories
+            console.log("[Subcategory] Closing other subcategories");
+            menuContainer
+              .querySelectorAll(".subcategory-toggle")
+              .forEach((other, idx) => {
+                if (other === toggleBtn) return;
+                const otherList = other.nextElementSibling;
+                const otherArrow = other.querySelector("svg");
+                if (otherList) {
+                  otherList.classList.add("hidden");
+                  otherList.style.display = "none";
+                  console.log(`[Subcategory] Closed sibling #${idx + 1}`);
+                }
+                if (otherArrow) otherArrow.style.transform = "rotate(0deg)";
+              });
           });
-        });
 
-        // Close drawer on window resize (if going to desktop)
+          const subcategoryCount = menuContainer.querySelectorAll(
+            ".subcategory-toggle",
+          ).length;
+          console.log(
+            `[Subcategory] Setup complete – ${subcategoryCount} subcategory toggles found`,
+          );
+        } else {
+          console.error("[Subcategory] #mobile-menu container NOT FOUND");
+        }
+
+        // Resize reset
         window.addEventListener("resize", () => {
+          console.log("[Resize] Window resized to:", window.innerWidth);
           if (window.innerWidth >= 1024) {
+            console.log(
+              "[Resize] Desktop size detected – closing mobile menu & resetting states",
+            );
             closeMenu();
-            // Also reset all dropdowns
             document
               .querySelectorAll(".mobile-dropdown, .subcategory")
-              .forEach((el) => {
-                el.classList.add("hidden");
-              });
+              .forEach((el) => el.classList.add("hidden"));
             document
               .querySelectorAll(
-                ".mobile-dropdown-toggle svg, .subcategory-toggle svg"
+                ".mobile-dropdown-toggle svg, .subcategory-toggle svg",
               )
-              .forEach((icon) => {
-                icon.style.transform = "rotate(0deg)";
-              });
+              .forEach((i) => (i.style.transform = "rotate(0deg)"));
           }
         });
 
-        // Close all dropdowns when clicking anywhere outside
+        // Outside click close
         document.addEventListener("click", function (e) {
-          if (
-            !e.target.closest(".mobile-dropdown-toggle") &&
-            !e.target.closest(".subcategory-toggle") &&
-            !e.target.closest(".mobile-dropdown") &&
-            !e.target.closest(".subcategory")
-          ) {
+          const isRelevantClick =
+            e.target.closest(".mobile-dropdown-toggle") ||
+            e.target.closest(".subcategory-toggle") ||
+            e.target.closest(".mobile-dropdown") ||
+            e.target.closest(".subcategory");
+
+          if (!isRelevantClick) {
+            console.log(
+              "[Outside Click] Clicked outside dropdowns – closing all",
+            );
             document
               .querySelectorAll(".mobile-dropdown, .subcategory")
-              .forEach((el) => {
-                el.classList.add("hidden");
-              });
+              .forEach((el) => el.classList.add("hidden"));
             document
               .querySelectorAll(
-                ".mobile-dropdown-toggle svg, .subcategory-toggle svg"
+                ".mobile-dropdown-toggle svg, .subcategory-toggle svg",
               )
-              .forEach((icon) => {
-                icon.style.transform = "rotate(0deg)";
-              });
+              .forEach((i) => (i.style.transform = "rotate(0deg)"));
           }
         });
+
+        console.log(
+          "[INIT] All event listeners attached – waiting for user interaction",
+        );
       });
     </script>
   </body>
