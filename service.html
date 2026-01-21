@@ -225,86 +225,99 @@
 
     <!-- Hero Section -->
     <section class="pt-1 pb-6 bg-slate-50 px-1 sm:px-1">
+  <div
+    class="relative max-w-7xl mx-auto h-[540px] rounded-3xl overflow-hidden shadow-2xl"
+  >
+    <div class="relative w-full h-full">
+      <img
+        src="images/servicebanner.jpg"
+        class="absolute inset-0 w-full h-full object-cover"
+        alt="Naavera Steel Manufacturing and Supply Services"
+      />
+
       <div
-        class="relative max-w-7xl mx-auto h-[540px] rounded-3xl overflow-hidden shadow-2xl"
+        class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent"
+      ></div>
+
+      <div
+        class="relative h-full flex items-center justify-center px-6 sm:px-12 lg:px-20"
       >
-        <!-- SINGLE BANNER SLIDE -->
-        <div class="relative w-full h-full">
-          <!-- Background Image -->
-          <img
-            src="images/servicebanner.jpg"
-            class="absolute inset-0 w-full h-full object-cover"
-            alt="Naavera Steel Manufacturing and Supply Services"
-          />
-
-          <!-- Dark Overlay -->
-          <div
-            class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent"
-          ></div>
-
-          <!-- Content -->
-          <div
-            class="relative h-full flex items-center justify-center px-8 sm:px-12 lg:px-20"
+        <div class="max-w-2xl text-center">
+          <h1
+            class="banner-title font-normal text-white mt-4 overflow-hidden leading-tight"
           >
-            <div class="max-w-2xl text-center">
-              <h1
-                class="banner-title font-normal text-white mt-4 overflow-hidden"
+            <!-- First line -->
+            <span class="block whitespace-normal sm:whitespace-nowrap">
+              <span
+                class="split-text slide-in-from-left
+                       text-4xl sm:text-6xl lg:text-7xl inline-block"
               >
-                <!-- First line -->
-                <span class="block whitespace-nowrap">
-                  <span
-                    class="split-text slide-in-from-left text-5xl sm:text-6xl lg:text-7xl inline-block"
-                  >
-                    Engineering
-                  </span>
-                  <span
-                    class="split-text slide-in-from-right stagger-delay-1 text-5xl sm:text-6xl lg:text-7xl text-[#C9A229] inline-block ml-3"
-                  >
-                    Reliable
-                  </span>
-                </span>
+                Engineering
+              </span>
 
-                <!-- Second line -->
-                <span
-                  class="split-text slide-in-from-left stagger-delay-2 text-5xl sm:text-6xl lg:text-7xl block"
-                >
-                  Steel Solutions
-                </span>
-              </h1>
-
-              <p
-                class="banner-subtitle font-light text-white/90 fade-scale-in stagger-delay-3 text-lg sm:text-xl max-w-xl mx-auto mt-4 mb-6"
+              <span
+                class="split-text slide-in-from-right stagger-delay-1
+                       text-4xl sm:text-6xl lg:text-7xl
+                       text-[#C9A229] inline-block ml-2 sm:ml-3"
               >
-                Delivering end-to-end stainless steel, carbon steel, alloy
-                steel, and nickel alloy solutions — from manufacturing and
-                processing to precision supply for critical industrial
-                applications.
-              </p>
+                Reliable
+              </span>
+            </span>
 
-              <div class="flex flex-wrap justify-center gap-4 stagger-delay-4">
-                <a
-                  href="#services"
-                  class="banner-button bg-[#C9A229] text-white px-8 py-4 rounded-full font-normal hover:bg-[#b8911f] transition-all duration-300 border-2 border-[#C9A229] slide-up-in"
-                >
-                  Our Services
-                </a>
-                <a
-                  href="contact.html"
-                  class="banner-button bg-transparent border-2 border-white text-white px-8 py-4 rounded-full font-normal hover:bg-white/10 transition-all duration-300 slide-up-in"
-                >
-                  Request a Quote
-                </a>
-              </div>
-            </div>
+            <!-- Second line -->
+            <span
+              class="split-text slide-in-from-left stagger-delay-2
+                     text-4xl sm:text-6xl lg:text-7xl block"
+            >
+              Steel Solutions
+            </span>
+          </h1>
+
+          <p
+            class="banner-subtitle font-light text-white/90
+                   fade-scale-in stagger-delay-3
+                   text-base sm:text-xl max-w-xl mx-auto mt-4 mb-6 px-2 sm:px-0"
+          >
+            Delivering end-to-end stainless steel, carbon steel, alloy
+            steel, and nickel alloy solutions — from manufacturing and
+            processing to precision supply for critical industrial
+            applications.
+          </p>
+
+          <div class="flex flex-wrap justify-center gap-3 sm:gap-4 stagger-delay-4">
+            <a
+              href="#services"
+              class="banner-button bg-[#C9A229] text-white
+                     px-6 sm:px-8 py-3 sm:py-4
+                     rounded-full font-normal hover:bg-[#b8911f]
+                     transition-all duration-300 border-2 border-[#C9A229]
+                     slide-up-in"
+            >
+              Our Services
+            </a>
+
+            <a
+              href="contact.html"
+              class="banner-button bg-transparent border-2 border-white
+                     text-white px-6 sm:px-8 py-3 sm:py-4
+                     rounded-full font-normal hover:bg-white/10
+                     transition-all duration-300 slide-up-in"
+            >
+              Request a Quote
+            </a>
           </div>
         </div>
-
-        <!-- Decorative Element -->
-        <div
-          class="absolute bottom-1/4 right-10 w-80 h-80 rounded-full bg-gradient-to-l from-[#C9A229]/10 to-transparent blur-3xl -z-10"
-        ></div>
       </div>
-    </section>
+    </div>
+
+    <div
+      class="absolute bottom-1/4 right-6 sm:right-10 w-64 sm:w-80 h-64 sm:h-80
+             rounded-full bg-gradient-to-l from-[#C9A229]/10 to-transparent
+             blur-3xl -z-10"
+    ></div>
+  </div>
+</section>
+
 
     <!-- Naavera Services -->
     <section
