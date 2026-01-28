@@ -1,480 +1,464 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Naavera | Buttweld Fittings Catalog</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              primary: "#1C1C1C",
-              background: "#f9f7f3",
-              accent: "#e6e2d8",
-              headings: "#111111",
-              icon: "#C9A227",
-            },
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Naavera | Buttweld Fittings Catalog</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: "#1C1C1C",
+            background: "#f9f7f3",
+            accent: "#e6e2d8",
+            headings: "#111111",
+            icon: "#C9A227",
           },
         },
-      };
-    </script>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <style>
-      :root {
-        --primary: #1c1c1c;
-        --background: #f9f7f3;
-        --accent: #e6e2d8;
-        --headings: #111111;
-        --icon: #c9a227;
-      }
+      },
+    };
+  </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: #1c1c1c;
+      --background: #f9f7f3;
+      --accent: #e6e2d8;
+      --headings: #111111;
+      --icon: #c9a227;
+    }
 
-      body {
-        font-family: "Inter", sans-serif;
-        background-color: var(--background);
-        color: var(--headings);
-      }
+    body {
+      font-family: "Inter", sans-serif;
+      background-color: var(--background);
+      color: var(--headings);
+    }
 
-      /* Fixed Height Scrollable Sidebar */
-      .sidebar-container {
-        max-height: calc(100vh - 160px);
-        overflow-y: auto;
-      }
+    /* Fixed Height Scrollable Sidebar */
+    .sidebar-container {
+      max-height: calc(100vh - 160px);
+      overflow-y: auto;
+    }
 
-      .sidebar-container::-webkit-scrollbar {
-        width: 4px;
-      }
+    .sidebar-container::-webkit-scrollbar {
+      width: 4px;
+    }
 
-      .sidebar-container::-webkit-scrollbar-track {
-        background: var(--accent);
-        border-radius: 2px;
-      }
+    .sidebar-container::-webkit-scrollbar-track {
+      background: var(--accent);
+      border-radius: 2px;
+    }
 
-      .sidebar-container::-webkit-scrollbar-thumb {
-        background: var(--icon);
-        border-radius: 2px;
-      }
+    .sidebar-container::-webkit-scrollbar-thumb {
+      background: var(--icon);
+      border-radius: 2px;
+    }
 
-      .sidebar-link {
-        transition: all 0.2s ease;
-        border-left: 3px solid transparent;
-      }
+    .sidebar-link {
+      transition: all 0.2s ease;
+      border-left: 3px solid transparent;
+    }
 
-      .sidebar-link.active {
-        background-color: rgba(201, 162, 39, 0.08);
-        border-left: 3px solid var(--icon);
-        color: var(--primary);
-        font-weight: 500;
-      }
+    .sidebar-link.active {
+      background-color: rgba(201, 162, 39, 0.08);
+      border-left: 3px solid var(--icon);
+      color: var(--primary);
+      font-weight: 500;
+    }
 
-      .sidebar-link:hover:not(.active) {
-        background-color: rgba(201, 162, 39, 0.05);
-        border-left: 3px solid rgba(201, 162, 39, 0.3);
-      }
+    .sidebar-link:hover:not(.active) {
+      background-color: rgba(201, 162, 39, 0.05);
+      border-left: 3px solid rgba(201, 162, 39, 0.3);
+    }
 
-      /* Minimal Product Cards */
-      .product-card {
-        transition: all 0.3s ease;
-        border: 1px solid var(--accent);
-        background: white;
-      }
+    /* Minimal Product Cards */
+    .product-card {
+      transition: all 0.3s ease;
+      border: 1px solid var(--accent);
+      background: white;
+    }
 
-      .product-card:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 20px rgba(28, 28, 28, 0.08);
-        border-color: var(--icon);
-      }
+    .product-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(28, 28, 28, 0.08);
+      border-color: var(--icon);
+    }
 
-      /* Tables Styling - Updated with grids and rounded corners */
-      .specs-table {
-        width: 100%;
-        border-collapse: separate;
-        border-spacing: 0;
-        border: 1px solid var(--accent);
-        border-radius: 8px;
-        overflow: hidden;
-        background: white;
-      }
+    /* Tables Styling - Updated with grids and rounded corners */
+    .specs-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      border: 1px solid var(--accent);
+      border-radius: 8px;
+      overflow: hidden;
+      background: white;
+    }
 
-      .specs-table th {
-        background-color: var(--accent);
-        color: var(--primary);
-        font-weight: 500;
-        text-align: left;
-        padding: 12px 16px;
-        border-right: 1px solid rgba(0, 0, 0, 0.1);
-        border-bottom: 2px solid var(--icon);
-      }
+    .specs-table th {
+      background-color: var(--accent);
+      color: var(--primary);
+      font-weight: 500;
+      text-align: left;
+      padding: 12px 16px;
+      border-right: 1px solid rgba(0, 0, 0, 0.1);
+      border-bottom: 2px solid var(--icon);
+    }
 
-      .specs-table th:last-child {
-        border-right: none;
-      }
+    .specs-table th:last-child {
+      border-right: none;
+    }
 
-      .specs-table td {
-        padding: 12px 16px;
-        border-bottom: 1px solid var(--accent);
-        border-right: 1px solid var(--accent);
-      }
+    .specs-table td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--accent);
+      border-right: 1px solid var(--accent);
+    }
 
-      .specs-table tr:last-child td {
-        border-bottom: none;
-      }
+    .specs-table tr:last-child td {
+      border-bottom: none;
+    }
 
-      .specs-table td:last-child {
-        border-right: none;
-      }
+    .specs-table td:last-child {
+      border-right: none;
+    }
 
-      .specs-table tr:hover {
-        background-color: rgba(230, 226, 216, 0.3);
-      }
+    .specs-table tr:hover {
+      background-color: rgba(230, 226, 216, 0.3);
+    }
 
-      /* Material Grades Tables - Updated with grids and rounded corners */
-      .material-table {
-        width: 100%;
-        border-collapse: separate;
-        border-spacing: 0;
-        border: 1px solid var(--accent);
-        border-radius: 8px;
-        overflow: hidden;
-        background: white;
-      }
+    /* Material Grades Tables - Updated with grids and rounded corners */
+    .material-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      border: 1px solid var(--accent);
+      border-radius: 8px;
+      overflow: hidden;
+      background: white;
+    }
 
-      .material-table th {
-        background-color: rgba(230, 226, 216, 0.5);
-        color: var(--primary);
-        font-weight: 500;
-        padding: 14px 16px;
-        text-align: left;
-        border-right: 1px solid rgba(0, 0, 0, 0.1);
-        border-bottom: 1px solid var(--accent);
-      }
+    .material-table th {
+      background-color: rgba(230, 226, 216, 0.5);
+      color: var(--primary);
+      font-weight: 500;
+      padding: 14px 16px;
+      text-align: left;
+      border-right: 1px solid rgba(0, 0, 0, 0.1);
+      border-bottom: 1px solid var(--accent);
+    }
 
-      .material-table th:last-child {
-        border-right: none;
-      }
+    .material-table th:last-child {
+      border-right: none;
+    }
 
-      .material-table td {
-        padding: 12px 16px;
-        border-top: 1px solid var(--accent);
-        border-right: 1px solid var(--accent);
-      }
+    .material-table td {
+      padding: 12px 16px;
+      border-top: 1px solid var(--accent);
+      border-right: 1px solid var(--accent);
+    }
 
-      .material-table tr:first-child td {
-        border-top: none;
-      }
+    .material-table tr:first-child td {
+      border-top: none;
+    }
 
-      .material-table td:last-child {
-        border-right: none;
-      }
+    .material-table td:last-child {
+      border-right: none;
+    }
 
-      /* Tab Styling */
-      .tab-button {
-        transition: all 0.2s ease;
-        position: relative;
-        color: #666;
-      }
+    /* Tab Styling */
+    .tab-button {
+      transition: all 0.2s ease;
+      position: relative;
+      color: #666;
+    }
 
-      .tab-button.active {
-        color: var(--primary);
-        font-weight: 500;
-      }
+    .tab-button.active {
+      color: var(--primary);
+      font-weight: 500;
+    }
 
-      .tab-button.active::after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 2px;
-        background-color: var(--icon);
-      }
+    .tab-button.active::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: var(--icon);
+    }
 
-      /* Animations */
-      .fade-in {
-        animation: fadeIn 0.4s ease-out;
-      }
+    /* Animations */
+    .fade-in {
+      animation: fadeIn 0.4s ease-out;
+    }
 
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-          transform: translateY(8px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      /* Banner Styles (Unchanged) */
-      .banner-img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.7s ease;
-      }
-
-      .overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(
-          to right,
-          rgba(0, 0, 0, 0.7) 0%,
-          rgba(0, 0, 0, 0.3) 100%
-        );
-      }
-
-      .banner-slide {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
+    @keyframes fadeIn {
+      from {
         opacity: 0;
-        transition: opacity 1s ease;
+        transform: translateY(8px);
       }
 
-      .banner-slide.active {
+      to {
         opacity: 1;
+        transform: translateY(0);
       }
+    }
 
-      .content {
-        position: absolute;
-        top: 50%;
-        left: 10%;
-        transform: translateY(-50%);
-        color: white;
-        z-index: 10;
-        max-width: 600px;
-      }
+    /* Banner Styles (Unchanged) */
+    .banner-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.7s ease;
+    }
 
-      .typing-text {
-        font-size: 3.5rem;
-        font-weight: 700;
-        margin-bottom: 1.5rem;
-        line-height: 1.2;
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to right,
+          rgba(0, 0, 0, 0.7) 0%,
+          rgba(0, 0, 0, 0.3) 100%);
+    }
+
+    .banner-slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+
+    .banner-slide.active {
+      opacity: 1;
+    }
+
+    .content {
+      position: absolute;
+      top: 50%;
+      left: 10%;
+      transform: translateY(-50%);
+      color: white;
+      z-index: 10;
+      max-width: 600px;
+    }
+
+    .typing-text {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+      opacity: 0;
+      animation: typing 1s ease forwards;
+    }
+
+    .subtext {
+      font-size: 1.25rem;
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.5s forwards;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .cta-btn {
+      display: inline-block;
+      background: var(--icon);
+      color: var(--primary);
+      padding: 0.75rem 2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.8s forwards;
+      border: 2px solid var(--icon);
+    }
+
+    .cta-btn:hover {
+      background: transparent;
+      color: white;
+      border-color: white;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.5);
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .dot.active {
+      background: white;
+      transform: scale(1.2);
+    }
+
+    @keyframes typing {
+      from {
         opacity: 0;
-        animation: typing 1s ease forwards;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Icon Styling */
+    .icon-primary {
+      color: var(--icon);
+    }
+
+    .bg-icon-light {
+      background-color: rgba(201, 162, 39, 0.08);
+    }
+
+    .border-icon-light {
+      border-color: rgba(201, 162, 39, 0.2);
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+      .typing-text {
+        font-size: 2.5rem;
       }
 
       .subtext {
-        font-size: 1.25rem;
-        margin-bottom: 2rem;
-        opacity: 0;
-        animation: fadeUp 0.8s ease 0.5s forwards;
-        color: rgba(255, 255, 255, 0.9);
+        font-size: 1rem;
       }
 
-      .cta-btn {
-        display: inline-block;
-        background: var(--icon);
-        color: var(--primary);
-        padding: 0.75rem 2rem;
-        border-radius: 50px;
-        font-weight: 600;
-        text-decoration: none;
-        transition: all 0.3s ease;
-        opacity: 0;
-        animation: fadeUp 0.8s ease 0.8s forwards;
-        border: 2px solid var(--icon);
+      .content {
+        left: 5%;
+        padding-right: 5%;
       }
+    }
+  </style>
+</head>
 
-      .cta-btn:hover {
-        background: transparent;
-        color: white;
-        border-color: white;
-      }
+<body class="bg-background">
+  <!-- Header -->
+  <div id="header"></div>
 
-      .dot {
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.5);
-        border: none;
-        cursor: pointer;
-        transition: all 0.3s ease;
-      }
+  <!-- Banner Section -->
+  <section class="pt-1 pb-12 bg-slate-50 px-1 sm:px-1" id="dynamic-banner">
+    <!-- Banner content will be loaded dynamically based on selected product -->
+  </section>
 
-      .dot.active {
-        background: white;
-        transform: scale(1.2);
-      }
-
-      @keyframes typing {
-        from {
-          opacity: 0;
-          transform: translateY(20px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      @keyframes fadeUp {
-        from {
-          opacity: 0;
-          transform: translateY(10px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      /* Icon Styling */
-      .icon-primary {
-        color: var(--icon);
-      }
-
-      .bg-icon-light {
-        background-color: rgba(201, 162, 39, 0.08);
-      }
-
-      .border-icon-light {
-        border-color: rgba(201, 162, 39, 0.2);
-      }
-
-      /* Responsive Adjustments */
-      @media (max-width: 768px) {
-        .typing-text {
-          font-size: 2.5rem;
-        }
-
-        .subtext {
-          font-size: 1rem;
-        }
-
-        .content {
-          left: 5%;
-          padding-right: 5%;
-        }
-      }
-    </style>
-  </head>
-  <body class="bg-background">
-    <!-- Header -->
-    <div id="header"></div>
-
-    <!-- Banner Section -->
-    <section class="pt-1 pb-12 bg-slate-50 px-1 sm:px-1" id="dynamic-banner">
-      <!-- Banner content will be loaded dynamically based on selected product -->
-    </section>
-
-    <!-- Main Container -->
-    <div class="container mx-auto px-4 py-6 flex flex-col lg:flex-row gap-6">
-      <!-- Sidebar - Updated -->
-      <div class="lg:w-1/4">
-        <div
-          class="bg-white rounded-lg border border-accent shadow-sm p-5 sticky top-6"
-        >
-          <div class="flex items-center justify-between mb-6">
-            <div class="flex items-center gap-3">
-              <div
-                class="w-10 h-10 rounded-lg bg-icon-light flex items-center justify-center"
-              >
-                <i class="fas fa-cube icon-primary"></i>
-              </div>
-              <h2 class="text-xl font-semibold text-headings">Products</h2>
+  <!-- Main Container -->
+  <div class="container mx-auto px-4 py-6 flex flex-col lg:flex-row gap-6">
+    <!-- Sidebar - Updated -->
+    <div class="lg:w-1/4">
+      <div class="bg-white rounded-lg border border-accent shadow-sm p-5 sticky top-6">
+        <div class="flex items-center justify-between mb-6">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-lg bg-icon-light flex items-center justify-center">
+              <i class="fas fa-cube icon-primary"></i>
             </div>
-          </div>
-
-          <!-- Scrollable Product List -->
-          <div class="sidebar-container">
-            <nav class="space-y-2" id="productCategories">
-              <!-- Categories will be populated by JavaScript -->
-            </nav>
-          </div>
-
-          <!-- Contact Info Sidebar -->
-          <div class="mt-8 pt-6 border-t border-accent">
-            <div class="flex items-center gap-3 mb-4">
-              <div
-                class="w-10 h-10 rounded-full bg-icon-light flex items-center justify-center"
-              >
-                <i class="fas fa-headset icon-primary"></i>
-              </div>
-              <div>
-                <h3 class="font-semibold text-headings">Technical Support</h3>
-                <p class="text-xs text-gray-500">Available 24/7</p>
-              </div>
-            </div>
-            <p class="text-sm text-gray-600 mb-4">
-              Our experts are ready to help you select the right fittings.
-            </p>
-            <a
-              href="contact.html"
-              class="w-full bg-primary hover:bg-headings text-white py-3 rounded-lg transition-all duration-300 flex items-center justify-center gap-2"
-            >
-              <i class="fas fa-comments"></i>
-              Contact Team
-            </a>
+            <h2 class="text-xl font-semibold text-headings">Products</h2>
           </div>
         </div>
-      </div>
 
-      <!-- Main Content Area -->
-      <div class="lg:w-3/4">
-        <!-- Product Details Area -->
-        <div
-          class="bg-white rounded-lg border border-accent shadow-sm p-6 fade-in"
-          id="productContent"
-        >
-          <!-- Content will be loaded dynamically -->
-          <div class="text-center py-12">
-            <div
-              class="w-20 h-20 rounded-full bg-accent mx-auto mb-4 flex items-center justify-center"
-            >
-              <i class="fas fa-cube text-gray-400 text-3xl"></i>
+        <!-- Scrollable Product List -->
+        <div class="sidebar-container">
+          <nav class="space-y-2" id="productCategories">
+            <!-- Categories will be populated by JavaScript -->
+          </nav>
+        </div>
+
+        <!-- Contact Info Sidebar -->
+        <div class="mt-8 pt-6 border-t border-accent">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-full bg-icon-light flex items-center justify-center">
+              <i class="fas fa-headset icon-primary"></i>
             </div>
-            <h3 class="text-xl text-headings mb-2">Product Catalog</h3>
-            <p class="text-gray-500 max-w-md mx-auto">
-              Select a product from the sidebar to view detailed specifications
-              and material information.
-            </p>
+            <div>
+              <h3 class="font-semibold text-headings">Technical Support</h3>
+              <p class="text-xs text-gray-500">Available 24/7</p>
+            </div>
           </div>
+          <p class="text-sm text-gray-600 mb-4">
+            Our experts are ready to help you select the right fittings.
+          </p>
+          <a href="contact.html"
+            class="w-full bg-primary hover:bg-headings text-white py-3 rounded-lg transition-all duration-300 flex items-center justify-center gap-2">
+            <i class="fas fa-comments"></i>
+            Contact Team
+          </a>
         </div>
       </div>
     </div>
 
-    <!-- COMMON FOOTER -->
-    <div id="footer"></div>
+    <!-- Main Content Area -->
+    <div class="lg:w-3/4">
+      <!-- Product Details Area -->
+      <div class="bg-white rounded-lg border border-accent shadow-sm p-6 fade-in" id="productContent">
+        <!-- Content will be loaded dynamically -->
+        <div class="text-center py-12">
+          <div class="w-20 h-20 rounded-full bg-accent mx-auto mb-4 flex items-center justify-center">
+            <i class="fas fa-cube text-gray-400 text-3xl"></i>
+          </div>
+          <h3 class="text-xl text-headings mb-2">Product Catalog</h3>
+          <p class="text-gray-500 max-w-md mx-auto">
+            Select a product from the sidebar to view detailed specifications
+            and material information.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
 
-    <!-- JavaScript -->
-    <script>
-      // Product Data Structure with Material Grades
-      const productsData = {
-        cap: {
-          id: "cap",
-          name: "Cap",
-          banner: {
-            title: "Forged <span class='text-[#C9A227]'>Caps</span>",
-            subtitle: "Secure Pipe End Closures",
-            description:
-              "High-strength caps for terminating piping systems securely",
-            image: "images/cap banner2.png",
-            features: [
-              "Pressure Tight",
-              "Easy Installation",
-              "Various Materials",
-              "High Durability",
-            ],
-            ctaText: "View Caps Collection",
-            color: "#C9A227",
-          },
+  <!-- COMMON FOOTER -->
+  <div id="footer"></div>
+
+  <!-- JavaScript -->
+  <script>
+    // Product Data Structure with Material Grades
+    const productsData = {
+      cap: {
+        id: "cap",
+        name: "Cap",
+        banner: {
+          title: "Forged <span class='text-[#C9A227]'>Caps</span>",
+          subtitle: "Secure Pipe End Closures",
           description:
-            "Naavera Stainless, Manufacturer, Exporter & Supplier of Buttweld Cap Pipe Fittings. Forged buttweld cap pipe fittings are essential components used in piping systems to close or seal the ends of pipelines. These fittings are forged from high-strength materials, providing superior durability and pressure resistance compared to standard fittings. Butt weld caps are welded directly to the pipe ends, creating a strong, leak-proof joint that ensures the integrity of the pipeline.",
-          longDescription: `
+            "High-strength caps for terminating piping systems securely",
+          image: "images/cap banner2.png",
+          features: [
+            "Pressure Tight",
+            "Easy Installation",
+            "Various Materials",
+            "High Durability",
+          ],
+          ctaText: "View Caps Collection",
+          color: "#C9A227",
+        },
+        description:
+          "Naavera Stainless, Manufacturer, Exporter & Supplier of Buttweld Cap Pipe Fittings. Forged buttweld cap pipe fittings are essential components used in piping systems to close or seal the ends of pipelines. These fittings are forged from high-strength materials, providing superior durability and pressure resistance compared to standard fittings. Butt weld caps are welded directly to the pipe ends, creating a strong, leak-proof joint that ensures the integrity of the pipeline.",
+        longDescription: `
             <div class="space-y-4">
               <p>Forged buttweld cap pipe fittings are essential components used in piping systems to close or seal the ends of pipelines. These fittings are forged from high-strength materials, providing superior durability and pressure resistance compared to standard fittings. Butt weld caps are welded directly to the pipe ends, creating a strong, leak-proof joint that ensures the integrity of the pipeline.</p>
               
@@ -506,1535 +490,1326 @@
               </div>
             </div>
           `,
-          applications: [
-            "Pipe End Sealing",
-            "Test Point Closure",
-            "System Isolation",
-            "Future Connections",
-            "Oil & Gas Industry",
-            "Petrochemical Plants",
-            "Power Generation",
-            "Water Treatment",
-            "Chemical Processing",
+        applications: [
+          "Pipe End Sealing",
+          "Test Point Closure",
+          "System Isolation",
+          "Future Connections",
+          "Oil & Gas Industry",
+          "Petrochemical Plants",
+          "Power Generation",
+          "Water Treatment",
+          "Chemical Processing",
+        ],
+        specifications: [
+          {
+            property: "Manufacturing Standards",
+            value: "ASME B16.9, ASME B16.28",
+          },
+          { property: "Pressure Rating", value: "Sch10 up to Sch160/XXS" },
+          { property: "Size Range", value: '3/8" to 48"' },
+          { property: "Face Types", value: "Bevelled/Plain" },
+          { property: "Types", value: "Butt Weld, Socket Weld, Threaded" },
+          { property: "Pressure Class", value: "Class 2000 to 9000" },
+          { property: "Wall Thickness", value: "Schedule 80, 160, XXS" },
+        ],
+        materialGrades: {
+          "Stainless Steel": [
+            { grade: "ASTM A182 Grade : F 304" },
+            { grade: "304L" },
+            { grade: "304H" },
+            { grade: "309" },
+            { grade: "310" },
+            { grade: "316" },
+            { grade: "316TI" },
+            { grade: "316H" },
+            { grade: "316L" },
+            { grade: "317L" },
+            { grade: "321" },
+            { grade: "347" },
+            { grade: "904L ASTM A 815" },
+            { grade: "UNS NO S 31803" },
+            { grade: "S 32205" },
+            { grade: "S 32760" },
+            { grade: "S 32750" },
           ],
-          specifications: [
+          "Carbon Steel": [
+            { grade: "ASTM A234 WPB" },
+            { grade: "ASTM A234 WPB" },
+            { grade: "WPBW" },
+            { grade: "WPHY 42" },
+            { grade: "WPHY 46" },
+            { grade: "WPHY 52" },
+            { grade: "WPH 60" },
+            { grade: "WPH 65" },
+            { grade: "WPH 70" },
+            { grade: "ASTM A420 WPL3" },
+            { grade: "A420WPL6" },
+          ],
+          "Alloy Steel": [
+            { grade: "ASTM / ASME A 234 Gr. WP 1" },
+            { grade: "WP 5" },
+            { grade: "WP 9" },
+            { grade: "WP 11" },
+            { grade: "WP 12" },
+            { grade: "WP 22" },
+            { grade: "WP 91" },
+          ],
+          "Nickel Alloy": [
+            { grade: "ASTM/ASME SB 336 UNS 2200 (NICKEL 200)" },
+            { grade: "UNS 2201 (NICKEL 201)" },
+            { grade: "UNS 4400 (MONEL 400)" },
+            { grade: "UNS 8020 ALLOY 20/20 CB 3" },
+            { grade: "UNS 8825 INCONEL (825)" },
+            { grade: "UNS 6600 (INCONEL 600)" },
+            { grade: "UNS 6601 (INCONEL 601)" },
+            { grade: "UNS 6625 (INCONEL 625)" },
+          ],
+        },
+        images: [
+          { src: "images/cap1.png", alt: "Butt Weld Cap" },
+          { src: "images/cap2.png", alt: "Butt Weld Cap" },
+        ],
+      },
+      "cr-cold-rolled": {
+        id: "cr-cold-rolled",
+        name: "CR - Cold Rolled",
+        banner: {
+          title:
+            "CR – Cold Rolled <span class='text-[#C9A227]'>Fittings</span>",
+          subtitle: "High-Strength Buttweld Cold Rolled Fittings",
+          description:
+            "Manufacturer, Exporter & Supplier of precision-engineered Buttweld Cold Rolled Pipe Fittings",
+          image: "images/banner1.jfif",
+          features: [
+            "Cold Rolled Process",
+            "Seamless Leak-Proof Joint",
+            "High Strength & Durability",
+            "Corrosion Resistance",
+          ],
+          ctaText: "Explore CR Cold Rolled Fittings",
+          color: "#C9A227",
+        },
+
+        description:
+          "Buttweld Cold Rolled Fittings are manufactured using a cold rolling process that enhances mechanical strength, dimensional accuracy, and surface finish. These fittings create seamless, permanent, and leak-proof joints, making them ideal for high-pressure and high-temperature piping systems across critical industries.",
+
+        applications: [
+          "Oil & Gas",
+          "Petrochemical",
+          "Power Generation",
+          "Pharmaceutical",
+          "Food Processing",
+          "Chemical Processing",
+        ],
+
+        specifications: [
+          {
+            property: "Manufacturing Standards",
+            value: "ASME B16.9, ASME B16.28",
+          },
+          { property: "Pressure Rating", value: "Sch10 up to Sch160 / XXS" },
+          { property: "Sizes", value: '3/8" to 48"' },
+          { property: "Face Types", value: "Bevelled / Plain" },
+        ],
+
+        materialGrades: {
+          "Stainless Steel": [
             {
-              property: "Manufacturing Standards",
-              value: "ASME B16.9, ASME B16.28",
+              standard: "ASTM A182",
+              grade: "F304",
+              type: "Stainless Steel",
+              commonName: "304",
             },
-            { property: "Pressure Rating", value: "Sch10 up to Sch160/XXS" },
-            { property: "Size Range", value: '3/8" to 48"' },
-            { property: "Face Types", value: "Bevelled/Plain" },
-            { property: "Types", value: "Butt Weld, Socket Weld, Threaded" },
-            { property: "Pressure Class", value: "Class 2000 to 9000" },
-            { property: "Wall Thickness", value: "Schedule 80, 160, XXS" },
-          ],
-          materialGrades: {
-            "Stainless Steel": [
-              {
-                standard: "ASTM A182",
-                grade: "F304",
-                type: "Stainless Steel",
-                commonName: "304 Stainless",
-              },
-              {
-                standard: "ASTM A182",
-                grade: "304L",
-                type: "Stainless Steel",
-                commonName: "304L Stainless",
-              },
-              {
-                standard: "ASTM A182",
-                grade: "304H",
-                type: "Stainless Steel",
-                commonName: "304H Stainless",
-              },
-              {
-                standard: "ASTM A182",
-                grade: "309",
-                type: "Stainless Steel",
-                commonName: "309 Stainless",
-              },
-              {
-                standard: "ASTM A182",
-                grade: "310",
-                type: "Stainless Steel",
-                commonName: "310 Stainless",
-              },
-              {
-                standard: "ASTM A182",
-                grade: "316",
-                type: "Stainless Steel",
-                commonName: "316 Stainless",
-              },
-              {
-                standard: "ASTM A182",
-                grade: "316TI",
-                type: "Stainless Steel",
-                commonName: "316Ti Stainless",
-              },
-              {
-                standard: "ASTM A182",
-                grade: "316H",
-                type: "Stainless Steel",
-                commonName: "316H Stainless",
-              },
-              {
-                standard: "ASTM A182",
-                grade: "316L",
-                type: "Stainless Steel",
-                commonName: "316L Stainless",
-              },
-              {
-                standard: "ASTM A182",
-                grade: "317L",
-                type: "Stainless Steel",
-                commonName: "317L Stainless",
-              },
-              {
-                standard: "ASTM A182",
-                grade: "321",
-                type: "Stainless Steel",
-                commonName: "321 Stainless",
-              },
-              {
-                standard: "ASTM A182",
-                grade: "347",
-                type: "Stainless Steel",
-                commonName: "347 Stainless",
-              },
-              {
-                standard: "ASTM A815",
-                grade: "904L",
-                type: "Stainless Steel",
-                commonName: "904L Stainless",
-              },
-              {
-                standard: "UNS",
-                grade: "S31803",
-                type: "Duplex Stainless",
-                commonName: "2205 Duplex",
-              },
-              {
-                standard: "UNS",
-                grade: "S32205",
-                type: "Duplex Stainless",
-                commonName: "2205 Duplex",
-              },
-              {
-                standard: "UNS",
-                grade: "S32760",
-                type: "Super Duplex",
-                commonName: "Super Duplex",
-              },
-              {
-                standard: "UNS",
-                grade: "S32750",
-                type: "Super Duplex",
-                commonName: "2507 Super Duplex",
-              },
-            ],
-            "Carbon Steel": [
-              {
-                standard: "ASTM A234",
-                grade: "WPB",
-                type: "Carbon Steel",
-                commonName: "Carbon Steel Pipe",
-              },
-              {
-                standard: "ASTM A234",
-                grade: "WPBW",
-                type: "Carbon Steel",
-                commonName: "Weldable Carbon Steel",
-              },
-              {
-                standard: "ASTM A234",
-                grade: "WPHY 42",
-                type: "Carbon Steel",
-                commonName: "Grade 42 Carbon",
-              },
-              {
-                standard: "ASTM A234",
-                grade: "WPHY 46",
-                type: "Carbon Steel",
-                commonName: "Grade 46 Carbon",
-              },
-              {
-                standard: "ASTM A234",
-                grade: "WPHY 52",
-                type: "Carbon Steel",
-                commonName: "Grade 52 Carbon",
-              },
-              {
-                standard: "ASTM A234",
-                grade: "WPH 60",
-                type: "Carbon Steel",
-                commonName: "Grade 60 Carbon",
-              },
-              {
-                standard: "ASTM A234",
-                grade: "WPH 65",
-                type: "Carbon Steel",
-                commonName: "Grade 65 Carbon",
-              },
-              {
-                standard: "ASTM A234",
-                grade: "WPH 70",
-                type: "Carbon Steel",
-                commonName: "Grade 70 Carbon",
-              },
-              {
-                standard: "ASTM A420",
-                grade: "WPL3",
-                type: "Low Temp Carbon",
-                commonName: "Low Temperature Carbon",
-              },
-              {
-                standard: "ASTM A420",
-                grade: "WPL6",
-                type: "Low Temp Carbon",
-                commonName: "Low Temperature Carbon",
-              },
-            ],
-            "Alloy Steel": [
-              {
-                standard: "ASTM/ASME A234",
-                grade: "WP1",
-                type: "Alloy Steel",
-                commonName: "C-Mo Alloy",
-              },
-              {
-                standard: "ASTM/ASME A234",
-                grade: "WP5",
-                type: "Alloy Steel",
-                commonName: "5Cr-0.5Mo",
-              },
-              {
-                standard: "ASTM/ASME A234",
-                grade: "WP9",
-                type: "Alloy Steel",
-                commonName: "9Cr-1Mo",
-              },
-              {
-                standard: "ASTM/ASME A234",
-                grade: "WP11",
-                type: "Alloy Steel",
-                commonName: "1.25Cr-0.5Mo",
-              },
-              {
-                standard: "ASTM/ASME A234",
-                grade: "WP12",
-                type: "Alloy Steel",
-                commonName: "1Cr-0.5Mo",
-              },
-              {
-                standard: "ASTM/ASME A234",
-                grade: "WP22",
-                type: "Alloy Steel",
-                commonName: "2.25Cr-1Mo",
-              },
-              {
-                standard: "ASTM/ASME A234",
-                grade: "WP91",
-                type: "Alloy Steel",
-                commonName: "9Cr-1Mo-V",
-              },
-            ],
-            "Nickel Alloy": [
-              {
-                standard: "ASTM/ASME SB336",
-                grade: "UNS 2200",
-                type: "Nickel Alloy",
-                commonName: "NICKEL 200",
-              },
-              {
-                standard: "ASTM/ASME SB336",
-                grade: "UNS 2201",
-                type: "Nickel Alloy",
-                commonName: "NICKEL 201",
-              },
-              {
-                standard: "ASTM/ASME SB336",
-                grade: "UNS 4400",
-                type: "Nickel Alloy",
-                commonName: "MONEL 400",
-              },
-              {
-                standard: "ASTM/ASME SB336",
-                grade: "UNS 8020",
-                type: "Nickel Alloy",
-                commonName: "ALLOY 20/20 CB3",
-              },
-              {
-                standard: "ASTM/ASME SB336",
-                grade: "UNS 8825",
-                type: "Nickel Alloy",
-                commonName: "INCONEL 825",
-              },
-              {
-                standard: "ASTM/ASME SB336",
-                grade: "UNS 6600",
-                type: "Nickel Alloy",
-                commonName: "INCONEL 600",
-              },
-              {
-                standard: "ASTM/ASME SB336",
-                grade: "UNS 6601",
-                type: "Nickel Alloy",
-                commonName: "INCONEL 601",
-              },
-              {
-                standard: "ASTM/ASME SB336",
-                grade: "UNS 6625",
-                type: "Nickel Alloy",
-                commonName: "INCONEL 625",
-              },
-            ],
-          },
-          images: [
-            { src: "images/cap1.png", alt: "Butt Weld Cap" },
-            { src: "images/cap2.png", alt: "Butt Weld Cap" },
-          ],
-        },
-        "cr-cold-rolled": {
-          id: "cr-cold-rolled",
-          name: "CR - Cold Rolled",
-          banner: {
-            title:
-              "CR – Cold Rolled <span class='text-[#C9A227]'>Fittings</span>",
-            subtitle: "High-Strength Buttweld Cold Rolled Fittings",
-            description:
-              "Manufacturer, Exporter & Supplier of precision-engineered Buttweld Cold Rolled Pipe Fittings",
-            image: "images/banner1.jfif",
-            features: [
-              "Cold Rolled Process",
-              "Seamless Leak-Proof Joint",
-              "High Strength & Durability",
-              "Corrosion Resistance",
-            ],
-            ctaText: "Explore CR Cold Rolled Fittings",
-            color: "#C9A227",
-          },
-
-          description:
-            "Buttweld Cold Rolled Fittings are manufactured using a cold rolling process that enhances mechanical strength, dimensional accuracy, and surface finish. These fittings create seamless, permanent, and leak-proof joints, making them ideal for high-pressure and high-temperature piping systems across critical industries.",
-
-          applications: [
-            "Oil & Gas",
-            "Petrochemical",
-            "Power Generation",
-            "Pharmaceutical",
-            "Food Processing",
-            "Chemical Processing",
-          ],
-
-          specifications: [
             {
-              property: "Manufacturing Standards",
-              value: "ASME B16.9, ASME B16.28",
+              standard: "ASTM A182",
+              grade: "304L",
+              type: "Stainless Steel",
+              commonName: "304L",
             },
-            { property: "Pressure Rating", value: "Sch10 up to Sch160 / XXS" },
-            { property: "Sizes", value: '3/8" to 48"' },
-            { property: "Face Types", value: "Bevelled / Plain" },
-          ],
-
-          materialGrades: {
-            "Stainless Steel": [
-              {
-                standard: "ASTM A182",
-                grade: "F304",
-                type: "Stainless Steel",
-                commonName: "304",
-              },
-              {
-                standard: "ASTM A182",
-                grade: "304L",
-                type: "Stainless Steel",
-                commonName: "304L",
-              },
-              {
-                standard: "ASTM A182",
-                grade: "304H",
-                type: "Stainless Steel",
-                commonName: "304H",
-              },
-              {
-                standard: "ASTM A182",
-                grade: "309",
-                type: "Stainless Steel",
-                commonName: "309",
-              },
-              {
-                standard: "ASTM A182",
-                grade: "310",
-                type: "Stainless Steel",
-                commonName: "310",
-              },
-              {
-                standard: "ASTM A182",
-                grade: "316",
-                type: "Stainless Steel",
-                commonName: "316",
-              },
-              {
-                standard: "ASTM A182",
-                grade: "316TI",
-                type: "Stainless Steel",
-                commonName: "316Ti",
-              },
-              {
-                standard: "ASTM A182",
-                grade: "316H",
-                type: "Stainless Steel",
-                commonName: "316H",
-              },
-              {
-                standard: "ASTM A182",
-                grade: "316L",
-                type: "Stainless Steel",
-                commonName: "316L",
-              },
-              {
-                standard: "ASTM A182",
-                grade: "317L",
-                type: "Stainless Steel",
-                commonName: "317L",
-              },
-              {
-                standard: "ASTM A182",
-                grade: "321",
-                type: "Stainless Steel",
-                commonName: "321",
-              },
-              {
-                standard: "ASTM A182",
-                grade: "347",
-                type: "Stainless Steel",
-                commonName: "347",
-              },
-              {
-                standard: "ASTM A815",
-                grade: "904L",
-                type: "Stainless Steel",
-                commonName: "904L",
-              },
-              {
-                standard: "UNS",
-                grade: "S31803",
-                type: "Duplex Stainless Steel",
-                commonName: "S31803",
-              },
-              {
-                standard: "UNS",
-                grade: "S32205",
-                type: "Duplex Stainless Steel",
-                commonName: "S32205",
-              },
-              {
-                standard: "UNS",
-                grade: "S32750",
-                type: "Super Duplex",
-                commonName: "S32750",
-              },
-              {
-                standard: "UNS",
-                grade: "S32760",
-                type: "Super Duplex",
-                commonName: "S32760",
-              },
-            ],
-
-            "Carbon Steel": [
-              {
-                standard: "ASTM A234",
-                grade: "WPB",
-                type: "Carbon Steel",
-                commonName: "WPB",
-              },
-              {
-                standard: "ASTM A234",
-                grade: "WPBW",
-                type: "Carbon Steel",
-                commonName: "WPBW",
-              },
-              {
-                standard: "ASTM A234",
-                grade: "WPHY 42",
-                type: "Carbon Steel",
-                commonName: "WPHY 42",
-              },
-              {
-                standard: "ASTM A234",
-                grade: "WPHY 46",
-                type: "Carbon Steel",
-                commonName: "WPHY 46",
-              },
-              {
-                standard: "ASTM A234",
-                grade: "WPHY 52",
-                type: "Carbon Steel",
-                commonName: "WPHY 52",
-              },
-              {
-                standard: "ASTM A234",
-                grade: "WPHY 60",
-                type: "Carbon Steel",
-                commonName: "WPHY 60",
-              },
-              {
-                standard: "ASTM A234",
-                grade: "WPHY 65",
-                type: "Carbon Steel",
-                commonName: "WPHY 65",
-              },
-              {
-                standard: "ASTM A234",
-                grade: "WPHY 70",
-                type: "Carbon Steel",
-                commonName: "WPHY 70",
-              },
-              {
-                standard: "ASTM A420",
-                grade: "WPL3",
-                type: "Carbon Steel",
-                commonName: "WPL3",
-              },
-              {
-                standard: "ASTM A420",
-                grade: "WPL6",
-                type: "Carbon Steel",
-                commonName: "WPL6",
-              },
-            ],
-
-            "Alloy Steel": [
-              {
-                standard: "ASTM A234",
-                grade: "WP1",
-                type: "Alloy Steel",
-                commonName: "WP1",
-              },
-              {
-                standard: "ASTM A234",
-                grade: "WP5",
-                type: "Alloy Steel",
-                commonName: "WP5",
-              },
-              {
-                standard: "ASTM A234",
-                grade: "WP9",
-                type: "Alloy Steel",
-                commonName: "WP9",
-              },
-              {
-                standard: "ASTM A234",
-                grade: "WP11",
-                type: "Alloy Steel",
-                commonName: "WP11",
-              },
-              {
-                standard: "ASTM A234",
-                grade: "WP12",
-                type: "Alloy Steel",
-                commonName: "WP12",
-              },
-              {
-                standard: "ASTM A234",
-                grade: "WP22",
-                type: "Alloy Steel",
-                commonName: "WP22",
-              },
-              {
-                standard: "ASTM A234",
-                grade: "WP91",
-                type: "Alloy Steel",
-                commonName: "WP91",
-              },
-            ],
-
-            "Nickel Alloy": [
-              {
-                standard: "ASTM SB336",
-                grade: "UNS 2200",
-                type: "Nickel Alloy",
-                commonName: "Nickel 200",
-              },
-              {
-                standard: "ASTM SB336",
-                grade: "UNS 2201",
-                type: "Nickel Alloy",
-                commonName: "Nickel 201",
-              },
-              {
-                standard: "ASTM SB336",
-                grade: "UNS 4400",
-                type: "Nickel Alloy",
-                commonName: "Monel 400",
-              },
-              {
-                standard: "ASTM SB336",
-                grade: "UNS 8020",
-                type: "Nickel Alloy",
-                commonName: "Alloy 20 / 20CB3",
-              },
-              {
-                standard: "ASTM SB336",
-                grade: "UNS 8825",
-                type: "Nickel Alloy",
-                commonName: "Inconel 825",
-              },
-              {
-                standard: "ASTM SB336",
-                grade: "UNS 6600",
-                type: "Nickel Alloy",
-                commonName: "Inconel 600",
-              },
-              {
-                standard: "ASTM SB336",
-                grade: "UNS 6601",
-                type: "Nickel Alloy",
-                commonName: "Inconel 601",
-              },
-              {
-                standard: "ASTM SB336",
-                grade: "UNS 6625",
-                type: "Nickel Alloy",
-                commonName: "Inconel 625",
-              },
-            ],
-          },
-
-          images: [
-            { src: "images/CR-1.jfif", alt: "Buttweld Cold Rolled Fittings" },
-            { src: "images/CR-2.png", alt: "Cold Rolled Pipe Fittings" },
-          ],
-        },
-
-        "equal-tee": {
-          id: "equal-tee",
-          name: "Equal TEE",
-          banner: {
-            title: "Equal <span class='text-[#C9A227]'>TEE</span>",
-            subtitle: "Three-Way Equal Branch Connections",
-            description:
-              "Equal tees for creating branch connections of the same size",
-            image: "images/banner2.png",
-            features: [
-              "Equal Branch Size",
-              "Smooth Flow",
-              "High Pressure",
-              "Easy Installation",
-            ],
-            ctaText: "View Equal Tees",
-            color: "#C9A227",
-          },
-          description:
-            "Equal tees create branch connections where all three openings are of the same size. Designed for optimal flow distribution and structural integrity.",
-          applications: [
-            "Pipeline Branching",
-            "Manifold Systems",
-            "Process Piping",
-            "Distribution Networks",
-          ],
-          specifications: [
-            { property: "Size Range", value: '1/2" to 24" NB' },
-            { property: "Types", value: "Butt Weld, Socket Weld, Threaded" },
-            { property: "Pressure Rating", value: "Class 150 to 2500" },
             {
-              property: "Outlet Alignment",
-              value: "90-degree precise alignment",
+              standard: "ASTM A182",
+              grade: "304H",
+              type: "Stainless Steel",
+              commonName: "304H",
             },
-            { property: "Standards", value: "ASME B16.9, B16.11, MSS SP-75" },
-          ],
-          materialGrades: {
-            "Stainless Steel": [
-              {
-                standard: "ASTM A403",
-                grade: "WP304",
-                type: "Stainless Steel",
-                commonName: "304 Stainless",
-              },
-              {
-                standard: "ASTM A403",
-                grade: "WP304L",
-                type: "Stainless Steel",
-                commonName: "304L Stainless",
-              },
-              {
-                standard: "ASTM A403",
-                grade: "WP316",
-                type: "Stainless Steel",
-                commonName: "316 Stainless",
-              },
-              {
-                standard: "ASTM A403",
-                grade: "WP316L",
-                type: "Stainless Steel",
-                commonName: "316L Stainless",
-              },
-            ],
-            "Carbon Steel": [
-              {
-                standard: "ASTM A234",
-                grade: "WPB",
-                type: "Carbon Steel",
-                commonName: "Carbon Steel Pipe",
-              },
-              {
-                standard: "ASTM A420",
-                grade: "WPL6",
-                type: "Low Temp Carbon",
-                commonName: "Low Temperature Carbon",
-              },
-            ],
-            "Alloy Steel": [
-              {
-                standard: "ASTM A234",
-                grade: "WP5",
-                type: "Alloy Steel",
-                commonName: "5Cr-0.5Mo",
-              },
-              {
-                standard: "ASTM A234",
-                grade: "WP9",
-                type: "Alloy Steel",
-                commonName: "9Cr-1Mo",
-              },
-              {
-                standard: "ASTM A234",
-                grade: "WP11",
-                type: "Alloy Steel",
-                commonName: "1.25Cr-0.5Mo",
-              },
-            ],
-            "Nickel Alloy": [
-              {
-                standard: "ASTM B366",
-                grade: "UNS N06600",
-                type: "Nickel Alloy",
-                commonName: "INCONEL 600",
-              },
-              {
-                standard: "ASTM B366",
-                grade: "UNS N06625",
-                type: "Nickel Alloy",
-                commonName: "INCONEL 625",
-              },
-            ],
-          },
-          images: [
-            { src: "equal-tee-1.jpg", alt: "Butt Weld Equal Tee" },
-            { src: "equal-tee-2.jpg", alt: "Socket Weld Equal Tee" },
-          ],
-        },
-        "er-reducer": {
-          id: "er-reducer",
-          name: "ER Reducer",
-          banner: {
-            title: "ER <span class='text-[#C9A227]'>Reducer</span>",
-            subtitle: "Eccentric Reducers for Size Transition",
-            description:
-              "Eccentric reducers for smooth size transition with offset centerlines",
-            image: "images/banner3.png",
-            features: [
-              "Eccentric Design",
-              "Size Transition",
-              "Level Installation",
-              "Flow Optimization",
-            ],
-            ctaText: "Explore ER Reducers",
-            color: "#C9A227",
-          },
-          description:
-            "Eccentric reducers provide size transition while maintaining one side level, ideal for pump suction lines and applications requiring flat bottom installation.",
-          applications: [
-            "Pump Suction Lines",
-            "Horizontal Piping",
-            "Drainage Systems",
-            "Slurry Lines",
-          ],
-          specifications: [
-            { property: "Size Range", value: '2" x 1" to 48" x 24"' },
-            { property: "Type", value: "Eccentric (One side flat)" },
-            { property: "Concentricity", value: "Offset as per size ratio" },
-            { property: "Wall Thickness", value: "Schedule 10S to XXS" },
-            { property: "Standards", value: "ASME B16.9, MSS SP-75" },
-          ],
-          materialGrades: {
-            "Stainless Steel": [
-              {
-                standard: "ASTM A403",
-                grade: "WP304",
-                type: "Stainless Steel",
-                commonName: "304 Stainless",
-              },
-              {
-                standard: "ASTM A403",
-                grade: "WP304L",
-                type: "Stainless Steel",
-                commonName: "304L Stainless",
-              },
-              {
-                standard: "ASTM A403",
-                grade: "WP316",
-                type: "Stainless Steel",
-                commonName: "316 Stainless",
-              },
-              {
-                standard: "ASTM A403",
-                grade: "WP316L",
-                type: "Stainless Steel",
-                commonName: "316L Stainless",
-              },
-            ],
-            "Carbon Steel": [
-              {
-                standard: "ASTM A234",
-                grade: "WPB",
-                type: "Carbon Steel",
-                commonName: "Carbon Steel Pipe",
-              },
-              {
-                standard: "ASTM A420",
-                grade: "WPL6",
-                type: "Low Temp Carbon",
-                commonName: "Low Temperature Carbon",
-              },
-            ],
-            "Alloy Steel": [
-              {
-                standard: "ASTM A234",
-                grade: "WP5",
-                type: "Alloy Steel",
-                commonName: "5Cr-0.5Mo",
-              },
-              {
-                standard: "ASTM A234",
-                grade: "WP9",
-                type: "Alloy Steel",
-                commonName: "9Cr-1Mo",
-              },
-              {
-                standard: "ASTM A234",
-                grade: "WP11",
-                type: "Alloy Steel",
-                commonName: "1.25Cr-0.5Mo",
-              },
-            ],
-            "Nickel Alloy": [
-              {
-                standard: "ASTM B366",
-                grade: "UNS N06600",
-                type: "Nickel Alloy",
-                commonName: "INCONEL 600",
-              },
-              {
-                standard: "ASTM B366",
-                grade: "UNS N06625",
-                type: "Nickel Alloy",
-                commonName: "INCONEL 625",
-              },
-            ],
-          },
-          images: [
-            { src: "er-reducer-1.jpg", alt: "Eccentric Reducer" },
-            { src: "er-reducer-2.jpg", alt: "ER Reducer Installation" },
-          ],
-        },
-        "lr-45-elbow": {
-          id: "lr-45-elbow",
-          name: "LR 45 Elbow",
-          banner: {
-            title: "LR 45° <span class='text-[#C9A227]'>Elbow</span>",
-            subtitle: "Long Radius 45-Degree Elbows",
-            description:
-              "Long radius 45-degree elbows for gentle directional changes",
-            image: "images/banner1.jfif",
-            features: [
-              "45° Direction Change",
-              "Long Radius (1.5D)",
-              "Low Pressure Drop",
-              "Smooth Flow",
-            ],
-            ctaText: "View LR 45 Elbows",
-            color: "#C9A227",
-          },
-          description:
-            "Long radius 45-degree elbows with 1.5D radius provide gentle directional changes with minimal pressure drop and excellent flow characteristics.",
-          applications: [
-            "Process Piping",
-            "HVAC Systems",
-            "Water Treatment",
-            "Industrial Plumbing",
-          ],
-          specifications: [
-            { property: "Size Range", value: '1/2" to 36" NB' },
-            { property: "Radius", value: "1.5 x Nominal Diameter" },
-            { property: "Angle", value: "45° ±0.5°" },
-            { property: "Wall Thickness", value: "Schedule 10S to XXS" },
-            { property: "Standards", value: "ASME B16.9, B16.28" },
-          ],
-          materialGrades: {
-            "Stainless Steel": [
-              {
-                standard: "ASTM A403",
-                grade: "WP304",
-                type: "Stainless Steel",
-                commonName: "304 Stainless",
-              },
-              {
-                standard: "ASTM A403",
-                grade: "WP304L",
-                type: "Stainless Steel",
-                commonName: "304L Stainless",
-              },
-              {
-                standard: "ASTM A403",
-                grade: "WP316",
-                type: "Stainless Steel",
-                commonName: "316 Stainless",
-              },
-              {
-                standard: "ASTM A403",
-                grade: "WP316L",
-                type: "Stainless Steel",
-                commonName: "316L Stainless",
-              },
-              {
-                standard: "ASTM A403",
-                grade: "WP321",
-                type: "Stainless Steel",
-                commonName: "321 Stainless",
-              },
-            ],
-            "Carbon Steel": [
-              {
-                standard: "ASTM A234",
-                grade: "WPB",
-                type: "Carbon Steel",
-                commonName: "Carbon Steel Pipe",
-              },
-              {
-                standard: "ASTM A420",
-                grade: "WPL6",
-                type: "Low Temp Carbon",
-                commonName: "Low Temperature Carbon",
-              },
-            ],
-            "Alloy Steel": [
-              {
-                standard: "ASTM A234",
-                grade: "WP5",
-                type: "Alloy Steel",
-                commonName: "5Cr-0.5Mo",
-              },
-              {
-                standard: "ASTM A234",
-                grade: "WP9",
-                type: "Alloy Steel",
-                commonName: "9Cr-1Mo",
-              },
-              {
-                standard: "ASTM A234",
-                grade: "WP11",
-                type: "Alloy Steel",
-                commonName: "1.25Cr-0.5Mo",
-              },
-            ],
-            "Nickel Alloy": [
-              {
-                standard: "ASTM B366",
-                grade: "UNS N06600",
-                type: "Nickel Alloy",
-                commonName: "INCONEL 600",
-              },
-              {
-                standard: "ASTM B366",
-                grade: "UNS N06625",
-                type: "Nickel Alloy",
-                commonName: "INCONEL 625",
-              },
-            ],
-          },
-          images: [
-            { src: "lr45-1.jpg", alt: "LR 45 Elbow" },
-            { src: "lr45-2.jpg", alt: "LR 45 Elbow Section" },
-          ],
-        },
-        "lr-90-elbow": {
-          id: "lr-90-elbow",
-          name: "LR 90 Elbow",
-          banner: {
-            title: "LR 90° <span class='text-[#C9A227]'>Elbow</span>",
-            subtitle: "Long Radius 90-Degree Elbows",
-            description:
-              "Long radius 90-degree elbows for smooth right-angle turns",
-            image: "images/banner2.png",
-            features: [
-              "90° Right Angle",
-              "Long Radius (1.5D)",
-              "Minimal Turbulence",
-              "High Pressure",
-            ],
-            ctaText: "Explore LR 90 Elbows",
-            color: "#C9A227",
-          },
-          description:
-            "Long radius 90-degree elbows provide smooth right-angle turns with 1.5D radius, minimizing pressure drop and erosion in high-velocity systems.",
-          applications: [
-            "Refinery Piping",
-            "Power Plants",
-            "Chemical Processing",
-            "Steam Lines",
-          ],
-          specifications: [
-            { property: "Size Range", value: '1/2" to 48" NB' },
-            { property: "Radius", value: "1.5 x Nominal Diameter" },
-            { property: "Angle", value: "90° ±0.5°" },
-            { property: "End Preparation", value: "Beveled for butt welding" },
-            { property: "Standards", value: "ASME B16.9, B16.28" },
-          ],
-          materialGrades: {
-            "Stainless Steel": [
-              {
-                standard: "ASTM A403",
-                grade: "WP304",
-                type: "Stainless Steel",
-                commonName: "304 Stainless",
-              },
-              {
-                standard: "ASTM A403",
-                grade: "WP304L",
-                type: "Stainless Steel",
-                commonName: "304L Stainless",
-              },
-              {
-                standard: "ASTM A403",
-                grade: "WP316",
-                type: "Stainless Steel",
-                commonName: "316 Stainless",
-              },
-              {
-                standard: "ASTM A403",
-                grade: "WP316L",
-                type: "Stainless Steel",
-                commonName: "316L Stainless",
-              },
-            ],
-            "Carbon Steel": [
-              {
-                standard: "ASTM A234",
-                grade: "WPB",
-                type: "Carbon Steel",
-                commonName: "Carbon Steel Pipe",
-              },
-              {
-                standard: "ASTM A420",
-                grade: "WPL6",
-                type: "Low Temp Carbon",
-                commonName: "Low Temperature Carbon",
-              },
-            ],
-            "Alloy Steel": [
-              {
-                standard: "ASTM A234",
-                grade: "WP5",
-                type: "Alloy Steel",
-                commonName: "5Cr-0.5Mo",
-              },
-              {
-                standard: "ASTM A234",
-                grade: "WP9",
-                type: "Alloy Steel",
-                commonName: "9Cr-1Mo",
-              },
-              {
-                standard: "ASTM A234",
-                grade: "WP11",
-                type: "Alloy Steel",
-                commonName: "1.25Cr-0.5Mo",
-              },
-              {
-                standard: "ASTM A234",
-                grade: "WP22",
-                type: "Alloy Steel",
-                commonName: "2.25Cr-1Mo",
-              },
-            ],
-            "Nickel Alloy": [
-              {
-                standard: "ASTM B366",
-                grade: "UNS N06600",
-                type: "Nickel Alloy",
-                commonName: "INCONEL 600",
-              },
-              {
-                standard: "ASTM B366",
-                grade: "UNS N06625",
-                type: "Nickel Alloy",
-                commonName: "INCONEL 625",
-              },
-              {
-                standard: "ASTM B366",
-                grade: "UNS N08825",
-                type: "Nickel Alloy",
-                commonName: "INCOLOY 825",
-              },
-            ],
-          },
-          images: [
-            { src: "lr90-1.jpg", alt: "LR 90 Elbow" },
-            { src: "lr90-2.jpg", alt: "LR 90 Elbow Installation" },
-          ],
-        },
-        "redu-tee": {
-          id: "redu-tee",
-          name: "Redu TEE",
-          banner: {
-            title: "Reducing <span class='text-[#C9A227]'>TEE</span>",
-            subtitle: "Reducing Branch Connections",
-            description:
-              "Reducing tees for creating branch connections of different sizes",
-            image: "images/banner3.png",
-            features: [
-              "Reducing Branch",
-              "Three Connections",
-              "Optimized Flow",
-              "High Integrity",
-            ],
-            ctaText: "View Reducing Tees",
-            color: "#C9A227",
-          },
-          description:
-            "Reducing tees create branch connections where the branch size is different from the run size, optimizing flow characteristics and pressure distribution.",
-          applications: [
-            "Instrument Tappings",
-            "Sampling Points",
-            "Branch Lines",
-            "Drain Connections",
-          ],
-          specifications: [
             {
-              property: "Size Combinations",
-              value: "Various run/branch combinations",
+              standard: "ASTM A182",
+              grade: "309",
+              type: "Stainless Steel",
+              commonName: "309",
             },
-            { property: "Types", value: "Butt Weld, Socket Weld" },
-            { property: "Pressure Rating", value: "Class 150 to 2500" },
             {
-              property: "Branch Alignment",
-              value: "90-degree precise alignment",
+              standard: "ASTM A182",
+              grade: "310",
+              type: "Stainless Steel",
+              commonName: "310",
             },
-            { property: "Standards", value: "ASME B16.9, MSS SP-75" },
+            {
+              standard: "ASTM A182",
+              grade: "316",
+              type: "Stainless Steel",
+              commonName: "316",
+            },
+            {
+              standard: "ASTM A182",
+              grade: "316TI",
+              type: "Stainless Steel",
+              commonName: "316Ti",
+            },
+            {
+              standard: "ASTM A182",
+              grade: "316H",
+              type: "Stainless Steel",
+              commonName: "316H",
+            },
+            {
+              standard: "ASTM A182",
+              grade: "316L",
+              type: "Stainless Steel",
+              commonName: "316L",
+            },
+            {
+              standard: "ASTM A182",
+              grade: "317L",
+              type: "Stainless Steel",
+              commonName: "317L",
+            },
+            {
+              standard: "ASTM A182",
+              grade: "321",
+              type: "Stainless Steel",
+              commonName: "321",
+            },
+            {
+              standard: "ASTM A182",
+              grade: "347",
+              type: "Stainless Steel",
+              commonName: "347",
+            },
+            {
+              standard: "ASTM A815",
+              grade: "904L",
+              type: "Stainless Steel",
+              commonName: "904L",
+            },
+            {
+              standard: "UNS",
+              grade: "S31803",
+              type: "Duplex Stainless Steel",
+              commonName: "S31803",
+            },
+            {
+              standard: "UNS",
+              grade: "S32205",
+              type: "Duplex Stainless Steel",
+              commonName: "S32205",
+            },
+            {
+              standard: "UNS",
+              grade: "S32750",
+              type: "Super Duplex",
+              commonName: "S32750",
+            },
+            {
+              standard: "UNS",
+              grade: "S32760",
+              type: "Super Duplex",
+              commonName: "S32760",
+            },
           ],
-          materialGrades: {
-            "Stainless Steel": [
-              {
-                standard: "ASTM A403",
-                grade: "WP304",
-                type: "Stainless Steel",
-                commonName: "304 Stainless",
-              },
-              {
-                standard: "ASTM A403",
-                grade: "WP304L",
-                type: "Stainless Steel",
-                commonName: "304L Stainless",
-              },
-              {
-                standard: "ASTM A403",
-                grade: "WP316",
-                type: "Stainless Steel",
-                commonName: "316 Stainless",
-              },
-              {
-                standard: "ASTM A403",
-                grade: "WP316L",
-                type: "Stainless Steel",
-                commonName: "316L Stainless",
-              },
-            ],
-            "Carbon Steel": [
-              {
-                standard: "ASTM A234",
-                grade: "WPB",
-                type: "Carbon Steel",
-                commonName: "Carbon Steel Pipe",
-              },
-              {
-                standard: "ASTM A420",
-                grade: "WPL6",
-                type: "Low Temp Carbon",
-                commonName: "Low Temperature Carbon",
-              },
-            ],
-            "Alloy Steel": [
-              {
-                standard: "ASTM A234",
-                grade: "WP5",
-                type: "Alloy Steel",
-                commonName: "5Cr-0.5Mo",
-              },
-              {
-                standard: "ASTM A234",
-                grade: "WP9",
-                type: "Alloy Steel",
-                commonName: "9Cr-1Mo",
-              },
-              {
-                standard: "ASTM A234",
-                grade: "WP11",
-                type: "Alloy Steel",
-                commonName: "1.25Cr-0.5Mo",
-              },
-            ],
-            "Nickel Alloy": [
-              {
-                standard: "ASTM B366",
-                grade: "UNS N06600",
-                type: "Nickel Alloy",
-                commonName: "INCONEL 600",
-              },
-              {
-                standard: "ASTM B366",
-                grade: "UNS N06625",
-                type: "Nickel Alloy",
-                commonName: "INCONEL 625",
-              },
-            ],
-          },
-          images: [
-            { src: "redu-tee-1.jpg", alt: "Reducing Tee" },
-            { src: "redu-tee-2.jpg", alt: "Reducing Tee Section" },
+
+          "Carbon Steel": [
+            {
+              standard: "ASTM A234",
+              grade: "WPB",
+              type: "Carbon Steel",
+              commonName: "WPB",
+            },
+            {
+              standard: "ASTM A234",
+              grade: "WPBW",
+              type: "Carbon Steel",
+              commonName: "WPBW",
+            },
+            {
+              standard: "ASTM A234",
+              grade: "WPHY 42",
+              type: "Carbon Steel",
+              commonName: "WPHY 42",
+            },
+            {
+              standard: "ASTM A234",
+              grade: "WPHY 46",
+              type: "Carbon Steel",
+              commonName: "WPHY 46",
+            },
+            {
+              standard: "ASTM A234",
+              grade: "WPHY 52",
+              type: "Carbon Steel",
+              commonName: "WPHY 52",
+            },
+            {
+              standard: "ASTM A234",
+              grade: "WPHY 60",
+              type: "Carbon Steel",
+              commonName: "WPHY 60",
+            },
+            {
+              standard: "ASTM A234",
+              grade: "WPHY 65",
+              type: "Carbon Steel",
+              commonName: "WPHY 65",
+            },
+            {
+              standard: "ASTM A234",
+              grade: "WPHY 70",
+              type: "Carbon Steel",
+              commonName: "WPHY 70",
+            },
+            {
+              standard: "ASTM A420",
+              grade: "WPL3",
+              type: "Carbon Steel",
+              commonName: "WPL3",
+            },
+            {
+              standard: "ASTM A420",
+              grade: "WPL6",
+              type: "Carbon Steel",
+              commonName: "WPL6",
+            },
+          ],
+
+          "Alloy Steel": [
+            {
+              standard: "ASTM A234",
+              grade: "WP1",
+              type: "Alloy Steel",
+              commonName: "WP1",
+            },
+            {
+              standard: "ASTM A234",
+              grade: "WP5",
+              type: "Alloy Steel",
+              commonName: "WP5",
+            },
+            {
+              standard: "ASTM A234",
+              grade: "WP9",
+              type: "Alloy Steel",
+              commonName: "WP9",
+            },
+            {
+              standard: "ASTM A234",
+              grade: "WP11",
+              type: "Alloy Steel",
+              commonName: "WP11",
+            },
+            {
+              standard: "ASTM A234",
+              grade: "WP12",
+              type: "Alloy Steel",
+              commonName: "WP12",
+            },
+            {
+              standard: "ASTM A234",
+              grade: "WP22",
+              type: "Alloy Steel",
+              commonName: "WP22",
+            },
+            {
+              standard: "ASTM A234",
+              grade: "WP91",
+              type: "Alloy Steel",
+              commonName: "WP91",
+            },
+          ],
+
+          "Nickel Alloy": [
+            {
+              standard: "ASTM SB336",
+              grade: "UNS 2200",
+              type: "Nickel Alloy",
+              commonName: "Nickel 200",
+            },
+            {
+              standard: "ASTM SB336",
+              grade: "UNS 2201",
+              type: "Nickel Alloy",
+              commonName: "Nickel 201",
+            },
+            {
+              standard: "ASTM SB336",
+              grade: "UNS 4400",
+              type: "Nickel Alloy",
+              commonName: "Monel 400",
+            },
+            {
+              standard: "ASTM SB336",
+              grade: "UNS 8020",
+              type: "Nickel Alloy",
+              commonName: "Alloy 20 / 20CB3",
+            },
+            {
+              standard: "ASTM SB336",
+              grade: "UNS 8825",
+              type: "Nickel Alloy",
+              commonName: "Inconel 825",
+            },
+            {
+              standard: "ASTM SB336",
+              grade: "UNS 6600",
+              type: "Nickel Alloy",
+              commonName: "Inconel 600",
+            },
+            {
+              standard: "ASTM SB336",
+              grade: "UNS 6601",
+              type: "Nickel Alloy",
+              commonName: "Inconel 601",
+            },
+            {
+              standard: "ASTM SB336",
+              grade: "UNS 6625",
+              type: "Nickel Alloy",
+              commonName: "Inconel 625",
+            },
           ],
         },
-        "sr-45-elbows": {
-          id: "sr-45-elbows",
-          name: "SR 45 Elbows",
-          banner: {
-            title: "SR 45° <span class='text-[#C9A227]'>Elbows</span>",
-            subtitle: "Short Radius 45-Degree Elbows",
-            description:
-              "Short radius 45-degree elbows for space-constrained installations",
-            image: "images/banner1.jfif",
-            features: [
-              "45° Direction Change",
-              "Short Radius (1.0D)",
-              "Space Saving",
-              "Compact Design",
-            ],
-            ctaText: "Explore SR 45 Elbows",
-            color: "#C9A227",
-          },
+
+        images: [
+          { src: "images/CR-1.jfif", alt: "Buttweld Cold Rolled Fittings" },
+          { src: "images/CR-2.png", alt: "Cold Rolled Pipe Fittings" },
+        ],
+      },
+
+      "equal-tee": {
+        id: "equal-tee",
+        name: "Equal TEE",
+        banner: {
+          title: "Equal <span class='text-[#C9A227]'>TEE</span>",
+          subtitle: "Three-Way Equal Branch Connections",
           description:
-            "Short radius 45-degree elbows with 1.0D radius provide directional changes in space-constrained installations while maintaining structural integrity.",
-          applications: [
-            "Tight Spaces",
-            "Retrofit Projects",
-            "Equipment Connections",
-            "Compact Systems",
+            "Equal tees for creating branch connections of the same size",
+          image: "images/banner2.png",
+          features: [
+            "Equal Branch Size",
+            "Smooth Flow",
+            "High Pressure",
+            "Easy Installation",
           ],
-          specifications: [
-            { property: "Size Range", value: '1/2" to 24" NB' },
-            { property: "Radius", value: "1.0 x Nominal Diameter" },
-            { property: "Angle", value: "45° ±0.5°" },
-            { property: "Wall Thickness", value: "Schedule 40, 80, 160" },
-            { property: "Standards", value: "ASME B16.9, B16.28" },
-          ],
-          materialGrades: {
-            "Stainless Steel": [
-              {
-                standard: "ASTM A403",
-                grade: "WP304",
-                type: "Stainless Steel",
-                commonName: "304 Stainless",
-              },
-              {
-                standard: "ASTM A403",
-                grade: "WP304L",
-                type: "Stainless Steel",
-                commonName: "304L Stainless",
-              },
-              {
-                standard: "ASTM A403",
-                grade: "WP316",
-                type: "Stainless Steel",
-                commonName: "316 Stainless",
-              },
-              {
-                standard: "ASTM A403",
-                grade: "WP316L",
-                type: "Stainless Steel",
-                commonName: "316L Stainless",
-              },
-            ],
-            "Carbon Steel": [
-              {
-                standard: "ASTM A234",
-                grade: "WPB",
-                type: "Carbon Steel",
-                commonName: "Carbon Steel Pipe",
-              },
-              {
-                standard: "ASTM A420",
-                grade: "WPL6",
-                type: "Low Temp Carbon",
-                commonName: "Low Temperature Carbon",
-              },
-            ],
-            "Alloy Steel": [
-              {
-                standard: "ASTM A234",
-                grade: "WP5",
-                type: "Alloy Steel",
-                commonName: "5Cr-0.5Mo",
-              },
-              {
-                standard: "ASTM A234",
-                grade: "WP9",
-                type: "Alloy Steel",
-                commonName: "9Cr-1Mo",
-              },
-              {
-                standard: "ASTM A234",
-                grade: "WP11",
-                type: "Alloy Steel",
-                commonName: "1.25Cr-0.5Mo",
-              },
-            ],
-            "Nickel Alloy": [
-              {
-                standard: "ASTM B366",
-                grade: "UNS N06600",
-                type: "Nickel Alloy",
-                commonName: "INCONEL 600",
-              },
-              {
-                standard: "ASTM B366",
-                grade: "UNS N06625",
-                type: "Nickel Alloy",
-                commonName: "INCONEL 625",
-              },
-            ],
+          ctaText: "View Equal Tees",
+          color: "#C9A227",
+        },
+        description:
+          "Equal tees create branch connections where all three openings are of the same size. Designed for optimal flow distribution and structural integrity.",
+        applications: [
+          "Pipeline Branching",
+          "Manifold Systems",
+          "Process Piping",
+          "Distribution Networks",
+        ],
+        specifications: [
+          { property: "Size Range", value: '1/2" to 24" NB' },
+          { property: "Types", value: "Butt Weld, Socket Weld, Threaded" },
+          { property: "Pressure Rating", value: "Class 150 to 2500" },
+          {
+            property: "Outlet Alignment",
+            value: "90-degree precise alignment",
           },
-          images: [
-            { src: "sr45-1.jpg", alt: "SR 45 Elbow" },
-            { src: "sr45-2.jpg", alt: "SR 45 Elbow Comparison" },
+          { property: "Standards", value: "ASME B16.9, B16.11, MSS SP-75" },
+        ],
+        materialGrades: {
+          "Stainless Steel": [
+            {
+              standard: "ASTM A403",
+              grade: "WP304",
+              type: "Stainless Steel",
+              commonName: "304 Stainless",
+            },
+            {
+              standard: "ASTM A403",
+              grade: "WP304L",
+              type: "Stainless Steel",
+              commonName: "304L Stainless",
+            },
+            {
+              standard: "ASTM A403",
+              grade: "WP316",
+              type: "Stainless Steel",
+              commonName: "316 Stainless",
+            },
+            {
+              standard: "ASTM A403",
+              grade: "WP316L",
+              type: "Stainless Steel",
+              commonName: "316L Stainless",
+            },
+          ],
+          "Carbon Steel": [
+            {
+              standard: "ASTM A234",
+              grade: "WPB",
+              type: "Carbon Steel",
+              commonName: "Carbon Steel Pipe",
+            },
+            {
+              standard: "ASTM A420",
+              grade: "WPL6",
+              type: "Low Temp Carbon",
+              commonName: "Low Temperature Carbon",
+            },
+          ],
+          "Alloy Steel": [
+            {
+              standard: "ASTM A234",
+              grade: "WP5",
+              type: "Alloy Steel",
+              commonName: "5Cr-0.5Mo",
+            },
+            {
+              standard: "ASTM A234",
+              grade: "WP9",
+              type: "Alloy Steel",
+              commonName: "9Cr-1Mo",
+            },
+            {
+              standard: "ASTM A234",
+              grade: "WP11",
+              type: "Alloy Steel",
+              commonName: "1.25Cr-0.5Mo",
+            },
+          ],
+          "Nickel Alloy": [
+            {
+              standard: "ASTM B366",
+              grade: "UNS N06600",
+              type: "Nickel Alloy",
+              commonName: "INCONEL 600",
+            },
+            {
+              standard: "ASTM B366",
+              grade: "UNS N06625",
+              type: "Nickel Alloy",
+              commonName: "INCONEL 625",
+            },
           ],
         },
-        "sr-90-elbow": {
-          id: "sr-90-elbow",
-          name: "SR 90 Elbow",
-          banner: {
-            title: "SR 90° <span class='text-[#C9A227]'>Elbow</span>",
-            subtitle: "Short Radius 90-Degree Elbows",
-            description:
-              "Short radius 90-degree elbows for compact right-angle turns",
-            image: "images/banner2.png",
-            features: [
-              "90° Right Angle",
-              "Short Radius (1.0D)",
-              "Compact",
-              "Cost Effective",
-            ],
-            ctaText: "View SR 90 Elbows",
-            color: "#C9A227",
-          },
+        images: [
+          { src: "equal-tee-1.jpg", alt: "Butt Weld Equal Tee" },
+          { src: "equal-tee-2.jpg", alt: "Socket Weld Equal Tee" },
+        ],
+      },
+      "er-reducer": {
+        id: "er-reducer",
+        name: "ER Reducer",
+        banner: {
+          title: "ER <span class='text-[#C9A227]'>Reducer</span>",
+          subtitle: "Eccentric Reducers for Size Transition",
           description:
-            "Short radius 90-degree elbows provide compact right-angle turns with 1.0D radius, ideal for installations with space limitations.",
-          applications: [
-            "Compact Systems",
-            "Retrofit Installations",
-            "Equipment Layouts",
-            "Space-Constrained Areas",
+            "Eccentric reducers for smooth size transition with offset centerlines",
+          image: "images/banner3.png",
+          features: [
+            "Eccentric Design",
+            "Size Transition",
+            "Level Installation",
+            "Flow Optimization",
           ],
-          specifications: [
-            { property: "Size Range", value: '1/2" to 24" NB' },
-            { property: "Radius", value: "1.0 x Nominal Diameter" },
-            { property: "Angle", value: "90° ±0.5°" },
-            { property: "Pressure Class", value: "Class 150 to 1500" },
-            { property: "Standards", value: "ASME B16.9, B16.28" },
+          ctaText: "Explore ER Reducers",
+          color: "#C9A227",
+        },
+        description:
+          "Eccentric reducers provide size transition while maintaining one side level, ideal for pump suction lines and applications requiring flat bottom installation.",
+        applications: [
+          "Pump Suction Lines",
+          "Horizontal Piping",
+          "Drainage Systems",
+          "Slurry Lines",
+        ],
+        specifications: [
+          { property: "Size Range", value: '2" x 1" to 48" x 24"' },
+          { property: "Type", value: "Eccentric (One side flat)" },
+          { property: "Concentricity", value: "Offset as per size ratio" },
+          { property: "Wall Thickness", value: "Schedule 10S to XXS" },
+          { property: "Standards", value: "ASME B16.9, MSS SP-75" },
+        ],
+        materialGrades: {
+          "Stainless Steel": [
+            {
+              standard: "ASTM A403",
+              grade: "WP304",
+              type: "Stainless Steel",
+              commonName: "304 Stainless",
+            },
+            {
+              standard: "ASTM A403",
+              grade: "WP304L",
+              type: "Stainless Steel",
+              commonName: "304L Stainless",
+            },
+            {
+              standard: "ASTM A403",
+              grade: "WP316",
+              type: "Stainless Steel",
+              commonName: "316 Stainless",
+            },
+            {
+              standard: "ASTM A403",
+              grade: "WP316L",
+              type: "Stainless Steel",
+              commonName: "316L Stainless",
+            },
           ],
-          materialGrades: {
-            "Stainless Steel": [
-              {
-                standard: "ASTM A403",
-                grade: "WP304",
-                type: "Stainless Steel",
-                commonName: "304 Stainless",
-              },
-              {
-                standard: "ASTM A403",
-                grade: "WP304L",
-                type: "Stainless Steel",
-                commonName: "304L Stainless",
-              },
-              {
-                standard: "ASTM A403",
-                grade: "WP316",
-                type: "Stainless Steel",
-                commonName: "316 Stainless",
-              },
-              {
-                standard: "ASTM A403",
-                grade: "WP316L",
-                type: "Stainless Steel",
-                commonName: "316L Stainless",
-              },
-            ],
-            "Carbon Steel": [
-              {
-                standard: "ASTM A234",
-                grade: "WPB",
-                type: "Carbon Steel",
-                commonName: "Carbon Steel Pipe",
-              },
-              {
-                standard: "ASTM A420",
-                grade: "WPL6",
-                type: "Low Temp Carbon",
-                commonName: "Low Temperature Carbon",
-              },
-            ],
-            "Alloy Steel": [
-              {
-                standard: "ASTM A234",
-                grade: "WP5",
-                type: "Alloy Steel",
-                commonName: "5Cr-0.5Mo",
-              },
-              {
-                standard: "ASTM A234",
-                grade: "WP9",
-                type: "Alloy Steel",
-                commonName: "9Cr-1Mo",
-              },
-              {
-                standard: "ASTM A234",
-                grade: "WP11",
-                type: "Alloy Steel",
-                commonName: "1.25Cr-0.5Mo",
-              },
-            ],
-            "Nickel Alloy": [
-              {
-                standard: "ASTM B366",
-                grade: "UNS N06600",
-                type: "Nickel Alloy",
-                commonName: "INCONEL 600",
-              },
-              {
-                standard: "ASTM B366",
-                grade: "UNS N06625",
-                type: "Nickel Alloy",
-                commonName: "INCONEL 625",
-              },
-            ],
-          },
-          images: [
-            { src: "sr90-1.jpg", alt: "SR 90 Elbow" },
-            { src: "sr90-2.jpg", alt: "SR 90 Elbow Installation" },
+          "Carbon Steel": [
+            {
+              standard: "ASTM A234",
+              grade: "WPB",
+              type: "Carbon Steel",
+              commonName: "Carbon Steel Pipe",
+            },
+            {
+              standard: "ASTM A420",
+              grade: "WPL6",
+              type: "Low Temp Carbon",
+              commonName: "Low Temperature Carbon",
+            },
+          ],
+          "Alloy Steel": [
+            {
+              standard: "ASTM A234",
+              grade: "WP5",
+              type: "Alloy Steel",
+              commonName: "5Cr-0.5Mo",
+            },
+            {
+              standard: "ASTM A234",
+              grade: "WP9",
+              type: "Alloy Steel",
+              commonName: "9Cr-1Mo",
+            },
+            {
+              standard: "ASTM A234",
+              grade: "WP11",
+              type: "Alloy Steel",
+              commonName: "1.25Cr-0.5Mo",
+            },
+          ],
+          "Nickel Alloy": [
+            {
+              standard: "ASTM B366",
+              grade: "UNS N06600",
+              type: "Nickel Alloy",
+              commonName: "INCONEL 600",
+            },
+            {
+              standard: "ASTM B366",
+              grade: "UNS N06625",
+              type: "Nickel Alloy",
+              commonName: "INCONEL 625",
+            },
           ],
         },
-      };
+        images: [
+          { src: "er-reducer-1.jpg", alt: "Eccentric Reducer" },
+          { src: "er-reducer-2.jpg", alt: "ER Reducer Installation" },
+        ],
+      },
+      "lr-45-elbow": {
+        id: "lr-45-elbow",
+        name: "LR 45 Elbow",
+        banner: {
+          title: "LR 45° <span class='text-[#C9A227]'>Elbow</span>",
+          subtitle: "Long Radius 45-Degree Elbows",
+          description:
+            "Long radius 45-degree elbows for gentle directional changes",
+          image: "images/banner1.jfif",
+          features: [
+            "45° Direction Change",
+            "Long Radius (1.5D)",
+            "Low Pressure Drop",
+            "Smooth Flow",
+          ],
+          ctaText: "View LR 45 Elbows",
+          color: "#C9A227",
+        },
+        description:
+          "Long radius 45-degree elbows with 1.5D radius provide gentle directional changes with minimal pressure drop and excellent flow characteristics.",
+        applications: [
+          "Process Piping",
+          "HVAC Systems",
+          "Water Treatment",
+          "Industrial Plumbing",
+        ],
+        specifications: [
+          { property: "Size Range", value: '1/2" to 36" NB' },
+          { property: "Radius", value: "1.5 x Nominal Diameter" },
+          { property: "Angle", value: "45° ±0.5°" },
+          { property: "Wall Thickness", value: "Schedule 10S to XXS" },
+          { property: "Standards", value: "ASME B16.9, B16.28" },
+        ],
+        materialGrades: {
+          "Stainless Steel": [
+            {
+              standard: "ASTM A403",
+              grade: "WP304",
+              type: "Stainless Steel",
+              commonName: "304 Stainless",
+            },
+            {
+              standard: "ASTM A403",
+              grade: "WP304L",
+              type: "Stainless Steel",
+              commonName: "304L Stainless",
+            },
+            {
+              standard: "ASTM A403",
+              grade: "WP316",
+              type: "Stainless Steel",
+              commonName: "316 Stainless",
+            },
+            {
+              standard: "ASTM A403",
+              grade: "WP316L",
+              type: "Stainless Steel",
+              commonName: "316L Stainless",
+            },
+            {
+              standard: "ASTM A403",
+              grade: "WP321",
+              type: "Stainless Steel",
+              commonName: "321 Stainless",
+            },
+          ],
+          "Carbon Steel": [
+            {
+              standard: "ASTM A234",
+              grade: "WPB",
+              type: "Carbon Steel",
+              commonName: "Carbon Steel Pipe",
+            },
+            {
+              standard: "ASTM A420",
+              grade: "WPL6",
+              type: "Low Temp Carbon",
+              commonName: "Low Temperature Carbon",
+            },
+          ],
+          "Alloy Steel": [
+            {
+              standard: "ASTM A234",
+              grade: "WP5",
+              type: "Alloy Steel",
+              commonName: "5Cr-0.5Mo",
+            },
+            {
+              standard: "ASTM A234",
+              grade: "WP9",
+              type: "Alloy Steel",
+              commonName: "9Cr-1Mo",
+            },
+            {
+              standard: "ASTM A234",
+              grade: "WP11",
+              type: "Alloy Steel",
+              commonName: "1.25Cr-0.5Mo",
+            },
+          ],
+          "Nickel Alloy": [
+            {
+              standard: "ASTM B366",
+              grade: "UNS N06600",
+              type: "Nickel Alloy",
+              commonName: "INCONEL 600",
+            },
+            {
+              standard: "ASTM B366",
+              grade: "UNS N06625",
+              type: "Nickel Alloy",
+              commonName: "INCONEL 625",
+            },
+          ],
+        },
+        images: [
+          { src: "lr45-1.jpg", alt: "LR 45 Elbow" },
+          { src: "lr45-2.jpg", alt: "LR 45 Elbow Section" },
+        ],
+      },
+      "lr-90-elbow": {
+        id: "lr-90-elbow",
+        name: "LR 90 Elbow",
+        banner: {
+          title: "LR 90° <span class='text-[#C9A227]'>Elbow</span>",
+          subtitle: "Long Radius 90-Degree Elbows",
+          description:
+            "Long radius 90-degree elbows for smooth right-angle turns",
+          image: "images/banner2.png",
+          features: [
+            "90° Right Angle",
+            "Long Radius (1.5D)",
+            "Minimal Turbulence",
+            "High Pressure",
+          ],
+          ctaText: "Explore LR 90 Elbows",
+          color: "#C9A227",
+        },
+        description:
+          "Long radius 90-degree elbows provide smooth right-angle turns with 1.5D radius, minimizing pressure drop and erosion in high-velocity systems.",
+        applications: [
+          "Refinery Piping",
+          "Power Plants",
+          "Chemical Processing",
+          "Steam Lines",
+        ],
+        specifications: [
+          { property: "Size Range", value: '1/2" to 48" NB' },
+          { property: "Radius", value: "1.5 x Nominal Diameter" },
+          { property: "Angle", value: "90° ±0.5°" },
+          { property: "End Preparation", value: "Beveled for butt welding" },
+          { property: "Standards", value: "ASME B16.9, B16.28" },
+        ],
+        materialGrades: {
+          "Stainless Steel": [
+            {
+              standard: "ASTM A403",
+              grade: "WP304",
+              type: "Stainless Steel",
+              commonName: "304 Stainless",
+            },
+            {
+              standard: "ASTM A403",
+              grade: "WP304L",
+              type: "Stainless Steel",
+              commonName: "304L Stainless",
+            },
+            {
+              standard: "ASTM A403",
+              grade: "WP316",
+              type: "Stainless Steel",
+              commonName: "316 Stainless",
+            },
+            {
+              standard: "ASTM A403",
+              grade: "WP316L",
+              type: "Stainless Steel",
+              commonName: "316L Stainless",
+            },
+          ],
+          "Carbon Steel": [
+            {
+              standard: "ASTM A234",
+              grade: "WPB",
+              type: "Carbon Steel",
+              commonName: "Carbon Steel Pipe",
+            },
+            {
+              standard: "ASTM A420",
+              grade: "WPL6",
+              type: "Low Temp Carbon",
+              commonName: "Low Temperature Carbon",
+            },
+          ],
+          "Alloy Steel": [
+            {
+              standard: "ASTM A234",
+              grade: "WP5",
+              type: "Alloy Steel",
+              commonName: "5Cr-0.5Mo",
+            },
+            {
+              standard: "ASTM A234",
+              grade: "WP9",
+              type: "Alloy Steel",
+              commonName: "9Cr-1Mo",
+            },
+            {
+              standard: "ASTM A234",
+              grade: "WP11",
+              type: "Alloy Steel",
+              commonName: "1.25Cr-0.5Mo",
+            },
+            {
+              standard: "ASTM A234",
+              grade: "WP22",
+              type: "Alloy Steel",
+              commonName: "2.25Cr-1Mo",
+            },
+          ],
+          "Nickel Alloy": [
+            {
+              standard: "ASTM B366",
+              grade: "UNS N06600",
+              type: "Nickel Alloy",
+              commonName: "INCONEL 600",
+            },
+            {
+              standard: "ASTM B366",
+              grade: "UNS N06625",
+              type: "Nickel Alloy",
+              commonName: "INCONEL 625",
+            },
+            {
+              standard: "ASTM B366",
+              grade: "UNS N08825",
+              type: "Nickel Alloy",
+              commonName: "INCOLOY 825",
+            },
+          ],
+        },
+        images: [
+          { src: "lr90-1.jpg", alt: "LR 90 Elbow" },
+          { src: "lr90-2.jpg", alt: "LR 90 Elbow Installation" },
+        ],
+      },
+      "redu-tee": {
+        id: "redu-tee",
+        name: "Redu TEE",
+        banner: {
+          title: "Reducing <span class='text-[#C9A227]'>TEE</span>",
+          subtitle: "Reducing Branch Connections",
+          description:
+            "Reducing tees for creating branch connections of different sizes",
+          image: "images/banner3.png",
+          features: [
+            "Reducing Branch",
+            "Three Connections",
+            "Optimized Flow",
+            "High Integrity",
+          ],
+          ctaText: "View Reducing Tees",
+          color: "#C9A227",
+        },
+        description:
+          "Reducing tees create branch connections where the branch size is different from the run size, optimizing flow characteristics and pressure distribution.",
+        applications: [
+          "Instrument Tappings",
+          "Sampling Points",
+          "Branch Lines",
+          "Drain Connections",
+        ],
+        specifications: [
+          {
+            property: "Size Combinations",
+            value: "Various run/branch combinations",
+          },
+          { property: "Types", value: "Butt Weld, Socket Weld" },
+          { property: "Pressure Rating", value: "Class 150 to 2500" },
+          {
+            property: "Branch Alignment",
+            value: "90-degree precise alignment",
+          },
+          { property: "Standards", value: "ASME B16.9, MSS SP-75" },
+        ],
+        materialGrades: {
+          "Stainless Steel": [
+            {
+              standard: "ASTM A403",
+              grade: "WP304",
+              type: "Stainless Steel",
+              commonName: "304 Stainless",
+            },
+            {
+              standard: "ASTM A403",
+              grade: "WP304L",
+              type: "Stainless Steel",
+              commonName: "304L Stainless",
+            },
+            {
+              standard: "ASTM A403",
+              grade: "WP316",
+              type: "Stainless Steel",
+              commonName: "316 Stainless",
+            },
+            {
+              standard: "ASTM A403",
+              grade: "WP316L",
+              type: "Stainless Steel",
+              commonName: "316L Stainless",
+            },
+          ],
+          "Carbon Steel": [
+            {
+              standard: "ASTM A234",
+              grade: "WPB",
+              type: "Carbon Steel",
+              commonName: "Carbon Steel Pipe",
+            },
+            {
+              standard: "ASTM A420",
+              grade: "WPL6",
+              type: "Low Temp Carbon",
+              commonName: "Low Temperature Carbon",
+            },
+          ],
+          "Alloy Steel": [
+            {
+              standard: "ASTM A234",
+              grade: "WP5",
+              type: "Alloy Steel",
+              commonName: "5Cr-0.5Mo",
+            },
+            {
+              standard: "ASTM A234",
+              grade: "WP9",
+              type: "Alloy Steel",
+              commonName: "9Cr-1Mo",
+            },
+            {
+              standard: "ASTM A234",
+              grade: "WP11",
+              type: "Alloy Steel",
+              commonName: "1.25Cr-0.5Mo",
+            },
+          ],
+          "Nickel Alloy": [
+            {
+              standard: "ASTM B366",
+              grade: "UNS N06600",
+              type: "Nickel Alloy",
+              commonName: "INCONEL 600",
+            },
+            {
+              standard: "ASTM B366",
+              grade: "UNS N06625",
+              type: "Nickel Alloy",
+              commonName: "INCONEL 625",
+            },
+          ],
+        },
+        images: [
+          { src: "redu-tee-1.jpg", alt: "Reducing Tee" },
+          { src: "redu-tee-2.jpg", alt: "Reducing Tee Section" },
+        ],
+      },
+      "sr-45-elbows": {
+        id: "sr-45-elbows",
+        name: "SR 45 Elbows",
+        banner: {
+          title: "SR 45° <span class='text-[#C9A227]'>Elbows</span>",
+          subtitle: "Short Radius 45-Degree Elbows",
+          description:
+            "Short radius 45-degree elbows for space-constrained installations",
+          image: "images/banner1.jfif",
+          features: [
+            "45° Direction Change",
+            "Short Radius (1.0D)",
+            "Space Saving",
+            "Compact Design",
+          ],
+          ctaText: "Explore SR 45 Elbows",
+          color: "#C9A227",
+        },
+        description:
+          "Short radius 45-degree elbows with 1.0D radius provide directional changes in space-constrained installations while maintaining structural integrity.",
+        applications: [
+          "Tight Spaces",
+          "Retrofit Projects",
+          "Equipment Connections",
+          "Compact Systems",
+        ],
+        specifications: [
+          { property: "Size Range", value: '1/2" to 24" NB' },
+          { property: "Radius", value: "1.0 x Nominal Diameter" },
+          { property: "Angle", value: "45° ±0.5°" },
+          { property: "Wall Thickness", value: "Schedule 40, 80, 160" },
+          { property: "Standards", value: "ASME B16.9, B16.28" },
+        ],
+        materialGrades: {
+          "Stainless Steel": [
+            {
+              standard: "ASTM A403",
+              grade: "WP304",
+              type: "Stainless Steel",
+              commonName: "304 Stainless",
+            },
+            {
+              standard: "ASTM A403",
+              grade: "WP304L",
+              type: "Stainless Steel",
+              commonName: "304L Stainless",
+            },
+            {
+              standard: "ASTM A403",
+              grade: "WP316",
+              type: "Stainless Steel",
+              commonName: "316 Stainless",
+            },
+            {
+              standard: "ASTM A403",
+              grade: "WP316L",
+              type: "Stainless Steel",
+              commonName: "316L Stainless",
+            },
+          ],
+          "Carbon Steel": [
+            {
+              standard: "ASTM A234",
+              grade: "WPB",
+              type: "Carbon Steel",
+              commonName: "Carbon Steel Pipe",
+            },
+            {
+              standard: "ASTM A420",
+              grade: "WPL6",
+              type: "Low Temp Carbon",
+              commonName: "Low Temperature Carbon",
+            },
+          ],
+          "Alloy Steel": [
+            {
+              standard: "ASTM A234",
+              grade: "WP5",
+              type: "Alloy Steel",
+              commonName: "5Cr-0.5Mo",
+            },
+            {
+              standard: "ASTM A234",
+              grade: "WP9",
+              type: "Alloy Steel",
+              commonName: "9Cr-1Mo",
+            },
+            {
+              standard: "ASTM A234",
+              grade: "WP11",
+              type: "Alloy Steel",
+              commonName: "1.25Cr-0.5Mo",
+            },
+          ],
+          "Nickel Alloy": [
+            {
+              standard: "ASTM B366",
+              grade: "UNS N06600",
+              type: "Nickel Alloy",
+              commonName: "INCONEL 600",
+            },
+            {
+              standard: "ASTM B366",
+              grade: "UNS N06625",
+              type: "Nickel Alloy",
+              commonName: "INCONEL 625",
+            },
+          ],
+        },
+        images: [
+          { src: "sr45-1.jpg", alt: "SR 45 Elbow" },
+          { src: "sr45-2.jpg", alt: "SR 45 Elbow Comparison" },
+        ],
+      },
+      "sr-90-elbow": {
+        id: "sr-90-elbow",
+        name: "SR 90 Elbow",
+        banner: {
+          title: "SR 90° <span class='text-[#C9A227]'>Elbow</span>",
+          subtitle: "Short Radius 90-Degree Elbows",
+          description:
+            "Short radius 90-degree elbows for compact right-angle turns",
+          image: "images/banner2.png",
+          features: [
+            "90° Right Angle",
+            "Short Radius (1.0D)",
+            "Compact",
+            "Cost Effective",
+          ],
+          ctaText: "View SR 90 Elbows",
+          color: "#C9A227",
+        },
+        description:
+          "Short radius 90-degree elbows provide compact right-angle turns with 1.0D radius, ideal for installations with space limitations.",
+        applications: [
+          "Compact Systems",
+          "Retrofit Installations",
+          "Equipment Layouts",
+          "Space-Constrained Areas",
+        ],
+        specifications: [
+          { property: "Size Range", value: '1/2" to 24" NB' },
+          { property: "Radius", value: "1.0 x Nominal Diameter" },
+          { property: "Angle", value: "90° ±0.5°" },
+          { property: "Pressure Class", value: "Class 150 to 1500" },
+          { property: "Standards", value: "ASME B16.9, B16.28" },
+        ],
+        materialGrades: {
+          "Stainless Steel": [
+            {
+              standard: "ASTM A403",
+              grade: "WP304",
+              type: "Stainless Steel",
+              commonName: "304 Stainless",
+            },
+            {
+              standard: "ASTM A403",
+              grade: "WP304L",
+              type: "Stainless Steel",
+              commonName: "304L Stainless",
+            },
+            {
+              standard: "ASTM A403",
+              grade: "WP316",
+              type: "Stainless Steel",
+              commonName: "316 Stainless",
+            },
+            {
+              standard: "ASTM A403",
+              grade: "WP316L",
+              type: "Stainless Steel",
+              commonName: "316L Stainless",
+            },
+          ],
+          "Carbon Steel": [
+            {
+              standard: "ASTM A234",
+              grade: "WPB",
+              type: "Carbon Steel",
+              commonName: "Carbon Steel Pipe",
+            },
+            {
+              standard: "ASTM A420",
+              grade: "WPL6",
+              type: "Low Temp Carbon",
+              commonName: "Low Temperature Carbon",
+            },
+          ],
+          "Alloy Steel": [
+            {
+              standard: "ASTM A234",
+              grade: "WP5",
+              type: "Alloy Steel",
+              commonName: "5Cr-0.5Mo",
+            },
+            {
+              standard: "ASTM A234",
+              grade: "WP9",
+              type: "Alloy Steel",
+              commonName: "9Cr-1Mo",
+            },
+            {
+              standard: "ASTM A234",
+              grade: "WP11",
+              type: "Alloy Steel",
+              commonName: "1.25Cr-0.5Mo",
+            },
+          ],
+          "Nickel Alloy": [
+            {
+              standard: "ASTM B366",
+              grade: "UNS N06600",
+              type: "Nickel Alloy",
+              commonName: "INCONEL 600",
+            },
+            {
+              standard: "ASTM B366",
+              grade: "UNS N06625",
+              type: "Nickel Alloy",
+              commonName: "INCONEL 625",
+            },
+          ],
+        },
+        images: [
+          { src: "sr90-1.jpg", alt: "SR 90 Elbow" },
+          { src: "sr90-2.jpg", alt: "SR 90 Elbow Installation" },
+        ],
+      },
+    };
 
-      // Banner Variables
-      let currentBannerSlide = 0;
-      let bannerInterval;
-      const bannerDuration = 5000;
+    // Banner Variables
+    let currentBannerSlide = 0;
+    let bannerInterval;
+    const bannerDuration = 5000;
 
-      // Initialize the page
-      document.addEventListener("DOMContentLoaded", function () {
-        // Load categories in sidebar
-        loadCategories();
+    // Initialize the page
+    document.addEventListener("DOMContentLoaded", function () {
+      // Load categories in sidebar
+      loadCategories();
 
-        // Set default product on load
-        const firstProductId = Object.keys(productsData)[0];
-        if (firstProductId) {
-          loadProduct(firstProductId);
+      // Set default product on load
+      const firstProductId = Object.keys(productsData)[0];
+      if (firstProductId) {
+        loadProduct(firstProductId);
+      }
+
+      // Initialize banner slider
+      initBannerSlider();
+    });
+
+    // Initialize Banner Slider
+    function initBannerSlider() {
+      const bannerSlides = document.querySelectorAll(".banner-slide");
+      const dots = document.querySelectorAll(".dot");
+
+      // Start automatic sliding
+      startBannerAutoSlide();
+
+      // Add click event to dots
+      dots.forEach((dot, index) => {
+        dot.addEventListener("click", () => {
+          goToBannerSlide(index);
+        });
+      });
+    }
+
+    // Start automatic banner sliding
+    function startBannerAutoSlide() {
+      bannerInterval = setInterval(() => {
+        nextBannerSlide();
+      }, bannerDuration);
+    }
+
+    // Go to specific banner slide
+    function goToBannerSlide(index) {
+      const slides = document.querySelectorAll(".banner-slide");
+      const dots = document.querySelectorAll(".dot");
+
+      // Remove active class from all slides and dots
+      slides.forEach((slide) => slide.classList.remove("active"));
+      dots.forEach((dot) => dot.classList.remove("active"));
+
+      // Add active class to current slide and dot
+      slides[index].classList.add("active");
+      dots[index].classList.add("active");
+
+      // Reset animation for typing text
+      const typingText = slides[index].querySelector(".typing-text");
+      const subtext = slides[index].querySelector(".subtext");
+      const ctaBtn = slides[index].querySelector(".cta-btn");
+
+      // Reset and restart animations
+      [typingText, subtext, ctaBtn].forEach((el) => {
+        if (el) {
+          el.style.animation = "none";
+          setTimeout(() => {
+            el.style.animation = "";
+          }, 10);
         }
-
-        // Initialize banner slider
-        initBannerSlider();
       });
 
-      // Initialize Banner Slider
-      function initBannerSlider() {
-        const bannerSlides = document.querySelectorAll(".banner-slide");
-        const dots = document.querySelectorAll(".dot");
+      currentBannerSlide = index;
 
-        // Start automatic sliding
-        startBannerAutoSlide();
+      // Reset interval
+      clearInterval(bannerInterval);
+      startBannerAutoSlide();
+    }
 
-        // Add click event to dots
-        dots.forEach((dot, index) => {
-          dot.addEventListener("click", () => {
-            goToBannerSlide(index);
-          });
-        });
-      }
+    // Go to next banner slide
+    function nextBannerSlide() {
+      const slides = document.querySelectorAll(".banner-slide");
+      currentBannerSlide = (currentBannerSlide + 1) % slides.length;
+      goToBannerSlide(currentBannerSlide);
+    }
 
-      // Start automatic banner sliding
-      function startBannerAutoSlide() {
-        bannerInterval = setInterval(() => {
-          nextBannerSlide();
-        }, bannerDuration);
-      }
+    // Load categories into sidebar
+    function loadCategories() {
+      const categoriesContainer =
+        document.getElementById("productCategories");
+      categoriesContainer.innerHTML = "";
 
-      // Go to specific banner slide
-      function goToBannerSlide(index) {
-        const slides = document.querySelectorAll(".banner-slide");
-        const dots = document.querySelectorAll(".dot");
-
-        // Remove active class from all slides and dots
-        slides.forEach((slide) => slide.classList.remove("active"));
-        dots.forEach((dot) => dot.classList.remove("active"));
-
-        // Add active class to current slide and dot
-        slides[index].classList.add("active");
-        dots[index].classList.add("active");
-
-        // Reset animation for typing text
-        const typingText = slides[index].querySelector(".typing-text");
-        const subtext = slides[index].querySelector(".subtext");
-        const ctaBtn = slides[index].querySelector(".cta-btn");
-
-        // Reset and restart animations
-        [typingText, subtext, ctaBtn].forEach((el) => {
-          if (el) {
-            el.style.animation = "none";
-            setTimeout(() => {
-              el.style.animation = "";
-            }, 10);
-          }
-        });
-
-        currentBannerSlide = index;
-
-        // Reset interval
-        clearInterval(bannerInterval);
-        startBannerAutoSlide();
-      }
-
-      // Go to next banner slide
-      function nextBannerSlide() {
-        const slides = document.querySelectorAll(".banner-slide");
-        currentBannerSlide = (currentBannerSlide + 1) % slides.length;
-        goToBannerSlide(currentBannerSlide);
-      }
-
-      // Load categories into sidebar
-      function loadCategories() {
-        const categoriesContainer =
-          document.getElementById("productCategories");
-        categoriesContainer.innerHTML = "";
-
-        Object.keys(productsData).forEach((productId) => {
-          const product = productsData[productId];
-          const categoryItem = document.createElement("a");
-          categoryItem.href = "#";
-          categoryItem.className =
-            "sidebar-link block p-4 rounded-lg text-headings hover:text-primary transition-colors";
-          categoryItem.innerHTML = `
+      Object.keys(productsData).forEach((productId) => {
+        const product = productsData[productId];
+        const categoryItem = document.createElement("a");
+        categoryItem.href = "#";
+        categoryItem.className =
+          "sidebar-link block p-4 rounded-lg text-headings hover:text-primary transition-colors";
+        categoryItem.innerHTML = `
                     <div class="flex justify-between items-center">
                         <div class="flex items-center gap-3">
                             <div class="w-8 h-8 rounded-md bg-icon-light flex items-center justify-center">
@@ -2048,67 +1823,63 @@
                     </div>
                 `;
 
-          categoryItem.addEventListener("click", function (e) {
-            e.preventDefault();
-            // Remove active class from all links
-            document.querySelectorAll(".sidebar-link").forEach((link) => {
-              link.classList.remove("active");
-            });
-            // Add active class to clicked link
-            this.classList.add("active");
-            // Load the product
-            loadProduct(productId);
+        categoryItem.addEventListener("click", function (e) {
+          e.preventDefault();
+          // Remove active class from all links
+          document.querySelectorAll(".sidebar-link").forEach((link) => {
+            link.classList.remove("active");
           });
-
-          categoriesContainer.appendChild(categoryItem);
+          // Add active class to clicked link
+          this.classList.add("active");
+          // Load the product
+          loadProduct(productId);
         });
 
-        // Activate first category by default
-        if (categoriesContainer.firstChild) {
-          categoriesContainer.firstChild.classList.add("active");
-        }
+        categoriesContainer.appendChild(categoryItem);
+      });
+
+      // Activate first category by default
+      if (categoriesContainer.firstChild) {
+        categoriesContainer.firstChild.classList.add("active");
       }
+    }
 
-      // Load product details
-      function loadProduct(productId) {
-        const product = productsData[productId];
-        if (!product) return;
+    // Load product details
+    function loadProduct(productId) {
+      const product = productsData[productId];
+      if (!product) return;
 
-        // Update banner with product-specific content
-        updateProductBanner(product);
+      // Update banner with product-specific content
+      updateProductBanner(product);
 
-        // Update product content
-        updateProductContent(product);
-      }
+      // Update product content
+      updateProductContent(product);
+    }
 
-      // Update banner with product data
-      function updateProductBanner(product) {
-        const bannerContainer = document.getElementById("dynamic-banner");
+    // Update banner with product data
+    function updateProductBanner(product) {
+      const bannerContainer = document.getElementById("dynamic-banner");
 
-        bannerContainer.innerHTML = `
+      bannerContainer.innerHTML = `
                 <div class="relative max-w-7xl mx-auto h-[540px] rounded-3xl overflow-hidden shadow-2xl">
                     <div id="product-banner-slider" class="relative w-full h-full">
                         <div class="banner-slide active">
-                            <img src="${
-                              product.banner.image
-                            }" class="banner-img" alt="${product.name}" />
+                            <img src="${product.banner.image
+        }" class="banner-img" alt="${product.name}" />
                             <div class="overlay"></div>
                             <div class="content">
-                                <h1 class="typing-text">${
-                                  product.banner.title
-                                }</h1>
-                                <p class="subtext">${
-                                  product.banner.description
-                                }</p>
-                                <a href="#productContent" class="cta-btn">${
-                                  product.banner.ctaText
-                                }</a>
+                                <h1 class="typing-text">${product.banner.title
+        }</h1>
+                                <p class="subtext">${product.banner.description
+        }</p>
+                                <a href="#productContent" class="cta-btn">${product.banner.ctaText
+        }</a>
                             </div>
                         </div>
                         
                         ${product.banner.features
-                          .map(
-                            (feature, index) => `
+          .map(
+            (feature, index) => `
                             <div class="banner-slide">
                                 <img src="${product.banner.image}" class="banner-img" alt="${product.name}" />
                                 <div class="overlay"></div>
@@ -2118,107 +1889,106 @@
                                     <a href="#productContent" class="cta-btn">View Specifications</a>
                                 </div>
                             </div>
-                        `
-                          )
-                          .join("")}
+                        `,
+          )
+          .join("")}
                     </div>
                     
                     <div class="absolute bottom-5 left-1/2 -translate-x-1/2 flex gap-2 z-20">
                         ${Array.from({
-                          length: product.banner.features.length + 1,
-                        })
-                          .map(
-                            (_, index) => `
-                            <button class="dot ${
-                              index === 0 ? "active" : ""
-                            }" data-slide="${index}"></button>
-                        `
-                          )
-                          .join("")}
+            length: product.banner.features.length + 1,
+          })
+          .map(
+            (_, index) => `
+                            <button class="dot ${index === 0 ? "active" : ""
+              }" data-slide="${index}"></button>
+                        `,
+          )
+          .join("")}
                     </div>
                 </div>
             `;
 
-        setTimeout(() => {
-          reinitializeBannerSlider();
-        }, 100);
-      }
+      setTimeout(() => {
+        reinitializeBannerSlider();
+      }, 100);
+    }
 
-      // Reinitialize banner slider after product change
-      function reinitializeBannerSlider() {
-        const slides = document.querySelectorAll(
-          "#dynamic-banner .banner-slide"
-        );
-        const dots = document.querySelectorAll("#dynamic-banner .dot");
+    // Reinitialize banner slider after product change
+    function reinitializeBannerSlider() {
+      const slides = document.querySelectorAll(
+        "#dynamic-banner .banner-slide",
+      );
+      const dots = document.querySelectorAll("#dynamic-banner .dot");
 
-        if (bannerInterval) {
-          clearInterval(bannerInterval);
-        }
-
-        currentBannerSlide = 0;
-
-        dots.forEach((dot, index) => {
-          dot.addEventListener("click", () => {
-            goToDynamicBannerSlide(index);
-          });
-        });
-
-        startDynamicBannerAutoSlide();
-      }
-
-      // Go to specific dynamic banner slide
-      function goToDynamicBannerSlide(index) {
-        const slides = document.querySelectorAll(
-          "#dynamic-banner .banner-slide"
-        );
-        const dots = document.querySelectorAll("#dynamic-banner .dot");
-
-        slides.forEach((slide) => slide.classList.remove("active"));
-        dots.forEach((dot) => dot.classList.remove("active"));
-
-        slides[index].classList.add("active");
-        dots[index].classList.add("active");
-
-        const typingText = slides[index].querySelector(".typing-text");
-        const subtext = slides[index].querySelector(".subtext");
-        const ctaBtn = slides[index].querySelector(".cta-btn");
-
-        [typingText, subtext, ctaBtn].forEach((el) => {
-          if (el) {
-            el.style.animation = "none";
-            setTimeout(() => {
-              el.style.animation = "";
-            }, 10);
-          }
-        });
-
-        currentBannerSlide = index;
-
+      if (bannerInterval) {
         clearInterval(bannerInterval);
-        startDynamicBannerAutoSlide();
       }
 
-      // Start automatic dynamic banner sliding
-      function startDynamicBannerAutoSlide() {
-        bannerInterval = setInterval(() => {
-          nextDynamicBannerSlide();
-        }, bannerDuration);
-      }
+      currentBannerSlide = 0;
 
-      // Go to next dynamic banner slide
-      function nextDynamicBannerSlide() {
-        const slides = document.querySelectorAll(
-          "#dynamic-banner .banner-slide"
-        );
-        currentBannerSlide = (currentBannerSlide + 1) % slides.length;
-        goToDynamicBannerSlide(currentBannerSlide);
-      }
+      dots.forEach((dot, index) => {
+        dot.addEventListener("click", () => {
+          goToDynamicBannerSlide(index);
+        });
+      });
 
-      // Update product content area
-      function updateProductContent(product) {
-        const content = document.getElementById("productContent");
+      startDynamicBannerAutoSlide();
+    }
 
-        content.innerHTML = `
+    // Go to specific dynamic banner slide
+    function goToDynamicBannerSlide(index) {
+      const slides = document.querySelectorAll(
+        "#dynamic-banner .banner-slide",
+      );
+      const dots = document.querySelectorAll("#dynamic-banner .dot");
+
+      slides.forEach((slide) => slide.classList.remove("active"));
+      dots.forEach((dot) => dot.classList.remove("active"));
+
+      slides[index].classList.add("active");
+      dots[index].classList.add("active");
+
+      const typingText = slides[index].querySelector(".typing-text");
+      const subtext = slides[index].querySelector(".subtext");
+      const ctaBtn = slides[index].querySelector(".cta-btn");
+
+      [typingText, subtext, ctaBtn].forEach((el) => {
+        if (el) {
+          el.style.animation = "none";
+          setTimeout(() => {
+            el.style.animation = "";
+          }, 10);
+        }
+      });
+
+      currentBannerSlide = index;
+
+      clearInterval(bannerInterval);
+      startDynamicBannerAutoSlide();
+    }
+
+    // Start automatic dynamic banner sliding
+    function startDynamicBannerAutoSlide() {
+      bannerInterval = setInterval(() => {
+        nextDynamicBannerSlide();
+      }, bannerDuration);
+    }
+
+    // Go to next dynamic banner slide
+    function nextDynamicBannerSlide() {
+      const slides = document.querySelectorAll(
+        "#dynamic-banner .banner-slide",
+      );
+      currentBannerSlide = (currentBannerSlide + 1) % slides.length;
+      goToDynamicBannerSlide(currentBannerSlide);
+    }
+
+    // Update product content area
+    function updateProductContent(product) {
+      const content = document.getElementById("productContent");
+
+      content.innerHTML = `
                 <div class="fade-in">
                     <!-- Product Header -->
                     <div class="border-b border-accent pb-6 mb-8">
@@ -2229,21 +1999,24 @@
                                         <i class="fas fa-cube icon-primary text-xl"></i>
                                     </div>
                                     <div>
-                                        <h1 class="text-2xl font-semibold text-headings">${
-                                          product.name
-                                        }</h1>
-                                        <p class="text-gray-600 mt-2">${
-                                          product.description
-                                        }</p>
+                                        <h1 class="text-2xl font-semibold text-headings">${product.name
+        }</h1>
+                                        <p class="text-gray-600 mt-2">${product.description
+        }</p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="flex-shrink-0">
-                                <button class="bg-primary hover:bg-headings text-white font-medium px-6 py-3 rounded-lg transition-all duration-300 flex items-center gap-2">
-                                    <i class="fas fa-file-alt"></i>
-                                    Request Quote
-                                </button>
-                            </div>
+                           <div class="flex-shrink-0">
+  <a href="contact.html">
+    <button
+      class="bg-primary hover:bg-headings text-white font-medium px-6 py-3 rounded-lg transition-all duration-300 flex items-center gap-2"
+    >
+      <i class="fas fa-file-alt"></i>
+      Request Quote
+    </button>
+  </a>
+</div>
+
                         </div>
                     </div>
                     
@@ -2277,7 +2050,7 @@
                     <p class="font-medium text-headings text-center">${img.alt}</p>
                 </div>
             </div>
-        `
+        `,
           )
           .join("")}
     </div>
@@ -2285,69 +2058,68 @@
                 </div>
             `;
 
-        initializeTabs(product);
+      initializeTabs(product);
 
-        setTimeout(() => {
-          document.getElementById("productContent").scrollIntoView({
-            behavior: "smooth",
-            block: "start",
-          });
-        }, 300);
-      }
+      setTimeout(() => {
+        document.getElementById("productContent").scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }, 300);
+    }
 
-      // Initialize tab system
-      function initializeTabs(product) {
-        document
-          .querySelectorAll("#tabsContainer .tab-button")
-          .forEach((btn, index) => {
-            if (index === 0) {
-              btn.classList.add("active");
-            } else {
-              btn.classList.remove("active");
-            }
-          });
+    // Initialize tab system
+    function initializeTabs(product) {
+      document
+        .querySelectorAll("#tabsContainer .tab-button")
+        .forEach((btn, index) => {
+          if (index === 0) {
+            btn.classList.add("active");
+          } else {
+            btn.classList.remove("active");
+          }
+        });
 
-        showTab("overview", product);
-      }
+      showTab("overview", product);
+    }
 
-      // Tab display function
-      window.showTab = function (tabName, productParam = null) {
-        const product = productParam || getCurrentProduct();
-        if (!product) return;
+    // Tab display function
+    window.showTab = function (tabName, productParam = null) {
+      const product = productParam || getCurrentProduct();
+      if (!product) return;
 
-        document
-          .querySelectorAll("#tabsContainer .tab-button")
-          .forEach((btn, index) => {
-            if (
-              (index === 0 && tabName === "overview") ||
-              (index === 1 && tabName === "specifications") ||
-              (index === 2 && tabName === "applications") ||
-              (index === 3 && tabName === "material-grades")
-            ) {
-              btn.classList.add("active");
-            } else {
-              btn.classList.remove("active");
-            }
-          });
+      document
+        .querySelectorAll("#tabsContainer .tab-button")
+        .forEach((btn, index) => {
+          if (
+            (index === 0 && tabName === "overview") ||
+            (index === 1 && tabName === "specifications") ||
+            (index === 2 && tabName === "applications") ||
+            (index === 3 && tabName === "material-grades")
+          ) {
+            btn.classList.add("active");
+          } else {
+            btn.classList.remove("active");
+          }
+        });
 
-        let tabContent = "";
+      let tabContent = "";
 
-        switch (tabName) {
-          case "overview":
-            tabContent = `
+      switch (tabName) {
+        case "overview":
+          tabContent = `
                         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                             <div>
                                 <h4 class="text-lg font-semibold text-headings mb-4">Product Description</h4>
-                                <p class="text-gray-700 mb-6">${
-                                  product.description
-                                }</p>
+                                <p class="text-gray-700 mb-6">${product.description
+            }</p>
                                 <div>
   <h4 class="text-lg font-normal text-headings mb-5">Key Features</h4>
 
   <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4">
     ${product.banner.features
-      .map(
-        (feature) => `
+              .map(
+                (feature) => `
         <li class="flex items-center gap-4 p-4 rounded-xl
           bg-gradient-to-r from-[#FFF9E6] to-white
           border border-[#FFEFBF]
@@ -2362,9 +2134,9 @@
             ${feature}
           </span>
         </li>
-      `
-      )
-      .join("")}
+      `,
+              )
+              .join("")}
   </ul>
 </div>
 
@@ -2405,10 +2177,10 @@
                             </div>
                         </div>
                     `;
-            break;
+          break;
 
-          case "specifications":
-            tabContent = `
+        case "specifications":
+          tabContent = `
                         <div class="overflow-x-auto">
                             <table class="specs-table">
                                 <thead>
@@ -2419,15 +2191,15 @@
                                 </thead>
                                 <tbody>
                                     ${product.specifications
-                                      .map(
-                                        (spec) => `
+              .map(
+                (spec) => `
                                         <tr>
                                             <td class="font-medium">${spec.property}</td>
                                             <td>${spec.value}</td>
                                         </tr>
-                                    `
-                                      )
-                                      .join("")}
+                                    `,
+              )
+              .join("")}
                                 </tbody>
                             </table>
                         </div>
@@ -2442,16 +2214,16 @@
                             </div>
                         </div>
                     `;
-            break;
+          break;
 
-          case "applications":
-            tabContent = `
+        case "applications":
+          tabContent = `
                         <div class="mb-8">
                             <h4 class="text-lg font-semibold text-headings mb-6">Industry Applications</h4>
                             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                                 ${product.applications
-                                  .map(
-                                    (app) => `
+              .map(
+                (app) => `
                                     <div class="bg-white border border-accent rounded-lg p-4 hover:border-icon transition-all duration-300">
                                         <div class="flex items-center">
                                             <div class="w-10 h-10 rounded-lg bg-icon-light flex items-center justify-center mr-4">
@@ -2460,9 +2232,9 @@
                                             <span class="font-medium text-headings">${app}</span>
                                         </div>
                                     </div>
-                                `
-                                  )
-                                  .join("")}
+                                `,
+              )
+              .join("")}
                             </div>
                         </div>
                         <div>
@@ -2489,85 +2261,101 @@
                             </div>
                         </div>
                     `;
-            break;
+          break;
 
-          case "material-grades":
-            tabContent = `
-                        <div class="space-y-8">
-                            ${Object.entries(product.materialGrades)
-                              .map(
-                                ([materialType, grades]) => `
-                                <div>
-                                    <h4 class="text-lg font-semibold text-headings mb-4">${materialType}</h4>
-                                    <div class="overflow-x-auto">
-                                        <table class="material-table">
-                                            <thead>
-                                                <tr>
-                                                    <th>ASTM / ASME Standard</th>
-                                                    <th>Grade / UNS No.</th>
-                                                    <th>Material Type</th>
-                                                    <th>Common Name</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                ${grades
-                                                  .map(
-                                                    (grade) => `
-                                                    <tr>
-                                                        <td class="font-medium">${grade.standard}</td>
-                                                        <td>${grade.grade}</td>
-                                                        <td>${grade.type}</td>
-                                                        <td class="text-sm text-gray-600">${grade.commonName}</td>
-                                                    </tr>
-                                                `
-                                                  )
-                                                  .join("")}
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            `
-                              )
-                              .join("")}
-                        </div>
-                        <div class="mt-8 p-5 bg-primary text-white rounded-lg">
-                            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
-                                <div>
-                                    <h5 class="font-bold text-lg mb-2">Need Special Materials?</h5>
-                                    <p class="text-gray-300">We can manufacture fittings in additional material grades upon request.</p>
-                                </div>
-                                <button class="bg-white text-primary hover:bg-accent font-medium px-6 py-3 rounded-lg transition-all duration-300">
-                                    Request Material Information
-                                </button>
-                            </div>
-                        </div>
-                    `;
-            break;
-        }
+        case "material-grades":
+          tabContent = `
+    <div class="space-y-8">
+      ${Object.entries(product.materialGrades)
+              .map(([materialType, grades]) => {
+                return `
+            <div>
+              <h3 class="text-xl font-bold text-headings mb-4 pb-2 border-b border-accent">${materialType}:</h3>
+              <div class="overflow-x-auto">
+                <table class="w-full border-collapse">
+                  <tbody>
+                    ${(() => {
+                    let rowsHTML = "";
+                    const rowSize = 5; // 5 columns per row like in the image
 
-        document.getElementById("tabContent").innerHTML = tabContent;
-        document.getElementById("tabContent").classList.add("fade-in");
+                    for (let i = 0; i < grades.length; i += rowSize) {
+                      const rowGrades = grades.slice(i, i + rowSize);
+                      rowsHTML += `
+                          <tr>
+                            ${rowGrades
+                          .map(
+                            (grade) => `
+                              <td class="border border-accent p-3 text-center align-middle">
+                                <div class="font-medium text-gray-800">${grade.grade}</div>
+                              </td>
+                            `,
+                          )
+                          .join("")}
+                            ${Array(rowSize - rowGrades.length)
+                          .fill(
+                            '<td class="border border-accent p-3"></td>',
+                          )
+                          .join("")}
+                          </tr>
+                        `;
+                    }
+                    return rowsHTML;
+                  })()}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          `;
+              })
+              .join("")}
+    </div>
+   <div class="mt-8 p-5 bg-primary text-white rounded-lg">
+  <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+    <div>
+      <h5 class="font-bold text-lg mb-2">Need Special Materials?</h5>
+      <p class="text-gray-300">
+        We can manufacture fittings in additional material grades upon request.
+      </p>
+    </div>
 
-        setTimeout(() => {
-          document.getElementById("tabContent").classList.remove("fade-in");
-        }, 500);
-      };
+    <a href="contact.html">
+      <button
+        class="bg-white text-primary hover:bg-accent font-medium px-6 py-3 rounded-lg transition-all duration-300"
+      >
+        Request Material Information
+      </button>
+    </a>
+  </div>
+</div>
 
-      // Helper function to get current product
-      function getCurrentProduct() {
-        const activeLink = document.querySelector(".sidebar-link.active");
-        if (!activeLink) {
-          const firstProductId = Object.keys(productsData)[0];
-          return productsData[firstProductId];
-        }
-
-        const productName = activeLink.querySelector("h3").textContent;
-        return Object.values(productsData).find(
-          (product) => product.name === productName
-        );
+  `;
+          break;
       }
-    </script>
-    <script src="header/header.js"></script>
-    <script src="footer/footer.js"></script>
-  </body>
+
+      document.getElementById("tabContent").innerHTML = tabContent;
+      document.getElementById("tabContent").classList.add("fade-in");
+
+      setTimeout(() => {
+        document.getElementById("tabContent").classList.remove("fade-in");
+      }, 500);
+    };
+
+    // Helper function to get current product
+    function getCurrentProduct() {
+      const activeLink = document.querySelector(".sidebar-link.active");
+      if (!activeLink) {
+        const firstProductId = Object.keys(productsData)[0];
+        return productsData[firstProductId];
+      }
+
+      const productName = activeLink.querySelector("h3").textContent;
+      return Object.values(productsData).find(
+        (product) => product.name === productName,
+      );
+    }
+  </script>
+  <script src="header/header.js"></script>
+  <script src="footer/footer.js"></script>
+</body>
+
 </html>
