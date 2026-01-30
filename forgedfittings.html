@@ -1,0 +1,3086 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Naavera | Forged Fittings Catalog</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: "#1C1C1C",
+            background: "#f9f7f3",
+            accent: "#e6e2d8",
+            headings: "#111111",
+            icon: "#C9A227",
+          },
+        },
+      },
+    };
+  </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: #1c1c1c;
+      --background: #f9f7f3;
+      --accent: #e6e2d8;
+      --headings: #111111;
+      --icon: #c9a227;
+    }
+
+    body {
+      font-family: "Inter", sans-serif;
+      background-color: var(--background);
+      color: var(--headings);
+    }
+
+    /* Fixed Height Scrollable Sidebar */
+    .sidebar-container {
+      max-height: calc(100vh - 160px);
+      overflow-y: auto;
+    }
+
+    .sidebar-container::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .sidebar-container::-webkit-scrollbar-track {
+      background: var(--accent);
+      border-radius: 2px;
+    }
+
+    .sidebar-container::-webkit-scrollbar-thumb {
+      background: var(--icon);
+      border-radius: 2px;
+    }
+
+    .sidebar-link {
+      transition: all 0.2s ease;
+      border-left: 3px solid transparent;
+    }
+
+    .sidebar-link.active {
+      background-color: rgba(201, 162, 39, 0.08);
+      border-left: 3px solid var(--icon);
+      color: var(--primary);
+      font-weight: 500;
+    }
+
+    .sidebar-link:hover:not(.active) {
+      background-color: rgba(201, 162, 39, 0.05);
+      border-left: 3px solid rgba(201, 162, 39, 0.3);
+    }
+
+    /* Minimal Product Cards */
+    .product-card {
+      transition: all 0.3s ease;
+      border: 1px solid var(--accent);
+      background: white;
+    }
+
+    .product-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(28, 28, 28, 0.08);
+      border-color: var(--icon);
+    }
+
+    /* Tables Styling - Updated with grids and rounded corners */
+    .specs-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      border: 1px solid var(--accent);
+      border-radius: 8px;
+      overflow: hidden;
+      background: white;
+    }
+
+    .specs-table th {
+      background-color: var(--accent);
+      color: var(--primary);
+      font-weight: 500;
+      text-align: left;
+      padding: 12px 16px;
+      border-right: 1px solid rgba(0, 0, 0, 0.1);
+      border-bottom: 2px solid var(--icon);
+    }
+
+    .specs-table th:last-child {
+      border-right: none;
+    }
+
+    .specs-table td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--accent);
+      border-right: 1px solid var(--accent);
+    }
+
+    .specs-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .specs-table td:last-child {
+      border-right: none;
+    }
+
+    .specs-table tr:hover {
+      background-color: rgba(230, 226, 216, 0.3);
+    }
+
+    /* Material Grades Tables - Updated with grids and rounded corners */
+    .material-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      border: 1px solid var(--accent);
+      border-radius: 8px;
+      overflow: hidden;
+      background: white;
+    }
+
+    .material-table th {
+      background-color: rgba(230, 226, 216, 0.5);
+      color: var(--primary);
+      font-weight: 500;
+      padding: 14px 16px;
+      text-align: left;
+      border-right: 1px solid rgba(0, 0, 0, 0.1);
+      border-bottom: 1px solid var(--accent);
+    }
+
+    .material-table th:last-child {
+      border-right: none;
+    }
+
+    .material-table td {
+      padding: 12px 16px;
+      border-top: 1px solid var(--accent);
+      border-right: 1px solid var(--accent);
+    }
+
+    .material-table tr:first-child td {
+      border-top: none;
+    }
+
+    .material-table td:last-child {
+      border-right: none;
+    }
+
+    /* Tab Styling */
+    .tab-button {
+      transition: all 0.2s ease;
+      position: relative;
+      color: #666;
+    }
+
+    .tab-button.active {
+      color: var(--primary);
+      font-weight: 500;
+    }
+
+    .tab-button.active::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: var(--icon);
+    }
+
+    /* Animations */
+    .fade-in {
+      animation: fadeIn 0.4s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Banner Styles */
+    .banner-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.7s ease;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to right,
+          rgba(0, 0, 0, 0.7) 0%,
+          rgba(0, 0, 0, 0.3) 100%);
+    }
+
+    .banner-slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+
+    .banner-slide.active {
+      opacity: 1;
+    }
+
+    .content {
+      position: absolute;
+      top: 50%;
+      left: 10%;
+      transform: translateY(-50%);
+      color: white;
+      z-index: 10;
+      max-width: 600px;
+    }
+
+    .typing-text {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+      opacity: 0;
+      animation: typing 1s ease forwards;
+    }
+
+    .subtext {
+      font-size: 1.25rem;
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.5s forwards;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .cta-btn {
+      display: inline-block;
+      background: var(--icon);
+      color: var(--primary);
+      padding: 0.75rem 2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.8s forwards;
+      border: 2px solid var(--icon);
+    }
+
+    .cta-btn:hover {
+      background: transparent;
+      color: white;
+      border-color: white;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.5);
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .dot.active {
+      background: white;
+      transform: scale(1.2);
+    }
+
+    @keyframes typing {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Icon Styling */
+    .icon-primary {
+      color: var(--icon);
+    }
+
+    .bg-icon-light {
+      background-color: rgba(201, 162, 39, 0.08);
+    }
+
+    .border-icon-light {
+      border-color: rgba(201, 162, 39, 0.2);
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+      .typing-text {
+        font-size: 2.5rem;
+      }
+
+      .subtext {
+        font-size: 1rem;
+      }
+
+      .content {
+        left: 5%;
+        padding-right: 5%;
+      }
+
+      .specs-table th,
+      .specs-table td,
+      .material-table th,
+      .material-table td {
+        padding: 8px 12px;
+        font-size: 0.875rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .typing-text {
+        font-size: 2rem;
+      }
+
+      .content {
+        left: 3%;
+        padding-right: 3%;
+      }
+
+      .tab-button {
+        padding: 12px 8px;
+        font-size: 0.875rem;
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-background">
+  <!-- Header -->
+  <div id="header"></div>
+
+  <!-- Banner Section -->
+  <section class="pt-1 pb-12 bg-slate-50 px-1 sm:px-1" id="dynamic-banner">
+    <!-- Banner content will be loaded dynamically based on selected product -->
+  </section>
+
+  <!-- Main Container -->
+  <div class="container mx-auto px-4 py-6 flex flex-col lg:flex-row gap-6">
+    <!-- Sidebar -->
+    <div class="lg:w-1/4">
+      <div class="bg-white rounded-lg border border-accent shadow-sm p-5 sticky top-6">
+        <div class="flex items-center justify-between mb-6">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-lg bg-icon-light flex items-center justify-center">
+              <i class="fas fa-industry icon-primary"></i>
+            </div>
+            <h2 class="text-xl font-semibold text-headings">
+              Forged Fittings
+            </h2>
+          </div>
+        </div>
+
+        <!-- Scrollable Product List -->
+        <div class="sidebar-container">
+          <nav class="space-y-2" id="productCategories">
+            <!-- Categories will be populated by JavaScript -->
+          </nav>
+        </div>
+
+        <!-- Contact Info Sidebar -->
+        <div class="mt-8 pt-6 border-t border-accent">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-full bg-icon-light flex items-center justify-center">
+              <i class="fas fa-headset icon-primary"></i>
+            </div>
+            <div>
+              <h3 class="font-semibold text-headings">Technical Support</h3>
+              <p class="text-xs text-gray-500">Available 24/7</p>
+            </div>
+          </div>
+          <p class="text-sm text-gray-600 mb-4">
+            Our experts are ready to help you select the right forged
+            fittings.
+          </p>
+          <a href="contact.html"
+            class="w-full bg-primary hover:bg-headings text-white py-3 rounded-lg transition-all duration-300 flex items-center justify-center gap-2">
+            <i class="fas fa-comments"></i>
+            Contact Team
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="lg:w-3/4">
+      <!-- Product Details Area -->
+      <div class="bg-white rounded-lg border border-accent shadow-sm p-6 fade-in" id="productContent">
+        <!-- Content will be loaded dynamically -->
+        <div class="text-center py-12">
+          <div class="w-20 h-20 rounded-full bg-accent mx-auto mb-4 flex items-center justify-center">
+            <i class="fas fa-industry text-gray-400 text-3xl"></i>
+          </div>
+          <h3 class="text-xl text-headings mb-2">Forged Fittings Catalog</h3>
+          <p class="text-gray-500 max-w-md mx-auto">
+            Select a forged fitting from the sidebar to view detailed
+            specifications and material information.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMMON FOOTER -->
+  <div id="footer"></div>
+
+  <!-- JavaScript -->
+  <script>
+    // Forged Fittings Data Structure
+    const forgedFittingsData = {
+      "45-deg-elbow": {
+        id: "45-deg-elbow",
+        name: "45 Deg Elbow",
+        banner: {
+          title: "45° <span class='text-[#C9A227]'>Forged Elbow</span>",
+          subtitle: "Forged 45-Degree Elbows",
+          description: "High-strength forged 45-degree elbows for directional changes",
+          image: "images/LR 45-banner.webp",
+          features: [
+            "45° Direction Change",
+            "Forged Construction",
+            "High Pressure Rating",
+            "Threaded/Socket Weld",
+          ],
+          ctaText: "View 45° Elbows",
+          color: "#C9A227",
+        },
+        description: "Forged 45-degree elbows are precision-engineered fittings used for directional changes in high-pressure piping systems. Manufactured through forging process for superior strength and durability.",
+        applications: [
+          "High Pressure Systems",
+          "Steam Lines",
+          "Oil & Gas Pipelines",
+          "Chemical Plants",
+          "Power Generation",
+        ],
+        specifications: [
+          { property: "Size Range", value: '1/8" to 4"' },
+          { property: "Type", value: "Forged, Threaded/Socket Weld" },
+          { property: "Pressure Class", value: "Class 2000 to 6000" },
+          { property: "Standards", value: "ASME B16.11, MSS SP-79" },
+          {
+            property: "Material",
+            value: "Carbon Steel, Stainless Steel, Alloy",
+          },
+        ],
+        materialGrades: {
+          "Stainless Steel": [
+            { grade: "ASTM A182 Grade : F 304" },
+            { grade: "304L" },
+            { grade: "304H" },
+            { grade: "309S" },
+            { grade: "309H" },
+            { grade: "310S" },
+            { grade: "310H" },
+            { grade: "316" },
+            { grade: "316Ti" },
+            { grade: "316H" },
+            { grade: "316L" },
+            { grade: "316LN" },
+            { grade: "317" },
+            { grade: "317L" },
+            { grade: "321" },
+            { grade: "321H" },
+            { grade: "347" },
+            { grade: "347H" },
+            { grade: "904L" },
+            { grade: "F 44" },
+            { grade: "F 45" },
+            { grade: "F51" },
+            { grade: "F 53" },
+            { grade: "F 55" },
+            { grade: "F 60" },
+            { grade: "F 61" },
+          ],
+          "Carbon Steel": [
+            { grade: "ASTM A105" },
+            { grade: "LF2" },
+            { grade: "LF3" },
+            { grade: "LF6" },
+            { grade: "F42" },
+            { grade: "F46" },
+            { grade: "F48" },
+            { grade: "F50" },
+            { grade: "F52" },
+            { grade: "F56" },
+            { grade: "F60" },
+            { grade: "F65" },
+            { grade: "F70" },
+            { grade: "ST37.2" },
+            { grade: "C22.8" },
+            { grade: "S235JRG2" },
+            { grade: "P250GH" },
+          ],
+          "Alloy Steel": [
+            { grade: "ASTM A182 F1" },
+            { grade: "ASTM A182 F5" },
+            { grade: "ASTM A182 F9" },
+            { grade: "ASTM A182 F11" },
+            { grade: "ASTM A182 F22" },
+            { grade: "ASTM A182 F91" },
+            { grade: "AISI 4140" },
+            { grade: "AISI 4130" },
+          ],
+          "Nickel Alloy": [
+            { grade: "ASTM / ASME SB 564 / 160 / 472" },
+            { grade: "SB160" },
+            { grade: "SB472" },
+            { grade: "SB162 Nickel 200 (UNS No. N02200)" },
+            { grade: "Nickel 201 (UNS No. N02201)" },
+            { grade: "Monel 400 (UNS No. N04400)" },
+            { grade: "Monel 500 (UNS No. N05500)" },
+            { grade: "Inconel 800 (UNS No. N08800)" },
+            { grade: "Inconel 825 (UNS No. N08825)" },
+            { grade: "Inconel 600 (UNS No. N06600)" },
+            { grade: "Inconel 625 (UNS No. N06625)" },
+            { grade: "Inconel 601 (UNS No. N06601)" },
+            { grade: "Hastelloy C 276 (UNS No. N10276)" },
+            { grade: "Alloy 20 (UNS No. N08020)" },
+          ],
+        },
+        images: [
+          { src: "images/LR45-1.png", alt: "Forged 45° Elbow" },
+          {
+            src: "images/45Elbow-2.png",
+            alt: "45° Elbow Dimensions",
+          },
+        ],
+      },
+      "90-deg-elbow": {
+        id: "90-deg-elbow",
+        name: "90 Deg Elbow",
+        banner: {
+          title: "90° <span class='text-[#C9A227]'>Forged Elbow</span>",
+          subtitle: "Forged 90-Degree Elbows",
+          description: "Forged 90-degree elbows for right-angle turns in high-pressure systems",
+          image: "images/forged90-banner.png",
+          features: [
+            "90° Right Angle",
+            "High Strength",
+            "Corrosion Resistant",
+            "Threaded/Socket Weld/BSPT",
+            "Leak-Proof Connections"
+          ],
+          ctaText: "View 90° Elbows",
+          color: "#C9A227",
+        },
+        description: "A 90-degree forged elbow is a pipe fitting used to change the flow direction by 90 degrees in piping systems. Forged elbows are manufactured through hot forging, which increases their mechanical strength, durability, and resistance to pressure and temperature extremes. These elbows are essential in high-pressure applications, providing a robust connection that ensures smooth operation over time.",
+        applications: [
+          "Oil & Gas Industry",
+          "Chemical Plants",
+          "Power Plants",
+          "HVAC Systems",
+          "Water Treatment Plants",
+          "Petrochemical Plants",
+          "Refineries",
+          "Boiler Systems",
+          "Process Piping"
+        ],
+        specifications: [
+          { property: "Size Range", value: '1/8" to 4"' },
+          { property: "Connection Type", value: "Threaded, Socket Weld, BSPT" },
+          { property: "Pressure Rating", value: "Class 2000, 3000, 6000, 9000" },
+          { property: "Standards", value: "ASME B16.11, MSS SP-79, ASTM Standards" },
+          { property: "Face Types", value: "NPT, Socket Weld, BSPT" },
+          { property: "Manufacturing Standards", value: "ASME B16.11" }
+        ],
+        materialGrades: {
+          "Stainless Steel": [
+            { grade: "ASTM A182 Grade : F 304" },
+            { grade: "304L" },
+            { grade: "304H" },
+            { grade: "309S" },
+            { grade: "309H" },
+            { grade: "310S" },
+            { grade: "310H" },
+            { grade: "316" },
+            { grade: "316Ti" },
+            { grade: "316H" },
+            { grade: "316L" },
+            { grade: "316LN" },
+            { grade: "317" },
+            { grade: "317L" },
+            { grade: "321" },
+            { grade: "321H" },
+            { grade: "347" },
+            { grade: "347H" },
+            { grade: "904L" },
+            { grade: "F 44" },
+            { grade: "F 45" },
+            { grade: "F51" },
+            { grade: "F 53" },
+            { grade: "F 55" },
+            { grade: "F 60" },
+            { grade: "F 61" }
+          ],
+          "Carbon Steel": [
+            { grade: "ASTM A105" },
+            { grade: "LF2" },
+            { grade: "LF3" },
+            { grade: "LF6" },
+            { grade: "F42" },
+            { grade: "F46" },
+            { grade: "F48" },
+            { grade: "F50" },
+            { grade: "F52" },
+            { grade: "F56" },
+            { grade: "F60" },
+            { grade: "F65" },
+            { grade: "F70" },
+            { grade: "ST37.2" },
+            { grade: "C22.8" },
+            { grade: "S235JRG2" },
+            { grade: "P250GH" }
+          ],
+          "Alloy Steel": [
+            { grade: "ASTM A182 F1" },
+            { grade: "ASTM A182 F5" },
+            { grade: "ASTM A182 F9" },
+            { grade: "ASTM A182 F11" },
+            { grade: "ASTM A182 F22" },
+            { grade: "ASTM A182 F91" },
+            { grade: "AISI 4140" },
+            { grade: "AISI 4130" }
+          ],
+          "Nickel Alloy": [
+            { grade: "ASTM / ASME SB 564 / 160 / 472" },
+            { grade: "SB160" },
+            { grade: "SB472" },
+            { grade: "SB162 Nickel 200 (UNS No. N02200)" },
+            { grade: "Nickel 201 (UNS No. N02201)" },
+            { grade: "Monel 400 (UNS No. N04400)" },
+            { grade: "Monel 500 (UNS No. N05500)" },
+            { grade: "Inconel 800 (UNS No. N08800)" },
+            { grade: "Inconel 825 (UNS No. N08825)" },
+            { grade: "Inconel 600 (UNS No. N06600)" },
+            { grade: "Inconel 625 (UNS No. N06625)" },
+            { grade: "Inconel 601 (UNS No. N06601)" },
+            { grade: "Hastelloy C 276 (UNS No. N10276)" },
+            { grade: "Alloy 20 (UNS No. N08020)" }
+          ]
+        },
+        images: [
+          { src: "images/forged90Elbow-1.png", alt: "Forged 90° Elbow" },
+          { src: "images/forged90-2.png", alt: "90° Elbow" },
+        ],
+      },
+      "bushing-threaded": {
+        id: "bushing-threaded",
+        name: "Bushing Threaded",
+        banner: {
+          title: "Threaded <span class='text-[#C9A227]'>Bushing</span>",
+          subtitle: "Forged Threaded Bushings",
+          description: "Forged threaded bushings for pipe size reduction",
+          image: "images/bushingbanner.jpg",
+          features: [
+            "Size Reduction",
+            "Threaded Connection",
+            "Hexagon Head",
+            "High Pressure",
+            "Leak-Proof Joint",
+          ],
+          ctaText: "View Bushings",
+          color: "#C9A227",
+        },
+        description: "A bushing is a type of threaded forged fitting used to connect two pipes or fittings of different sizes by reducing the inner diameter of the pipe. It is designed with male threads on the outside and female threads on the inside, allowing it to screw into a larger fitting while accommodating a smaller pipe or fitting. Bushings are essential in high-pressure systems where a reliable and compact transition between different pipe sizes is needed.",
+        applications: [
+          "Oil & Gas Industry",
+          "Chemical and Petrochemical Plants",
+          "Power Plants",
+          "Water Supply Systems",
+          "Firefighting Systems",
+          "Instrumentation Lines",
+          "Hydraulic Systems",
+          "Plumbing Systems",
+        ],
+        specifications: [
+          { property: "Size Range", value: '1/8" to 4"' },
+          { property: "Type", value: "Threaded, Hex Head" },
+          { property: "Pressure Class", value: "Class 2000, 3000, 6000, 9000" },
+          { property: "Standards", value: "ASME B16.11, MSS SP-79, ASTM Standards" },
+          { property: "Thread Type", value: "NPT, BSPT, BSPP" },
+          { property: "Face Types", value: "NPT, Socket Weld, BSPT" },
+          { property: "Manufacturing Standards", value: "ASME B16.11" }
+        ],
+        materialGrades: {
+          "Stainless Steel": [
+            { grade: "ASTM A182 Grade : F 304" },
+            { grade: "304L" },
+            { grade: "304H" },
+            { grade: "309S" },
+            { grade: "309H" },
+            { grade: "310S" },
+            { grade: "310H" },
+            { grade: "316" },
+            { grade: "316Ti" },
+            { grade: "316H" },
+            { grade: "316L" },
+            { grade: "316LN" },
+            { grade: "317" },
+            { grade: "317L" },
+            { grade: "321" },
+            { grade: "321H" },
+            { grade: "347" },
+            { grade: "347H" },
+            { grade: "904L" },
+            { grade: "F 44" },
+            { grade: "F 45" },
+            { grade: "F51" },
+            { grade: "F 53" },
+            { grade: "F 55" },
+            { grade: "F 60" },
+            { grade: "F 61" }
+          ],
+          "Carbon Steel": [
+            { grade: "ASTM A105" },
+            { grade: "LF2" },
+            { grade: "LF3" },
+            { grade: "LF6" },
+            { grade: "F42" },
+            { grade: "F46" },
+            { grade: "F48" },
+            { grade: "F50" },
+            { grade: "F52" },
+            { grade: "F56" },
+            { grade: "F60" },
+            { grade: "F65" },
+            { grade: "F70" },
+            { grade: "ST37.2" },
+            { grade: "C22.8" },
+            { grade: "S235JRG2" },
+            { grade: "P250GH" }
+          ],
+          "Alloy Steel": [
+            { grade: "ASTM A182 F1" },
+            { grade: "ASTM A182 F5" },
+            { grade: "ASTM A182 F9" },
+            { grade: "ASTM A182 F11" },
+            { grade: "ASTM A182 F22" },
+            { grade: "ASTM A182 F91" },
+            { grade: "AISI 4140" },
+            { grade: "AISI 4130" }
+          ],
+          "Nickel Alloy": [
+            { grade: "ASTM / ASME SB 564 / 160 / 472" },
+            { grade: "SB160" },
+            { grade: "SB472" },
+            { grade: "SB162 Nickel 200 (UNS No. N02200)" },
+            { grade: "Nickel 201 (UNS No. N02201)" },
+            { grade: "Monel 400 (UNS No. N04400)" },
+            { grade: "Monel 500 (UNS No. N05500)" },
+            { grade: "Inconel 800 (UNS No. N08800)" },
+            { grade: "Inconel 825 (UNS No. N08825)" },
+            { grade: "Inconel 600 (UNS No. N06600)" },
+            { grade: "Inconel 625 (UNS No. N06625)" },
+            { grade: "Inconel 601 (UNS No. N06601)" },
+            { grade: "Hastelloy C 276 (UNS No. N10276)" },
+            { grade: "Alloy 20 (UNS No. N08020)" }
+          ],
+        },
+        images: [
+          { src: "images/bushing-1.jpg", alt: "Threaded Bushing" },
+          { src: "images/bushing-2.jpg", alt: "Bushing Dimensions" },
+        ],
+      },
+      cap: {
+        id: "cap",
+        name: "Cap",
+        banner: {
+          title: "Forged <span class='text-[#C9A227]'>Cap</span>",
+          subtitle: "Forged Pipe Caps",
+          description: "Forged caps for sealing pipe ends in high-pressure systems",
+          image: "images/forgedcap-1.jpg",
+          features: [
+            "Pipe End Sealing",
+            "High Pressure",
+            "Threaded/Socket Weld",
+            "Leak-Proof",
+            "Corrosion Resistance",
+          ],
+          ctaText: "View Caps",
+          color: "#C9A227",
+        },
+        description: "A cap forged fitting is used to seal the end of a pipe or fitting to prevent the flow of fluids or gases. These fittings are forged for enhanced strength, durability, and pressure resistance, making them ideal for high-pressure and high-temperature applications. Caps are commonly installed at the end of a pipe run to close the system and protect internal components from dirt, corrosion, or damage.",
+        applications: [
+          "Oil & Gas Pipelines",
+          "Chemical and Petrochemical Plants",
+          "Power Plants",
+          "Plumbing Systems",
+          "Fire Protection Systems",
+          "Test Points",
+          "Future Connections",
+          "High Pressure Systems",
+          "Steam Lines",
+        ],
+        specifications: [
+          { property: "Size Range", value: '1/8" to 4"' },
+          { property: "Type", value: "Threaded, Socket Weld" },
+          { property: "Pressure Class", value: "Class 2000, 3000, 6000, 9000" },
+          { property: "Standards", value: "ASME B16.11, MSS SP-79, ASTM Standards" },
+          { property: "Head Types", value: "Hex, Square, Round" },
+          { property: "Face Types", value: "NPT, Socket Weld, BSPT" },
+          { property: "Manufacturing Standards", value: "ASME B16.11" }
+        ],
+        materialGrades: {
+          "Stainless Steel": [
+            { grade: "ASTM A182 Grade : F 304" },
+            { grade: "304L" },
+            { grade: "304H" },
+            { grade: "309S" },
+            { grade: "309H" },
+            { grade: "310S" },
+            { grade: "310H" },
+            { grade: "316" },
+            { grade: "316Ti" },
+            { grade: "316H" },
+            { grade: "316L" },
+            { grade: "316LN" },
+            { grade: "317" },
+            { grade: "317L" },
+            { grade: "321" },
+            { grade: "321H" },
+            { grade: "347" },
+            { grade: "347H" },
+            { grade: "904L" },
+            { grade: "F 44" },
+            { grade: "F 45" },
+            { grade: "F51" },
+            { grade: "F 53" },
+            { grade: "F 55" },
+            { grade: "F 60" },
+            { grade: "F 61" }
+          ],
+          "Carbon Steel": [
+            { grade: "ASTM A105" },
+            { grade: "LF2" },
+            { grade: "LF3" },
+            { grade: "LF6" },
+            { grade: "F42" },
+            { grade: "F46" },
+            { grade: "F48" },
+            { grade: "F50" },
+            { grade: "F52" },
+            { grade: "F56" },
+            { grade: "F60" },
+            { grade: "F65" },
+            { grade: "F70" },
+            { grade: "ST37.2" },
+            { grade: "C22.8" },
+            { grade: "S235JRG2" },
+            { grade: "P250GH" }
+          ],
+          "Alloy Steel": [
+            { grade: "ASTM A182 F1" },
+            { grade: "ASTM A182 F5" },
+            { grade: "ASTM A182 F9" },
+            { grade: "ASTM A182 F11" },
+            { grade: "ASTM A182 F22" },
+            { grade: "ASTM A182 F91" },
+            { grade: "AISI 4140" },
+            { grade: "AISI 4130" }
+          ],
+          "Nickel Alloy": [
+            { grade: "ASTM / ASME SB 564 / 160 / 472" },
+            { grade: "SB160" },
+            { grade: "SB472" },
+            { grade: "SB162 Nickel 200 (UNS No. N02200)" },
+            { grade: "Nickel 201 (UNS No. N02201)" },
+            { grade: "Monel 400 (UNS No. N04400)" },
+            { grade: "Monel 500 (UNS No. N05500)" },
+            { grade: "Inconel 800 (UNS No. N08800)" },
+            { grade: "Inconel 825 (UNS No. N08825)" },
+            { grade: "Inconel 600 (UNS No. N06600)" },
+            { grade: "Inconel 625 (UNS No. N06625)" },
+            { grade: "Inconel 601 (UNS No. N06601)" },
+            { grade: "Hastelloy C 276 (UNS No. N10276)" },
+            { grade: "Alloy 20 (UNS No. N08020)" }
+          ]
+        },
+        images: [
+          { src: "images/forgedcap-1.jpg", alt: "Forged Cap" },
+          { src: "images/cap2.png", alt: "Forged Cap" },
+        ],
+      },
+      "cross-forging": {
+        id: "cross-forging",
+        name: "Cross Forging",
+        banner: {
+          title: "Forged <span class='text-[#C9A227]'>Cross</span>",
+          subtitle: "Forged Four-Way Cross Fittings",
+          description: "Forged cross fittings for four-way pipe connections",
+          image: "images/crossbanner.jpg",
+          features: [
+            "Four Connections",
+            "High Strength",
+            "Threaded/Socket Weld",
+            "Equal/Reducing",
+            "Leak-Proof Connection",
+          ],
+          ctaText: "View Cross Fittings",
+          color: "#C9A227",
+        },
+        description: "A forged cross fitting is a type of pipe fitting used to connect four pipes at a single junction. This fitting has one inlet and three outlets (or vice versa) arranged in a cruciform (cross) shape, allowing fluid to flow through four different paths. Forged cross fittings are made through forging processes to enhance their strength and durability, making them ideal for high-pressure and high-temperature applications.",
+        applications: [
+          "Oil & Gas Industry",
+          "Chemical & Petrochemical Plants",
+          "Power Plants",
+          "Water Treatment Systems",
+          "Firefighting Systems",
+          "Distribution Systems",
+          "Instrumentation Lines",
+          "Hydraulic Systems",
+          "Process Piping",
+          "Fire Protection Systems",
+        ],
+        specifications: [
+          { property: "Size Range", value: '1/8" to 4"' },
+          { property: "Type", value: "Equal, Reducing" },
+          { property: "Pressure Class", value: "Class 2000, 3000, 6000, 9000" },
+          { property: "Standards", value: "ASME B16.11, MSS SP-79, ASTM Standards" },
+          { property: "Connection", value: "Threaded, Socket Weld" },
+          { property: "Face Types", value: "Bevelled, Plain" },
+          { property: "Manufacturing Standards", value: "ASME B16.9, ASME B16.28" }
+        ],
+        materialGrades: {
+          "Stainless Steel": [
+            { grade: "ASTM A182 Grade : F 304" },
+            { grade: "304L" },
+            { grade: "304H" },
+            { grade: "309S" },
+            { grade: "309H" },
+            { grade: "310S" },
+            { grade: "310H" },
+            { grade: "316" },
+            { grade: "316Ti" },
+            { grade: "316H" },
+            { grade: "316L" },
+            { grade: "316LN" },
+            { grade: "317" },
+            { grade: "317L" },
+            { grade: "321" },
+            { grade: "321H" },
+            { grade: "347" },
+            { grade: "347H" },
+            { grade: "904L" },
+            { grade: "F 44" },
+            { grade: "F 45" },
+            { grade: "F51" },
+            { grade: "F 53" },
+            { grade: "F 55" },
+            { grade: "F 60" },
+            { grade: "F 61" }
+          ],
+          "Carbon Steel": [
+            { grade: "ASTM A105" },
+            { grade: "LF2" },
+            { grade: "LF3" },
+            { grade: "LF6" },
+            { grade: "F42" },
+            { grade: "F46" },
+            { grade: "F48" },
+            { grade: "F50" },
+            { grade: "F52" },
+            { grade: "F56" },
+            { grade: "F60" },
+            { grade: "F65" },
+            { grade: "F70" },
+            { grade: "ST37.2" },
+            { grade: "C22.8" },
+            { grade: "S235JRG2" },
+            { grade: "P250GH" }
+          ],
+          "Alloy Steel": [
+            { grade: "ASTM A182 F1" },
+            { grade: "ASTM A182 F5" },
+            { grade: "ASTM A182 F9" },
+            { grade: "ASTM A182 F11" },
+            { grade: "ASTM A182 F22" },
+            { grade: "ASTM A182 F91" },
+            { grade: "AISI 4140" },
+            { grade: "AISI 4130" }
+          ],
+          "Nickel Alloy": [
+            { grade: "ASTM / ASME SB 564 / 160 / 472" },
+            { grade: "SB160" },
+            { grade: "SB472" },
+            { grade: "SB162 Nickel 200 (UNS No. N02200)" },
+            { grade: "Nickel 201 (UNS No. N02201)" },
+            { grade: "Monel 400 (UNS No. N04400)" },
+            { grade: "Monel 500 (UNS No. N05500)" },
+            { grade: "Inconel 800 (UNS No. N08800)" },
+            { grade: "Inconel 825 (UNS No. N08825)" },
+            { grade: "Inconel 600 (UNS No. N06600)" },
+            { grade: "Inconel 625 (UNS No. N06625)" },
+            { grade: "Inconel 601 (UNS No. N06601)" },
+            { grade: "Hastelloy C 276 (UNS No. N10276)" },
+            { grade: "Alloy 20 (UNS No. N08020)" }
+          ]
+        },
+        images: [
+          { src: "images/cross-1.jpg", alt: "Forged Cross" },
+          { src: "images/cross-2.jpg", alt: "Cross Dimensions" },
+        ],
+      },
+      "full-coupling": {
+        id: "full-coupling",
+        name: "Full Coupling",
+        banner: {
+          title: "Full <span class='text-[#C9A227]'>Coupling</span>",
+          subtitle: "Forged Full Couplings",
+          description: "Forged full couplings for connecting two pipes of same size",
+          image: "images/couplingbanner.jpg",
+          features: [
+            "Pipe Connection",
+            "Threaded Both Ends",
+            "High Strength",
+            "Easy Installation",
+            "Leak-Proof Connection",
+          ],
+          ctaText: "View Full Couplings",
+          color: "#C9A227",
+        },
+        description: "A full coupling forged fitting is a cylindrical fitting used to connect two pipes or fittings of the same diameter in a straight line. Made through hot forging, these couplings are known for their high strength and durability, making them ideal for high-pressure and high-temperature applications. Full couplings ensure leak-proof connections and are available in threaded or socket weld types for different installation needs.",
+        applications: [
+          "Oil & Gas Industry",
+          "Chemical Plants",
+          "Power Plants",
+          "Fire Protection Systems",
+          "Plumbing Systems",
+          "Pipe Connections",
+          "Repairs",
+          "Extensions",
+          "Threaded Systems",
+          "Hydraulic Lines",
+        ],
+        specifications: [
+          { property: "Size Range", value: '1/8" to 4"' },
+          { property: "Type", value: "Threaded Both Ends, Socket Weld" },
+          { property: "Pressure Class", value: "Class 2000, 3000, 6000, 9000" },
+          { property: "Standards", value: "ASME B16.11, MSS SP-79, ASTM Standards" },
+          { property: "Thread Type", value: "NPT, BSPT" },
+          { property: "Face Types", value: "NPT, Socket Weld, BSPT" },
+          { property: "Manufacturing Standards", value: "ASME B16.11" }
+        ],
+        materialGrades: {
+          "Stainless Steel": [
+            { grade: "ASTM A182 Grade : F 304" },
+            { grade: "304L" },
+            { grade: "304H" },
+            { grade: "309S" },
+            { grade: "309H" },
+            { grade: "310S" },
+            { grade: "310H" },
+            { grade: "316" },
+            { grade: "316Ti" },
+            { grade: "316H" },
+            { grade: "316L" },
+            { grade: "316LN" },
+            { grade: "317" },
+            { grade: "317L" },
+            { grade: "321" },
+            { grade: "321H" },
+            { grade: "347" },
+            { grade: "347H" },
+            { grade: "904L" },
+            { grade: "F 44" },
+            { grade: "F 45" },
+            { grade: "F51" },
+            { grade: "F 53" },
+            { grade: "F 55" },
+            { grade: "F 60" },
+            { grade: "F 61" }
+          ],
+          "Carbon Steel": [
+            { grade: "ASTM A105" },
+            { grade: "LF2" },
+            { grade: "LF3" },
+            { grade: "LF6" },
+            { grade: "F42" },
+            { grade: "F46" },
+            { grade: "F48" },
+            { grade: "F50" },
+            { grade: "F52" },
+            { grade: "F56" },
+            { grade: "F60" },
+            { grade: "F65" },
+            { grade: "F70" },
+            { grade: "ST37.2" },
+            { grade: "C22.8" },
+            { grade: "S235JRG2" },
+            { grade: "P250GH" }
+          ],
+          "Alloy Steel": [
+            { grade: "ASTM A182 F1" },
+            { grade: "ASTM A182 F5" },
+            { grade: "ASTM A182 F9" },
+            { grade: "ASTM A182 F11" },
+            { grade: "ASTM A182 F22" },
+            { grade: "ASTM A182 F91" },
+            { grade: "AISI 4140" },
+            { grade: "AISI 4130" }
+          ],
+          "Nickel Alloy": [
+            { grade: "ASTM / ASME SB 564 / 160 / 472" },
+            { grade: "SB160" },
+            { grade: "SB472" },
+            { grade: "SB162 Nickel 200 (UNS No. N02200)" },
+            { grade: "Nickel 201 (UNS No. N02201)" },
+            { grade: "Monel 400 (UNS No. N04400)" },
+            { grade: "Monel 500 (UNS No. N05500)" },
+            { grade: "Inconel 800 (UNS No. N08800)" },
+            { grade: "Inconel 825 (UNS No. N08825)" },
+            { grade: "Inconel 600 (UNS No. N06600)" },
+            { grade: "Inconel 625 (UNS No. N06625)" },
+            { grade: "Inconel 601 (UNS No. N06601)" },
+            { grade: "Hastelloy C 276 (UNS No. N10276)" },
+            { grade: "Alloy 20 (UNS No. N08020)" }
+          ],
+          "Brass": [
+            { grade: "ASTM B62" }
+          ]
+        },
+        images: [
+          { src: "images/coupling-1.jpg", alt: "Full Coupling" },
+          {
+            src: "images/coupling-2.jpg",
+            alt: "Full Coupling",
+          },
+        ],
+      },
+      "half-coupling": {
+        id: "half-coupling",
+        name: "Half Coupling",
+        banner: {
+          title: "Half <span class='text-[#C9A227]'>Coupling</span>",
+          subtitle: "Forged Half Couplings",
+          description: "Forged half couplings for branch connections",
+          image: "images/halfbanner.jpg",
+          features: [
+            "Branch Connection",
+            "Threaded One End",
+            "Socket Weld",
+            "Tank Connections",
+            "Leak-Proof Sealing",
+          ],
+          ctaText: "View Half Couplings",
+          color: "#C9A227",
+        },
+        description: "A half coupling forged fitting is a type of forged pipe fitting used to connect a pipe or fitting to another pipe through a branch connection. Unlike full couplings, half couplings are threaded or welded on one side only, with the other end either plain or open for integration with a pipeline. These fittings are forged for high strength and durability, making them suitable for high-pressure and high-temperature environments.",
+        applications: [
+          "Oil & Gas Industry",
+          "Chemical Plants",
+          "Power Plants",
+          "Firefighting Systems",
+          "Water Distribution Systems",
+          "Tank Connections",
+          "Vessel Nozzles",
+          "Branch Lines",
+          "Instrumentation",
+          "Pressure Vessels",
+        ],
+        specifications: [
+          { property: "Size Range", value: '1/8" to 4"' },
+          { property: "Type", value: "Threaded/Weld" },
+          { property: "Pressure Class", value: "Class 2000, 3000, 6000, 9000" },
+          { property: "Standards", value: "ASME B16.11, MSS SP-79, ASTM Standards" },
+          { property: "End Types", value: "Threaded, Plain for Welding" },
+          { property: "Face Types", value: "NPT, Socket Weld, BSPT" },
+          { property: "Manufacturing Standards", value: "ASME B16.11" }
+        ],
+        materialGrades: {
+          "Stainless Steel": [
+            { grade: "ASTM A182 Grade : F 304" },
+            { grade: "304L" },
+            { grade: "304H" },
+            { grade: "309S" },
+            { grade: "309H" },
+            { grade: "310S" },
+            { grade: "310H" },
+            { grade: "316" },
+            { grade: "316Ti" },
+            { grade: "316H" },
+            { grade: "316L" },
+            { grade: "316LN" },
+            { grade: "317" },
+            { grade: "317L" },
+            { grade: "321" },
+            { grade: "321H" },
+            { grade: "347" },
+            { grade: "347H" },
+            { grade: "904L" },
+            { grade: "F 44" },
+            { grade: "F 45" },
+            { grade: "F51" },
+            { grade: "F 53" },
+            { grade: "F 55" },
+            { grade: "F 60" },
+            { grade: "F 61" }
+          ],
+          "Carbon Steel": [
+            { grade: "ASTM A105" },
+            { grade: "LF2" },
+            { grade: "LF3" },
+            { grade: "LF6" },
+            { grade: "F42" },
+            { grade: "F46" },
+            { grade: "F48" },
+            { grade: "F50" },
+            { grade: "F52" },
+            { grade: "F56" },
+            { grade: "F60" },
+            { grade: "F65" },
+            { grade: "F70" },
+            { grade: "ST37.2" },
+            { grade: "C22.8" },
+            { grade: "S235JRG2" },
+            { grade: "P250GH" }
+          ],
+          "Alloy Steel": [
+            { grade: "ASTM A182 F1" },
+            { grade: "ASTM A182 F5" },
+            { grade: "ASTM A182 F9" },
+            { grade: "ASTM A182 F11" },
+            { grade: "ASTM A182 F22" },
+            { grade: "ASTM A182 F91" },
+            { grade: "AISI 4140" },
+            { grade: "AISI 4130" }
+          ],
+          "Nickel Alloy": [
+            { grade: "ASTM / ASME SB 564 / 160 / 472" },
+            { grade: "SB160" },
+            { grade: "SB472" },
+            { grade: "SB162 Nickel 200 (UNS No. N02200)" },
+            { grade: "Nickel 201 (UNS No. N02201)" },
+            { grade: "Monel 400 (UNS No. N04400)" },
+            { grade: "Monel 500 (UNS No. N05500)" },
+            { grade: "Inconel 800 (UNS No. N08800)" },
+            { grade: "Inconel 825 (UNS No. N08825)" },
+            { grade: "Inconel 600 (UNS No. N06600)" },
+            { grade: "Inconel 625 (UNS No. N06625)" },
+            { grade: "Inconel 601 (UNS No. N06601)" },
+            { grade: "Hastelloy C 276 (UNS No. N10276)" },
+            { grade: "Alloy 20 (UNS No. N08020)" }
+          ]
+        },
+        images: [
+          { src: "images/half-1.png", alt: "Half Coupling" },
+          {
+            src: "images/half-2.jfif",
+            alt: "Half Coupling",
+          },
+        ],
+      },
+      "hex-head-bushing": {
+        id: "hex-head-bushing",
+        name: "Hex Head Bushing Threaded",
+        banner: {
+          title: "Hex Head <span class='text-[#C9A227]'>Bushing</span>",
+          subtitle: "Forged Hex Head Threaded Bushings",
+          description: "Forged hex head bushings for size reduction with wrench flats",
+          image: "images/bushingbanner.jpg",
+          features: [
+            "Hex Head",
+            "Size Reduction",
+            "Easy Installation",
+            "High Pressure",
+            "Leak-Proof Connection",
+          ],
+          ctaText: "View Hex Bushings",
+          color: "#C9A227",
+        },
+        description: "A hex head bushing is a type of threaded forged fitting designed to connect two pipes or fittings of different sizes by reducing the internal diameter. It features external (male) threads on the outside and internal (female) threads on the inside, allowing it to screw into a larger fitting and accommodate a smaller connection. The hexagonal head enables easy tightening and loosening with a wrench, making it ideal for high-pressure and high-temperature systems.",
+        applications: [
+          "Oil & Gas Industry",
+          "Chemical & Petrochemical Plants",
+          "Power Plants",
+          "Water Supply Systems",
+          "HVAC Systems",
+          "Size Reduction",
+          "Threaded Systems",
+          "Instrumentation",
+          "Hydraulic Systems",
+          "Plumbing",
+        ],
+        specifications: [
+          { property: "Size Range", value: '1/8" to 4"' },
+          { property: "Head Type", value: "Hexagon" },
+          { property: "Pressure Class", value: "Class 2000, 3000, 6000, 9000" },
+          { property: "Standards", value: "ASME B16.11, MSS SP-79, ASTM Standards" },
+          { property: "Thread", value: "NPT Internal & External, BSPT" },
+          { property: "Face Types", value: "NPT, Socket Weld, BSPT" },
+          { property: "Manufacturing Standards", value: "ASME B16.11" }
+        ],
+        materialGrades: {
+          "Stainless Steel": [
+            { grade: "ASTM A182 Grade : F 304" },
+            { grade: "304L" },
+            { grade: "304H" },
+            { grade: "309S" },
+            { grade: "309H" },
+            { grade: "310S" },
+            { grade: "310H" },
+            { grade: "316" },
+            { grade: "316Ti" },
+            { grade: "316H" },
+            { grade: "316L" },
+            { grade: "316LN" },
+            { grade: "317" },
+            { grade: "317L" },
+            { grade: "321" },
+            { grade: "321H" },
+            { grade: "347" },
+            { grade: "347H" },
+            { grade: "904L" },
+            { grade: "F 44" },
+            { grade: "F 45" },
+            { grade: "F51" },
+            { grade: "F 53" },
+            { grade: "F 55" },
+            { grade: "F 60" },
+            { grade: "F 61" }
+          ],
+          "Carbon Steel": [
+            { grade: "ASTM A105" },
+            { grade: "LF2" },
+            { grade: "LF3" },
+            { grade: "LF6" },
+            { grade: "F42" },
+            { grade: "F46" },
+            { grade: "F48" },
+            { grade: "F50" },
+            { grade: "F52" },
+            { grade: "F56" },
+            { grade: "F60" },
+            { grade: "F65" },
+            { grade: "F70" },
+            { grade: "ST37.2" },
+            { grade: "C22.8" },
+            { grade: "S235JRG2" },
+            { grade: "P250GH" }
+          ],
+          "Alloy Steel": [
+            { grade: "ASTM A182 F1" },
+            { grade: "ASTM A182 F5" },
+            { grade: "ASTM A182 F9" },
+            { grade: "ASTM A182 F11" },
+            { grade: "ASTM A182 F22" },
+            { grade: "ASTM A182 F91" },
+            { grade: "AISI 4140" },
+            { grade: "AISI 4130" }
+          ],
+          "Nickel Alloy": [
+            { grade: "ASTM / ASME SB 564 / 160 / 472" },
+            { grade: "SB160" },
+            { grade: "SB472" },
+            { grade: "SB162 Nickel 200 (UNS No. N02200)" },
+            { grade: "Nickel 201 (UNS No. N02201)" },
+            { grade: "Monel 400 (UNS No. N04400)" },
+            { grade: "Monel 500 (UNS No. N05500)" },
+            { grade: "Inconel 800 (UNS No. N08800)" },
+            { grade: "Inconel 825 (UNS No. N08825)" },
+            { grade: "Inconel 600 (UNS No. N06600)" },
+            { grade: "Inconel 625 (UNS No. N06625)" },
+            { grade: "Inconel 601 (UNS No. N06601)" },
+            { grade: "Hastelloy C 276 (UNS No. N10276)" },
+            { grade: "Alloy 20 (UNS No. N08020)" }
+          ],
+          "Brass": [
+            { grade: "ASTM B62" }
+          ]
+        },
+        images: [
+          { src: "images/bushing-1.jpg", alt: "Hex Head Bushing" },
+          {
+            src: "images/bushing-2.jpg",
+            alt: "Hex Head Bushing",
+          },
+        ],
+      },
+      "hex-head-plug": {
+        id: "hex-head-plug",
+        name: "Hex Head Plug",
+        banner: {
+          title: "Hex Head <span class='text-[#C9A227]'>Plug</span>",
+          subtitle: "Forged Hex Head Pipe Plugs",
+          description: "Forged hex head plugs for sealing threaded openings",
+          image: "images/plugbanner.webp",
+          features: [
+            "Hex Head",
+            "Threaded",
+            "Easy Removal",
+            "High Pressure",
+            "Leak-Proof Sealing",
+          ],
+          ctaText: "View Hex Plugs",
+          color: "#C9A227",
+        },
+        description: "A hex head plug is a type of threaded forged fitting used to seal or close the end of a pipe or fitting to stop the flow of fluids or gases. It features external (male) threads and a hexagonal head, allowing easy installation or removal using a wrench or spanner. The forged construction ensures high strength and durability, making it suitable for high-pressure and high-temperature applications.",
+        applications: [
+          "Oil & Gas Industry",
+          "Chemical and Petrochemical Plants",
+          "Power Plants",
+          "Fire Protection Systems",
+          "Water Distribution and Plumbing Systems",
+          "Threaded Openings",
+          "Inspection Points",
+          "Test Points",
+          "Drain Points",
+          "Future Connections",
+        ],
+        specifications: [
+          { property: "Size Range", value: '1/8" to 4"' },
+          { property: "Head Type", value: "Hexagon" },
+          { property: "Pressure Class", value: "Class 2000, 3000, 6000, 9000" },
+          { property: "Standards", value: "ASME B16.11, MSS SP-79, ASTM Standards" },
+          { property: "Thread Type", value: "NPT, BSPT" },
+          { property: "Face Types", value: "NPT, Socket Weld, BSPT" },
+          { property: "Manufacturing Standards", value: "ASME B16.11" }
+        ],
+        materialGrades: {
+          "Stainless Steel": [
+            { grade: "ASTM A182 Grade : F 304" },
+            { grade: "304L" },
+            { grade: "304H" },
+            { grade: "309S" },
+            { grade: "309H" },
+            { grade: "310S" },
+            { grade: "310H" },
+            { grade: "316" },
+            { grade: "316Ti" },
+            { grade: "316H" },
+            { grade: "316L" },
+            { grade: "316LN" },
+            { grade: "317" },
+            { grade: "317L" },
+            { grade: "321" },
+            { grade: "321H" },
+            { grade: "347" },
+            { grade: "347H" },
+            { grade: "904L" },
+            { grade: "F 44" },
+            { grade: "F 45" },
+            { grade: "F51" },
+            { grade: "F 53" },
+            { grade: "F 55" },
+            { grade: "F 60" },
+            { grade: "F 61" }
+          ],
+          "Carbon Steel": [
+            { grade: "ASTM A105" },
+            { grade: "LF2" },
+            { grade: "LF3" },
+            { grade: "LF6" },
+            { grade: "F42" },
+            { grade: "F46" },
+            { grade: "F48" },
+            { grade: "F50" },
+            { grade: "F52" },
+            { grade: "F56" },
+            { grade: "F60" },
+            { grade: "F65" },
+            { grade: "F70" },
+            { grade: "ST37.2" },
+            { grade: "C22.8" },
+            { grade: "S235JRG2" },
+            { grade: "P250GH" }
+          ],
+          "Alloy Steel": [
+            { grade: "ASTM A182 F1" },
+            { grade: "ASTM A182 F5" },
+            { grade: "ASTM A182 F9" },
+            { grade: "ASTM A182 F11" },
+            { grade: "ASTM A182 F22" },
+            { grade: "ASTM A182 F91" },
+            { grade: "AISI 4140" },
+            { grade: "AISI 4130" }
+          ],
+          "Nickel Alloy": [
+            { grade: "ASTM / ASME SB 564 / 160 / 472" },
+            { grade: "SB160" },
+            { grade: "SB472" },
+            { grade: "SB162 Nickel 200 (UNS No. N02200)" },
+            { grade: "Nickel 201 (UNS No. N02201)" },
+            { grade: "Monel 400 (UNS No. N04400)" },
+            { grade: "Monel 500 (UNS No. N05500)" },
+            { grade: "Inconel 800 (UNS No. N08800)" },
+            { grade: "Inconel 825 (UNS No. N08825)" },
+            { grade: "Inconel 600 (UNS No. N06600)" },
+            { grade: "Inconel 625 (UNS No. N06625)" },
+            { grade: "Inconel 601 (UNS No. N06601)" },
+            { grade: "Hastelloy C 276 (UNS No. N10276)" },
+            { grade: "Alloy 20 (UNS No. N08020)" }
+          ],
+
+        },
+        images: [
+          { src: "images/plug-1.webp", alt: "Hex Head Plug" },
+          { src: "images/plug2.jfif", alt: "Hex Head Plug" },
+        ],
+      },
+      "redu-coupling": {
+        id: "redu-coupling",
+        name: "Redu Coupling",
+        banner: {
+          title: "Reducing <span class='text-[#C9A227]'>Coupling</span>",
+          subtitle: "Forged Reducing Couplings",
+          description:
+            "Forged reducing couplings for connecting different pipe sizes",
+          image: "images/redubanner.jpg",
+          features: [
+            "Size Reduction",
+            "Threaded Both Ends",
+            "Concentric",
+            "High Pressure",
+          ],
+          ctaText: "View Reducing Couplings",
+          color: "#C9A227",
+        },
+        description:
+          "Forged reducing couplings connect pipes of different sizes with threaded connections on both ends. Available in concentric design for straight-line connections.",
+        applications: [
+          "Size Transition",
+          "Threaded Systems",
+          "Pipe Extensions",
+          "Repairs",
+          "Hydraulic Systems",
+        ],
+        specifications: [
+          { property: "Size Range", value: '1/8" to 4"' },
+          { property: "Type", value: "Concentric, Threaded" },
+          { property: "Pressure Class", value: "Class 2000 to 6000" },
+          { property: "Standards", value: "ASME B16.11, MSS SP-79" },
+          { property: "Design", value: "Concentric (Straight)" },
+        ],
+        materialGrades: {
+          "Carbon Steel": [
+            { grade: "ASTM A105" },
+            { grade: "ASTM A350 LF2" },
+          ],
+          "Stainless Steel": [
+            { grade: "ASTM A182 F304" },
+            { grade: "ASTM A182 F316" },
+          ],
+
+        },
+        images: [
+          {
+            src: "images/reducopulling-1.png",
+            alt: "Reducing Coupling",
+          },
+          {
+            src: "images/reducopulling-2.png",
+            alt: "Coupling Dimensions",
+          },
+        ],
+      },
+      "reducing-tee": {
+        id: "reducing-tee",
+        name: "Reducing TEE",
+        banner: {
+          title: "Reducing <span class='text-[#C9A227]'>TEE</span>",
+          subtitle: "Forged Reducing Tee Fittings",
+          description: "Forged reducing tees for branch connections with size reduction",
+          image: "images/reducetee-banner.png",
+          features: [
+            "Reducing Branch",
+            "Threaded/Socket Weld",
+            "High Strength",
+            "Three Connections",
+            "Smooth Flow Transition",
+          ],
+          ctaText: "View Reducing Tees",
+          color: "#C9A227",
+        },
+        description: "A reducing tee forged fitting is used in piping systems to connect three pipes with different diameters at a 90-degree intersection. It allows the main pipeline to branch off into a smaller pipe, ensuring smooth and controlled fluid flow. Forged reducing tees are manufactured through hot forging, which enhances their strength, durability, and pressure resistance, making them ideal for high-pressure and high-temperature applications.",
+        applications: [
+          "Oil & Gas Pipelines",
+          "Chemical and Petrochemical Plants",
+          "Power Plants",
+          "Water Treatment Plants",
+          "Fire Suppression Systems",
+          "Branch Lines",
+          "Instrumentation",
+          "Sample Points",
+          "Drain Connections",
+          "Process Piping",
+        ],
+        specifications: [
+          { property: "Size Range", value: '1/8" to 4"' },
+          { property: "Type", value: "Threaded, Socket Weld" },
+          { property: "Pressure Class", value: "Class 2000, 3000, 6000, 9000" },
+          { property: "Standards", value: "ASME B16.11, MSS SP-79, ASTM Standards" },
+          { property: "Branch Size", value: "Smaller than Run Size" },
+          { property: "Face Types", value: "NPT, Socket Weld, BSPT" },
+          { property: "Manufacturing Standards", value: "ASME B16.11" }
+        ],
+        materialGrades: {
+          "Stainless Steel": [
+            { grade: "ASTM A182 Grade : F 304" },
+            { grade: "304L" },
+            { grade: "304H" },
+            { grade: "309S" },
+            { grade: "309H" },
+            { grade: "310S" },
+            { grade: "310H" },
+            { grade: "316" },
+            { grade: "316Ti" },
+            { grade: "316H" },
+            { grade: "316L" },
+            { grade: "316LN" },
+            { grade: "317" },
+            { grade: "317L" },
+            { grade: "321" },
+            { grade: "321H" },
+            { grade: "347" },
+            { grade: "347H" },
+            { grade: "904L" },
+            { grade: "F 44" },
+            { grade: "F 45" },
+            { grade: "F51" },
+            { grade: "F 53" },
+            { grade: "F 55" },
+            { grade: "F 60" },
+            { grade: "F 61" }
+          ],
+          "Carbon Steel": [
+            { grade: "ASTM A105" },
+            { grade: "LF2" },
+            { grade: "LF3" },
+            { grade: "LF6" },
+            { grade: "F42" },
+            { grade: "F46" },
+            { grade: "F48" },
+            { grade: "F50" },
+            { grade: "F52" },
+            { grade: "F56" },
+            { grade: "F60" },
+            { grade: "F65" },
+            { grade: "F70" },
+            { grade: "ST37.2" },
+            { grade: "C22.8" },
+            { grade: "S235JRG2" },
+            { grade: "P250GH" }
+          ],
+          "Alloy Steel": [
+            { grade: "ASTM A182 F1" },
+            { grade: "ASTM A182 F5" },
+            { grade: "ASTM A182 F9" },
+            { grade: "ASTM A182 F11" },
+            { grade: "ASTM A182 F22" },
+            { grade: "ASTM A182 F91" },
+            { grade: "AISI 4140" },
+            { grade: "AISI 4130" }
+          ],
+          "Nickel Alloy": [
+            { grade: "ASTM / ASME SB 564 / 160 / 472" },
+            { grade: "SB160" },
+            { grade: "SB472" },
+            { grade: "SB162 Nickel 200 (UNS No. N02200)" },
+            { grade: "Nickel 201 (UNS No. N02201)" },
+            { grade: "Monel 400 (UNS No. N04400)" },
+            { grade: "Monel 500 (UNS No. N05500)" },
+            { grade: "Inconel 800 (UNS No. N08800)" },
+            { grade: "Inconel 825 (UNS No. N08825)" },
+            { grade: "Inconel 600 (UNS No. N06600)" },
+            { grade: "Inconel 625 (UNS No. N06625)" },
+            { grade: "Inconel 601 (UNS No. N06601)" },
+            { grade: "Hastelloy C 276 (UNS No. N10276)" },
+            { grade: "Alloy 20 (UNS No. N08020)" }
+          ]
+        },
+        images: [
+          { src: "images/Reducetee-1.jpg", alt: "Reducing Tee" },
+          { src: "images/Reducetee-2.png", alt: "Reducing Tee" },
+        ],
+      },
+      "round-head-plug": {
+        id: "round-head-plug",
+        name: "Round Head Plug",
+        banner: {
+          title: "Round Head <span class='text-[#C9A227]'>Plug</span>",
+          subtitle: "Forged Round Head Pipe Plugs",
+          description: "Forged round head plugs for permanent or semi-permanent sealing",
+          image: "images/roundhead-banner.jpg",
+          features: [
+            "Round Head",
+            "Threaded",
+            "Permanent Seal",
+            "High Pressure",
+            "Compact Design",
+          ],
+          ctaText: "View Round Plugs",
+          color: "#C9A227",
+        },
+        description: "A round head plug is a type of threaded forged fitting used to seal or close the end of a pipe or fitting, preventing fluid or gas leakage. This fitting features a male-threaded end with a round head, designed for temporary or permanent closures. The forged construction ensures high strength and durability, making round head plugs ideal for high-pressure and high-temperature applications.",
+        applications: [
+          "Oil & Gas Industry",
+          "Chemical Plants",
+          "Power Plants",
+          "Plumbing Systems",
+          "Fire Protection Systems",
+          "Permanent Seals",
+          "Visible Installations",
+          "Sanitary Systems",
+          "Food Processing",
+          "Pharmaceutical",
+        ],
+        specifications: [
+          { property: "Size Range", value: '1/8" to 4"' },
+          { property: "Head Type", value: "Round, Smooth" },
+          { property: "Pressure Class", value: "Class 2000, 3000, 6000, 9000" },
+          { property: "Standards", value: "ASME B16.11, MSS SP-79, ASTM Standards" },
+          { property: "Thread Type", value: "NPT, BSPT" },
+          { property: "Face Types", value: "NPT, Socket Weld, BSPT" },
+          { property: "Manufacturing Standards", value: "ASME B16.11" }
+        ],
+        materialGrades: {
+          "Stainless Steel": [
+            { grade: "ASTM A182 Grade : F 304" },
+            { grade: "304L" },
+            { grade: "304H" },
+            { grade: "309S" },
+            { grade: "309H" },
+            { grade: "310S" },
+            { grade: "310H" },
+            { grade: "316" },
+            { grade: "316Ti" },
+            { grade: "316H" },
+            { grade: "316L" },
+            { grade: "316LN" },
+            { grade: "317" },
+            { grade: "317L" },
+            { grade: "321" },
+            { grade: "321H" },
+            { grade: "347" },
+            { grade: "347H" },
+            { grade: "904L" },
+            { grade: "F 44" },
+            { grade: "F 45" },
+            { grade: "F51" },
+            { grade: "F 53" },
+            { grade: "F 55" },
+            { grade: "F 60" },
+            { grade: "F 61" }
+          ],
+          "Carbon Steel": [
+            { grade: "ASTM A105" },
+            { grade: "LF2" },
+            { grade: "LF3" },
+            { grade: "LF6" },
+            { grade: "F42" },
+            { grade: "F46" },
+            { grade: "F48" },
+            { grade: "F50" },
+            { grade: "F52" },
+            { grade: "F56" },
+            { grade: "F60" },
+            { grade: "F65" },
+            { grade: "F70" },
+            { grade: "ST37.2" },
+            { grade: "C22.8" },
+            { grade: "S235JRG2" },
+            { grade: "P250GH" }
+          ],
+          "Alloy Steel": [
+            { grade: "ASTM A182 F1" },
+            { grade: "ASTM A182 F5" },
+            { grade: "ASTM A182 F9" },
+            { grade: "ASTM A182 F11" },
+            { grade: "ASTM A182 F22" },
+            { grade: "ASTM A182 F91" },
+            { grade: "AISI 4140" },
+            { grade: "AISI 4130" }
+          ],
+          "Nickel Alloy": [
+            { grade: "ASTM / ASME SB 564 / 160 / 472" },
+            { grade: "SB160" },
+            { grade: "SB472" },
+            { grade: "SB162 Nickel 200 (UNS No. N02200)" },
+            { grade: "Nickel 201 (UNS No. N02201)" },
+            { grade: "Monel 400 (UNS No. N04400)" },
+            { grade: "Monel 500 (UNS No. N05500)" },
+            { grade: "Inconel 800 (UNS No. N08800)" },
+            { grade: "Inconel 825 (UNS No. N08825)" },
+            { grade: "Inconel 600 (UNS No. N06600)" },
+            { grade: "Inconel 625 (UNS No. N06625)" },
+            { grade: "Inconel 601 (UNS No. N06601)" },
+            { grade: "Hastelloy C 276 (UNS No. N10276)" },
+            { grade: "Alloy 20 (UNS No. N08020)" }
+          ],
+        },
+        images: [
+          { src: "images/roundhead-1.jpg", alt: "Round Head Plug" },
+          { src: "images/roundhead-2.webp", alt: "Round Head Plug" },
+        ],
+      },
+      sockolet: {
+        id: "sockolet",
+        name: "Sockolet",
+        banner: {
+          title: "<span class='text-[#C9A227]'>Sockolet</span>",
+          subtitle: "Forged Socket Weld Outlet Fittings",
+          description: "Forged sockolets for branch connections on pipes",
+          image: "images/socket-banner.jpg",
+          features: [
+            "Branch Connection",
+            "Socket Weld",
+            "Reinforced Design",
+            "High Pressure",
+            "Smooth Flow Transition",
+          ],
+          ctaText: "View Sockolets",
+          color: "#C9A227",
+        },
+        description: "A sockolet is a type of branch connection fitting used in piping systems to create an outlet from a larger pipe (header) to a smaller one. It belongs to the family of olets (outlet fittings), which are commonly used to integrate branch pipes into main pipelines. Sockolets are forged fittings that offer high strength and pressure resistance, ideal for high-pressure and high-temperature applications.",
+        applications: [
+          "Oil & Gas Pipelines",
+          "Chemical and Petrochemical Plants",
+          "Power Plants",
+          "Process Industries",
+          "Fire Protection Systems",
+          "High Pressure Branches",
+          "Critical Systems",
+          "Boiler Feed Lines",
+          "Steam Lines",
+          "Process Piping",
+        ],
+        specifications: [
+          { property: "Size Range", value: '1/8" to 4"' },
+          { property: "Type", value: "Socket Weld Outlet" },
+          { property: "Pressure Class", value: "Class 3000, 6000, 9000" },
+          { property: "Standards", value: "MSS SP-97, ASME B16.11, ASTM Standards" },
+          { property: "Reinforcement", value: "Integral Reinforcement" },
+          { property: "Face Types", value: "NPT, Socket Weld, BSPT" },
+          { property: "Manufacturing Standards", value: "ASME B16.11" }
+        ],
+        materialGrades: {
+          "Stainless Steel": [
+            { grade: "ASTM A182 Grade : F 304" },
+            { grade: "304L" },
+            { grade: "304H" },
+            { grade: "309S" },
+            { grade: "309H" },
+            { grade: "310S" },
+            { grade: "310H" },
+            { grade: "316" },
+            { grade: "316Ti" },
+            { grade: "316H" },
+            { grade: "316L" },
+            { grade: "316LN" },
+            { grade: "317" },
+            { grade: "317L" },
+            { grade: "321" },
+            { grade: "321H" },
+            { grade: "347" },
+            { grade: "347H" },
+            { grade: "904L" },
+            { grade: "F 44" },
+            { grade: "F 45" },
+            { grade: "F51" },
+            { grade: "F 53" },
+            { grade: "F 55" },
+            { grade: "F 60" },
+            { grade: "F 61" }
+          ],
+          "Carbon Steel": [
+            { grade: "ASTM A105" },
+            { grade: "LF2" },
+            { grade: "LF3" },
+            { grade: "LF6" },
+            { grade: "F42" },
+            { grade: "F46" },
+            { grade: "F48" },
+            { grade: "F50" },
+            { grade: "F52" },
+            { grade: "F56" },
+            { grade: "F60" },
+            { grade: "F65" },
+            { grade: "F70" },
+            { grade: "ST37.2" },
+            { grade: "C22.8" },
+            { grade: "S235JRG2" },
+            { grade: "P250GH" }
+          ],
+          "Alloy Steel": [
+            { grade: "ASTM A182 F1" },
+            { grade: "ASTM A182 F5" },
+            { grade: "ASTM A182 F9" },
+            { grade: "ASTM A182 F11" },
+            { grade: "ASTM A182 F22" },
+            { grade: "ASTM A182 F91" },
+            { grade: "AISI 4140" },
+            { grade: "AISI 4130" }
+          ],
+          "Nickel Alloy": [
+            { grade: "ASTM / ASME SB 564 / 160 / 472" },
+            { grade: "SB160" },
+            { grade: "SB472" },
+            { grade: "SB162 Nickel 200 (UNS No. N02200)" },
+            { grade: "Nickel 201 (UNS No. N02201)" },
+            { grade: "Monel 400 (UNS No. N04400)" },
+            { grade: "Monel 500 (UNS No. N05500)" },
+            { grade: "Inconel 800 (UNS No. N08800)" },
+            { grade: "Inconel 825 (UNS No. N08825)" },
+            { grade: "Inconel 600 (UNS No. N06600)" },
+            { grade: "Inconel 625 (UNS No. N06625)" },
+            { grade: "Inconel 601 (UNS No. N06601)" },
+            { grade: "Hastelloy C 276 (UNS No. N10276)" },
+            { grade: "Alloy 20 (UNS No. N08020)" }
+          ]
+        },
+        images: [
+          { src: "images/socket-1.png", alt: "Sockolet" },
+          { src: "images/socket-2.webp", alt: "Sockolet Welding" },
+        ],
+      },
+      "square-head-plug": {
+        id: "square-head-plug",
+        name: "Square Head Plug",
+        banner: {
+          title: "Square Head <span class='text-[#C9A227]'>Plug</span>",
+          subtitle: "Forged Square Head Pipe Plugs",
+          description: "Forged square head plugs for easy installation with wrenches",
+          image: "images/square-banner.webp",
+          features: [
+            "Square Head",
+            "Easy Installation",
+            "Threaded",
+            "High Pressure",
+            "Leak-Proof Connection",
+          ],
+          ctaText: "View Square Plugs",
+          color: "#C9A227",
+        },
+        description: "A square head plug is a type of threaded forged fitting used to seal or close the end of a pipe or fitting. It features male threads for screwing into female-threaded openings and a square-shaped head, allowing easy tightening or removal with a wrench. The forged construction enhances its strength and durability, making it suitable for high-pressure and high-temperature applications.",
+        applications: [
+          "Oil & Gas Industry",
+          "Chemical and Petrochemical Plants",
+          "Power Plants",
+          "Firefighting Systems",
+          "Water Supply and Plumbing Systems",
+          "Inspection Points",
+          "Drain Points",
+          "Test Points",
+          "Frequent Access Points",
+          "Maintenance Points",
+        ],
+        specifications: [
+          { property: "Size Range", value: '1/8" to 4"' },
+          { property: "Head Type", value: "Square" },
+          { property: "Pressure Class", value: "Class 2000, 3000, 6000, 9000" },
+          { property: "Standards", value: "ASME B16.11, MSS SP-79, ASTM Standards" },
+          { property: "Thread Type", value: "NPT, BSPT" },
+          { property: "Face Types", value: "NPT, Socket Weld, BSPT" },
+          { property: "Manufacturing Standards", value: "ASME B16.11" }
+        ],
+        materialGrades: {
+          "Stainless Steel": [
+            { grade: "ASTM A182 Grade : F 304" },
+            { grade: "304L" },
+            { grade: "304H" },
+            { grade: "309S" },
+            { grade: "309H" },
+            { grade: "310S" },
+            { grade: "310H" },
+            { grade: "316" },
+            { grade: "316Ti" },
+            { grade: "316H" },
+            { grade: "316L" },
+            { grade: "316LN" },
+            { grade: "317" },
+            { grade: "317L" },
+            { grade: "321" },
+            { grade: "321H" },
+            { grade: "347" },
+            { grade: "347H" },
+            { grade: "904L" },
+            { grade: "F 44" },
+            { grade: "F 45" },
+            { grade: "F51" },
+            { grade: "F 53" },
+            { grade: "F 55" },
+            { grade: "F 60" },
+            { grade: "F 61" }
+          ],
+          "Carbon Steel": [
+            { grade: "ASTM A105" },
+            { grade: "LF2" },
+            { grade: "LF3" },
+            { grade: "LF6" },
+            { grade: "F42" },
+            { grade: "F46" },
+            { grade: "F48" },
+            { grade: "F50" },
+            { grade: "F52" },
+            { grade: "F56" },
+            { grade: "F60" },
+            { grade: "F65" },
+            { grade: "F70" },
+            { grade: "ST37.2" },
+            { grade: "C22.8" },
+            { grade: "S235JRG2" },
+            { grade: "P250GH" }
+          ],
+          "Alloy Steel": [
+            { grade: "ASTM A182 F1" },
+            { grade: "ASTM A182 F5" },
+            { grade: "ASTM A182 F9" },
+            { grade: "ASTM A182 F11" },
+            { grade: "ASTM A182 F22" },
+            { grade: "ASTM A182 F91" },
+            { grade: "AISI 4140" },
+            { grade: "AISI 4130" }
+          ],
+          "Nickel Alloy": [
+            { grade: "ASTM / ASME SB 564 / 160 / 472" },
+            { grade: "SB160" },
+            { grade: "SB472" },
+            { grade: "SB162 Nickel 200 (UNS No. N02200)" },
+            { grade: "Nickel 201 (UNS No. N02201)" },
+            { grade: "Monel 400 (UNS No. N04400)" },
+            { grade: "Monel 500 (UNS No. N05500)" },
+            { grade: "Inconel 800 (UNS No. N08800)" },
+            { grade: "Inconel 825 (UNS No. N08825)" },
+            { grade: "Inconel 600 (UNS No. N06600)" },
+            { grade: "Inconel 625 (UNS No. N06625)" },
+            { grade: "Inconel 601 (UNS No. N06601)" },
+            { grade: "Hastelloy C 276 (UNS No. N10276)" },
+            { grade: "Alloy 20 (UNS No. N08020)" }
+          ],
+          "Brass": [
+            { grade: "ASTM B62" }
+          ]
+        },
+        images: [
+          { src: "images/square-1.jpg", alt: "Square Head Plug" },
+          {
+            src: "images/square-2.jpg",
+            alt: "Plug Installation",
+          },
+        ],
+      },
+      union: {
+        id: "union",
+        name: "Union",
+        banner: {
+          title: "Forged <span class='text-[#C9A227]'>Union</span>",
+          subtitle: "Forged Pipe Unions",
+          description: "Forged unions for easy disconnection of piping systems",
+          image: "images/union-banner.jpg",
+          features: [
+            "Easy Disconnection",
+            "Threaded",
+            "Three-Piece Design",
+            "High Pressure",
+            "Leak-Proof Connection",
+          ],
+          ctaText: "View Unions",
+          color: "#C9A227",
+        },
+        description: "A union forged fitting is designed to connect two pipes or fittings in a way that allows for easy assembly, disassembly, or maintenance without cutting the pipe or disrupting the system. Unions provide a leak-proof connection through a combination of threaded or socket weld ends and a central nut or collar. They are forged for high strength, durability, and pressure resistance, making them ideal for high-pressure and high-temperature applications.",
+        applications: [
+          "Oil & Gas Pipelines",
+          "Chemical and Petrochemical Plants",
+          "Power Plants",
+          "Fire Protection Systems",
+          "Water Supply and Plumbing Systems",
+          "Equipment Connections",
+          "Frequent Maintenance",
+          "Instrumentation",
+          "Pump Connections",
+          "Valve Installations",
+        ],
+        specifications: [
+          { property: "Size Range", value: '1/8" to 4"' },
+          { property: "Type", value: "Three-Piece Union" },
+          { property: "Pressure Class", value: "Class 2000, 3000, 6000, 9000" },
+          { property: "Standards", value: "ASME B16.11, MSS SP-79, ASTM Standards" },
+          { property: "Seat Type", value: "Ground Joint, O-Ring" },
+          { property: "Face Types", value: "NPT, Socket Weld, BSPT" },
+          { property: "Manufacturing Standards", value: "ASME B16.11" }
+        ],
+        materialGrades: {
+          "Stainless Steel": [
+            { grade: "ASTM A182 Grade : F 304" },
+            { grade: "304L" },
+            { grade: "304H" },
+            { grade: "309S" },
+            { grade: "309H" },
+            { grade: "310S" },
+            { grade: "310H" },
+            { grade: "316" },
+            { grade: "316Ti" },
+            { grade: "316H" },
+            { grade: "316L" },
+            { grade: "316LN" },
+            { grade: "317" },
+            { grade: "317L" },
+            { grade: "321" },
+            { grade: "321H" },
+            { grade: "347" },
+            { grade: "347H" },
+            { grade: "904L" },
+            { grade: "F 44" },
+            { grade: "F 45" },
+            { grade: "F51" },
+            { grade: "F 53" },
+            { grade: "F 55" },
+            { grade: "F 60" },
+            { grade: "F 61" }
+          ],
+          "Carbon Steel": [
+            { grade: "ASTM A105" },
+            { grade: "LF2" },
+            { grade: "LF3" },
+            { grade: "LF6" },
+            { grade: "F42" },
+            { grade: "F46" },
+            { grade: "F48" },
+            { grade: "F50" },
+            { grade: "F52" },
+            { grade: "F56" },
+            { grade: "F60" },
+            { grade: "F65" },
+            { grade: "F70" },
+            { grade: "ST37.2" },
+            { grade: "C22.8" },
+            { grade: "S235JRG2" },
+            { grade: "P250GH" }
+          ],
+          "Alloy Steel": [
+            { grade: "ASTM A182 F1" },
+            { grade: "ASTM A182 F5" },
+            { grade: "ASTM A182 F9" },
+            { grade: "ASTM A182 F11" },
+            { grade: "ASTM A182 F22" },
+            { grade: "ASTM A182 F91" },
+            { grade: "AISI 4140" },
+            { grade: "AISI 4130" }
+          ],
+          "Nickel Alloy": [
+            { grade: "ASTM / ASME SB 564 / 160 / 472" },
+            { grade: "SB160" },
+            { grade: "SB472" },
+            { grade: "SB162 Nickel 200 (UNS No. N02200)" },
+            { grade: "Nickel 201 (UNS No. N02201)" },
+            { grade: "Monel 400 (UNS No. N04400)" },
+            { grade: "Monel 500 (UNS No. N05500)" },
+            { grade: "Inconel 800 (UNS No. N08800)" },
+            { grade: "Inconel 825 (UNS No. N08825)" },
+            { grade: "Inconel 600 (UNS No. N06600)" },
+            { grade: "Inconel 625 (UNS No. N06625)" },
+            { grade: "Inconel 601 (UNS No. N06601)" },
+            { grade: "Hastelloy C 276 (UNS No. N10276)" },
+            { grade: "Alloy 20 (UNS No. N08020)" }
+          ],
+          "Brass": [
+            { grade: "ASTM B62" }
+          ]
+        },
+        images: [
+          { src: "images/union-1.png", alt: "Forged Union" },
+          { src: "images/union-2.webp", alt: "Union" },
+        ],
+      },
+      "union-hex": {
+        id: "union-hex",
+        name: "Union Hex",
+        banner: {
+          title: "Union <span class='text-[#C9A227]'>Hex</span>",
+          subtitle: "Forged Hex Nut Unions",
+          description: "Forged unions with hex nuts for easy installation",
+          image: "images/union-banner.jpg",
+          features: [
+            "Hex Nut",
+            "Easy Assembly",
+            "Threaded",
+            "High Pressure",
+            "Leak-Proof Connection",
+          ],
+          ctaText: "View Hex Unions",
+          color: "#C9A227",
+        },
+        description: "A union hex forged fitting is used to connect two pipes or fittings while allowing for easy assembly and disassembly without cutting or welding. The hexagonal nut at the center of the union provides a secure grip for tightening or loosening, facilitating quick maintenance or replacement of pipeline components. These fittings are forged for superior strength and durability, making them suitable for high-pressure and high-temperature applications.",
+        applications: [
+          "Oil & Gas Industry",
+          "Chemical and Petrochemical Plants",
+          "Power Plants",
+          "Fire Protection Systems",
+          "Water Supply and Plumbing Systems",
+          "High Pressure Systems",
+          "Steam Lines",
+          "Hydraulic Systems",
+          "Instrumentation",
+          "Process Connections",
+        ],
+        specifications: [
+          { property: "Size Range", value: '1/8" to 4"' },
+          { property: "Nut Type", value: "Hexagon" },
+          { property: "Pressure Class", value: "Class 2000, 3000, 6000, 9000" },
+          { property: "Standards", value: "ASME B16.11, MSS SP-79, ASTM Standards" },
+          { property: "Seat", value: "Metal-to-Metal" },
+          { property: "Face Types", value: "NPT, Socket Weld, BSPT" },
+          { property: "Manufacturing Standards", value: "ASME B16.11" }
+        ],
+        materialGrades: {
+          "Stainless Steel": [
+            { grade: "ASTM A182 Grade : F 304" },
+            { grade: "304L" },
+            { grade: "304H" },
+            { grade: "309S" },
+            { grade: "309H" },
+            { grade: "310S" },
+            { grade: "310H" },
+            { grade: "316" },
+            { grade: "316Ti" },
+            { grade: "316H" },
+            { grade: "316L" },
+            { grade: "316LN" },
+            { grade: "317" },
+            { grade: "317L" },
+            { grade: "321" },
+            { grade: "321H" },
+            { grade: "347" },
+            { grade: "347H" },
+            { grade: "904L" },
+            { grade: "F 44" },
+            { grade: "F 45" },
+            { grade: "F51" },
+            { grade: "F 53" },
+            { grade: "F 55" },
+            { grade: "F 60" },
+            { grade: "F 61" }
+          ],
+          "Carbon Steel": [
+            { grade: "ASTM A105" },
+            { grade: "LF2" },
+            { grade: "LF3" },
+            { grade: "LF6" },
+            { grade: "F42" },
+            { grade: "F46" },
+            { grade: "F48" },
+            { grade: "F50" },
+            { grade: "F52" },
+            { grade: "F56" },
+            { grade: "F60" },
+            { grade: "F65" },
+            { grade: "F70" },
+            { grade: "ST37.2" },
+            { grade: "C22.8" },
+            { grade: "S235JRG2" },
+            { grade: "P250GH" }
+          ],
+          "Alloy Steel": [
+            { grade: "ASTM A182 F1" },
+            { grade: "ASTM A182 F5" },
+            { grade: "ASTM A182 F9" },
+            { grade: "ASTM A182 F11" },
+            { grade: "ASTM A182 F22" },
+            { grade: "ASTM A182 F91" },
+            { grade: "AISI 4140" },
+            { grade: "AISI 4130" }
+          ],
+          "Nickel Alloy": [
+            { grade: "ASTM / ASME SB 564 / 160 / 472" },
+            { grade: "SB160" },
+            { grade: "SB472" },
+            { grade: "SB162 Nickel 200 (UNS No. N02200)" },
+            { grade: "Nickel 201 (UNS No. N02201)" },
+            { grade: "Monel 400 (UNS No. N04400)" },
+            { grade: "Monel 500 (UNS No. N05500)" },
+            { grade: "Inconel 800 (UNS No. N08800)" },
+            { grade: "Inconel 825 (UNS No. N08825)" },
+            { grade: "Inconel 600 (UNS No. N06600)" },
+            { grade: "Inconel 625 (UNS No. N06625)" },
+            { grade: "Inconel 601 (UNS No. N06601)" },
+            { grade: "Hastelloy C 276 (UNS No. N10276)" },
+            { grade: "Alloy 20 (UNS No. N08020)" }
+          ],
+        },
+        images: [
+          { src: "images/unionhex-1.png", alt: "Hex Union" },
+          { src: "images/unionhex-2.jpg", alt: "Hex Union" },
+        ],
+      },
+      weldolet: {
+        id: "weldolet",
+        name: "Weldolet",
+        banner: {
+          title: "<span class='text-[#C9A227]'>Weldolet</span>",
+          subtitle: "Forged Welding Outlet Fittings",
+          description: "Forged weldolets for reinforced branch connections",
+          image: "images/weldolet-banner.jpg",
+          features: [
+            "Reinforced Branch",
+            "Butt Weld",
+            "High Strength",
+            "Pressure Rated",
+            "Smooth Flow Transition",
+          ],
+          ctaText: "View Weldolets",
+          color: "#C9A227",
+        },
+        description: "A weldolet is a type of branch connection fitting, belonging to the olet family of forged fittings, used to create a branch outlet from a larger pipe (header) to a smaller pipe at a 90-degree angle. It is designed to provide a strong, leak-proof connection with minimal stress concentration, making it suitable for high-pressure and high-temperature applications. Weldolets are forged fittings known for their strength, durability, and ability to seamlessly integrate into piping systems.",
+        applications: [
+          "Oil & Gas Industry",
+          "Petrochemical Plants",
+          "Power Plants",
+          "Process Industries",
+          "Fire Protection Systems",
+          "High Pressure Branches",
+          "Critical Process Lines",
+          "Boiler Systems",
+          "Refinery Piping",
+          "Power Plant Piping",
+        ],
+        specifications: [
+          { property: "Size Range", value: '1/8" to 4"' },
+          { property: "Type", value: "Butt Weld Outlet" },
+          { property: "Pressure Class", value: "Class 3000, 6000, 9000" },
+          { property: "Standards", value: "MSS SP-97, ASME B16.9, ASME B16.11, ASTM Standards" },
+          { property: "Reinforcement", value: "Integral Pad Reinforcement" },
+          { property: "Face Types", value: "NPT, Socket Weld, BSPT" },
+          { property: "Manufacturing Standards", value: "ASME B16.11" }
+        ],
+        materialGrades: {
+          "Stainless Steel": [
+            { grade: "ASTM A182 Grade : F 304" },
+            { grade: "304L" },
+            { grade: "304H" },
+            { grade: "309S" },
+            { grade: "309H" },
+            { grade: "310S" },
+            { grade: "310H" },
+            { grade: "316" },
+            { grade: "316Ti" },
+            { grade: "316H" },
+            { grade: "316L" },
+            { grade: "316LN" },
+            { grade: "317" },
+            { grade: "317L" },
+            { grade: "321" },
+            { grade: "321H" },
+            { grade: "347" },
+            { grade: "347H" },
+            { grade: "904L" },
+            { grade: "F 44" },
+            { grade: "F 45" },
+            { grade: "F51" },
+            { grade: "F 53" },
+            { grade: "F 55" },
+            { grade: "F 60" },
+            { grade: "F 61" }
+          ],
+          "Carbon Steel": [
+            { grade: "ASTM A105" },
+            { grade: "LF2" },
+            { grade: "LF3" },
+            { grade: "LF6" },
+            { grade: "F42" },
+            { grade: "F46" },
+            { grade: "F48" },
+            { grade: "F50" },
+            { grade: "F52" },
+            { grade: "F56" },
+            { grade: "F60" },
+            { grade: "F65" },
+            { grade: "F70" },
+            { grade: "ST37.2" },
+            { grade: "C22.8" },
+            { grade: "S235JRG2" },
+            { grade: "P250GH" }
+          ],
+          "Alloy Steel": [
+            { grade: "ASTM A182 F1" },
+            { grade: "ASTM A182 F5" },
+            { grade: "ASTM A182 F9" },
+            { grade: "ASTM A182 F11" },
+            { grade: "ASTM A182 F22" },
+            { grade: "ASTM A182 F91" },
+            { grade: "AISI 4140" },
+            { grade: "AISI 4130" }
+          ],
+          "Nickel Alloy": [
+            { grade: "ASTM / ASME SB 564 / 160 / 472" },
+            { grade: "SB160" },
+            { grade: "SB472" },
+            { grade: "SB162 Nickel 200 (UNS No. N02200)" },
+            { grade: "Nickel 201 (UNS No. N02201)" },
+            { grade: "Monel 400 (UNS No. N04400)" },
+            { grade: "Monel 500 (UNS No. N05500)" },
+            { grade: "Inconel 800 (UNS No. N08800)" },
+            { grade: "Inconel 825 (UNS No. N08825)" },
+            { grade: "Inconel 600 (UNS No. N06600)" },
+            { grade: "Inconel 625 (UNS No. N06625)" },
+            { grade: "Inconel 601 (UNS No. N06601)" },
+            { grade: "Hastelloy C 276 (UNS No. N10276)" },
+            { grade: "Alloy 20 (UNS No. N08020)" }
+          ]
+        },
+        images: [
+          { src: "images/weldolet-1.png", alt: "Weldolet" },
+          { src: "images/weldolet-2.png", alt: "Weldolet" },
+        ],
+      },
+    };
+
+    // Banner Variables
+    let currentBannerSlide = 0;
+    let bannerInterval;
+    const bannerDuration = 5000;
+
+    // Initialize the page
+    document.addEventListener("DOMContentLoaded", function () {
+      // Load categories in sidebar
+      loadCategories();
+
+      // Set default product on load
+      const firstProductId = Object.keys(forgedFittingsData)[0];
+      if (firstProductId) {
+        loadProduct(firstProductId);
+      }
+
+      // Initialize banner slider
+      initBannerSlider();
+    });
+
+    // Initialize Banner Slider
+    function initBannerSlider() {
+      const bannerSlides = document.querySelectorAll(".banner-slide");
+      const dots = document.querySelectorAll(".dot");
+
+      // Start automatic sliding
+      startBannerAutoSlide();
+
+      // Add click event to dots
+      dots.forEach((dot, index) => {
+        dot.addEventListener("click", () => {
+          goToBannerSlide(index);
+        });
+      });
+    }
+
+    // Start automatic banner sliding
+    function startBannerAutoSlide() {
+      bannerInterval = setInterval(() => {
+        nextBannerSlide();
+      }, bannerDuration);
+    }
+
+    // Go to specific banner slide
+    function goToBannerSlide(index) {
+      const slides = document.querySelectorAll(".banner-slide");
+      const dots = document.querySelectorAll(".dot");
+
+      // Remove active class from all slides and dots
+      slides.forEach((slide) => slide.classList.remove("active"));
+      dots.forEach((dot) => dot.classList.remove("active"));
+
+      // Add active class to current slide and dot
+      slides[index].classList.add("active");
+      dots[index].classList.add("active");
+
+      // Reset animation for typing text
+      const typingText = slides[index].querySelector(".typing-text");
+      const subtext = slides[index].querySelector(".subtext");
+      const ctaBtn = slides[index].querySelector(".cta-btn");
+
+      // Reset and restart animations
+      [typingText, subtext, ctaBtn].forEach((el) => {
+        if (el) {
+          el.style.animation = "none";
+          setTimeout(() => {
+            el.style.animation = "";
+          }, 10);
+        }
+      });
+
+      currentBannerSlide = index;
+
+      // Reset interval
+      clearInterval(bannerInterval);
+      startBannerAutoSlide();
+    }
+
+    // Go to next banner slide
+    function nextBannerSlide() {
+      const slides = document.querySelectorAll(".banner-slide");
+      currentBannerSlide = (currentBannerSlide + 1) % slides.length;
+      goToBannerSlide(currentBannerSlide);
+    }
+
+    // Load categories into sidebar
+    function loadCategories() {
+      const categoriesContainer =
+        document.getElementById("productCategories");
+      categoriesContainer.innerHTML = "";
+
+      Object.keys(forgedFittingsData).forEach((productId) => {
+        const product = forgedFittingsData[productId];
+        const categoryItem = document.createElement("a");
+        categoryItem.href = "#";
+        categoryItem.className =
+          "sidebar-link block p-4 rounded-lg text-headings hover:text-primary transition-colors";
+        categoryItem.innerHTML = `
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-md bg-icon-light flex items-center justify-center">
+                                <i class="fas fa-cog icon-primary text-sm"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-medium">${product.name}</h3>
+                            </div>
+                        </div>
+                        <i class="fas fa-chevron-right text-gray-400 text-sm"></i>
+                    </div>
+                `;
+
+        categoryItem.addEventListener("click", function (e) {
+          e.preventDefault();
+          // Remove active class from all links
+          document.querySelectorAll(".sidebar-link").forEach((link) => {
+            link.classList.remove("active");
+          });
+          // Add active class to clicked link
+          this.classList.add("active");
+          // Load the product
+          loadProduct(productId);
+        });
+
+        categoriesContainer.appendChild(categoryItem);
+      });
+
+      // Activate first category by default
+      if (categoriesContainer.firstChild) {
+        categoriesContainer.firstChild.classList.add("active");
+      }
+    }
+
+    // Load product details
+    function loadProduct(productId) {
+      const product = forgedFittingsData[productId];
+      if (!product) return;
+
+      // Update banner with product-specific content
+      updateProductBanner(product);
+
+      // Update product content
+      updateProductContent(product);
+    }
+
+    // Update banner with product data
+    function updateProductBanner(product) {
+      const bannerContainer = document.getElementById("dynamic-banner");
+
+      bannerContainer.innerHTML = `
+                <div class="relative max-w-7xl mx-auto h-[540px] rounded-3xl overflow-hidden shadow-2xl">
+                    <div id="product-banner-slider" class="relative w-full h-full">
+                        <div class="banner-slide active">
+                            <img src="${product.banner.image}" class="banner-img" alt="${product.name}" onerror="this.src='https://via.placeholder.com/1200x540/1C1C1C/C9A227?text=Forged+${encodeURIComponent(product.name)}';" />
+                            <div class="overlay"></div>
+                            <div class="content">
+                                <h1 class="typing-text">${product.banner.title}</h1>
+                                <p class="subtext">${product.banner.description}</p>
+                                <a href="#productContent" class="cta-btn">${product.banner.ctaText}</a>
+                            </div>
+                        </div>
+                        
+                        ${product.banner.features
+          .map(
+            (feature, index) => `
+                            <div class="banner-slide">
+                                <img src="${product.banner.image}" class="banner-img" alt="${product.name}" onerror="this.src='https://via.placeholder.com/1200x540/1C1C1C/C9A227?text=Forged+${encodeURIComponent(product.name)}';" />
+                                <div class="overlay"></div>
+                                <div class="content">
+                                    <h1 class="typing-text">${product.name}</h1>
+                                    <p class="subtext">${feature} - ${product.banner.description}</p>
+                                    <a href="#productContent" class="cta-btn">View Specifications</a>
+                                </div>
+                            </div>
+                        `,
+          )
+          .join("")}
+                    </div>
+                    
+                    <div class="absolute bottom-5 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+                        ${Array.from({
+            length: product.banner.features.length + 1,
+          })
+          .map(
+            (_, index) => `
+                            <button class="dot ${index === 0 ? "active" : ""}" data-slide="${index}"></button>
+                        `,
+          )
+          .join("")}
+                    </div>
+                </div>
+            `;
+
+      setTimeout(() => {
+        reinitializeBannerSlider();
+      }, 100);
+    }
+
+    // Reinitialize banner slider after product change
+    function reinitializeBannerSlider() {
+      const slides = document.querySelectorAll(
+        "#dynamic-banner .banner-slide",
+      );
+      const dots = document.querySelectorAll("#dynamic-banner .dot");
+
+      if (bannerInterval) {
+        clearInterval(bannerInterval);
+      }
+
+      currentBannerSlide = 0;
+
+      dots.forEach((dot, index) => {
+        dot.addEventListener("click", () => {
+          goToDynamicBannerSlide(index);
+        });
+      });
+
+      startDynamicBannerAutoSlide();
+    }
+
+    // Go to specific dynamic banner slide
+    function goToDynamicBannerSlide(index) {
+      const slides = document.querySelectorAll(
+        "#dynamic-banner .banner-slide",
+      );
+      const dots = document.querySelectorAll("#dynamic-banner .dot");
+
+      slides.forEach((slide) => slide.classList.remove("active"));
+      dots.forEach((dot) => dot.classList.remove("active"));
+
+      slides[index].classList.add("active");
+      dots[index].classList.add("active");
+
+      const typingText = slides[index].querySelector(".typing-text");
+      const subtext = slides[index].querySelector(".subtext");
+      const ctaBtn = slides[index].querySelector(".cta-btn");
+
+      [typingText, subtext, ctaBtn].forEach((el) => {
+        if (el) {
+          el.style.animation = "none";
+          setTimeout(() => {
+            el.style.animation = "";
+          }, 10);
+        }
+      });
+
+      currentBannerSlide = index;
+
+      clearInterval(bannerInterval);
+      startDynamicBannerAutoSlide();
+    }
+
+    // Start automatic dynamic banner sliding
+    function startDynamicBannerAutoSlide() {
+      bannerInterval = setInterval(() => {
+        nextDynamicBannerSlide();
+      }, bannerDuration);
+    }
+
+    // Go to next dynamic banner slide
+    function nextDynamicBannerSlide() {
+      const slides = document.querySelectorAll(
+        "#dynamic-banner .banner-slide",
+      );
+      currentBannerSlide = (currentBannerSlide + 1) % slides.length;
+      goToDynamicBannerSlide(currentBannerSlide);
+    }
+
+    // Update product content area
+    function updateProductContent(product) {
+      const content = document.getElementById("productContent");
+
+      content.innerHTML = `
+                <div class="fade-in">
+                    <!-- Product Header -->
+                    <div class="border-b border-accent pb-6 mb-8">
+                        <div class="flex flex-col lg:flex-row justify-between items-start gap-4">
+                            <div class="flex-1">
+                                <div class="flex items-center gap-3 mb-4">
+                                    <div class="w-12 h-12 rounded-lg bg-icon-light flex items-center justify-center">
+                                        <i class="fas fa-industry icon-primary text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <h1 class="text-2xl font-semibold text-headings">${product.name}</h1>
+                                        <p class="text-gray-600 mt-2">${product.description}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex-shrink-0">
+                                <a href="contact.html">
+                                    <button
+                                        class="bg-primary hover:bg-headings text-white font-medium px-6 py-3 rounded-lg transition-all duration-300 flex items-center gap-2"
+                                    >
+                                        <i class="fas fa-file-alt"></i>
+                                        Request Quote
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Tabs -->
+                    <div class="mb-8">
+                        <div class="flex flex-wrap border-b border-accent" id="tabsContainer">
+                            <button class="tab-button py-4 px-6 font-medium" onclick="showTab('overview')">Overview</button>
+                            <button class="tab-button py-4 px-6 font-medium" onclick="showTab('specifications')">Specifications</button>
+                            <button class="tab-button py-4 px-6 font-medium" onclick="showTab('applications')">Applications</button>
+                            <button class="tab-button py-4 px-6 font-medium" onclick="showTab('material-grades')">Material Grades</button>
+                        </div>
+                        
+                        <!-- Tab Content -->
+                        <div id="tabContent" class="mt-8">
+                            <!-- Content will be populated by showTab function -->
+                        </div>
+                    </div>
+                    
+                    <!-- Product Images -->
+                    <div class="border-t border-accent pt-8">
+                        <h3 class="text-lg font-semibold text-headings mb-6">Product Gallery</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            ${product.images
+          .map(
+            (img) => `
+                                <div class="product-card rounded-lg overflow-hidden">
+                                    <img src="${img.src}" alt="${img.alt}" 
+                                         class="w-full h-64 object-cover bg-accent"
+                                         onerror="this.onerror=null; this.src='https://via.placeholder.com/400x300/CCC/666?text=Forged+${encodeURIComponent(img.alt)}';">
+                                    <div class="p-4">
+                                        <p class="font-medium text-headings text-center">${img.alt}</p>
+                                    </div>
+                                </div>
+                            `,
+          )
+          .join("")}
+                        </div>
+                    </div>
+                </div>
+            `;
+
+      initializeTabs(product);
+
+      setTimeout(() => {
+        document.getElementById("productContent").scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }, 300);
+    }
+
+    // Initialize tab system
+    function initializeTabs(product) {
+      document
+        .querySelectorAll("#tabsContainer .tab-button")
+        .forEach((btn, index) => {
+          if (index === 0) {
+            btn.classList.add("active");
+          } else {
+            btn.classList.remove("active");
+          }
+        });
+
+      showTab("overview", product);
+    }
+
+    // Tab display function
+    window.showTab = function (tabName, productParam = null) {
+      const product = productParam || getCurrentProduct();
+      if (!product) return;
+
+      document
+        .querySelectorAll("#tabsContainer .tab-button")
+        .forEach((btn, index) => {
+          if (
+            (index === 0 && tabName === "overview") ||
+            (index === 1 && tabName === "specifications") ||
+            (index === 2 && tabName === "applications") ||
+            (index === 3 && tabName === "material-grades")
+          ) {
+            btn.classList.add("active");
+          } else {
+            btn.classList.remove("active");
+          }
+        });
+
+      let tabContent = "";
+
+      switch (tabName) {
+        case "overview":
+          tabContent = `
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                            <div>
+                                <h4 class="text-lg font-semibold text-headings mb-4">Product Description</h4>
+                                <p class="text-gray-700 mb-6">${product.description}</p>
+                                <div>
+                                    <h4 class="text-lg font-normal text-headings mb-5">Key Features</h4>
+                                    <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                        ${product.banner.features
+              .map(
+                (feature) => `
+                                            <li class="flex items-center gap-4 p-4 rounded-xl
+                                                bg-gradient-to-r from-[#FFF9E6] to-white
+                                                border border-[#FFEFBF]
+                                                shadow-sm hover:shadow-md transition">
+                                                <div class="w-9 h-9 rounded-full bg-[#C9A227] 
+                                                    flex items-center justify-center flex-shrink-0">
+                                                    <i class="fas fa-check text-white text-sm"></i>
+                                                </div>
+                                                <span class="font-medium text-gray-800 text-sm leading-snug">
+                                                    ${feature}
+                                                </span>
+                                            </li>
+                                        `,
+              )
+              .join("")}
+                                    </ul>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="bg-accent rounded-lg p-6">
+                                    <h4 class="text-lg font-semibold text-headings mb-4">Forging Advantages</h4>
+                                    <ul class="space-y-4">
+                                        <li class="flex items-start">
+                                            <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center mr-4">
+                                                <i class="fas fa-hammer icon-primary"></i>
+                                            </div>
+                                            <div>
+                                                <h5 class="font-medium text-headings">Superior Strength</h5>
+                                                <p class="text-sm text-gray-600 mt-1">Forging process enhances mechanical properties</p>
+                                            </div>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center mr-4">
+                                                <i class="fas fa-shield-alt icon-primary"></i>
+                                            </div>
+                                            <div>
+                                                <h5 class="font-medium text-headings">High Pressure Rating</h5>
+                                                <p class="text-sm text-gray-600 mt-1">Rated for Class 2000 to 6000 pressure</p>
+                                            </div>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center mr-4">
+                                                <i class="fas fa-certificate icon-primary"></i>
+                                            </div>
+                                            <div>
+                                                <h5 class="font-medium text-headings">Quality Assurance</h5>
+                                                <p class="text-sm text-gray-600 mt-1">100% material traceability and testing</p>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+          break;
+
+        case "specifications":
+          tabContent = `
+                        <div class="overflow-x-auto">
+                            <table class="specs-table">
+                                <thead>
+                                    <tr>
+                                        <th>Property</th>
+                                        <th>Specification</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    ${product.specifications
+              .map(
+                (spec) => `
+                                        <tr>
+                                            <td class="font-medium">${spec.property}</td>
+                                            <td>${spec.value}</td>
+                                        </tr>
+                                    `,
+              )
+              .join("")}
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="mt-6 p-5 bg-icon-light rounded-lg border border-icon-light">
+                            <div class="flex items-start gap-3">
+                                <i class="fas fa-info-circle icon-primary text-lg mt-1"></i>
+                                <div>
+                                    <p class="text-sm text-gray-700">
+                                        <strong>Note:</strong> Custom specifications and special materials available upon request. Contact our engineering team for forged fittings with special requirements.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+          break;
+
+        case "applications":
+          tabContent = `
+                        <div class="mb-8">
+                            <h4 class="text-lg font-semibold text-headings mb-6">Industry Applications</h4>
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                                ${product.applications
+              .map(
+                (app) => `
+                                    <div class="bg-white border border-accent rounded-lg p-4 hover:border-icon transition-all duration-300">
+                                        <div class="flex items-center">
+                                            <div class="w-10 h-10 rounded-lg bg-icon-light flex items-center justify-center mr-4">
+                                                <i class="fas fa-industry icon-primary"></i>
+                                            </div>
+                                            <span class="font-medium text-headings">${app}</span>
+                                        </div>
+                                    </div>
+                                `,
+              )
+              .join("")}
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-semibold text-headings mb-6">Forged Fittings Benefits</h4>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="p-5 rounded-lg bg-white border border-accent">
+                                    <div class="flex items-center gap-3 mb-4">
+                                        <div class="w-10 h-10 rounded-lg bg-green-50 flex items-center justify-center">
+                                            <i class="fas fa-gem text-green-600"></i>
+                                        </div>
+                                        <h5 class="font-semibold text-lg text-headings">Enhanced Durability</h5>
+                                    </div>
+                                    <p class="text-gray-600">Forged construction provides superior grain structure, increasing fatigue resistance and service life.</p>
+                                </div>
+                                <div class="p-5 rounded-lg bg-white border border-accent">
+                                    <div class="flex items-center gap-3 mb-4">
+                                        <div class="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center">
+                                            <i class="fas fa-tachometer-alt text-blue-600"></i>
+                                        </div>
+                                        <h5 class="font-semibold text-lg text-headings">High Pressure Capability</h5>
+                                    </div>
+                                    <p class="text-gray-600">Designed to withstand extreme pressure and temperature conditions in critical applications.</p>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+          break;
+
+        case "material-grades":
+          tabContent = `
+        <div class="space-y-8">
+            ${Object.entries(product.materialGrades)
+              .map(([materialType, grades]) => {
+                return `
+                    <div>
+                        <h3 class="text-xl font-bold text-headings mb-4 pb-2 border-b border-accent">${materialType}</h3>
+                        <div class="overflow-x-auto">
+                            <table class="w-full border-collapse">
+                                <tbody>
+                                    ${(() => {
+                    let rowsHTML = "";
+                    const rowSize = 5; // CHANGED FROM 4 TO 5
+
+                    for (let i = 0; i < grades.length; i += rowSize) {
+                      const rowGrades = grades.slice(i, i + rowSize);
+                      rowsHTML += `
+                                                <tr>
+                                                    ${rowGrades.map(grade => `
+                                                        <td class="border border-accent p-3 text-center align-middle">
+                                                            <div class="font-medium text-gray-800">${grade.grade}</div>
+                                                        </td>
+                                                    `).join("")}
+                                                    ${Array(rowSize - rowGrades.length).fill('<td class="border border-accent p-3"></td>').join("")}
+                                                </tr>
+                                            `;
+                    }
+                    return rowsHTML;
+                  })()}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                `;
+              }).join("")}
+        </div>
+        <div class="mt-8 p-5 bg-primary text-white rounded-lg">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div>
+                    <h5 class="font-bold text-lg mb-2">Need Special Materials?</h5>
+                    <p class="text-gray-300">
+                        We can manufacture forged fittings in additional material grades including duplex, super duplex, and nickel alloys upon request.
+                    </p>
+                </div>
+                <a href="contact.html">
+                    <button
+                        class="bg-white text-primary hover:bg-accent font-medium px-6 py-3 rounded-lg transition-all duration-300"
+                    >
+                        Request Material Information
+                    </button>
+                </a>
+            </div>
+        </div>
+    `;
+          break;
+      }
+
+      document.getElementById("tabContent").innerHTML = tabContent;
+      document.getElementById("tabContent").classList.add("fade-in");
+
+      setTimeout(() => {
+        document.getElementById("tabContent").classList.remove("fade-in");
+      }, 500);
+    };
+
+    // Helper function to get current product
+    function getCurrentProduct() {
+      const activeLink = document.querySelector(".sidebar-link.active");
+      if (!activeLink) {
+        const firstProductId = Object.keys(forgedFittingsData)[0];
+        return forgedFittingsData[firstProductId];
+      }
+
+      const productName = activeLink.querySelector("h3").textContent;
+      return Object.values(forgedFittingsData).find(
+        (product) => product.name === productName,
+      );
+    }
+  </script>
+  <script src="header/header.js"></script>
+  <script src="footer/footer.js"></script>
+</body>
+
+</html>
