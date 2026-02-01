@@ -1,0 +1,2117 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Naavera | Forged Flanges Catalog</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#1C1C1C",
+                        background: "#f9f7f3",
+                        accent: "#e6e2d8",
+                        headings: "#111111",
+                        icon: "#C9A227",
+                    },
+
+                    fontFamily: {
+                        heading: ['"Alan Sans"', "sans-serif"],
+                        serif: ['"DM Serif Text"', "serif"],
+                        body: ['"Noto Sans"', "sans-serif"],
+                        editorial: ['"Noto Serif"', "serif"],
+                    },
+                },
+            },
+        };
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <style>
+        :root {
+            --primary: #1c1c1c;
+            --background: #f9f7f3;
+            --accent: #e6e2d8;
+            --headings: #111111;
+            --icon: #c9a227;
+        }
+
+        body {
+            font-family: "Inter", sans-serif;
+            background-color: var(--background);
+            color: var(--headings);
+        }
+
+        /* Fixed Height Scrollable Sidebar */
+        .sidebar-container {
+            max-height: calc(100vh - 160px);
+            overflow-y: auto;
+        }
+
+        .sidebar-container::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .sidebar-container::-webkit-scrollbar-track {
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        .sidebar-container::-webkit-scrollbar-thumb {
+            background: var(--icon);
+            border-radius: 2px;
+        }
+
+        .sidebar-link {
+            transition: all 0.2s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .sidebar-link.active {
+            background-color: rgba(201, 162, 39, 0.08);
+            border-left: 3px solid var(--icon);
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        .sidebar-link:hover:not(.active) {
+            background-color: rgba(201, 162, 39, 0.05);
+            border-left: 3px solid rgba(201, 162, 39, 0.3);
+        }
+
+        /* Minimal Product Cards */
+        .product-card {
+            transition: all 0.3s ease;
+            border: 1px solid var(--accent);
+            background: white;
+        }
+
+        .product-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(28, 28, 28, 0.08);
+            border-color: var(--icon);
+        }
+
+        /* Tables Styling - Updated with grids and rounded corners */
+        .specs-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            border: 1px solid var(--accent);
+            border-radius: 8px;
+            overflow: hidden;
+            background: white;
+        }
+
+        .specs-table th {
+            background-color: var(--accent);
+            color: var(--primary);
+            font-weight: 500;
+            text-align: left;
+            padding: 12px 16px;
+            border-right: 1px solid rgba(0, 0, 0, 0.1);
+            border-bottom: 2px solid var(--icon);
+        }
+
+        .specs-table th:last-child {
+            border-right: none;
+        }
+
+        .specs-table td {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--accent);
+            border-right: 1px solid var(--accent);
+        }
+
+        .specs-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .specs-table td:last-child {
+            border-right: none;
+        }
+
+        .specs-table tr:hover {
+            background-color: rgba(230, 226, 216, 0.3);
+        }
+
+        /* Material Grades Tables - Updated with grids and rounded corners */
+        .material-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            border: 1px solid var(--accent);
+            border-radius: 8px;
+            overflow: hidden;
+            background: white;
+        }
+
+        .material-table th {
+            background-color: rgba(230, 226, 216, 0.5);
+            color: var(--primary);
+            font-weight: 500;
+            padding: 14px 16px;
+            text-align: left;
+            border-right: 1px solid rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid var(--accent);
+        }
+
+        .material-table th:last-child {
+            border-right: none;
+        }
+
+        .material-table td {
+            padding: 12px 16px;
+            border-top: 1px solid var(--accent);
+            border-right: 1px solid var(--accent);
+        }
+
+        .material-table tr:first-child td {
+            border-top: none;
+        }
+
+        .material-table td:last-child {
+            border-right: none;
+        }
+
+        /* Tab Styling */
+        .tab-button {
+            transition: all 0.2s ease;
+            position: relative;
+            color: #666;
+        }
+
+        .tab-button.active {
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        .tab-button.active::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--icon);
+        }
+
+        /* Animations */
+        .fade-in {
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Banner Styles */
+        .banner-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s ease;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right,
+                    rgba(0, 0, 0, 0.7) 0%,
+                    rgba(0, 0, 0, 0.3) 100%);
+        }
+
+        .banner-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        .banner-slide.active {
+            opacity: 1;
+        }
+
+        .content {
+            position: absolute;
+            top: 50%;
+            left: 10%;
+            transform: translateY(-50%);
+            color: white;
+            z-index: 10;
+            max-width: 600px;
+        }
+
+        .typing-text {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            opacity: 0;
+            animation: typing 1s ease forwards;
+        }
+
+        .subtext {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeUp 0.8s ease 0.5s forwards;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background: var(--icon);
+            color: var(--primary);
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: fadeUp 0.8s ease 0.8s forwards;
+            border: 2px solid var(--icon);
+        }
+
+        .cta-btn:hover {
+            background: transparent;
+            color: white;
+            border-color: white;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            background: white;
+            transform: scale(1.2);
+        }
+
+        @keyframes typing {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Icon Styling */
+        .icon-primary {
+            color: var(--icon);
+        }
+
+        .bg-icon-light {
+            background-color: rgba(201, 162, 39, 0.08);
+        }
+
+        .border-icon-light {
+            border-color: rgba(201, 162, 39, 0.2);
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .typing-text {
+                font-size: 2.5rem;
+            }
+
+            .subtext {
+                font-size: 1rem;
+            }
+
+            .content {
+                left: 5%;
+                padding-right: 5%;
+            }
+
+            .specs-table th,
+            .specs-table td,
+            .material-table th,
+            .material-table td {
+                padding: 8px 12px;
+                font-size: 0.875rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .typing-text {
+                font-size: 2rem;
+            }
+
+            .content {
+                left: 3%;
+                padding-right: 3%;
+            }
+
+            .tab-button {
+                padding: 12px 8px;
+                font-size: 0.875rem;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-background">
+    <!-- Header -->
+    <div id="header"></div>
+
+    <!-- Banner Section -->
+    <section class="pt-1 pb-12 bg-slate-50 px-1 sm:px-1" id="dynamic-banner">
+        <!-- Banner content will be loaded dynamically based on selected product -->
+    </section>
+
+    <!-- Main Container -->
+    <div class="container mx-auto px-4 py-6 flex flex-col lg:flex-row gap-6">
+        <!-- Sidebar -->
+        <div class="lg:w-1/4">
+            <div class="bg-white rounded-lg border border-accent shadow-sm p-5 sticky top-6">
+                <div class="flex items-center justify-between mb-6">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-lg bg-icon-light flex items-center justify-center">
+                            <i class="fas fa-industry icon-primary"></i>
+                        </div>
+                        <h2 class="text-xl font-semibold text-headings">
+                            Forged Fittings
+                        </h2>
+                    </div>
+                </div>
+
+                <!-- Scrollable Product List -->
+                <div class="sidebar-container">
+                    <nav class="space-y-2" id="productCategories">
+                        <!-- Categories will be populated by JavaScript -->
+                    </nav>
+                </div>
+
+                <!-- Contact Info Sidebar -->
+                <div class="mt-8 pt-6 border-t border-accent">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-full bg-icon-light flex items-center justify-center">
+                            <i class="fas fa-headset icon-primary"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-headings">Technical Support</h3>
+                            <p class="text-xs text-gray-500">Available 24/7</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-4">
+                        Our experts are ready to help you select the right forged
+                        fittings.
+                    </p>
+                    <a href="contact.html"
+                        class="w-full bg-primary hover:bg-headings text-white py-3 rounded-lg transition-all duration-300 flex items-center justify-center gap-2">
+                        <i class="fas fa-comments"></i>
+                        Contact Team
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="lg:w-3/4">
+            <!-- Product Details Area -->
+            <div class="bg-white rounded-lg border border-accent shadow-sm p-6 fade-in" id="productContent">
+                <!-- Content will be loaded dynamically -->
+                <div class="text-center py-12">
+                    <div class="w-20 h-20 rounded-full bg-accent mx-auto mb-4 flex items-center justify-center">
+                        <i class="fas fa-industry text-gray-400 text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl text-headings mb-2">Forged Fittings Catalog</h3>
+                    <p class="text-gray-500 max-w-md mx-auto">
+                        Select a forged fitting from the sidebar to view detailed
+                        specifications and material information.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- COMMON FOOTER -->
+    <div id="footer"></div>
+
+    <!-- JavaScript -->
+    <script>
+        // Forged Flanges Data Structure
+        const forgedFlangesData = {
+            "blind": {
+                id: "blind",
+                name: "Blind",
+                banner: {
+                    title: "Forged <span class='text-[#C9A227]'>Blind Flanges</span>",
+                    subtitle: "Navera, Manufacturer, Exporter & Supplier",
+                    description: "High-quality forged blind flanges for sealing pipe ends and valves",
+                    image: "images/blind-banner.png",
+                    features: [
+                        "High Strength Forging",
+                        "Leak-Proof Design",
+                        "Pressure & Temperature Resistant",
+                        "Easy Maintenance",
+                    ],
+                    ctaText: "View Blind Flanges",
+                    color: "#C9A227",
+                },
+                description: "Blind forged flanges seal pipe ends and valves, blocking off pipeline sections during operations or maintenance to prevent leaks.",
+                applications: [
+                    "Oil & Gas Industry",
+                    "Power Generation",
+                    "Chemical Plants",
+                    "Petroleum Refineries",
+                    "High Pressure Systems",
+                    "Maintenance Operations",
+                ],
+                specifications: [
+                    { property: "Size Range", value: '1/2" to 60"' },
+                    { property: "Pressure Rating", value: "150LBS to 2500LBS / PN10 to PN400" },
+                    { property: "Face Types", value: "RF, FF, RTJ" },
+                    { property: "Standards", value: "ASME B16.5, ASME B16.36, ASME B16.48, ASME B16.47, EN1092-1" },
+                ],
+                materialGrades: {
+                    "Stainless Steel": [
+                        { grade: "ASTM A182 Grade : F 304" },
+                        { grade: "304L" },
+                        { grade: "304H" },
+                        { grade: "309S" },
+                        { grade: "309H" },
+                        { grade: "310S" },
+                        { grade: "310H" },
+                        { grade: "316" },
+                        { grade: "316Ti" },
+                        { grade: "316H" },
+                        { grade: "316L" },
+                        { grade: "316LN" },
+                        { grade: "317" },
+                        { grade: "317L" },
+                        { grade: "321" },
+                        { grade: "321H" },
+                        { grade: "347" },
+                        { grade: "347H" },
+                        { grade: "904L" },
+                        { grade: "F 44" },
+                        { grade: "F 45" },
+                        { grade: "F51" },
+                        { grade: "F 53" },
+                        { grade: "F 55" },
+                        { grade: "F 60" },
+                        { grade: "F 61" },
+                    ],
+                    "Carbon Steel": [
+                        { grade: "ASTM A105" },
+                        { grade: "LF2" },
+                        { grade: "LF3" },
+                        { grade: "LF6" },
+                        { grade: "F42" },
+                        { grade: "F46" },
+                        { grade: "F48" },
+                        { grade: "F50" },
+                        { grade: "F52" },
+                        { grade: "F56" },
+                        { grade: "F60" },
+                        { grade: "F65" },
+                        { grade: "F70" },
+                        { grade: "ST37.2" },
+                        { grade: "C22.8" },
+                        { grade: "S235JRG2" },
+                        { grade: "P250GH" },
+                    ],
+                    "Alloy Steel": [
+                        { grade: "ASTM A182 F1" },
+                        { grade: "ASTM A182 F5" },
+                        { grade: "ASTM A182 F9" },
+                        { grade: "ASTM A182 F11" },
+                        { grade: "ASTM A182 F22" },
+                        { grade: "ASTM A182 F91" },
+                        { grade: "AISI 4140" },
+                        { grade: "AISI 4130" },
+                    ],
+                    "Nickel Alloy": [
+                        { grade: "ASTM / ASME SB 564 / 160 / 472 ASTM SB564" },
+                        { grade: "SB160" },
+                        { grade: "SB472" },
+                        { grade: "SB162 Nickel 200 (UNS No. N02200)" },
+                        { grade: "Nickel 201 (UNS No. N02201)" },
+                        { grade: "Monel 400 (UNS No. N04400)" },
+                        { grade: "Monel 500 (UNS No. N05500)" },
+                        { grade: "Inconel 800 (UNS No. N08800)" },
+                        { grade: "Inconel 825 (UNS No. N08825)" },
+                        { grade: "Inconel 600 (UNS No. N06600)" },
+                        { grade: "Inconel 625 (UNS No. N06625)" },
+                        { grade: "Inconel 601 (UNS No. N06601)" },
+                        { grade: "Hastelloy C 276 (UNS No.N10276)" },
+                        { grade: "Alloy 20 (UNS No. N08020)" },
+                    ],
+                },
+                images: [
+                    { src: "images/blind-1.png", alt: "Forged Blind Flange" },
+                    { src: "images/blind-2.jpg", alt: "Blind Flange Dimensions" },
+                ],
+            },
+            "lap": {
+                id: "lap",
+                name: "LAP",
+                banner: {
+                    title: "LAP <span class='text-[#C9A227]'>Forged Flanges</span>",
+                    subtitle: "Navera, Manufacturer, Exporter & Supplier",
+                    description: "LAP forged flanges for piping systems requiring alignment and easy disassembly",
+                    image: "images/lap-banner.png",
+                    features: [
+                        "Easy Alignment",
+                        "Reduced Stress",
+                        "Reusable Design",
+                        "Corrosion Resistant",
+                        "Rotational Flexibility"
+                    ],
+                    ctaText: "View LAP Flanges",
+                    color: "#C9A227",
+                },
+                description: "LAP forged flanges connect, support, or block piping systems with easy rotational alignment. Ideal for systems requiring frequent disassembly or realignment.",
+                applications: [
+                    "Oil & Gas Industry",
+                    "Chemical Plants",
+                    "Food Processing",
+                    "Systems Requiring Frequent Disassembly",
+                    "Applications Needing Alignment Flexibility"
+                ],
+                specifications: [
+                    { property: "Size Range", value: '1/2" to 60"' },
+                    { property: "Pressure Rating", value: "150LBS to 2500LBS / PN10 to PN400" },
+                    { property: "Face Types", value: "RF, FF, RTJ" },
+                    { property: "Standards", value: "ASME B16.5, EN 1092-1, MSS-SP-44" },
+                    { property: "Manufacturing Standards", value: "ASME B16.5, ASME B16.36, ASME B16.48, ASME B16.47, EN1092-1, NORSOK" }
+                ],
+                materialGrades: {
+                    "Stainless Steel": [
+                        { grade: "ASTM A182 Grade : F 304" },
+                        { grade: "304L" },
+                        { grade: "304H" },
+                        { grade: "309S" },
+                        { grade: "309H" },
+                        { grade: "310S" },
+                        { grade: "310H" },
+                        { grade: "316" },
+                        { grade: "316Ti" },
+                        { grade: "316H" },
+                        { grade: "316L" },
+                        { grade: "316LN" },
+                        { grade: "317" },
+                        { grade: "317L" },
+                        { grade: "321" },
+                        { grade: "321H" },
+                        { grade: "347" },
+                        { grade: "347H" },
+                        { grade: "904L" },
+                        { grade: "F 44" },
+                        { grade: "F 45" },
+                        { grade: "F51" },
+                        { grade: "F 53" },
+                        { grade: "F 55" },
+                        { grade: "F 60" },
+                        { grade: "F 61" }
+                    ],
+                    "Carbon Steel": [
+                        { grade: "ASTM A105" },
+                        { grade: "LF2" },
+                        { grade: "LF3" },
+                        { grade: "LF6" },
+                        { grade: "F42" },
+                        { grade: "F46" },
+                        { grade: "F48" },
+                        { grade: "F50" },
+                        { grade: "F52" },
+                        { grade: "F56" },
+                        { grade: "F60" },
+                        { grade: "F65" },
+                        { grade: "F70" },
+                        { grade: "ST37.2" },
+                        { grade: "C22.8" },
+                        { grade: "S235JRG2" },
+                        { grade: "P250GH" }
+                    ],
+                    "Alloy Steel": [
+                        { grade: "ASTM A182 F1" },
+                        { grade: "ASTM A182 F5" },
+                        { grade: "ASTM A182 F9" },
+                        { grade: "ASTM A182 F11" },
+                        { grade: "ASTM A182 F22" },
+                        { grade: "ASTM A182 F91" },
+                        { grade: "AISI 4140" },
+                        { grade: "AISI 4130" }
+                    ],
+                    "Nickel Alloy": [
+                        { grade: "ASTM / ASME SB 564 / 160 / 472 ASTM SB564" },
+                        { grade: "SB160" },
+                        { grade: "SB472" },
+                        { grade: "SB162 Nickel 200 (UNS No. N02200)" },
+                        { grade: "Nickel 201 (UNS No. N02201)" },
+                        { grade: "Monel 400 (UNS No. N04400)" },
+                        { grade: "Monel 500 (UNS No. N05500)" },
+                        { grade: "Inconel 800 (UNS No. N08800)" },
+                        { grade: "Inconel 825 (UNS No. N08825)" },
+                        { grade: "Inconel 600 (UNS No. N06600)" },
+                        { grade: "Inconel 625 (UNS No. N06625)" },
+                        { grade: "Inconel 601 (UNS No. N06601)" },
+                        { grade: "Hastelloy C 276 (UNS No.N10276)" },
+                        { grade: "Alloy 20 (UNS No. N08020)" }
+                    ]
+                },
+                images: [
+                    { src: "images/lap-1.png", alt: "LAP Forged Flange" },
+                    { src: "images/lap-2.jpg", alt: "LAP Flange " },
+                ],
+            },
+            "lwnrf": {
+                id: "lwnrf",
+                name: "LWNRF",
+                banner: {
+                    title: "LWNRF <span class='text-[#C9A227]'>Forged Flanges</span>",
+                    subtitle: "Navera, Manufacturer, Exporter & Supplier",
+                    description: "Long Weld Neck Raised Face flanges for high-pressure piping systems",
+                    image: "images/LWNRF - banner.jfif",
+                    features: [
+                        "Long Weld Neck",
+                        "Raised Face Design",
+                        "High Pressure Rating",
+                        "Stress Reduction",
+                        "Reliable Sealing"
+                    ],
+                    ctaText: "View LWNRF Flanges",
+                    color: "#C9A227",
+                },
+                description: "LWNRF forged flanges are Long Weld Neck Raised Face components for high-pressure piping systems. The long neck distributes pressure evenly for reliable performance in demanding applications.",
+                applications: [
+                    "Oil & Gas Industry",
+                    "Power Generation",
+                    "Petrochemical Plants",
+                    "High Pressure Systems",
+                    "High Temperature Environments"
+                ],
+                specifications: [
+                    { property: "Size Range", value: '1/2" to 60"' },
+                    { property: "Pressure Rating", value: "150LBS to 2500LBS / PN10 to PN400" },
+                    { property: "Face Types", value: "RF, FF, RTJ" },
+                    { property: "Standards", value: "ASME B16.5, ASME B16.47, API 6A" },
+                    { property: "Manufacturing Standards", value: "ASME B16.5, ASME B16.36, ASME B16.48, ASME B16.47, EN1092-1, NORSOK" }
+                ],
+                materialGrades: {
+                    "Stainless Steel": [
+                        { grade: "ASTM A182 Grade : F 304" },
+                        { grade: "304L" },
+                        { grade: "304H" },
+                        { grade: "309S" },
+                        { grade: "309H" },
+                        { grade: "310S" },
+                        { grade: "310H" },
+                        { grade: "316" },
+                        { grade: "316Ti" },
+                        { grade: "316H" },
+                        { grade: "316L" },
+                        { grade: "316LN" },
+                        { grade: "317" },
+                        { grade: "317L" },
+                        { grade: "321" },
+                        { grade: "321H" },
+                        { grade: "347" },
+                        { grade: "347H" },
+                        { grade: "904L" },
+                        { grade: "F 44" },
+                        { grade: "F 45" },
+                        { grade: "F51" },
+                        { grade: "F 53" },
+                        { grade: "F 55" },
+                        { grade: "F 60" },
+                        { grade: "F 61" }
+                    ],
+                    "Carbon Steel": [
+                        { grade: "ASTM A105" },
+                        { grade: "LF2" },
+                        { grade: "LF3" },
+                        { grade: "LF6" },
+                        { grade: "F42" },
+                        { grade: "F46" },
+                        { grade: "F48" },
+                        { grade: "F50" },
+                        { grade: "F52" },
+                        { grade: "F56" },
+                        { grade: "F60" },
+                        { grade: "F65" },
+                        { grade: "F70" },
+                        { grade: "ST37.2" },
+                        { grade: "C22.8" },
+                        { grade: "S235JRG2" },
+                        { grade: "P250GH" }
+                    ],
+                    "Alloy Steel": [
+                        { grade: "ASTM A182 F1" },
+                        { grade: "ASTM A182 F5" },
+                        { grade: "ASTM A182 F9" },
+                        { grade: "ASTM A182 F11" },
+                        { grade: "ASTM A182 F22" },
+                        { grade: "ASTM A182 F91" },
+                        { grade: "AISI 4140" },
+                        { grade: "AISI 4130" }
+                    ],
+                    "Nickel Alloy": [
+                        { grade: "ASTM / ASME SB 564 / 160 / 472 ASTM SB564" },
+                        { grade: "SB160" },
+                        { grade: "SB472" },
+                        { grade: "SB162 Nickel 200 (UNS No. N02200)" },
+                        { grade: "Nickel 201 (UNS No. N02201)" },
+                        { grade: "Monel 400 (UNS No. N04400)" },
+                        { grade: "Monel 500 (UNS No. N05500)" },
+                        { grade: "Inconel 800 (UNS No. N08800)" },
+                        { grade: "Inconel 825 (UNS No. N08825)" },
+                        { grade: "Inconel 600 (UNS No. N06600)" },
+                        { grade: "Inconel 625 (UNS No. N06625)" },
+                        { grade: "Inconel 601 (UNS No. N06601)" },
+                        { grade: "Hastelloy C 276 (UNS No.N10276)" },
+                        { grade: "Alloy 20 (UNS No. N08020)" }
+                    ]
+                },
+                images: [
+                    { src: "images/LWNRF - 1.jpg", alt: "LWNRF Forged Flange" },
+                    { src: "images/LWNRF - 2.jpg", alt: "LWNRF Flange Dimensions" },
+                ],
+            },
+            "sorf": {
+                id: "sorf",
+                name: "SORF",
+                banner: {
+                    title: "SORF <span class='text-[#C9A227]'>Forged Flanges</span>",
+                    subtitle: "Navera, Manufacturer, Exporter & Supplier",
+                    description: "Slip-On Raised Face flanges for low to medium pressure applications",
+                    image: "images/blind-banner.png",
+                    features: [
+                        "Easy Installation",
+                        "Cost-Effective",
+                        "Forged Strength",
+                        "Leak-Resistant",
+                        "Raised Face Design"
+                    ],
+                    ctaText: "View SORF Flanges",
+                    color: "#C9A227",
+                },
+                description: "SORF forged flanges are Slip-On Raised Face components for low to medium pressure piping systems. The slip-on design simplifies installation while forged construction enhances durability.",
+                applications: [
+                    "Oil & Gas Industry",
+                    "Water Treatment",
+                    "Chemical Plants",
+                    "HVAC Systems",
+                    "Low to Medium Pressure Applications"
+                ],
+                specifications: [
+                    { property: "Size Range", value: '1/2" to 60"' },
+                    { property: "Pressure Rating", value: "150LBS to 2500LBS / PN10 to PN400" },
+                    { property: "Face Types", value: "RF, FF, RTJ" },
+                    { property: "Standards", value: "ASME B16.5, EN 1092-1, ANSI/ASME B16.47" },
+                    { property: "Manufacturing Standards", value: "ASME B16.5, ASME B16.36, ASME B16.48, ASME B16.47, EN1092-1, NORSOK" }
+                ],
+                materialGrades: {
+                    "Stainless Steel": [
+                        { grade: "ASTM A182 Grade : F 304" },
+                        { grade: "304L" },
+                        { grade: "304H" },
+                        { grade: "309S" },
+                        { grade: "309H" },
+                        { grade: "310S" },
+                        { grade: "310H" },
+                        { grade: "316" },
+                        { grade: "316Ti" },
+                        { grade: "316H" },
+                        { grade: "316L" },
+                        { grade: "316LN" },
+                        { grade: "317" },
+                        { grade: "317L" },
+                        { grade: "321" },
+                        { grade: "321H" },
+                        { grade: "347" },
+                        { grade: "347H" },
+                        { grade: "904L" },
+                        { grade: "F 44" },
+                        { grade: "F 45" },
+                        { grade: "F51" },
+                        { grade: "F 53" },
+                        { grade: "F 55" },
+                        { grade: "F 60" },
+                        { grade: "F 61" }
+                    ],
+                    "Carbon Steel": [
+                        { grade: "ASTM A105" },
+                        { grade: "LF2" },
+                        { grade: "LF3" },
+                        { grade: "LF6" },
+                        { grade: "F42" },
+                        { grade: "F46" },
+                        { grade: "F48" },
+                        { grade: "F50" },
+                        { grade: "F52" },
+                        { grade: "F56" },
+                        { grade: "F60" },
+                        { grade: "F65" },
+                        { grade: "F70" },
+                        { grade: "ST37.2" },
+                        { grade: "C22.8" },
+                        { grade: "S235JRG2" },
+                        { grade: "P250GH" }
+                    ],
+                    "Alloy Steel": [
+                        { grade: "ASTM A182 F1" },
+                        { grade: "ASTM A182 F5" },
+                        { grade: "ASTM A182 F9" },
+                        { grade: "ASTM A182 F11" },
+                        { grade: "ASTM A182 F22" },
+                        { grade: "ASTM A182 F91" },
+                        { grade: "AISI 4140" },
+                        { grade: "AISI 4130" }
+                    ],
+                    "Nickel Alloy": [
+                        { grade: "ASTM / ASME SB 564 / 160 / 472 ASTM SB564" },
+                        { grade: "SB160" },
+                        { grade: "SB472" },
+                        { grade: "SB162 Nickel 200 (UNS No. N02200)" },
+                        { grade: "Nickel 201 (UNS No. N02201)" },
+                        { grade: "Monel 400 (UNS No. N04400)" },
+                        { grade: "Monel 500 (UNS No. N05500)" },
+                        { grade: "Inconel 800 (UNS No. N08800)" },
+                        { grade: "Inconel 825 (UNS No. N08825)" },
+                        { grade: "Inconel 600 (UNS No. N06600)" },
+                        { grade: "Inconel 625 (UNS No. N06625)" },
+                        { grade: "Inconel 601 (UNS No. N06601)" },
+                        { grade: "Hastelloy C 276 (UNS No.N10276)" },
+                        { grade: "Alloy 20 (UNS No. N08020)" }
+                    ]
+                },
+                images: [
+                    { src: "images/blind-1.png", alt: "SORF Forged Flange" },
+                    { src: "images/blind-3.png", alt: "SORF Flange Installation" },
+                ],
+            },
+            "spacer-blank": {
+                id: "spacer-blank",
+                name: "Spacer Blank",
+                banner: {
+                    title: "Spacer <span class='text-[#C9A227]'>Blank</span>",
+                    subtitle: "Navera, Manufacturer, Exporter & Supplier",
+                    description: "Spacer and Blank forged flanges for controlling fluid flow in piping systems",
+                    image: "images/spacer-banner.png",
+                    features: [
+                        "Flexible Flow Control",
+                        "Forged Strength",
+                        "Easy Installation",
+                        "Corrosion Resistant",
+                        "Quick Isolation"
+                    ],
+                    ctaText: "View Spacer Blanks",
+                    color: "#C9A227",
+                },
+                description: "Spacer and Blank forged flanges control fluid flow in piping systems, providing flexible isolation options for maintenance and operations.",
+                applications: [
+                    "Oil & Gas Industry",
+                    "Chemical Plants",
+                    "Water Treatment",
+                    "Power Generation",
+                    "Pipeline Isolation"
+                ],
+                specifications: [
+                    { property: "Size Range", value: '1/2" to 60"' },
+                    { property: "Pressure Rating", value: "150LBS to 2500LBS / PN10 to PN400" },
+                    { property: "Face Types", value: "RF, FF, RTJ" },
+                    { property: "Standards", value: "ASME B16.5, API 6A, EN 1092-1" },
+                    { property: "Manufacturing Standards", value: "ASME B16.5, ASME B16.36, ASME B16.48, ASME B16.47, EN1092-1, NORSOK" }
+                ],
+                materialGrades: {
+                    "Stainless Steel": [
+                        { grade: "ASTM A182 Grade : F 304" },
+                        { grade: "304L" },
+                        { grade: "304H" },
+                        { grade: "309S" },
+                        { grade: "309H" },
+                        { grade: "310S" },
+                        { grade: "310H" },
+                        { grade: "316" },
+                        { grade: "316Ti" },
+                        { grade: "316H" },
+                        { grade: "316L" },
+                        { grade: "316LN" },
+                        { grade: "317" },
+                        { grade: "317L" },
+                        { grade: "321" },
+                        { grade: "321H" },
+                        { grade: "347" },
+                        { grade: "347H" },
+                        { grade: "904L" },
+                        { grade: "F 44" },
+                        { grade: "F 45" },
+                        { grade: "F51" },
+                        { grade: "F 53" },
+                        { grade: "F 55" },
+                        { grade: "F 60" },
+                        { grade: "F 61" }
+                    ],
+                    "Carbon Steel": [
+                        { grade: "ASTM A105" },
+                        { grade: "LF2" },
+                        { grade: "LF3" },
+                        { grade: "LF6" },
+                        { grade: "F42" },
+                        { grade: "F46" },
+                        { grade: "F48" },
+                        { grade: "F50" },
+                        { grade: "F52" },
+                        { grade: "F56" },
+                        { grade: "F60" },
+                        { grade: "F65" },
+                        { grade: "F70" },
+                        { grade: "ST37.2" },
+                        { grade: "C22.8" },
+                        { grade: "S235JRG2" },
+                        { grade: "P250GH" }
+                    ],
+                    "Alloy Steel": [
+                        { grade: "ASTM A182 F1" },
+                        { grade: "ASTM A182 F5" },
+                        { grade: "ASTM A182 F9" },
+                        { grade: "ASTM A182 F11" },
+                        { grade: "ASTM A182 F22" },
+                        { grade: "ASTM A182 F91" },
+                        { grade: "AISI 4140" },
+                        { grade: "AISI 4130" }
+                    ],
+                    "Nickel Alloy": [
+                        { grade: "ASTM / ASME SB 564 / 160 / 472 ASTM SB564" },
+                        { grade: "SB160" },
+                        { grade: "SB472" },
+                        { grade: "SB162 Nickel 200 (UNS No. N02200)" },
+                        { grade: "Nickel 201 (UNS No. N02201)" },
+                        { grade: "Monel 400 (UNS No. N04400)" },
+                        { grade: "Monel 500 (UNS No. N05500)" },
+                        { grade: "Inconel 800 (UNS No. N08800)" },
+                        { grade: "Inconel 825 (UNS No. N08825)" },
+                        { grade: "Inconel 600 (UNS No. N06600)" },
+                        { grade: "Inconel 625 (UNS No. N06625)" },
+                        { grade: "Inconel 601 (UNS No. N06601)" },
+                        { grade: "Hastelloy C 276 (UNS No.N10276)" },
+                        { grade: "Alloy 20 (UNS No. N08020)" }
+                    ]
+                },
+                images: [
+                    { src: "images/spacer-banner.png", alt: "Spacer Blank Flange" },
+                    { src: "images/spacer-2.png", alt: "Spacer Blank Dimensions" },
+                ],
+            },
+            "spectacle-blind": {
+                id: "spectacle-blind",
+                name: "Spectacle Blind",
+                banner: {
+                    title: "Spectacle <span class='text-[#C9A227]'>Blind</span>",
+                    subtitle: "Navera, Manufacturer, Exporter & Supplier",
+                    description: "Spectacle blind forged flanges for flexible fluid control in piping systems",
+                    image: "images/Spectacle-banner.jpg",
+                    features: [
+                        "Easy Operation",
+                        "Flexible Maintenance",
+                        "Forged Strength",
+                        "Leak Prevention",
+                        "Corrosion Resistant"
+                    ],
+                    ctaText: "View Spectacle Blinds",
+                    color: "#C9A227",
+                },
+                description: "Spectacle blind forged flanges control fluid flow with open/spacer and closed/blind positions for flexible pipeline isolation and maintenance.",
+                applications: [
+                    "Oil & Gas Industry",
+                    "Chemical Plants",
+                    "Power Generation",
+                    "Water Treatment",
+                    "Critical Operations"
+                ],
+                specifications: [
+                    { property: "Size Range", value: '1/2" to 60"' },
+                    { property: "Pressure Rating", value: "150LBS to 2500LBS / PN10 to PN400" },
+                    { property: "Face Types", value: "RF, FF, RTJ" },
+                    { property: "Standards", value: "ASME B16.48, API 6A, EN 1092-1" },
+                    { property: "Manufacturing Standards", value: "ASME B16.5, ASME B16.36, ASME B16.48, ASME B16.47, EN1092-1, NORSOK" }
+                ],
+                materialGrades: {
+                    "Stainless Steel": [
+                        { grade: "ASTM A182 Grade : F 304" },
+                        { grade: "304L" },
+                        { grade: "304H" },
+                        { grade: "309S" },
+                        { grade: "309H" },
+                        { grade: "310S" },
+                        { grade: "310H" },
+                        { grade: "316" },
+                        { grade: "316Ti" },
+                        { grade: "316H" },
+                        { grade: "316L" },
+                        { grade: "316LN" },
+                        { grade: "317" },
+                        { grade: "317L" },
+                        { grade: "321" },
+                        { grade: "321H" },
+                        { grade: "347" },
+                        { grade: "347H" },
+                        { grade: "904L" },
+                        { grade: "F 44" },
+                        { grade: "F 45" },
+                        { grade: "F51" },
+                        { grade: "F 53" },
+                        { grade: "F 55" },
+                        { grade: "F 60" },
+                        { grade: "F 61" }
+                    ],
+                    "Carbon Steel": [
+                        { grade: "ASTM A105" },
+                        { grade: "LF2" },
+                        { grade: "LF3" },
+                        { grade: "LF6" },
+                        { grade: "F42" },
+                        { grade: "F46" },
+                        { grade: "F48" },
+                        { grade: "F50" },
+                        { grade: "F52" },
+                        { grade: "F56" },
+                        { grade: "F60" },
+                        { grade: "F65" },
+                        { grade: "F70" },
+                        { grade: "ST37.2" },
+                        { grade: "C22.8" },
+                        { grade: "S235JRG2" },
+                        { grade: "P250GH" }
+                    ],
+                    "Alloy Steel": [
+                        { grade: "ASTM A182 F1" },
+                        { grade: "ASTM A182 F5" },
+                        { grade: "ASTM A182 F9" },
+                        { grade: "ASTM A182 F11" },
+                        { grade: "ASTM A182 F22" },
+                        { grade: "ASTM A182 F91" },
+                        { grade: "AISI 4140" },
+                        { grade: "AISI 4130" }
+                    ],
+                    "Nickel Alloy": [
+                        { grade: "ASTM / ASME SB 564 / 160 / 472 ASTM SB564" },
+                        { grade: "SB160" },
+                        { grade: "SB472" },
+                        { grade: "SB162 Nickel 200 (UNS No. N02200)" },
+                        { grade: "Nickel 201 (UNS No. N02201)" },
+                        { grade: "Monel 400 (UNS No. N04400)" },
+                        { grade: "Monel 500 (UNS No. N05500)" },
+                        { grade: "Inconel 800 (UNS No. N08800)" },
+                        { grade: "Inconel 825 (UNS No. N08825)" },
+                        { grade: "Inconel 600 (UNS No. N06600)" },
+                        { grade: "Inconel 625 (UNS No. N06625)" },
+                        { grade: "Inconel 601 (UNS No. N06601)" },
+                        { grade: "Hastelloy C 276 (UNS No.N10276)" },
+                        { grade: "Alloy 20 (UNS No. N08020)" }
+                    ]
+                },
+                images: [
+                    { src: "images/Spectacle-1.png", alt: "Spectacle Blind Flange" },
+                    { src: "images/Spectacle-2.webp", alt: "Spectacle Blind" },
+                ],
+            },
+            "swrf": {
+                id: "swrf",
+                name: "SWRF",
+                banner: {
+                    title: "SWRF <span class='text-[#C9A227]'>Forged Flanges</span>",
+                    subtitle: "Navera, Manufacturer, Exporter & Supplier",
+                    description: "Socket Weld Raised Face flanges for high-pressure small-diameter piping systems",
+                    image: "images/SWRF -banner.png",
+                    features: [
+                        "Strong Socket Weld Joint",
+                        "Compact Design",
+                        "Forged Strength",
+                        "Leak Resistance",
+                        "Reduced Stress"
+                    ],
+                    ctaText: "View SWRF Flanges",
+                    color: "#C9A227",
+                },
+                description: "SWRF forged flanges are Socket Weld Raised Face components for high-pressure small-diameter piping systems with robust socket weld connections.",
+                applications: [
+                    "Oil & Gas Industry",
+                    "Chemical Plants",
+                    "Power Generation",
+                    "Water Treatment",
+                    "High Pressure Systems"
+                ],
+                specifications: [
+                    { property: "Size Range", value: '1/2" to 60"' },
+                    { property: "Pressure Rating", value: "150LBS to 2500LBS / PN10 to PN400" },
+                    { property: "Face Types", value: "RF, FF, RTJ" },
+                    { property: "Standards", value: "ASME B16.5, ANSI/ASME B16.47, EN 1092-1" },
+                    { property: "Manufacturing Standards", value: "ASME B16.5, ASME B16.36, ASME B16.48, ASME B16.47, EN1092-1, NORSOK" }
+                ],
+                materialGrades: {
+                    "Stainless Steel": [
+                        { grade: "ASTM A182 Grade : F 304" },
+                        { grade: "304L" },
+                        { grade: "304H" },
+                        { grade: "309S" },
+                        { grade: "309H" },
+                        { grade: "310S" },
+                        { grade: "310H" },
+                        { grade: "316" },
+                        { grade: "316Ti" },
+                        { grade: "316H" },
+                        { grade: "316L" },
+                        { grade: "316LN" },
+                        { grade: "317" },
+                        { grade: "317L" },
+                        { grade: "321" },
+                        { grade: "321H" },
+                        { grade: "347" },
+                        { grade: "347H" },
+                        { grade: "904L" },
+                        { grade: "F 44" },
+                        { grade: "F 45" },
+                        { grade: "F51" },
+                        { grade: "F 53" },
+                        { grade: "F 55" },
+                        { grade: "F 60" },
+                        { grade: "F 61" }
+                    ],
+                    "Carbon Steel": [
+                        { grade: "ASTM A105" },
+                        { grade: "LF2" },
+                        { grade: "LF3" },
+                        { grade: "LF6" },
+                        { grade: "F42" },
+                        { grade: "F46" },
+                        { grade: "F48" },
+                        { grade: "F50" },
+                        { grade: "F52" },
+                        { grade: "F56" },
+                        { grade: "F60" },
+                        { grade: "F65" },
+                        { grade: "F70" },
+                        { grade: "ST37.2" },
+                        { grade: "C22.8" },
+                        { grade: "S235JRG2" },
+                        { grade: "P250GH" }
+                    ],
+                    "Alloy Steel": [
+                        { grade: "ASTM A182 F1" },
+                        { grade: "ASTM A182 F5" },
+                        { grade: "ASTM A182 F9" },
+                        { grade: "ASTM A182 F11" },
+                        { grade: "ASTM A182 F22" },
+                        { grade: "ASTM A182 F91" },
+                        { grade: "AISI 4140" },
+                        { grade: "AISI 4130" }
+                    ],
+                    "Nickel Alloy": [
+                        { grade: "ASTM / ASME SB 564 / 160 / 472 ASTM SB564" },
+                        { grade: "SB160" },
+                        { grade: "SB472" },
+                        { grade: "SB162 Nickel 200 (UNS No. N02200)" },
+                        { grade: "Nickel 201 (UNS No. N02201)" },
+                        { grade: "Monel 400 (UNS No. N04400)" },
+                        { grade: "Monel 500 (UNS No. N05500)" },
+                        { grade: "Inconel 800 (UNS No. N08800)" },
+                        { grade: "Inconel 825 (UNS No. N08825)" },
+                        { grade: "Inconel 600 (UNS No. N06600)" },
+                        { grade: "Inconel 625 (UNS No. N06625)" },
+                        { grade: "Inconel 601 (UNS No. N06601)" },
+                        { grade: "Hastelloy C 276 (UNS No.N10276)" },
+                        { grade: "Alloy 20 (UNS No. N08020)" }
+                    ]
+                },
+                images: [
+                    { src: "images/flanges-prod.png", alt: "SWRF Forged Flange" },
+                    { src: "images/blind-3.png", alt: "SWRF Flange" },
+                ],
+            },
+            "thrf": {
+                id: "thrf",
+                name: "THRF",
+                banner: {
+                    title: "THRF <span class='text-[#C9A227]'>Forged Flanges</span>",
+                    subtitle: "Navera, Manufacturer, Exporter & Supplier",
+                    description: "Threaded Raised Face flanges for piping systems where welding is impractical",
+                    image: "images/blind-banner.png",
+                    features: [
+                        "No Welding Required",
+                        "Easy Installation",
+                        "Forged Strength",
+                        "Reliable Sealing",
+                        "Cost-Effective"
+                    ],
+                    ctaText: "View THRF Flanges",
+                    color: "#C9A227",
+                },
+                description: "THRF forged flanges are Threaded Raised Face components for hazardous environments where welding is impractical, providing secure threaded connections.",
+                applications: [
+                    "Oil & Gas Industry",
+                    "Chemical Plants",
+                    "Water Treatment",
+                    "HVAC Systems",
+                    "Hazardous Environments"
+                ],
+                specifications: [
+                    { property: "Size Range", value: '1/2" to 60"' },
+                    { property: "Pressure Rating", value: "150LBS to 2500LBS / PN10 to PN400" },
+                    { property: "Face Types", value: "RF, FF, RTJ" },
+                    { property: "Standards", value: "ASME B16.5, ANSI/ASME B1.20.1, EN 1092-1" },
+                    { property: "Manufacturing Standards", value: "ASME B16.5, ASME B16.36, ASME B16.48, ASME B16.47, EN1092-1, NORSOK" }
+                ],
+                materialGrades: {
+                    "Stainless Steel": [
+                        { grade: "ASTM A182 Grade : F 304" },
+                        { grade: "304L" },
+                        { grade: "304H" },
+                        { grade: "309S" },
+                        { grade: "309H" },
+                        { grade: "310S" },
+                        { grade: "310H" },
+                        { grade: "316" },
+                        { grade: "316Ti" },
+                        { grade: "316H" },
+                        { grade: "316L" },
+                        { grade: "316LN" },
+                        { grade: "317" },
+                        { grade: "317L" },
+                        { grade: "321" },
+                        { grade: "321H" },
+                        { grade: "347" },
+                        { grade: "347H" },
+                        { grade: "904L" },
+                        { grade: "F 44" },
+                        { grade: "F 45" },
+                        { grade: "F51" },
+                        { grade: "F 53" },
+                        { grade: "F 55" },
+                        { grade: "F 60" },
+                        { grade: "F 61" }
+                    ],
+                    "Carbon Steel": [
+                        { grade: "ASTM A105" },
+                        { grade: "LF2" },
+                        { grade: "LF3" },
+                        { grade: "LF6" },
+                        { grade: "F42" },
+                        { grade: "F46" },
+                        { grade: "F48" },
+                        { grade: "F50" },
+                        { grade: "F52" },
+                        { grade: "F56" },
+                        { grade: "F60" },
+                        { grade: "F65" },
+                        { grade: "F70" },
+                        { grade: "ST37.2" },
+                        { grade: "C22.8" },
+                        { grade: "S235JRG2" },
+                        { grade: "P250GH" }
+                    ],
+                    "Alloy Steel": [
+                        { grade: "ASTM A182 F1" },
+                        { grade: "ASTM A182 F5" },
+                        { grade: "ASTM A182 F9" },
+                        { grade: "ASTM A182 F11" },
+                        { grade: "ASTM A182 F22" },
+                        { grade: "ASTM A182 F91" },
+                        { grade: "AISI 4140" },
+                        { grade: "AISI 4130" }
+                    ],
+                    "Nickel Alloy": [
+                        { grade: "ASTM / ASME SB 564 / 160 / 472 ASTM SB564" },
+                        { grade: "SB160" },
+                        { grade: "SB472" },
+                        { grade: "SB162 Nickel 200 (UNS No. N02200)" },
+                        { grade: "Nickel 201 (UNS No. N02201)" },
+                        { grade: "Monel 400 (UNS No. N04400)" },
+                        { grade: "Monel 500 (UNS No. N05500)" },
+                        { grade: "Inconel 800 (UNS No. N08800)" },
+                        { grade: "Inconel 825 (UNS No. N08825)" },
+                        { grade: "Inconel 600 (UNS No. N06600)" },
+                        { grade: "Inconel 625 (UNS No. N06625)" },
+                        { grade: "Inconel 601 (UNS No. N06601)" },
+                        { grade: "Hastelloy C 276 (UNS No.N10276)" },
+                        { grade: "Alloy 20 (UNS No. N08020)" }
+                    ]
+                },
+                images: [
+                    { src: "images/blind-1.png", alt: "THRF Forged Flange" },
+                    { src: "images/blind-3.png", alt: "THRF Flange" },
+                ],
+            },
+            "wnrf": {
+                id: "wnrf",
+                name: "WNRF",
+                banner: {
+                    title: "WNRF <span class='text-[#C9A227]'>Forged Flanges</span>",
+                    subtitle: "Navera, Manufacturer, Exporter & Supplier",
+                    description: "Weld Neck Raised Face flanges for high-pressure critical applications",
+                    image: "images/WNRF-banner.png",
+                    features: [
+                        "High Mechanical Strength",
+                        "Leak-Proof Connection",
+                        "Forged Durability",
+                        "Thermal Expansion Resistance",
+                        "Long Service Life"
+                    ],
+                    ctaText: "View WNRF Flanges",
+                    color: "#C9A227",
+                },
+                description: "WNRF forged flanges are Weld Neck Raised Face components for high-pressure, high-temperature critical piping systems with superior load distribution.",
+                applications: [
+                    "Oil & Gas Industry",
+                    "Chemical Plants",
+                    "Power Generation",
+                    "Water Treatment",
+                    "Critical High-Pressure Systems"
+                ],
+                specifications: [
+                    { property: "Size Range", value: '1/2" to 60"' },
+                    { property: "Pressure Rating", value: "150LBS to 2500LBS / PN10 to PN400" },
+                    { property: "Face Types", value: "RF, FF, RTJ" },
+                    { property: "Standards", value: "ASME B16.5, ASME B16.47, EN 1092-1, API 6A" },
+                    { property: "Manufacturing Standards", value: "ASME B16.5, ASME B16.36, ASME B16.48, ASME B16.47, EN1092-1, NORSOK" }
+                ],
+                materialGrades: {
+                    "Stainless Steel": [
+                        { grade: "ASTM A182 Grade : F 304" },
+                        { grade: "304L" },
+                        { grade: "304H" },
+                        { grade: "309S" },
+                        { grade: "309H" },
+                        { grade: "310S" },
+                        { grade: "310H" },
+                        { grade: "316" },
+                        { grade: "316Ti" },
+                        { grade: "316H" },
+                        { grade: "316L" },
+                        { grade: "316LN" },
+                        { grade: "317" },
+                        { grade: "317L" },
+                        { grade: "321" },
+                        { grade: "321H" },
+                        { grade: "347" },
+                        { grade: "347H" },
+                        { grade: "904L" },
+                        { grade: "F 44" },
+                        { grade: "F 45" },
+                        { grade: "F51" },
+                        { grade: "F 53" },
+                        { grade: "F 55" },
+                        { grade: "F 60" },
+                        { grade: "F 61" }
+                    ],
+                    "Carbon Steel": [
+                        { grade: "ASTM A105" },
+                        { grade: "LF2" },
+                        { grade: "LF3" },
+                        { grade: "LF6" },
+                        { grade: "F42" },
+                        { grade: "F46" },
+                        { grade: "F48" },
+                        { grade: "F50" },
+                        { grade: "F52" },
+                        { grade: "F56" },
+                        { grade: "F60" },
+                        { grade: "F65" },
+                        { grade: "F70" },
+                        { grade: "ST37.2" },
+                        { grade: "C22.8" },
+                        { grade: "S235JRG2" },
+                        { grade: "P250GH" }
+                    ],
+                    "Alloy Steel": [
+                        { grade: "ASTM A182 F1" },
+                        { grade: "ASTM A182 F5" },
+                        { grade: "ASTM A182 F9" },
+                        { grade: "ASTM A182 F11" },
+                        { grade: "ASTM A182 F22" },
+                        { grade: "ASTM A182 F91" },
+                        { grade: "AISI 4140" },
+                        { grade: "AISI 4130" }
+                    ],
+                    "Nickel Alloy": [
+                        { grade: "ASTM / ASME SB 564 / 160 / 472 ASTM SB564" },
+                        { grade: "SB160" },
+                        { grade: "SB472" },
+                        { grade: "SB162 Nickel 200 (UNS No. N02200)" },
+                        { grade: "Nickel 201 (UNS No. N02201)" },
+                        { grade: "Monel 400 (UNS No. N04400)" },
+                        { grade: "Monel 500 (UNS No. N05500)" },
+                        { grade: "Inconel 800 (UNS No. N08800)" },
+                        { grade: "Inconel 825 (UNS No. N08825)" },
+                        { grade: "Inconel 600 (UNS No. N06600)" },
+                        { grade: "Inconel 625 (UNS No. N06625)" },
+                        { grade: "Inconel 601 (UNS No. N06601)" },
+                        { grade: "Hastelloy C 276 (UNS No.N10276)" },
+                        { grade: "Alloy 20 (UNS No. N08020)" }
+                    ]
+                },
+                images: [
+                    { src: "images/WNRF-1.jpg", alt: "WNRF Forged Flange" },
+                    { src: "images/WNRF-2.png", alt: "WNRF Flange" },
+                ],
+            },
+
+        };
+
+        // Banner Variables
+        let currentBannerSlide = 0;
+        let bannerInterval;
+        const bannerDuration = 5000;
+
+        // Initialize the page
+        document.addEventListener("DOMContentLoaded", function () {
+            // Load categories in sidebar
+            loadCategories();
+
+            // Set default product on load
+            const firstProductId = Object.keys(forgedFlangesData)[0];
+            if (firstProductId) {
+                loadProduct(firstProductId);
+            }
+
+            // Initialize banner slider
+            initBannerSlider();
+        });
+
+        // Initialize Banner Slider
+        function initBannerSlider() {
+            const bannerSlides = document.querySelectorAll(".banner-slide");
+            const dots = document.querySelectorAll(".dot");
+
+            // Start automatic sliding
+            startBannerAutoSlide();
+
+            // Add click event to dots
+            dots.forEach((dot, index) => {
+                dot.addEventListener("click", () => {
+                    goToBannerSlide(index);
+                });
+            });
+        }
+
+        // Start automatic banner sliding
+        function startBannerAutoSlide() {
+            bannerInterval = setInterval(() => {
+                nextBannerSlide();
+            }, bannerDuration);
+        }
+
+        // Go to specific banner slide
+        function goToBannerSlide(index) {
+            const slides = document.querySelectorAll(".banner-slide");
+            const dots = document.querySelectorAll(".dot");
+
+            // Remove active class from all slides and dots
+            slides.forEach((slide) => slide.classList.remove("active"));
+            dots.forEach((dot) => dot.classList.remove("active"));
+
+            // Add active class to current slide and dot
+            slides[index].classList.add("active");
+            dots[index].classList.add("active");
+
+            // Reset animation for typing text
+            const typingText = slides[index].querySelector(".typing-text");
+            const subtext = slides[index].querySelector(".subtext");
+            const ctaBtn = slides[index].querySelector(".cta-btn");
+
+            // Reset and restart animations
+            [typingText, subtext, ctaBtn].forEach((el) => {
+                if (el) {
+                    el.style.animation = "none";
+                    setTimeout(() => {
+                        el.style.animation = "";
+                    }, 10);
+                }
+            });
+
+            currentBannerSlide = index;
+
+            // Reset interval
+            clearInterval(bannerInterval);
+            startBannerAutoSlide();
+        }
+
+        // Go to next banner slide
+        function nextBannerSlide() {
+            const slides = document.querySelectorAll(".banner-slide");
+            currentBannerSlide = (currentBannerSlide + 1) % slides.length;
+            goToBannerSlide(currentBannerSlide);
+        }
+
+        // Load categories into sidebar
+        function loadCategories() {
+            const categoriesContainer =
+                document.getElementById("productCategories");
+            categoriesContainer.innerHTML = "";
+
+            Object.keys(forgedFlangesData).forEach((productId) => {
+                const product = forgedFlangesData[productId];
+                const categoryItem = document.createElement("a");
+                categoryItem.href = "#";
+                categoryItem.className =
+                    "sidebar-link block p-4 rounded-lg text-headings hover:text-primary transition-colors";
+                categoryItem.innerHTML = `
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-md bg-icon-light flex items-center justify-center">
+                                <i class="fas fa-cog icon-primary text-sm"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-medium">${product.name}</h3>
+                            </div>
+                        </div>
+                        <i class="fas fa-chevron-right text-gray-400 text-sm"></i>
+                    </div>
+                `;
+
+                categoryItem.addEventListener("click", function (e) {
+                    e.preventDefault();
+                    // Remove active class from all links
+                    document.querySelectorAll(".sidebar-link").forEach((link) => {
+                        link.classList.remove("active");
+                    });
+                    // Add active class to clicked link
+                    this.classList.add("active");
+                    // Load the product
+                    loadProduct(productId);
+                });
+
+                categoriesContainer.appendChild(categoryItem);
+            });
+
+            // Activate first category by default
+            if (categoriesContainer.firstChild) {
+                categoriesContainer.firstChild.classList.add("active");
+            }
+        }
+
+        // Load product details
+        function loadProduct(productId) {
+            const product = forgedFlangesData[productId];
+            if (!product) return;
+
+            // Update banner with product-specific content
+            updateProductBanner(product);
+
+            // Update product content
+            updateProductContent(product);
+        }
+
+        // Update banner with product data
+        function updateProductBanner(product) {
+            const bannerContainer = document.getElementById("dynamic-banner");
+
+            bannerContainer.innerHTML = `
+                <div class="relative max-w-7xl mx-auto h-[540px] rounded-3xl overflow-hidden shadow-2xl">
+                    <div id="product-banner-slider" class="relative w-full h-full">
+                        <div class="banner-slide active">
+                            <img src="${product.banner.image}" class="banner-img" alt="${product.name}" onerror="this.src='https://via.placeholder.com/1200x540/1C1C1C/C9A227?text=Forged+${encodeURIComponent(product.name)}';" />
+                            <div class="overlay"></div>
+                            <div class="content">
+                                <h1 class="typing-text">${product.banner.title}</h1>
+                                <p class="subtext">${product.banner.description}</p>
+                                <a href="#productContent" class="cta-btn">${product.banner.ctaText}</a>
+                            </div>
+                        </div>
+                        
+                        ${product.banner.features
+                    .map(
+                        (feature, index) => `
+                            <div class="banner-slide">
+                                <img src="${product.banner.image}" class="banner-img" alt="${product.name}" onerror="this.src='https://via.placeholder.com/1200x540/1C1C1C/C9A227?text=Forged+${encodeURIComponent(product.name)}';" />
+                                <div class="overlay"></div>
+                                <div class="content">
+                                    <h1 class="typing-text">${product.name}</h1>
+                                    <p class="subtext">${feature} - ${product.banner.description}</p>
+                                    <a href="#productContent" class="cta-btn">View Specifications</a>
+                                </div>
+                            </div>
+                        `,
+                    )
+                    .join("")}
+                    </div>
+                    
+                    <div class="absolute bottom-5 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+                        ${Array.from({
+                        length: product.banner.features.length + 1,
+                    })
+                    .map(
+                        (_, index) => `
+                            <button class="dot ${index === 0 ? "active" : ""}" data-slide="${index}"></button>
+                        `,
+                    )
+                    .join("")}
+                    </div>
+                </div>
+            `;
+
+            setTimeout(() => {
+                reinitializeBannerSlider();
+            }, 100);
+        }
+
+        // Reinitialize banner slider after product change
+        function reinitializeBannerSlider() {
+            const slides = document.querySelectorAll(
+                "#dynamic-banner .banner-slide",
+            );
+            const dots = document.querySelectorAll("#dynamic-banner .dot");
+
+            if (bannerInterval) {
+                clearInterval(bannerInterval);
+            }
+
+            currentBannerSlide = 0;
+
+            dots.forEach((dot, index) => {
+                dot.addEventListener("click", () => {
+                    goToDynamicBannerSlide(index);
+                });
+            });
+
+            startDynamicBannerAutoSlide();
+        }
+
+        // Go to specific dynamic banner slide
+        function goToDynamicBannerSlide(index) {
+            const slides = document.querySelectorAll(
+                "#dynamic-banner .banner-slide",
+            );
+            const dots = document.querySelectorAll("#dynamic-banner .dot");
+
+            slides.forEach((slide) => slide.classList.remove("active"));
+            dots.forEach((dot) => dot.classList.remove("active"));
+
+            slides[index].classList.add("active");
+            dots[index].classList.add("active");
+
+            const typingText = slides[index].querySelector(".typing-text");
+            const subtext = slides[index].querySelector(".subtext");
+            const ctaBtn = slides[index].querySelector(".cta-btn");
+
+            [typingText, subtext, ctaBtn].forEach((el) => {
+                if (el) {
+                    el.style.animation = "none";
+                    setTimeout(() => {
+                        el.style.animation = "";
+                    }, 10);
+                }
+            });
+
+            currentBannerSlide = index;
+
+            clearInterval(bannerInterval);
+            startDynamicBannerAutoSlide();
+        }
+
+        // Start automatic dynamic banner sliding
+        function startDynamicBannerAutoSlide() {
+            bannerInterval = setInterval(() => {
+                nextDynamicBannerSlide();
+            }, bannerDuration);
+        }
+
+        // Go to next dynamic banner slide
+        function nextDynamicBannerSlide() {
+            const slides = document.querySelectorAll(
+                "#dynamic-banner .banner-slide",
+            );
+            currentBannerSlide = (currentBannerSlide + 1) % slides.length;
+            goToDynamicBannerSlide(currentBannerSlide);
+        }
+
+        // Update product content area
+        function updateProductContent(product) {
+            const content = document.getElementById("productContent");
+
+            content.innerHTML = `
+                <div class="fade-in">
+                    <!-- Product Header -->
+                    <div class="border-b border-accent pb-6 mb-8">
+                        <div class="flex flex-col lg:flex-row justify-between items-start gap-4">
+                            <div class="flex-1">
+                                <div class="flex items-center gap-3 mb-4">
+                                    <div class="w-12 h-12 rounded-lg bg-icon-light flex items-center justify-center">
+                                        <i class="fas fa-industry icon-primary text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <h1 class="text-2xl font-semibold text-headings">${product.name}</h1>
+                                        <p class="text-gray-600 mt-2">${product.description}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex-shrink-0">
+                                <a href="contact.html">
+                                    <button
+                                        class="bg-primary hover:bg-headings text-white font-medium px-6 py-3 rounded-lg transition-all duration-300 flex items-center gap-2"
+                                    >
+                                        <i class="fas fa-file-alt"></i>
+                                        Request Quote
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Tabs -->
+                    <div class="mb-8">
+                        <div class="flex flex-wrap border-b border-accent" id="tabsContainer">
+                            <button class="tab-button py-4 px-6 font-medium" onclick="showTab('overview')">Overview</button>
+                            <button class="tab-button py-4 px-6 font-medium" onclick="showTab('specifications')">Specifications</button>
+                            <button class="tab-button py-4 px-6 font-medium" onclick="showTab('applications')">Applications</button>
+                            <button class="tab-button py-4 px-6 font-medium" onclick="showTab('material-grades')">Material Grades</button>
+                        </div>
+                        
+                        <!-- Tab Content -->
+                        <div id="tabContent" class="mt-8">
+                            <!-- Content will be populated by showTab function -->
+                        </div>
+                    </div>
+                    
+                    <!-- Product Images -->
+                    <div class="border-t border-accent pt-8">
+                        <h3 class="text-lg font-semibold text-headings mb-6">Product Gallery</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            ${product.images
+                    .map(
+                        (img) => `
+                                <div class="product-card rounded-lg overflow-hidden">
+                                    <img src="${img.src}" alt="${img.alt}" 
+                                         class="w-full h-64 object-cover bg-accent"
+                                         onerror="this.onerror=null; this.src='https://via.placeholder.com/400x300/CCC/666?text=Forged+${encodeURIComponent(img.alt)}';">
+                                    <div class="p-4">
+                                        <p class="font-medium text-headings text-center">${img.alt}</p>
+                                    </div>
+                                </div>
+                            `,
+                    )
+                    .join("")}
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            initializeTabs(product);
+
+            setTimeout(() => {
+                document.getElementById("productContent").scrollIntoView({
+                    behavior: "smooth",
+                    block: "start",
+                });
+            }, 300);
+        }
+
+        // Initialize tab system
+        function initializeTabs(product) {
+            document
+                .querySelectorAll("#tabsContainer .tab-button")
+                .forEach((btn, index) => {
+                    if (index === 0) {
+                        btn.classList.add("active");
+                    } else {
+                        btn.classList.remove("active");
+                    }
+                });
+
+            showTab("overview", product);
+        }
+
+        // Tab display function
+        window.showTab = function (tabName, productParam = null) {
+            const product = productParam || getCurrentProduct();
+            if (!product) return;
+
+            document
+                .querySelectorAll("#tabsContainer .tab-button")
+                .forEach((btn, index) => {
+                    if (
+                        (index === 0 && tabName === "overview") ||
+                        (index === 1 && tabName === "specifications") ||
+                        (index === 2 && tabName === "applications") ||
+                        (index === 3 && tabName === "material-grades")
+                    ) {
+                        btn.classList.add("active");
+                    } else {
+                        btn.classList.remove("active");
+                    }
+                });
+
+            let tabContent = "";
+
+            switch (tabName) {
+                case "overview":
+                    tabContent = `
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                            <div>
+                                <h4 class="text-lg font-semibold text-headings mb-4">Product Description</h4>
+                                <p class="text-gray-700 mb-6">${product.description}</p>
+                                <div>
+                                    <h4 class="text-lg font-normal text-headings mb-5">Key Features</h4>
+                                    <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                        ${product.banner.features
+                            .map(
+                                (feature) => `
+                                            <li class="flex items-center gap-4 p-4 rounded-xl
+                                                bg-gradient-to-r from-[#FFF9E6] to-white
+                                                border border-[#FFEFBF]
+                                                shadow-sm hover:shadow-md transition">
+                                                <div class="w-9 h-9 rounded-full bg-[#C9A227] 
+                                                    flex items-center justify-center flex-shrink-0">
+                                                    <i class="fas fa-check text-white text-sm"></i>
+                                                </div>
+                                                <span class="font-medium text-gray-800 text-sm leading-snug">
+                                                    ${feature}
+                                                </span>
+                                            </li>
+                                        `,
+                            )
+                            .join("")}
+                                    </ul>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="bg-accent rounded-lg p-6">
+                                    <h4 class="text-lg font-semibold text-headings mb-4">Forging Advantages</h4>
+                                    <ul class="space-y-4">
+                                        <li class="flex items-start">
+                                            <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center mr-4">
+                                                <i class="fas fa-hammer icon-primary"></i>
+                                            </div>
+                                            <div>
+                                                <h5 class="font-medium text-headings">Superior Strength</h5>
+                                                <p class="text-sm text-gray-600 mt-1">Forging process enhances mechanical properties</p>
+                                            </div>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center mr-4">
+                                                <i class="fas fa-shield-alt icon-primary"></i>
+                                            </div>
+                                            <div>
+                                                <h5 class="font-medium text-headings">High Pressure Rating</h5>
+                                                <p class="text-sm text-gray-600 mt-1">Rated for Class 2000 to 6000 pressure</p>
+                                            </div>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center mr-4">
+                                                <i class="fas fa-certificate icon-primary"></i>
+                                            </div>
+                                            <div>
+                                                <h5 class="font-medium text-headings">Quality Assurance</h5>
+                                                <p class="text-sm text-gray-600 mt-1">100% material traceability and testing</p>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    break;
+
+                case "specifications":
+                    tabContent = `
+                        <div class="overflow-x-auto">
+                            <table class="specs-table">
+                                <thead>
+                                    <tr>
+                                        <th>Property</th>
+                                        <th>Specification</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    ${product.specifications
+                            .map(
+                                (spec) => `
+                                        <tr>
+                                            <td class="font-medium">${spec.property}</td>
+                                            <td>${spec.value}</td>
+                                        </tr>
+                                    `,
+                            )
+                            .join("")}
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="mt-6 p-5 bg-icon-light rounded-lg border border-icon-light">
+                            <div class="flex items-start gap-3">
+                                <i class="fas fa-info-circle icon-primary text-lg mt-1"></i>
+                                <div>
+                                    <p class="text-sm text-gray-700">
+                                        <strong>Note:</strong> Custom specifications and special materials available upon request. Contact our engineering team for forged fittings with special requirements.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    break;
+
+                case "applications":
+                    tabContent = `
+                        <div class="mb-8">
+                            <h4 class="text-lg font-semibold text-headings mb-6">Industry Applications</h4>
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                                ${product.applications
+                            .map(
+                                (app) => `
+                                    <div class="bg-white border border-accent rounded-lg p-4 hover:border-icon transition-all duration-300">
+                                        <div class="flex items-center">
+                                            <div class="w-10 h-10 rounded-lg bg-icon-light flex items-center justify-center mr-4">
+                                                <i class="fas fa-industry icon-primary"></i>
+                                            </div>
+                                            <span class="font-medium text-headings">${app}</span>
+                                        </div>
+                                    </div>
+                                `,
+                            )
+                            .join("")}
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-semibold text-headings mb-6">Forged Fittings Benefits</h4>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="p-5 rounded-lg bg-white border border-accent">
+                                    <div class="flex items-center gap-3 mb-4">
+                                        <div class="w-10 h-10 rounded-lg bg-green-50 flex items-center justify-center">
+                                            <i class="fas fa-gem text-green-600"></i>
+                                        </div>
+                                        <h5 class="font-semibold text-lg text-headings">Enhanced Durability</h5>
+                                    </div>
+                                    <p class="text-gray-600">Forged construction provides superior grain structure, increasing fatigue resistance and service life.</p>
+                                </div>
+                                <div class="p-5 rounded-lg bg-white border border-accent">
+                                    <div class="flex items-center gap-3 mb-4">
+                                        <div class="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center">
+                                            <i class="fas fa-tachometer-alt text-blue-600"></i>
+                                        </div>
+                                        <h5 class="font-semibold text-lg text-headings">High Pressure Capability</h5>
+                                    </div>
+                                    <p class="text-gray-600">Designed to withstand extreme pressure and temperature conditions in critical applications.</p>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    break;
+
+                case "material-grades":
+                    tabContent = `
+        <div class="space-y-8">
+            ${Object.entries(product.materialGrades)
+                            .map(([materialType, grades]) => {
+                                return `
+                    <div>
+                        <h3 class="text-xl font-bold text-headings mb-4 pb-2 border-b border-accent">${materialType}</h3>
+                        <div class="overflow-x-auto">
+                            <table class="w-full border-collapse">
+                                <tbody>
+                                    ${(() => {
+                                        let rowsHTML = "";
+                                        const rowSize = 5; // CHANGED FROM 4 TO 5
+
+                                        for (let i = 0; i < grades.length; i += rowSize) {
+                                            const rowGrades = grades.slice(i, i + rowSize);
+                                            rowsHTML += `
+                                                <tr>
+                                                    ${rowGrades.map(grade => `
+                                                        <td class="border border-accent p-3 text-center align-middle">
+                                                            <div class="font-medium text-gray-800">${grade.grade}</div>
+                                                        </td>
+                                                    `).join("")}
+                                                    ${Array(rowSize - rowGrades.length).fill('<td class="border border-accent p-3"></td>').join("")}
+                                                </tr>
+                                            `;
+                                        }
+                                        return rowsHTML;
+                                    })()}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                `;
+                            }).join("")}
+        </div>
+        <div class="mt-8 p-5 bg-primary text-white rounded-lg">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div>
+                    <h5 class="font-bold text-lg mb-2">Need Special Materials?</h5>
+                    <p class="text-gray-300">
+                        We can manufacture forged fittings in additional material grades including duplex, super duplex, and nickel alloys upon request.
+                    </p>
+                </div>
+                <a href="contact.html">
+                    <button
+                        class="bg-white text-primary hover:bg-accent font-medium px-6 py-3 rounded-lg transition-all duration-300"
+                    >
+                        Request Material Information
+                    </button>
+                </a>
+            </div>
+        </div>
+    `;
+                    break;
+            }
+
+            document.getElementById("tabContent").innerHTML = tabContent;
+            document.getElementById("tabContent").classList.add("fade-in");
+
+            setTimeout(() => {
+                document.getElementById("tabContent").classList.remove("fade-in");
+            }, 500);
+        };
+
+        // Helper function to get current product
+        function getCurrentProduct() {
+            const activeLink = document.querySelector(".sidebar-link.active");
+            if (!activeLink) {
+                const firstProductId = Object.keys(forgedFlangessData)[0];
+                return forgedFlangesData[firstProductId];
+            }
+
+            const productName = activeLink.querySelector("h3").textContent;
+            return Object.values(forgedFlangesData).find(
+                (product) => product.name === productName,
+            );
+        }
+    </script>
+    <script src="header/header.js"></script>
+    <script src="footer/footer.js"></script>
+</body>
+
+</html>
