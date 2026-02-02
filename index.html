@@ -1,1037 +1,835 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home | Naavera</title>
 
-    <!---fonts-->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Alan+Sans:wght@300..900&family=DM+Serif+Text:ital@0;1&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap"
-      rel="stylesheet"
-    />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home | Naavera</title>
 
-    <!---styling links-->
-    <link rel="stylesheet" href="index.css" />
+  <!---fonts-->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Alan+Sans:wght@300..900&family=DM+Serif+Text:ital@0;1&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet" />
 
-    <!-- Tailwind CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: {
-              heading: ['"Alan Sans"', "sans-serif"],
-              serif: ['"DM Serif Text"', "serif"],
-              body: ['"Noto Sans"', "sans-serif"],
-              editorial: ['"Noto Serif"', "serif"],
-            },
+  <!---styling links-->
+  <link rel="stylesheet" href="index.css" />
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            heading: ['"Alan Sans"', "sans-serif"],
+            serif: ['"DM Serif Text"', "serif"],
+            body: ['"Noto Sans"', "sans-serif"],
+            editorial: ['"Noto Serif"', "serif"],
           },
         },
-      };
-    </script>
-  </head>
+      },
+    };
+  </script>
+</head>
 
-  <body class="bg-gray-50">
-    <!-- COMMON HEADER -->
-    <div id="header"></div>
+<body class="bg-gray-50">
+  <!-- COMMON HEADER -->
+  <div id="header"></div>
 
-    <!-- HERO SECTION -->
-    <section class="pt-1 pb-12 bg-slate-50 px-1 sm:px-1">
-      <div
-        class="relative max-w-7xl mx-auto h-[540px] rounded-3xl overflow-hidden shadow-2xl"
-      >
-        <!-- SLIDES WRAPPER -->
-        <div id="banner-slider" class="relative w-full h-full">
-          <!-- SLIDE 1 -->
-          <div class="banner-slide active">
-            <img src="images/banner1.jfif" class="banner-img" />
-            <div class="overlay"></div>
-            <div class="content center">
-              <h1 class="typing-text">
-                Welcome to <span class="text-[#D4AF37]">Naavera</span>
-              </h1>
-              <p class="subtext">
-                Building exceptional digital experiences through innovative
-                design and modern technology
-              </p>
-              <a href="#contact" class="cta-btn">Get Started</a>
-            </div>
-          </div>
-
-          <!-- SLIDE 2 -->
-          <div class="banner-slide">
-            <img src="images/banner2.png" class="banner-img" />
-            <div class="overlay"></div>
-            <div class="content center">
-              <h1 class="typing-text">
-                Forged for <span class="text-[#D4AF37]">Strength</span>
-              </h1>
-              <p class="subtext">
-                Precision-engineered forged fittings for industrial reliability.
-              </p>
-              <a href="#contact" class="cta-btn">Explore Services</a>
-            </div>
-          </div>
-
-          <!-- SLIDE 3 -->
-          <div class="banner-slide">
-            <img src="images/banner3.png" class="banner-img" />
-            <div class="overlay"></div>
-            <div class="content center">
-              <h1 class="typing-text">
-                Forged <span class="text-[#D4AF37]">Flanges</span>
-              </h1>
-              <p class="subtext">
-                Precision-forged for strength and reliability.
-              </p>
-              <a href="#contact" class="cta-btn">Get in Touch</a>
-            </div>
-          </div>
-
-          <!-- SLIDE 4 -->
-          <div class="banner-slide">
-            <img src="images/Buttweld Fittings.png" class="banner-img" />
-            <div class="overlay"></div>
-            <div class="content center">
-              <h1 class="typing-text">
-                Buttweld <span class="text-[#D4AF37]">Fittings</span>
-              </h1>
-
-              <p class="subtext">
-                Reliable fittings for high-pressure applications.
-              </p>
-              <a href="#contact" class="cta-btn">Get in Touch</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- NAV DOTS -->
-        <div
-          class="absolute bottom-5 left-1/2 -translate-x-1/2 flex gap-2 z-20"
-        >
-          <button class="dot active" data-slide="0"></button>
-          <button class="dot" data-slide="1"></button>
-          <button class="dot" data-slide="2"></button>
-          <button class="dot" data-slide="2"></button>
-        </div>
-      </div>
-    </section>
-
-    <!-- ABOUT SECTION -->
-    <section class="pt-10 -mt-8 lg:-mt-12 bg-white overflow-hidden relative">
-      <!-- WATERMARK -->
-      <span
-        class="absolute -top-4 right-4 text-[7.5rem] font-bold text-[#e6e2d8] select-none pointer-events-none opacity-25"
-      >
-        Naavera
-      </span>
-
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid lg:grid-cols-2 gap-14 items-center">
-          <!-- LEFT CONTENT -->
-          <div class="reveal fade-up">
-            <span
-              class="inline-block mb-4 px-4 py-1 text-sm font-semibold border border-gray-300 rounded-full"
-            >
-              About Naavera
-            </span>
-
-            <h2
-              class="text-3xl sm:text-4xl lg:text-5xl font-medium text-[#111111] mb-6"
-            >
-              Leading Steel Products with
-              <span class="text-[#D4AF37]">Advanced Precision Technology</span>
-            </h2>
-
-            <p class="text-gray-600 mb-6">
-              Founded in 2016, our company has been at the forefront of
-              manufacturing and supplying premium-quality steel across India. We
-              have built a reputation for reliability, consistency, and
-              excellence in serving industries like construction,
-              infrastructure, automotive, and engineering. Backed by advanced
-              manufacturing, strict quality control, and industry expertise, our
-              products are designed to perform reliably in demanding
-              applications.
+  <!-- HERO SECTION -->
+  <section class="pt-1 pb-12 bg-slate-50 px-1 sm:px-1">
+    <div class="relative max-w-7xl mx-auto h-[540px] rounded-3xl overflow-hidden shadow-2xl">
+      <!-- SLIDES WRAPPER -->
+      <div id="banner-slider" class="relative w-full h-full">
+        <!-- SLIDE 1 -->
+        <div class="banner-slide active">
+          <img src="images/banner1.jfif" class="banner-img" />
+          <div class="overlay"></div>
+          <div class="content center">
+            <h1 class="typing-text">
+              Welcome to <span class="text-[#D4AF37]">Naavera</span>
+            </h1>
+            <p class="subtext">
+              Building exceptional digital experiences through innovative
+              design and modern technology
             </p>
+            <a href="#contact" class="cta-btn">Get Started</a>
+          </div>
+        </div>
 
-            <p class="text-gray-600 mb-10">
-              With a strong domestic foundation and long-term partnerships, we
-              are now expanding into international markets to bring Indian
-              steel’s strength and durability to businesses worldwide. Guided by
-              trust and innovation, we remain committed to delivering
-              high-performance steel solutions that meet global standards.
+        <!-- SLIDE 2 -->
+        <div class="banner-slide">
+          <img src="images/banner2.png" class="banner-img" />
+          <div class="overlay"></div>
+          <div class="content center">
+            <h1 class="typing-text">
+              Forged for <span class="text-[#D4AF37]">Strength</span>
+            </h1>
+            <p class="subtext">
+              Precision-engineered forged fittings for industrial reliability.
             </p>
+            <a href="#contact" class="cta-btn">Explore Services</a>
           </div>
+        </div>
 
-          <!-- RIGHT IMAGES -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            <!-- First Image -->
-            <div class="reveal fade-left rounded-2xl overflow-hidden shadow-lg">
-              <img
-                src="images/aboutsection.jfif"
-                class="w-full h-full object-cover"
-              />
-            </div>
+        <!-- SLIDE 3 -->
+        <div class="banner-slide">
+          <img src="images/banner3.png" class="banner-img" />
+          <div class="overlay"></div>
+          <div class="content center">
+            <h1 class="typing-text">
+              Forged <span class="text-[#D4AF37]">Flanges</span>
+            </h1>
+            <p class="subtext">
+              Precision-forged for strength and reliability.
+            </p>
+            <a href="#contact" class="cta-btn">Get in Touch</a>
+          </div>
+        </div>
 
-            <!-- Second Column with Horizontal Stats -->
-            <div class="relative flex flex-col">
-              <!-- Horizontal Stats Bar -->
-              <div
-                class="reveal fade-right flex justify-between items-center bg-white shadow-md rounded-2xl px-6 py-4 mb-4"
-              >
-                <!-- Stat 1 -->
-                <div class="flex-1 text-center">
-                  <h3 class="text-2xl font-light text-gray-800">500+</h3>
-                  <p class="text-gray-500 text-sm">Projects</p>
-                </div>
+        <!-- SLIDE 4 -->
+        <div class="banner-slide">
+          <img src="images/Buttweld Fittings.png" class="banner-img" />
+          <div class="overlay"></div>
+          <div class="content center">
+            <h1 class="typing-text">
+              Buttweld <span class="text-[#D4AF37]">Fittings</span>
+            </h1>
 
-                <!-- Thin Divider -->
-                <div class="w-[1px] bg-gray-300 mx-4 h-12"></div>
-
-                <!-- Stat 2 -->
-                <div class="flex-1 text-center">
-                  <h3 class="text-2xl font-light text-gray-800">120+</h3>
-                  <p class="text-gray-500 text-sm">Clients</p>
-                </div>
-
-                <!-- Thin Divider -->
-                <div class="w-[1px] bg-gray-300 mx-4 h-12"></div>
-
-                <!-- Stat 3 -->
-                <div class="flex-1 text-center">
-                  <h3 class="text-2xl font-light text-gray-800">15</h3>
-                  <p class="text-gray-500 text-sm">Awards</p>
-                </div>
-              </div>
-
-              <!-- Second Image -->
-              <div class="rounded-2xl overflow-hidden shadow-lg">
-                <img
-                  src="images/aboutsection2.jfif"
-                  class="w-full h-full object-cover"
-                />
-              </div>
-            </div>
+            <p class="subtext">
+              Reliable fittings for high-pressure applications.
+            </p>
+            <a href="#contact" class="cta-btn">Get in Touch</a>
           </div>
         </div>
       </div>
-    </section>
 
-    <!-----------products--------->
-    <section
-      class="bg-[#f9f7f3] pt-8 pb-16 px-4 sm:px-6 font-sans overflow-hidden"
-    >
-      <div class="max-w-7xl mx-auto">
-        <!-- Heading -->
-        <div class="mb-12">
-          <h2
-            class="text-3xl sm:text-4xl md:text-5xl font-black font-medium text-[#1a241a] uppercase max-w-2xl"
-          >
-            Premium Industrial Products
-          </h2>
-          <p
-            class="mt-2 text-sm md:text-xl text-gray-600 font-extralight max-w-2xl"
-          >
-            Forged Fittings • Buttweld Fittings • Forged Flanges
-          </p>
-        </div>
-
-        <!-- Slider Wrapper -->
-        <div class="relative">
-          <!-- Slider Container -->
-          <div class="relative overflow-hidden pause-on-hover">
-            <!-- Auto Scroll Track -->
-            <div
-              id="productSlider"
-              class="flex gap-4 md:gap-6 animate-scroll scroll-smooth"
-            >
-              <!-- CARD 1 -->
-              <div
-                class="group relative overflow-hidden rounded-3xl cursor-pointer flex-shrink-0 w-[280px] sm:w-72 md:w-80"
-              >
-                <div class="aspect-[3/4] w-full">
-                  <img
-                    src="images/fittings-prod.png"
-                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    alt="Forged Fittings"
-                  />
-                  <!-- Gradient (behind text) -->
-                  <div
-                    class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"
-                  ></div>
-                  <div
-                    class="absolute inset-0 bg-gradient-to-t from-[#1a241a]/90 via-transparent"
-                  ></div>
-                </div>
-
-                <div
-                  class="absolute top-0 right-0 bg-[#f9f7f3] pl-4 pr-6 py-2 rounded-l-full font-bold text-[#1a241a]"
-                >
-                  01
-                </div>
-
-                <div class="absolute bottom-6 left-6 right-6">
-                  <h3 class="text-white text-2xl font-black uppercase mb-2">
-                    Forged Fittings
-                  </h3>
-                  <p class="text-gray-300 text-sm line-clamp-2">
-                    High-pressure carbon and stainless steel forged components.
-                  </p>
-                  <a
-                    href="#"
-                    class="inline-block mt-4 text-xs font-bold text-[#1a241a] bg-[#fdfcf0] px-6 py-2 rounded-full hover:bg-yellow-400 transition uppercase"
-                  >
-                    View Details
-                  </a>
-                </div>
-              </div>
-
-              <!-- CARD 2 -->
-              <div
-                class="group relative overflow-hidden rounded-3xl cursor-pointer flex-shrink-0 w-[280px] sm:w-72 md:w-80"
-              >
-                <div class="aspect-[3/4] w-full">
-                  <img
-                    src="images/buttweld-fittings.jpg"
-                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    alt="Buttweld Fittings"
-                  />
-
-                  <!-- Gradient (behind text) -->
-                  <div
-                    class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"
-                  ></div>
-
-                  <div
-                    class="absolute inset-0 bg-gradient-to-t from-[#1a241a]/90 via-transparent"
-                  ></div>
-                </div>
-
-                <div
-                  class="absolute top-0 right-0 bg-[#f9f7f3] pl-4 pr-6 py-2 rounded-l-full font-bold text-[#1a241a]"
-                >
-                  02
-                </div>
-
-                <div class="absolute bottom-6 left-6 right-6">
-                  <h3
-                    class="text-white text-2xl font-black font-medium uppercase mb-2"
-                  >
-                    Buttweld Fittings
-                  </h3>
-                  <p class="text-gray-300 text-sm line-clamp-2">
-                    High-pressure carbon and stainless steel forged components.
-                  </p>
-                  <a
-                    href="#"
-                    class="inline-block mt-4 text-xs font-bold text-[#1a241a] bg-[#fdfcf0] px-6 py-2 rounded-full hover:bg-yellow-400 transition uppercase"
-                  >
-                    View Details
-                  </a>
-                </div>
-              </div>
-
-              <!-- CARD 3 -->
-              <div
-                class="group relative overflow-hidden rounded-3xl cursor-pointer flex-shrink-0 w-[280px] sm:w-72 md:w-80"
-              >
-                <div class="aspect-[3/4] w-full">
-                  <img
-                    src="images/flanges-prod.png"
-                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    alt="Forged Flanges"
-                  />
-
-                  <!-- Gradient (behind text) -->
-                  <div
-                    class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"
-                  ></div>
-
-                  <div
-                    class="absolute inset-0 bg-gradient-to-t from-[#1a241a]/90 via-transparent"
-                  ></div>
-                </div>
-
-                <div
-                  class="absolute top-0 right-0 bg-[#f9f7f3] pl-4 pr-6 py-2 rounded-l-full font-bold text-[#1a241a]"
-                >
-                  03
-                </div>
-
-                <div class="absolute bottom-6 left-6 right-6">
-                  <h3
-                    class="text-white text-2xl font-medium font-black uppercase mb-2"
-                  >
-                    Forged Flanges
-                  </h3>
-                  <p class="text-gray-300 text-sm line-clamp-2">
-                    Engineered for Strength, Fit, and Leak-Free Connections
-                  </p>
-                  <a
-                    href="#"
-                    class="inline-block mt-4 text-xs font-bold text-[#1a241a] bg-[#fdfcf0] px-6 py-2 rounded-full hover:bg-yellow-400 transition uppercase"
-                  >
-                    View Details
-                  </a>
-                </div>
-              </div>
-
-              <!-- CARD 4 -->
-              <div
-                class="group relative overflow-hidden rounded-3xl cursor-pointer flex-shrink-0 w-[280px] sm:w-72 md:w-80"
-              >
-                <div class="aspect-[3/4] w-full">
-                  <img
-                    src="images/LR 90 Elbow.jpg"
-                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    alt="LR 90 Elbow"
-                  />
-
-                  <!-- Gradient (behind text) -->
-                  <div
-                    class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"
-                  ></div>
-
-                  <div
-                    class="absolute inset-0 bg-gradient-to-t from-[#1a241a]/90 via-transparent"
-                  ></div>
-                </div>
-
-                <div
-                  class="absolute top-0 right-0 bg-[#f9f7f3] pl-4 pr-6 py-2 rounded-l-full font-bold text-[#1a241a]"
-                >
-                  04
-                </div>
-
-                <div class="absolute bottom-6 left-6 right-6">
-                  <h3
-                    class="text-white text-2xl font-medium font-black uppercase mb-2"
-                  >
-                    LR 90 Elbow
-                  </h3>
-                  <p class="text-gray-300 text-sm line-clamp-2">
-                    High-Quality LR 90° Elbows Built for Reliable Piping Systems
-                  </p>
-                  <a
-                    href="#"
-                    class="inline-block mt-4 text-xs font-bold text-[#1a241a] bg-[#fdfcf0] px-6 py-2 rounded-full hover:bg-yellow-400 transition uppercase"
-                  >
-                    View Details
-                  </a>
-                </div>
-              </div>
-
-              <!-- CARD 5 -->
-              <div
-                class="group relative overflow-hidden rounded-3xl cursor-pointer flex-shrink-0 w-[280px] sm:w-72 md:w-80"
-              >
-                <div class="aspect-[3/4] w-full">
-                  <img
-                    src="images/fittings-prod.png"
-                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    alt="forged Fittings"
-                  />
-
-                  <!-- Gradient (behind text) -->
-                  <div
-                    class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"
-                  ></div>
-
-                  <div
-                    class="absolute inset-0 bg-gradient-to-t from-[#1a241a]/90 via-transparent"
-                  ></div>
-                </div>
-
-                <div
-                  class="absolute top-0 right-0 bg-[#f9f7f3] pl-4 pr-6 py-2 rounded-l-full font-bold text-[#1a241a]"
-                >
-                  05
-                </div>
-
-                <div class="absolute bottom-6 left-6 right-6">
-                  <h3
-                    class="text-white text-2xl font-medium font-black uppercase mb-2"
-                  >
-                    Forged Fittings
-                  </h3>
-                  <p class="text-gray-300 text-sm line-clamp-2">
-                    High-pressure carbon and stainless steel forged components.
-                  </p>
-                  <a
-                    href="#"
-                    class="inline-block mt-4 text-xs font-bold text-[#1a241a] bg-[#fdfcf0] px-6 py-2 rounded-full hover:bg-yellow-400 transition uppercase"
-                  >
-                    View Details
-                  </a>
-                </div>
-              </div>
-
-              <!-- CARD 6 -->
-              <div
-                class="group relative overflow-hidden rounded-3xl cursor-pointer flex-shrink-0 w-[280px] sm:w-72 md:w-80"
-              >
-                <div class="aspect-[3/4] w-full">
-                  <img
-                    src="images/Lap-forged.png"
-                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    alt="Lap Forged"
-                  />
-
-                  <!-- Gradient (behind text) -->
-                  <div
-                    class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"
-                  ></div>
-
-                  <div
-                    class="absolute inset-0 bg-gradient-to-t from-[#1a241a]/90 via-transparent"
-                  ></div>
-                </div>
-
-                <div
-                  class="absolute top-0 right-0 bg-[#f9f7f3] pl-4 pr-6 py-2 rounded-l-full font-bold text-[#1a241a]"
-                >
-                  06
-                </div>
-
-                <div class="absolute bottom-6 left-6 right-6">
-                  <h3
-                    class="text-white text-2xl font-medium font-black uppercase mb-2"
-                  >
-                    LAP - Forged Flanges
-                  </h3>
-                  <p class="text-gray-300 text-sm line-clamp-2">
-                    Engineered for Strength, Fit, and Leak-Free Connections
-                  </p>
-                  <a
-                    href="#"
-                    class="inline-block mt-4 text-xs font-bold text-[#1a241a] bg-[#fdfcf0] px-6 py-2 rounded-full hover:bg-yellow-400 transition uppercase"
-                  >
-                    View Details
-                  </a>
-                </div>
-              </div>
-
-              <!-- CARD 7 -->
-              <div
-                class="group relative overflow-hidden rounded-3xl cursor-pointer flex-shrink-0 w-[280px] sm:w-72 md:w-80"
-              >
-                <div class="aspect-[3/4] w-full">
-                  <img
-                    src="images/CR - Cold Rolled.jpg"
-                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    alt="CR - Cold Rolled"
-                  />
-
-                  <!-- Gradient (behind text) -->
-                  <div
-                    class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"
-                  ></div>
-
-                  <div
-                    class="absolute inset-0 bg-gradient-to-t from-[#1a241a]/90 via-transparent"
-                  ></div>
-                </div>
-
-                <div
-                  class="absolute top-0 right-0 bg-[#f9f7f3] pl-4 pr-6 py-2 rounded-l-full font-bold text-[#1a241a]"
-                >
-                  07
-                </div>
-
-                <div class="absolute bottom-6 left-6 right-6">
-                  <h3
-                    class="text-white text-2xl font-medium font-black uppercase mb-2"
-                  >
-                    CR - Cold Rolled
-                  </h3>
-                  <p class="text-gray-300 text-sm line-clamp-2">
-                    Precision-Engineered Cold Rolled Steel for Superior Finish &
-                    Strength
-                  </p>
-                  <a
-                    href="#"
-                    class="inline-block mt-4 text-xs font-bold text-[#1a241a] bg-[#fdfcf0] px-6 py-2 rounded-full hover:bg-yellow-400 transition uppercase"
-                  >
-                    View Details
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+      <!-- NAV DOTS -->
+      <div class="absolute bottom-5 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+        <button class="dot active" data-slide="0"></button>
+        <button class="dot" data-slide="1"></button>
+        <button class="dot" data-slide="2"></button>
+        <button class="dot" data-slide="2"></button>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- mission and vision section-->
-    <section id="mission-vision" class="relative py-14 px-2 overflow-hidden">
-      <div
-        id="mission-container"
-        class="relative max-w-7xl mx-auto rounded-[2.5rem] shadow-2xl border border-white/5 overflow-hidden opacity-0 translate-y-8 transition-all duration-1000 ease-out -mt-10"
-      >
-        <!-- Background Image -->
-        <div
-          class="absolute inset-0 bg-cover bg-center"
-          style="background-image: url('images/missionbg.jfif')"
-        ></div>
+  <!-- ABOUT SECTION -->
+  <section class="pt-10 -mt-8 lg:-mt-12 bg-white overflow-hidden relative">
+    <!-- WATERMARK -->
+    <span
+      class="absolute -top-4 right-4 text-[7.5rem] font-bold text-[#e6e2d8] select-none pointer-events-none opacity-25">
+      Naavera
+    </span>
 
-        <!-- Dark Navy Overlay -->
-        <div class="absolute inset-0 bg-[#0f172a]/90"></div>
-
-        <!-- Content Wrapper -->
-        <div
-          class="relative z-10 flex flex-col md:flex-row min-h-[420px] md:min-h-[460px]"
-        >
-          <!-- Image Section -->
-          <div
-            id="mission-img"
-            class="md:w-5/12 relative overflow-hidden opacity-0 -translate-x-8 transition-all duration-1000 ease-out delay-300"
-          >
-            <video
-              src="images/missionvideo.mp4"
-              class="w-full h-72 md:h-full object-cover hover:grayscale-0 transition-all duration-700"
-              autoplay
-              muted
-              loop
-              playsinline
-            ></video>
-
-            <div class="absolute inset-0 bg-blue-900/5 mix-blend-overlay"></div>
-          </div>
-
-          <!-- Text Section -->
-          <div
-            id="mission-text"
-            class="md:w-7/12 p-10 md:p-16 flex flex-col justify-center opacity-0 translate-x-8 transition-all duration-1000 ease-out delay-500"
-          >
-            <header class="mb-10">
-              <div
-                class="inline-block px-4 py-1.5 border border-yellow-500/30 rounded-full mb-5"
-              >
-                <span
-                  class="text-[11px] uppercase tracking-[0.35em] font-extraligt text-yellow-500"
-                >
-                  Core Purpose
-                </span>
-              </div>
-              <h2
-                class="text-white text-5xl font-normal uppercase tracking-tight"
-              >
-                Mission <span class="text-gray-500">&</span> Vision
-              </h2>
-            </header>
-
-            <div class="space-y-8">
-              <!-- Mission -->
-              <div class="group">
-                <h3
-                  class="text-yellow-500 font-bold uppercase text-xs tracking-widest mb-2 flex items-center gap-2"
-                >
-                  <span class="w-1.5 h-1.5 bg-yellow-500 rounded-full"></span>
-                  Mission
-                </h3>
-                <p
-                  class="text-gray-400 text-sm leading-relaxed border-l border-white/5 pl-5 group-hover:border-yellow-500/50 transition-colors"
-                >
-                  Delivering precision-engineered solutions that exceed global
-                  standards and customer expectations through technical mastery.
-                </p>
-              </div>
-
-              <!-- Vision -->
-              <div class="group">
-                <h3
-                  class="text-yellow-500 font-bold uppercase text-xs tracking-widest mb-2 flex items-center gap-2"
-                >
-                  <span class="w-1.5 h-1.5 bg-yellow-500 rounded-full"></span>
-                  Vision
-                </h3>
-                <p
-                  class="text-gray-400 text-sm leading-relaxed border-l border-white/5 pl-5 group-hover:border-yellow-500/50 transition-colors"
-                >
-                  To be the world's most trusted manufacturing partner, driven
-                  by innovation, sustainability, and engineering excellence.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!--why choose us section-->
-    <section class="relative -mt-10 py-20 px-4 bg-[#f9f7f3] overflow-hidden">
-      <!-- Watermark Logo -->
-      <img
-        src="logo.png"
-        alt="Logo Watermark"
-        class="absolute top-2 right-16 w-37 h-37 opacity-10 pointer-events-none z-0"
-      />
-
-      <div class="max-w-7xl mx-auto">
-        <!-- Section Header -->
-        <div
-          class="mb-4 max-w-3xl -mt-12 opacity-0 translate-y-8 transition-all duration-700 ease-out animate-on-scroll"
-        >
-          <span
-            class="inline-block mb-4 px-4 py-1.5 text-[11px] uppercase tracking-[0.35em] font-bold text-[#1C1C1C] border border-[#1C1C1C] rounded-full"
-          >
-            Why Choose Us
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-14 items-center">
+        <!-- LEFT CONTENT -->
+        <div class="reveal fade-up">
+          <span class="inline-block mb-4 px-4 py-1 text-sm font-semibold border border-gray-300 rounded-full">
+            About Naavera
           </span>
 
-          <h2
-            class="text-3xl sm:text-4xl md:text-5xl font-medium text-[#111111] leading-tight"
-          >
-            Engineering Excellence You Can Trust
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-medium text-[#111111] mb-6">
+            Leading Steel Products with
+            <span class="text-[#D4AF37]">Advanced Precision Technology</span>
           </h2>
 
-          <p class="mt-5 text-gray-600 text-sm sm:text-base leading-relaxed">
-            Combining expertise and precision to deliver solutions that exceed
-            expectations.
+          <p class="text-gray-600 mb-6">
+            Founded in 2016, our company has been at the forefront of
+            manufacturing and supplying premium-quality steel across India. We
+            have built a reputation for reliability, consistency, and
+            excellence in serving industries like construction,
+            infrastructure, automotive, and engineering. Backed by advanced
+            manufacturing, strict quality control, and industry expertise, our
+            products are designed to perform reliably in demanding
+            applications.
+          </p>
+
+          <p class="text-gray-600 mb-10">
+            With a strong domestic foundation and long-term partnerships, we
+            are now expanding into international markets to bring Indian
+            steel’s strength and durability to businesses worldwide. Guided by
+            trust and innovation, we remain committed to delivering
+            high-performance steel solutions that meet global standards.
           </p>
         </div>
 
-        <!-- Content Grid -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
-          <!-- LEFT: Text Content -->
-          <div class="space-y-8">
-            <!-- Item -->
-            <div
-              class="flex gap-4 items-start opacity-0 translate-y-6 transition-all duration-700 ease-out animate-on-scroll delay-100"
-            >
-              <div
-                class="flex-shrink-0 w-10 h-10 rounded-xl border border-yellow-500/40 flex items-center justify-center"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="w-5 h-5 text-yellow-500"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  stroke-width="1.6"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M9 12l2 2 4-4M3 12a9 9 0 1118 0 9 9 0 01-18 0z"
-                  />
-                </svg>
-              </div>
-              <div>
-                <h3 class="text-[#1C1C1C] font-semibold text-lg">
-                  Precision-Driven Manufacturing
-                </h3>
-                <p class="text-gray-600 text-sm leading-relaxed mt-1">
-                  Every component is engineered with accuracy, ensuring
-                  consistent quality and adherence to global standards.
-                </p>
-              </div>
-            </div>
-
-            <!-- Item -->
-            <div
-              class="flex gap-4 opacity-0 translate-y-6 transition-all duration-700 ease-out animate-on-scroll delay-200"
-            >
-              <div
-                class="flex-shrink-0 w-10 h-10 rounded-xl border border-yellow-500/40 flex items-center justify-center"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="w-5 h-5 text-yellow-500"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  stroke-width="1.6"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M9 12l2 2 4-4M3 12a9 9 0 1118 0 9 9 0 01-18 0z"
-                  />
-                </svg>
-              </div>
-              <div>
-                <h3 class="text-[#1C1C1C] font-semibold text-lg">
-                  Advanced Technology & Innovation
-                </h3>
-                <p class="text-gray-600 text-sm leading-relaxed mt-1">
-                  We leverage modern tools, automation, and innovative processes
-                  to stay ahead in a competitive manufacturing landscape.
-                </p>
-              </div>
-            </div>
-
-            <!-- Item -->
-            <div
-              class="flex gap-4 opacity-0 translate-y-6 transition-all duration-700 ease-out animate-on-scroll delay-300"
-            >
-              <div
-                class="flex-shrink-0 w-10 h-10 rounded-xl border border-yellow-500/40 flex items-center justify-center"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="w-5 h-5 text-yellow-500"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  stroke-width="1.6"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M9 12l2 2 4-4M3 12a9 9 0 1118 0 9 9 0 01-18 0z"
-                  />
-                </svg>
-              </div>
-              <div>
-                <h3 class="text-[#1C1C1C] font-semibold text-lg">
-                  Reliable & On-Time Delivery
-                </h3>
-                <p class="text-gray-600 text-sm leading-relaxed mt-1">
-                  Our streamlined operations ensure timely delivery without
-                  compromising quality or performance.
-                </p>
-              </div>
-            </div>
-
-            <!-- Item -->
-            <div
-              class="flex gap-4 opacity-0 translate-y-6 transition-all duration-700 ease-out animate-on-scroll delay-400"
-            >
-              <div
-                class="flex-shrink-0 w-10 h-10 rounded-xl border border-yellow-500/40 flex items-center justify-center"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="w-5 h-5 text-yellow-500"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  stroke-width="1.6"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M9 12l2 2 4-4M3 12a9 9 0 1118 0 9 9 0 01-18 0z"
-                  />
-                </svg>
-              </div>
-              <div>
-                <h3 class="text-[#1C1C1C] font-semibold text-lg">
-                  Customer-Centric Approach
-                </h3>
-                <p class="text-gray-600 text-sm leading-relaxed mt-1">
-                  We work closely with clients to understand their needs and
-                  deliver tailored engineering solutions.
-                </p>
-              </div>
-            </div>
+        <!-- RIGHT IMAGES -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <!-- First Image -->
+          <div class="reveal fade-left rounded-2xl overflow-hidden shadow-lg">
+            <img src="images/aboutsection.jfif" class="w-full h-full object-cover" />
           </div>
 
-          <!-- RIGHT: Image / Infographic -->
-          <div
-            class="relative opacity-0 scale-95 transition-all duration-1000 ease-out animate-on-scroll delay-500"
-          >
+          <!-- Second Column with Horizontal Stats -->
+          <div class="relative flex flex-col">
+            <!-- Horizontal Stats Bar -->
             <div
-              class="relative overflow-hidden border border-white/10 shadow-2xl rounded-[3rem_1.5rem_3rem_1.5rem]"
-            >
-              <img
-                src="images/aboutsection2.jfif"
-                alt="Why Choose Us"
-                class="w-full h-[320px] sm:h-[380px] lg:h-[440px] object-cover"
-              />
-              <div class="absolute inset-0 bg-[#020617]/20"></div>
+              class="reveal fade-right flex justify-between items-center bg-white shadow-md rounded-2xl px-6 py-4 mb-4">
+              <!-- Stat 1 -->
+              <div class="flex-1 text-center">
+                <h3 class="text-2xl font-light text-gray-800">500+</h3>
+                <p class="text-gray-500 text-sm">Projects</p>
+              </div>
+
+              <!-- Thin Divider -->
+              <div class="w-[1px] bg-gray-300 mx-4 h-12"></div>
+
+              <!-- Stat 2 -->
+              <div class="flex-1 text-center">
+                <h3 class="text-2xl font-light text-gray-800">120+</h3>
+                <p class="text-gray-500 text-sm">Clients</p>
+              </div>
+
+              <!-- Thin Divider -->
+              <div class="w-[1px] bg-gray-300 mx-4 h-12"></div>
+
+              <!-- Stat 3 -->
+              <div class="flex-1 text-center">
+                <h3 class="text-2xl font-light text-gray-800">15</h3>
+                <p class="text-gray-500 text-sm">Awards</p>
+              </div>
             </div>
-            <div
-              class="absolute -top-12 -right-12 w-40 h-40 bg-yellow-500/10 rounded-full blur-3xl"
-            ></div>
+
+            <!-- Second Image -->
+            <div class="rounded-2xl overflow-hidden shadow-lg">
+              <img src="images/aboutsection2.jfif" class="w-full h-full object-cover" />
+            </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- COMMON FOOTER -->
-    <div id="footer"></div>
+  <!-----------products--------->
+  <section class="bg-[#f9f7f3] pt-8 pb-16 px-4 sm:px-6 font-sans overflow-hidden">
+    <div class="max-w-7xl mx-auto">
+      <!-- Heading -->
+      <div class="mb-12">
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-black font-medium text-[#1a241a] uppercase max-w-2xl">
+          Premium Industrial Products
+        </h2>
+        <p class="mt-2 text-sm md:text-xl text-gray-600 font-extralight max-w-2xl">
+          Forged Fittings • Buttweld Fittings • Forged Flanges
+        </p>
+      </div>
 
-    <script src="header/header.js"></script>
-    <script src="footer/footer.js"></script>
+      <!-- Slider Wrapper -->
+      <div class="relative">
+        <!-- Slider Container -->
+        <div class="relative overflow-hidden pause-on-hover">
+          <!-- Auto Scroll Track -->
+          <div id="productSlider" class="flex gap-4 md:gap-6 animate-scroll scroll-smooth">
+            <!-- CARD 1 -->
+            <div
+              class="group relative overflow-hidden rounded-3xl cursor-pointer flex-shrink-0 w-[280px] sm:w-72 md:w-80">
+              <div class="aspect-[3/4] w-full">
+                <img src="images/fittings-prod.png"
+                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  alt="Forged Fittings" />
+                <!-- Gradient (behind text) -->
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-[#1a241a]/90 via-transparent"></div>
+              </div>
 
-    <script>
-      const slides = document.querySelectorAll(".banner-slide");
-      const dots = document.querySelectorAll(".dot");
-      let index = 0;
+              <div class="absolute top-0 right-0 bg-[#f9f7f3] pl-4 pr-6 py-2 rounded-l-full font-bold text-[#1a241a]">
+                01
+              </div>
 
-      function showSlide(i) {
-        slides.forEach((slide, sIndex) => {
-          slide.classList.remove("active");
+              <div class="absolute bottom-6 left-6 right-6">
+                <h3 class="text-white text-2xl font-medium uppercase mb-2">
+                  Forged Fittings
+                </h3>
+                <p class="text-gray-300 text-sm line-clamp-2">
+                  High-pressure carbon and stainless steel forged components.
+                </p>
+                <a href="forgedfittings.html"
+                  class="inline-block mt-4 text-xs font-bold text-[#1a241a] bg-[#fdfcf0] px-6 py-2 rounded-full hover:bg-yellow-400 transition uppercase">
+                  View Details
+                </a>
+              </div>
+            </div>
 
-          // Reset typing animation
-          const h1 = slide.querySelector(".typing-text");
-          if (h1) {
-            h1.style.width = 0;
-            h1.style.animation = "none";
-            void h1.offsetWidth; // force reflow
-          }
-        });
+            <!-- CARD 2 -->
+            <div
+              class="group relative overflow-hidden rounded-3xl cursor-pointer flex-shrink-0 w-[280px] sm:w-72 md:w-80">
+              <div class="aspect-[3/4] w-full">
+                <img src="images/buttweld-fittings.jpg"
+                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  alt="Buttweld Fittings" />
 
-        // Show current slide
-        slides[i].classList.add("active");
+                <!-- Gradient (behind text) -->
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
 
-        // Trigger typing animation
-        const h1 = slides[i].querySelector(".typing-text");
+                <div class="absolute inset-0 bg-gradient-to-t from-[#1a241a]/90 via-transparent"></div>
+              </div>
+
+              <div class="absolute top-0 right-0 bg-[#f9f7f3] pl-4 pr-6 py-2 rounded-l-full font-bold text-[#1a241a]">
+                02
+              </div>
+
+              <div class="absolute bottom-6 left-6 right-6">
+                <h3 class="text-white text-2xl font-black font-medium uppercase mb-2">
+                  Buttweld Fittings
+                </h3>
+                <p class="text-gray-300 text-sm line-clamp-2">
+                  High-pressure carbon and stainless steel forged components.
+                </p>
+                <a href="buttweld.html"
+                  class="inline-block mt-4 text-xs font-bold text-[#1a241a] bg-[#fdfcf0] px-6 py-2 rounded-full hover:bg-yellow-400 transition uppercase">
+                  View Details
+                </a>
+              </div>
+            </div>
+
+            <!-- CARD 3 -->
+            <div
+              class="group relative overflow-hidden rounded-3xl cursor-pointer flex-shrink-0 w-[280px] sm:w-72 md:w-80">
+              <div class="aspect-[3/4] w-full">
+                <img src="images/flanges-prod.png"
+                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  alt="Forged Flanges" />
+
+                <!-- Gradient (behind text) -->
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+
+                <div class="absolute inset-0 bg-gradient-to-t from-[#1a241a]/90 via-transparent"></div>
+              </div>
+
+              <div class="absolute top-0 right-0 bg-[#f9f7f3] pl-4 pr-6 py-2 rounded-l-full font-bold text-[#1a241a]">
+                03
+              </div>
+
+              <div class="absolute bottom-6 left-6 right-6">
+                <h3 class="text-white text-2xl font-medium font-black uppercase mb-2">
+                  Forged Flanges
+                </h3>
+                <p class="text-gray-300 text-sm line-clamp-2">
+                  Engineered for Strength, Fit, and Leak-Free Connections
+                </p>
+                <a href="forgedflanges.html"
+                  class="inline-block mt-4 text-xs font-bold text-[#1a241a] bg-[#fdfcf0] px-6 py-2 rounded-full hover:bg-yellow-400 transition uppercase">
+                  View Details
+                </a>
+              </div>
+            </div>
+
+            <!-- CARD 4 -->
+            <div
+              class="group relative overflow-hidden rounded-3xl cursor-pointer flex-shrink-0 w-[280px] sm:w-72 md:w-80">
+              <div class="aspect-[3/4] w-full">
+                <img src="images/LR90-1.webp"
+                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  alt="LR 90 Elbow" />
+
+                <!-- Gradient (behind text) -->
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+
+                <div class="absolute inset-0 bg-gradient-to-t from-[#1a241a]/90 via-transparent"></div>
+              </div>
+
+              <div class="absolute top-0 right-0 bg-[#f9f7f3] pl-4 pr-6 py-2 rounded-l-full font-bold text-[#1a241a]">
+                04
+              </div>
+
+              <div class="absolute bottom-6 left-6 right-6">
+                <h3 class="text-white text-2xl font-medium font-black uppercase mb-2">
+                  LR 90 Elbow
+                </h3>
+                <p class="text-gray-300 text-sm line-clamp-2">
+                  High-Quality LR 90° Elbows Built for Reliable Piping Systems
+                </p>
+                <a href="buttweld.html"
+                  class="inline-block mt-4 text-xs font-bold text-[#1a241a] bg-[#fdfcf0] px-6 py-2 rounded-full hover:bg-yellow-400 transition uppercase">
+                  View Details
+                </a>
+              </div>
+            </div>
+
+            <!-- CARD 5 -->
+            <div
+              class="group relative overflow-hidden rounded-3xl cursor-pointer flex-shrink-0 w-[280px] sm:w-72 md:w-80">
+              <div class="aspect-[3/4] w-full">
+                <img src="images/cap1.png"
+                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  alt="buttweld-fittings" />
+
+                <!-- Gradient (behind text) -->
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+
+                <div class="absolute inset-0 bg-gradient-to-t from-[#1a241a]/90 via-transparent"></div>
+              </div>
+
+              <div class="absolute top-0 right-0 bg-[#f9f7f3] pl-4 pr-6 py-2 rounded-l-full font-bold text-[#1a241a]">
+                05
+              </div>
+
+              <div class="absolute bottom-6 left-6 right-6">
+                <h3 class="text-white text-2xl font-medium font-black uppercase mb-2">
+                  Cap
+                </h3>
+                <p class="text-gray-300 text-sm line-clamp-2">
+                  Forged buttweld cap pipe fittings are essential piping components.
+                </p>
+                <a href="forgedfittings.html"
+                  class="inline-block mt-4 text-xs font-bold text-[#1a241a] bg-[#fdfcf0] px-6 py-2 rounded-full hover:bg-yellow-400 transition uppercase">
+                  View Details
+                </a>
+              </div>
+            </div>
+
+            <!-- CARD 6 -->
+            <div
+              class="group relative overflow-hidden rounded-3xl cursor-pointer flex-shrink-0 w-[280px] sm:w-72 md:w-80">
+              <div class="aspect-[3/4] w-full">
+                <img src="images/lap-2.jpg"
+                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  alt="Lap Forged" />
+
+                <!-- Gradient (behind text) -->
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+
+                <div class="absolute inset-0 bg-gradient-to-t from-[#1a241a]/90 via-transparent"></div>
+              </div>
+
+              <div class="absolute top-0 right-0 bg-[#f9f7f3] pl-4 pr-6 py-2 rounded-l-full font-bold text-[#1a241a]">
+                06
+              </div>
+
+              <div class="absolute bottom-6 left-6 right-6">
+                <h3 class="text-white text-2xl font-medium font-black uppercase mb-2">
+                  LAP - Forged Flanges
+                </h3>
+                <p class="text-gray-300 text-sm line-clamp-2">
+                  Engineered for Strength, Fit, and Leak-Free Connections
+                </p>
+                <a href="forgedflanges.html"
+                  class="inline-block mt-4 text-xs font-bold text-[#1a241a] bg-[#fdfcf0] px-6 py-2 rounded-full hover:bg-yellow-400 transition uppercase">
+                  View Details
+                </a>
+              </div>
+            </div>
+
+            <!-- CARD 7 -->
+            <div
+              class="group relative overflow-hidden rounded-3xl cursor-pointer flex-shrink-0 w-[280px] sm:w-72 md:w-80">
+              <div class="aspect-[3/4] w-full">
+                <img src="images/CR - Cold Rolled.jpg"
+                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  alt="CR - Cold Rolled" />
+
+                <!-- Gradient (behind text) -->
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+
+                <div class="absolute inset-0 bg-gradient-to-t from-[#1a241a]/90 via-transparent"></div>
+              </div>
+
+              <div class="absolute top-0 right-0 bg-[#f9f7f3] pl-4 pr-6 py-2 rounded-l-full font-bold text-[#1a241a]">
+                07
+              </div>
+
+              <div class="absolute bottom-6 left-6 right-6">
+                <h3 class="text-white text-2xl font-medium font-black uppercase mb-2">
+                  CR - Cold Rolled
+                </h3>
+                <p class="text-gray-300 text-sm line-clamp-2">
+                  Precision-Engineered Cold Rolled Steel for Superior Finish &
+                  Strength
+                </p>
+                <a href="buttweld.html"
+                  class="inline-block mt-4 text-xs font-bold text-[#1a241a] bg-[#fdfcf0] px-6 py-2 rounded-full hover:bg-yellow-400 transition uppercase">
+                  View Details
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- mission and vision section-->
+  <section id="mission-vision" class="relative py-14 px-2 overflow-hidden">
+    <div id="mission-container"
+      class="relative max-w-7xl mx-auto rounded-[2.5rem] shadow-2xl border border-white/5 overflow-hidden opacity-0 translate-y-8 transition-all duration-1000 ease-out -mt-10">
+      <!-- Background Image -->
+      <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('images/missionbg.jfif')"></div>
+
+      <!-- Dark Navy Overlay -->
+      <div class="absolute inset-0 bg-[#0f172a]/90"></div>
+
+      <!-- Content Wrapper -->
+      <div class="relative z-10 flex flex-col md:flex-row min-h-[420px] md:min-h-[460px]">
+        <!-- Image Section -->
+        <div id="mission-img"
+          class="md:w-5/12 relative overflow-hidden opacity-0 -translate-x-8 transition-all duration-1000 ease-out delay-300">
+          <video src="images/missionvideo.mp4"
+            class="w-full h-72 md:h-full object-cover hover:grayscale-0 transition-all duration-700" autoplay muted loop
+            playsinline></video>
+
+          <div class="absolute inset-0 bg-blue-900/5 mix-blend-overlay"></div>
+        </div>
+
+        <!-- Text Section -->
+        <div id="mission-text"
+          class="md:w-7/12 p-10 md:p-16 flex flex-col justify-center opacity-0 translate-x-8 transition-all duration-1000 ease-out delay-500">
+          <header class="mb-10">
+            <div class="inline-block px-4 py-1.5 border border-yellow-500/30 rounded-full mb-5">
+              <span class="text-[11px] uppercase tracking-[0.35em] font-extraligt text-yellow-500">
+                Core Purpose
+              </span>
+            </div>
+            <h2 class="text-white text-5xl font-normal uppercase tracking-tight">
+              Mission <span class="text-gray-500">&</span> Vision
+            </h2>
+          </header>
+
+          <div class="space-y-8">
+            <!-- Mission -->
+            <div class="group">
+              <h3 class="text-yellow-500 font-bold uppercase text-xs tracking-widest mb-2 flex items-center gap-2">
+                <span class="w-1.5 h-1.5 bg-yellow-500 rounded-full"></span>
+                Mission
+              </h3>
+              <p
+                class="text-gray-400 text-sm leading-relaxed border-l border-white/5 pl-5 group-hover:border-yellow-500/50 transition-colors">
+                Delivering precision-engineered solutions that exceed global
+                standards and customer expectations through technical mastery.
+              </p>
+            </div>
+
+            <!-- Vision -->
+            <div class="group">
+              <h3 class="text-yellow-500 font-bold uppercase text-xs tracking-widest mb-2 flex items-center gap-2">
+                <span class="w-1.5 h-1.5 bg-yellow-500 rounded-full"></span>
+                Vision
+              </h3>
+              <p
+                class="text-gray-400 text-sm leading-relaxed border-l border-white/5 pl-5 group-hover:border-yellow-500/50 transition-colors">
+                To be the world's most trusted manufacturing partner, driven
+                by innovation, sustainability, and engineering excellence.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!--why choose us section-->
+  <section class="relative -mt-10 py-20 px-4 bg-[#f9f7f3] overflow-hidden">
+    <!-- Watermark Logo -->
+    <img src="logo.png" alt="Logo Watermark"
+      class="absolute top-2 right-16 w-37 h-37 opacity-10 pointer-events-none z-0" />
+
+    <div class="max-w-7xl mx-auto">
+      <!-- Section Header -->
+      <div class="mb-4 max-w-3xl -mt-12 opacity-0 translate-y-8 transition-all duration-700 ease-out animate-on-scroll">
+        <span
+          class="inline-block mb-4 px-4 py-1.5 text-[11px] uppercase tracking-[0.35em] font-bold text-[#1C1C1C] border border-[#1C1C1C] rounded-full">
+          Why Choose Us
+        </span>
+
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-medium text-[#111111] leading-tight">
+          Engineering Excellence You Can Trust
+        </h2>
+
+        <p class="mt-5 text-gray-600 text-sm sm:text-base leading-relaxed">
+          Combining expertise and precision to deliver solutions that exceed
+          expectations.
+        </p>
+      </div>
+
+      <!-- Content Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+        <!-- LEFT: Text Content -->
+        <div class="space-y-8">
+          <!-- Item -->
+          <div
+            class="flex gap-4 items-start opacity-0 translate-y-6 transition-all duration-700 ease-out animate-on-scroll delay-100">
+            <div
+              class="flex-shrink-0 w-10 h-10 rounded-xl border border-yellow-500/40 flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-yellow-500" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor" stroke-width="1.6">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M9 12l2 2 4-4M3 12a9 9 0 1118 0 9 9 0 01-18 0z" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-[#1C1C1C] font-semibold text-lg">
+                Precision-Driven Manufacturing
+              </h3>
+              <p class="text-gray-600 text-sm leading-relaxed mt-1">
+                Every component is engineered with accuracy, ensuring
+                consistent quality and adherence to global standards.
+              </p>
+            </div>
+          </div>
+
+          <!-- Item -->
+          <div
+            class="flex gap-4 opacity-0 translate-y-6 transition-all duration-700 ease-out animate-on-scroll delay-200">
+            <div
+              class="flex-shrink-0 w-10 h-10 rounded-xl border border-yellow-500/40 flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-yellow-500" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor" stroke-width="1.6">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M9 12l2 2 4-4M3 12a9 9 0 1118 0 9 9 0 01-18 0z" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-[#1C1C1C] font-semibold text-lg">
+                Advanced Technology & Innovation
+              </h3>
+              <p class="text-gray-600 text-sm leading-relaxed mt-1">
+                We leverage modern tools, automation, and innovative processes
+                to stay ahead in a competitive manufacturing landscape.
+              </p>
+            </div>
+          </div>
+
+          <!-- Item -->
+          <div
+            class="flex gap-4 opacity-0 translate-y-6 transition-all duration-700 ease-out animate-on-scroll delay-300">
+            <div
+              class="flex-shrink-0 w-10 h-10 rounded-xl border border-yellow-500/40 flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-yellow-500" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor" stroke-width="1.6">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M9 12l2 2 4-4M3 12a9 9 0 1118 0 9 9 0 01-18 0z" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-[#1C1C1C] font-semibold text-lg">
+                Reliable & On-Time Delivery
+              </h3>
+              <p class="text-gray-600 text-sm leading-relaxed mt-1">
+                Our streamlined operations ensure timely delivery without
+                compromising quality or performance.
+              </p>
+            </div>
+          </div>
+
+          <!-- Item -->
+          <div
+            class="flex gap-4 opacity-0 translate-y-6 transition-all duration-700 ease-out animate-on-scroll delay-400">
+            <div
+              class="flex-shrink-0 w-10 h-10 rounded-xl border border-yellow-500/40 flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-yellow-500" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor" stroke-width="1.6">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M9 12l2 2 4-4M3 12a9 9 0 1118 0 9 9 0 01-18 0z" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-[#1C1C1C] font-semibold text-lg">
+                Customer-Centric Approach
+              </h3>
+              <p class="text-gray-600 text-sm leading-relaxed mt-1">
+                We work closely with clients to understand their needs and
+                deliver tailored engineering solutions.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT: Image / Infographic -->
+        <div class="relative opacity-0 scale-95 transition-all duration-1000 ease-out animate-on-scroll delay-500">
+          <div class="relative overflow-hidden border border-white/10 shadow-2xl rounded-[3rem_1.5rem_3rem_1.5rem]">
+            <img src="images/aboutsection2.jfif" alt="Why Choose Us"
+              class="w-full h-[320px] sm:h-[380px] lg:h-[440px] object-cover" />
+            <div class="absolute inset-0 bg-[#020617]/20"></div>
+          </div>
+          <div class="absolute -top-12 -right-12 w-40 h-40 bg-yellow-500/10 rounded-full blur-3xl"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMMON FOOTER -->
+  <div id="footer"></div>
+
+  <script src="header/header.js"></script>
+  <script src="footer/footer.js"></script>
+
+  <script>
+    const slides = document.querySelectorAll(".banner-slide");
+    const dots = document.querySelectorAll(".dot");
+    let index = 0;
+
+    function showSlide(i) {
+      slides.forEach((slide, sIndex) => {
+        slide.classList.remove("active");
+
+        // Reset typing animation
+        const h1 = slide.querySelector(".typing-text");
         if (h1) {
-          h1.style.animation = "typing 2.2s steps(30,end) forwards";
+          h1.style.width = 0;
+          h1.style.animation = "none";
+          void h1.offsetWidth; // force reflow
         }
+      });
 
-        // Update dots
-        dots.forEach((dot) => dot.classList.remove("active"));
-        dots[i].classList.add("active");
+      // Show current slide
+      slides[i].classList.add("active");
 
-        index = i;
+      // Trigger typing animation
+      const h1 = slides[i].querySelector(".typing-text");
+      if (h1) {
+        h1.style.animation = "typing 2.2s steps(30,end) forwards";
       }
 
-      // Dot click
-      dots.forEach((dot, i) =>
-        dot.addEventListener("click", () => showSlide(i))
-      );
+      // Update dots
+      dots.forEach((dot) => dot.classList.remove("active"));
+      dots[i].classList.add("active");
 
-      // Auto slide every 6s
-      setInterval(() => showSlide((index + 1) % slides.length), 4000);
+      index = i;
+    }
 
-      // Init first slide
-      showSlide(0);
+    // Dot click
+    dots.forEach((dot, i) =>
+      dot.addEventListener("click", () => showSlide(i))
+    );
 
-      //animation
-      const reveals = document.querySelectorAll(".reveal");
+    // Auto slide every 6s
+    setInterval(() => showSlide((index + 1) % slides.length), 4000);
 
+    // Init first slide
+    showSlide(0);
+
+    //animation
+    const reveals = document.querySelectorAll(".reveal");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("active");
+          }
+        });
+      },
+      {
+        threshold: 0.2,
+      }
+    );
+
+    reveals.forEach((el) => observer.observe(el));
+
+    // Product Slider Scroll
+
+    const slider = document.getElementById("productSlider");
+
+    // 🔁 Duplicate cards for infinite effect
+    slider.innerHTML += slider.innerHTML;
+
+    let autoScrollInterval;
+
+    function getCardWidth() {
+      const card = slider.querySelector(".group");
+      const gap = window.innerWidth >= 768 ? 24 : 16;
+      return card.offsetWidth + gap;
+    }
+
+    function scrollSlider(direction) {
+      stopAutoScroll();
+
+      slider.scrollBy({
+        left: direction * getCardWidth(),
+        behavior: "smooth",
+      });
+
+      setTimeout(startAutoScroll, 4000);
+    }
+
+    function startAutoScroll() {
+      stopAutoScroll();
+
+      autoScrollInterval = setInterval(() => {
+        slider.scrollLeft += getCardWidth();
+
+        // 🔁 Seamless loop reset
+        if (slider.scrollLeft >= slider.scrollWidth / 2) {
+          slider.scrollLeft = 0;
+        }
+      }, 3000);
+    }
+
+    function stopAutoScroll() {
+      clearInterval(autoScrollInterval);
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      startAutoScroll();
+
+      slider.addEventListener("mouseenter", stopAutoScroll);
+      slider.addEventListener("mouseleave", startAutoScroll);
+
+      slider.addEventListener("touchstart", stopAutoScroll, {
+        passive: true,
+      });
+      slider.addEventListener("touchend", startAutoScroll);
+    });
+
+    //why choose us animation
+    const observeSection = () => {
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
-              entry.target.classList.add("active");
+              // Animate main container
+              const container = document.querySelector("#mission-container");
+              container.classList.remove("opacity-0", "translate-y-8");
+
+              // Animate inner elements
+              const img = document.querySelector("#mission-img");
+              const text = document.querySelector("#mission-text");
+
+              img.classList.remove("opacity-0", "-translate-x-8");
+              text.classList.remove("opacity-0", "translate-x-8");
+
+              observer.unobserve(entry.target);
             }
           });
         },
-        {
-          threshold: 0.2,
-        }
+        { threshold: 0.3 }
       );
 
-      reveals.forEach((el) => observer.observe(el));
+      observer.observe(document.querySelector("#mission-vision"));
+    };
 
-      // Product Slider Scroll
+    document.addEventListener("DOMContentLoaded", observeSection);
 
-      const slider = document.getElementById("productSlider");
+    document.addEventListener("DOMContentLoaded", () => {
+      const observer = new IntersectionObserver(
+        (entries, obs) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.remove(
+                "opacity-0",
+                "translate-y-6",
+                "translate-y-8",
+                "scale-95"
+              );
+              entry.target.classList.add(
+                "opacity-100",
+                "translate-y-0",
+                "scale-100"
+              );
+              obs.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.25 }
+      );
 
-      // 🔁 Duplicate cards for infinite effect
-      slider.innerHTML += slider.innerHTML;
+      document
+        .querySelectorAll(".animate-on-scroll")
+        .forEach((el) => observer.observe(el));
+    });
+  </script>
+</body>
 
-      let autoScrollInterval;
-
-      function getCardWidth() {
-        const card = slider.querySelector(".group");
-        const gap = window.innerWidth >= 768 ? 24 : 16;
-        return card.offsetWidth + gap;
-      }
-
-      function scrollSlider(direction) {
-        stopAutoScroll();
-
-        slider.scrollBy({
-          left: direction * getCardWidth(),
-          behavior: "smooth",
-        });
-
-        setTimeout(startAutoScroll, 4000);
-      }
-
-      function startAutoScroll() {
-        stopAutoScroll();
-
-        autoScrollInterval = setInterval(() => {
-          slider.scrollLeft += getCardWidth();
-
-          // 🔁 Seamless loop reset
-          if (slider.scrollLeft >= slider.scrollWidth / 2) {
-            slider.scrollLeft = 0;
-          }
-        }, 3000);
-      }
-
-      function stopAutoScroll() {
-        clearInterval(autoScrollInterval);
-      }
-
-      document.addEventListener("DOMContentLoaded", () => {
-        startAutoScroll();
-
-        slider.addEventListener("mouseenter", stopAutoScroll);
-        slider.addEventListener("mouseleave", startAutoScroll);
-
-        slider.addEventListener("touchstart", stopAutoScroll, {
-          passive: true,
-        });
-        slider.addEventListener("touchend", startAutoScroll);
-      });
-
-      //why choose us animation
-      const observeSection = () => {
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                // Animate main container
-                const container = document.querySelector("#mission-container");
-                container.classList.remove("opacity-0", "translate-y-8");
-
-                // Animate inner elements
-                const img = document.querySelector("#mission-img");
-                const text = document.querySelector("#mission-text");
-
-                img.classList.remove("opacity-0", "-translate-x-8");
-                text.classList.remove("opacity-0", "translate-x-8");
-
-                observer.unobserve(entry.target);
-              }
-            });
-          },
-          { threshold: 0.3 }
-        );
-
-        observer.observe(document.querySelector("#mission-vision"));
-      };
-
-      document.addEventListener("DOMContentLoaded", observeSection);
-
-      document.addEventListener("DOMContentLoaded", () => {
-        const observer = new IntersectionObserver(
-          (entries, obs) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                entry.target.classList.remove(
-                  "opacity-0",
-                  "translate-y-6",
-                  "translate-y-8",
-                  "scale-95"
-                );
-                entry.target.classList.add(
-                  "opacity-100",
-                  "translate-y-0",
-                  "scale-100"
-                );
-                obs.unobserve(entry.target);
-              }
-            });
-          },
-          { threshold: 0.25 }
-        );
-
-        document
-          .querySelectorAll(".animate-on-scroll")
-          .forEach((el) => observer.observe(el));
-      });
-    </script>
-  </body>
 </html>
