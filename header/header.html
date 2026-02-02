@@ -1,1314 +1,1130 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Naavera Solutions | Glassmorphism Header</title>
 
-    <script src="https://cdn.tailwindcss.com"></script>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Naavera Solutions | Glassmorphism Header</title>
 
-    <style>
-      /* Your original styles – unchanged except additions at the end */
+  <script src="https://cdn.tailwindcss.com"></script>
 
-      /* 1. Drawer Backdrop */
-      #drawer-backdrop {
-        position: fixed;
-        inset: 0;
-        background: rgba(15, 23, 42, 0.4);
-        backdrop-filter: blur(4px);
-        opacity: 0;
-        visibility: hidden;
-        transition: opacity 0.3s ease;
-        z-index: 50;
-      }
+  <style>
+    /* Your original styles – unchanged except additions at the end */
 
-      #drawer-backdrop.show {
-        opacity: 1;
-        visibility: visible;
-      }
+    /* 1. Drawer Backdrop */
+    #drawer-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.4);
+      backdrop-filter: blur(4px);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease;
+      z-index: 50;
+    }
 
-      /* 2. Mobile Menu (Side Drawer) */
-      #mobile-menu {
-        position: fixed;
-        top: 0;
-        right: 0;
-        height: 100vh;
-        width: 85%;
-        max-width: 320px;
-        transform: translateX(100%);
-        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        background: rgba(255, 255, 255, 0.98);
-        backdrop-filter: blur(16px);
-        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
-        z-index: 60;
-      }
+    #drawer-backdrop.show {
+      opacity: 1;
+      visibility: visible;
+    }
 
-      #mobile-menu.show {
-        transform: translateX(0);
-      }
+    /* 2. Mobile Menu (Side Drawer) */
+    #mobile-menu {
+      position: fixed;
+      top: 0;
+      right: 0;
+      height: 100vh;
+      width: 85%;
+      max-width: 320px;
+      transform: translateX(100%);
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(16px);
+      box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
+      z-index: 60;
+    }
 
-      /* 3. Hamburger Animation */
-      .hamburger span {
-        display: block;
-        position: absolute;
-        height: 2.5px;
-        width: 100%;
-        background: #0f172a;
-        border-radius: 9px;
-        transition: 0.25s ease-in-out;
-      }
+    #mobile-menu.show {
+      transform: translateX(0);
+    }
 
-      .hamburger span:nth-child(1) {
-        top: 6px;
-      }
-      .hamburger span:nth-child(2) {
-        top: 14px;
-      }
-      .hamburger span:nth-child(3) {
-        top: 22px;
-      }
+    /* 3. Hamburger Animation */
+    .hamburger span {
+      display: block;
+      position: absolute;
+      height: 2.5px;
+      width: 100%;
+      background: #0f172a;
+      border-radius: 9px;
+      transition: 0.25s ease-in-out;
+    }
 
-      .hamburger.open span:nth-child(1) {
-        transform: rotate(45deg);
-        top: 14px;
-      }
-      .hamburger.open span:nth-child(2) {
-        opacity: 0;
-        width: 0;
-      }
-      .hamburger.open span:nth-child(3) {
-        transform: rotate(-45deg);
-        top: 14px;
-      }
+    .hamburger span:nth-child(1) {
+      top: 6px;
+    }
 
-      /* 4. Desktop Nav Hover Effects */
-      .nav-link {
-        position: relative;
-        color: #f3f6fde5;
-        font-weight: 600;
-        transition: all 0.3s ease;
-      }
+    .hamburger span:nth-child(2) {
+      top: 14px;
+    }
 
-      .nav-link::after {
-        content: "";
-        position: absolute;
-        bottom: -4px;
-        left: 0;
-        width: 0;
-        height: 2px;
-        background: #d4af37;
-        transition: width 0.3s ease;
-      }
+    .hamburger span:nth-child(3) {
+      top: 22px;
+    }
 
-      .nav-link:hover::after,
-      .nav-link.active::after {
-        width: 100%;
-      }
+    .hamburger.open span:nth-child(1) {
+      transform: rotate(45deg);
+      top: 14px;
+    }
 
-      /* 5. Dropdown Logic */
-      .dropdown-menu {
-        opacity: 0;
-        visibility: hidden;
-        transform: translateY(10px);
-        transition: all 0.2s ease;
-      }
+    .hamburger.open span:nth-child(2) {
+      opacity: 0;
+      width: 0;
+    }
 
-      .dropdown-container:hover .dropdown-menu {
-        opacity: 1;
-        visibility: visible;
-        transform: translateY(0);
-      }
+    .hamburger.open span:nth-child(3) {
+      transform: rotate(-45deg);
+      top: 14px;
+    }
 
-      .mobile-dropdown {
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.3s ease-out;
-      }
+    /* 4. Desktop Nav Hover Effects */
+    .nav-link {
+      position: relative;
+      color: #f3f6fde5;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
 
-      .mobile-dropdown.show {
-        max-height: 500px;
-      }
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #d4af37;
+      transition: width 0.3s ease;
+    }
 
-      .subcategory {
-        display: none; /* fallback */
-      }
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      width: 100%;
+    }
 
-      .subcategory.hidden {
-        display: none;
-      }
+    /* 5. Dropdown Logic */
+    .dropdown-menu {
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(10px);
+      transition: all 0.2s ease;
+    }
 
-      .subcategory:not(.hidden) {
-        display: block;
-      }
+    .dropdown-container:hover .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
 
-      /* Optional transition */
-      .subcategory {
-        transition:
-          max-height 0.3s ease-out,
-          opacity 0.25s ease;
-        max-height: 0;
-        overflow: hidden;
-        opacity: 0;
-      }
+    .mobile-dropdown {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+    }
 
-      .subcategory:not(.hidden) {
-        max-height: 1200px;
-        opacity: 1;
-      }
+    .mobile-dropdown.show {
+      max-height: 500px;
+    }
 
-      .mobile-dropdown .subcategory.hidden {
-        display: none !important;
-      }
+    .subcategory {
+      display: none;
+      /* fallback */
+    }
 
-      .mobile-dropdown .subcategory:not(.hidden) {
-        display: block !important;
-      }
+    .subcategory.hidden {
+      display: none;
+    }
 
-      /* ── DEBUG + FIX OVERRIDES ── */
-      .subcategory-toggle {
-        position: relative;
-        z-index: 100 !important;
-        pointer-events: auto !important;
-        touch-action: manipulation !important;
-      }
+    .subcategory:not(.hidden) {
+      display: block;
+    }
 
-      .subcategory {
-        min-height: 100px !important;
-        pointer-events: auto !important;
-      }
+    /* Optional transition */
+    .subcategory {
+      transition:
+        max-height 0.3s ease-out,
+        opacity 0.25s ease;
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+    }
 
-      /* Strongest visibility force */
-      .subcategory:not(.hidden) {
-        display: block !important;
-        max-height: 2000px !important;
-        opacity: 1 !important;
-        visibility: visible !important;
-      }
+    .subcategory:not(.hidden) {
+      max-height: 1200px;
+      opacity: 1;
+    }
 
-      /* Critical mobile fix – prevent blocking of inner clicks */
-      #mobile-menu,
-      #mobile-menu *,
-      .space-y-2,
-      .overflow-y-auto,
-      .flex-col {
-        pointer-events: auto !important;
-        touch-action: auto !important;
-        -webkit-tap-highlight-color: transparent;
-      }
-    </style>
-  </head>
-  <body class="bg-slate-50 min-h-[200vh]">
-    <header class="absolute inset-x-0 top-2 z-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div
-          class="flex items-center justify-between py-3 px-6 rounded-2xl bg-white/20 backdrop-blur-md shadow-[0_8px_32px_0_rgba(31,38,135,0.07)]"
-        >
-          <div class="shrink-0 flex items-center">
-            <!-- Logo container -->
+    .mobile-dropdown .subcategory.hidden {
+      display: none !important;
+    }
+
+    .mobile-dropdown .subcategory:not(.hidden) {
+      display: block !important;
+    }
+
+    /* ── DEBUG + FIX OVERRIDES ── */
+    .subcategory-toggle {
+      position: relative;
+      z-index: 100 !important;
+      pointer-events: auto !important;
+      touch-action: manipulation !important;
+    }
+
+    .subcategory {
+      min-height: 100px !important;
+      pointer-events: auto !important;
+    }
+
+    /* Strongest visibility force */
+    .subcategory:not(.hidden) {
+      display: block !important;
+      max-height: 2000px !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+    }
+
+    /* Critical mobile fix – prevent blocking of inner clicks */
+    #mobile-menu,
+    #mobile-menu *,
+    .space-y-2,
+    .overflow-y-auto,
+    .flex-col {
+      pointer-events: auto !important;
+      touch-action: auto !important;
+      -webkit-tap-highlight-color: transparent;
+    }
+  </style>
+</head>
+
+<body class="bg-slate-50 min-h-[200vh]">
+  <header class="absolute inset-x-0 top-2 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div
+        class="flex items-center justify-between py-3 px-6 rounded-2xl bg-white/20 backdrop-blur-md shadow-[0_8px_32px_0_rgba(31,38,135,0.07)]">
+        <div class="shrink-0 flex items-center">
+          <!-- Logo container -->
+          <div class="bg-slate-900 backdrop-blur-md rounded-lg w-14 h-14 flex items-center justify-center shadow-md">
+            <img src="logo.png" alt="Naavera Solutions" class="h-10 sm:h-12 object-contain" />
+          </div>
+        </div>
+
+        <nav class="hidden text-white/80 lg:flex items-center gap-10">
+          <a href="index.html" class="nav-link active">Home</a>
+
+          <div class="dropdown-container text-[#1C1C1C] relative">
+            <button class="nav-link flex items-center gap-1">
+              About
+              <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </button>
+
             <div
-              class="bg-slate-900 backdrop-blur-md rounded-lg w-14 h-14 flex items-center justify-center shadow-md"
-            >
-              <img
-                src="logo.png"
-                alt="Naavera Solutions"
-                class="h-10 sm:h-12 object-contain"
-              />
+              class="dropdown-menu absolute top-[120%] left-0 min-w-[200px] bg-white rounded-xl shadow-xl border border-slate-100 overflow-hidden">
+              <a href="about.html"
+                class="block px-5 py-3 text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-[#C9A227] transition-colors border-b border-slate-100">
+                Company Profile
+              </a>
+
+              <a href="clients.html"
+                class="block px-5 py-3 text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-[#C9A227] transition-colors border-b border-slate-100">
+                Clients
+              </a>
+
+              <a href="certifications.html"
+                class="block px-5 py-3 text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-[#C9A227] transition-colors border-b border-slate-100">
+                Certifications
+              </a>
             </div>
           </div>
 
-          <nav class="hidden text-white/80 lg:flex items-center gap-10">
-            <a href="index.html" class="nav-link active">Home</a>
+          <div class="dropdown-container relative group">
+            <button class="nav-link flex items-center gap-1">
+              Manufacturing
+              <svg class="w-3 h-3 transition-transform duration-300 group-hover:rotate-180" fill="none"
+                stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </button>
 
-            <div class="dropdown-container text-[#1C1C1C] relative">
-              <button class="nav-link flex items-center gap-1">
-                About
-                <svg
-                  class="w-3 h-3"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="3"
-                    d="M19 9l-7 7-7-7"
-                  ></path>
-                </svg>
-              </button>
+            <div
+              class="dropdown-menu absolute left-0 top-[120%] w-[580px] bg-white backdrop-blur-sm rounded-xl py-4 px-4 shadow-lg border border-white/30 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
+              <div class="grid grid-cols-3 divide-x divide-slate-300 gap-x-4">
+                <!-- Column 1 -->
+                <div class="px-2">
+                  <h3
+                    class="text-md font-medium font-editorial text-slate-900 mb-2 pb-1 border-b-2 border-[#D4AF37] transition-colors">
+                    Forged Fittings
+                  </h3>
+                  <ul class="mt-2 space-y-1">
+                    <li class="flex items-start gap-2">
+                      <span class="text-[#D4AF37] leading-none">•</span>
+                      <a href="../forgedfittings.html"
+                        class="text-sm text-slate-700 hover:text-[#C9A227] transition-colors">
+                        45 Deg Elbow
+                      </a>
+                    </li>
 
-              <div
-                class="dropdown-menu absolute top-[120%] left-0 min-w-[200px] bg-white rounded-xl shadow-xl border border-slate-100 overflow-hidden"
-              >
-                <a
-                  href="about.html"
-                  class="block px-5 py-3 text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-[#C9A227] transition-colors border-b border-slate-100"
-                >
-                  Company Profile
-                </a>
+                    <li class="flex items-start gap-2">
+                      <span class="text-[#D4AF37] leading-none">•</span>
+                      <a href="../forgedfittings.html"
+                        class="text-sm text-slate-700 hover:text-[#C9A227] transition-colors">
+                        90 Deg Elbow
+                      </a>
+                    </li>
 
-                <a
-                  href="clients.html"
-                  class="block px-5 py-3 text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-[#C9A227] transition-colors border-b border-slate-100"
-                >
-                  Clients
-                </a>
+                    <li class="flex items-start gap-2">
+                      <span class="text-[#D4AF37] leading-none">•</span>
+                      <a href="../forgedfittings.html"
+                        class="text-sm text-slate-700 hover:text-[#C9A227] transition-colors">
+                        Bushing Threaded
+                      </a>
+                    </li>
 
-                <a
-                  href="certifications.html"
-                  class="block px-5 py-3 text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-[#C9A227] transition-colors border-b border-slate-100"
-                >
-                  Certifications
-                </a>
-              </div>
-            </div>
+                    <li class="flex items-start gap-2">
+                      <span class="text-[#D4AF37] leading-none">•</span>
+                      <a href="../forgedfittings.html"
+                        class="text-sm text-slate-700 hover:text-[#C9A227] transition-colors">
+                        Cap
+                      </a>
+                    </li>
 
-            <div class="dropdown-container relative group">
-              <button class="nav-link flex items-center gap-1">
-                Manufacturing
-                <svg
-                  class="w-3 h-3 transition-transform duration-300 group-hover:rotate-180"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="3"
-                    d="M19 9l-7 7-7-7"
-                  ></path>
-                </svg>
-              </button>
+                    <li class="flex items-start gap-2">
+                      <span class="text-[#D4AF37] leading-none">•</span>
+                      <a href="../forgedfittings.html"
+                        class="text-sm text-slate-700 hover:text-[#C9A227] transition-colors">
+                        Cross Forging
+                      </a>
+                    </li>
 
-              <div
-                class="dropdown-menu absolute left-0 top-[120%] w-[580px] bg-white backdrop-blur-sm rounded-xl py-4 px-4 shadow-lg border border-white/30 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300"
-              >
-                <div class="grid grid-cols-3 divide-x divide-slate-300 gap-x-4">
-                  <!-- Column 1 -->
-                  <div class="px-2">
-                    <h3
-                      class="text-md font-medium font-editorial text-slate-900 mb-2 pb-1 border-b-2 border-[#D4AF37] transition-colors"
-                    >
-                      Forged Fittings
-                    </h3>
-                    <ul class="mt-2 space-y-1">
-                      <li class="flex items-start gap-2">
-                        <span class="text-[#D4AF37] leading-none">•</span>
-                        <a
-                          href="../forgedfittings.html"
-                          class="text-sm text-slate-700 hover:text-[#C9A227] transition-colors"
-                        >
-                          45 Deg Elbow
-                        </a>
-                      </li>
+                    <li class="flex items-start gap-2">
+                      <span class="text-[#D4AF37] leading-none">•</span>
+                      <a href="../forgedfittings.html"
+                        class="text-sm text-slate-700 hover:text-[#C9A227] transition-colors">
+                        Full Coupling
+                      </a>
+                    </li>
 
-                      <li class="flex items-start gap-2">
-                        <span class="text-[#D4AF37] leading-none">•</span>
-                        <a
-                          href="#"
-                          class="text-sm text-slate-700 hover:text-[#C9A227] transition-colors"
-                        >
-                          90 Deg Elbow
-                        </a>
-                      </li>
+                    <li class="flex items-start gap-2">
+                      <span class="text-[#D4AF37] leading-none">•</span>
+                      <a href="../forgedfittings.html"
+                        class="text-sm text-slate-700 hover:text-[#C9A227] transition-colors">
+                        Half Coupling
+                      </a>
+                    </li>
 
-                      <li class="flex items-start gap-2">
-                        <span class="text-[#D4AF37] leading-none">•</span>
-                        <a
-                          href="#"
-                          class="text-sm text-slate-700 hover:text-[#C9A227] transition-colors"
-                        >
-                          Bushing Threaded
-                        </a>
-                      </li>
+                    <li class="flex items-start gap-2">
+                      <span class="text-[#D4AF37] leading-none">•</span>
+                      <a href="../forgedfittings.html"
+                        class="text-sm text-slate-700 hover:text-[#C9A227] transition-colors">
+                        Hex Head Bushing Threaded
+                      </a>
+                    </li>
 
-                      <li class="flex items-start gap-2">
-                        <span class="text-[#D4AF37] leading-none">•</span>
-                        <a
-                          href="#"
-                          class="text-sm text-slate-700 hover:text-[#C9A227] transition-colors"
-                        >
-                          Cap
-                        </a>
-                      </li>
+                    <li class="flex items-start gap-2">
+                      <span class="text-[#D4AF37] leading-none">•</span>
+                      <a href="../forgedfittings.html"
+                        class="text-sm text-slate-700 hover:text-[#C9A227] transition-colors">
+                        Hex Head Plug
+                      </a>
+                    </li>
 
-                      <li class="flex items-start gap-2">
-                        <span class="text-[#D4AF37] leading-none">•</span>
-                        <a
-                          href="#"
-                          class="text-sm text-slate-700 hover:text-[#C9A227] transition-colors"
-                        >
-                          Cross Forging
-                        </a>
-                      </li>
+                    <li class="flex items-start gap-2">
+                      <span class="text-[#D4AF37] leading-none">•</span>
+                      <a href="../forgedfittings.html"
+                        class="text-sm text-slate-700 hover:text-[#C9A227] transition-colors">
+                        Redu Coupling
+                      </a>
+                    </li>
 
-                      <li class="flex items-start gap-2">
-                        <span class="text-[#D4AF37] leading-none">•</span>
-                        <a
-                          href="#"
-                          class="text-sm text-slate-700 hover:text-[#C9A227] transition-colors"
-                        >
-                          Full Coupling
-                        </a>
-                      </li>
+                    <li class="flex items-start gap-2">
+                      <span class="text-[#D4AF37] leading-none">•</span>
+                      <a href="../forgedfittings.html"
+                        class="text-sm text-slate-700 hover:text-[#C9A227] transition-colors">
+                        Reducing TEE
+                      </a>
+                    </li>
 
-                      <li class="flex items-start gap-2">
-                        <span class="text-[#D4AF37] leading-none">•</span>
-                        <a
-                          href="#"
-                          class="text-sm text-slate-700 hover:text-[#C9A227] transition-colors"
-                        >
-                          Half Coupling
-                        </a>
-                      </li>
+                    <li class="flex items-start gap-2">
+                      <span class="text-[#D4AF37] leading-none">•</span>
+                      <a href="../forgedfittings.html"
+                        class="text-sm text-slate-700 hover:text-[#C9A227] transition-colors">
+                        Round Head Plug
+                      </a>
+                    </li>
 
-                      <li class="flex items-start gap-2">
-                        <span class="text-[#D4AF37] leading-none">•</span>
-                        <a
-                          href="#"
-                          class="text-sm text-slate-700 hover:text-[#C9A227] transition-colors"
-                        >
-                          Hex Head Bushing Threaded
-                        </a>
-                      </li>
+                    <li class="flex items-start gap-2">
+                      <span class="text-[#D4AF37] leading-none">•</span>
+                      <a href="../forgedfittings.html"
+                        class="text-sm text-slate-700 hover:text-[#C9A227] transition-colors">
+                        Sockolet
+                      </a>
+                    </li>
 
-                      <li class="flex items-start gap-2">
-                        <span class="text-[#D4AF37] leading-none">•</span>
-                        <a
-                          href="#"
-                          class="text-sm text-slate-700 hover:text-[#C9A227] transition-colors"
-                        >
-                          Hex Head Plug
-                        </a>
-                      </li>
+                    <li class="flex items-start gap-2">
+                      <span class="text-[#D4AF37] leading-none">•</span>
+                      <a href="../forgedfittings.html"
+                        class="text-sm text-slate-700 hover:text-[#C9A227] transition-colors">
+                        Square Head Plug
+                      </a>
+                    </li>
 
-                      <li class="flex items-start gap-2">
-                        <span class="text-[#D4AF37] leading-none">•</span>
-                        <a
-                          href="#"
-                          class="text-sm text-slate-700 hover:text-[#C9A227] transition-colors"
-                        >
-                          Redu Coupling
-                        </a>
-                      </li>
+                    <li class="flex items-start gap-2">
+                      <span class="text-[#D4AF37] leading-none">•</span>
+                      <a href="../forgedfittings.html"
+                        class="text-sm text-slate-700 hover:text-[#C9A227] transition-colors">
+                        Union
+                      </a>
+                    </li>
 
-                      <li class="flex items-start gap-2">
-                        <span class="text-[#D4AF37] leading-none">•</span>
-                        <a
-                          href="#"
-                          class="text-sm text-slate-700 hover:text-[#C9A227] transition-colors"
-                        >
-                          Reducing TEE
-                        </a>
-                      </li>
+                    <!-- <li class="flex items-start gap-2">
+                      <span class="text-[#D4AF37] leading-none">•</span>
+                      <a href="../forgedfittings.html"
+                        class="text-sm text-slate-700 hover:text-[#C9A227] transition-colors">
+                        Union Hex
+                      </a>
+                    </li>
 
-                      <li class="flex items-start gap-2">
-                        <span class="text-[#D4AF37] leading-none">•</span>
-                        <a
-                          href="#"
-                          class="text-sm text-slate-700 hover:text-[#C9A227] transition-colors"
-                        >
-                          Round Head Plug
-                        </a>
-                      </li>
+                    <li class="flex items-start gap-2">
+                      <span class="text-[#D4AF37] leading-none">•</span>
+                      <a href="../forgedfittings.html"
+                        class="text-sm text-slate-700 hover:text-[#C9A227] transition-colors">
+                        Weldolet
+                      </a>
+                    </li> -->
 
-                      <li class="flex items-start gap-2">
-                        <span class="text-[#D4AF37] leading-none">•</span>
-                        <a
-                          href="#"
-                          class="text-sm text-slate-700 hover:text-[#C9A227] transition-colors"
-                        >
-                          Sockolet
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
+                  </ul>
+                </div>
 
-                  <!-- Column 2 -->
-                  <div class="px-2">
-                    <h3
-                      class="text-md font-medium font-editorial text-slate-900 mb-2 pb-1 border-b-2 border-[#D4AF37] transition-colors"
-                    >
-                      Buttweld Fittings
-                    </h3>
-                    <ul class="mt-2 space-y-1">
-                      <li class="flex items-start gap-2">
-                        <span class="text-[#D4AF37] leading-none">•</span>
-                        <a
-                          href="buttweld.html"
-                          class="text-sm text-slate-700 hover:text-[#C9A227] transition-colors"
-                        >
-                          Cap
-                        </a>
-                      </li>
+                <!-- Column 2 -->
+                <div class="px-2">
+                  <h3
+                    class="text-md font-medium font-editorial text-slate-900 mb-2 pb-1 border-b-2 border-[#D4AF37] transition-colors">
+                    Buttweld Fittings
+                  </h3>
+                  <ul class="mt-2 space-y-1">
+                    <li class="flex items-start gap-2">
+                      <span class="text-[#D4AF37] leading-none">•</span>
+                      <a href="buttweld.html" class="text-sm text-slate-700 hover:text-[#C9A227] transition-colors">
+                        Cap
+                      </a>
+                    </li>
 
-                      <li class="flex items-start gap-2">
-                        <span class="text-[#D4AF37] leading-none">•</span>
-                        <a
-                          href="buttweld.html"
-                          class="text-sm text-slate-700 hover:text-[#C9A227] transition-colors"
-                        >
-                          CR – Cold Rolled
-                        </a>
-                      </li>
+                    <li class="flex items-start gap-2">
+                      <span class="text-[#D4AF37] leading-none">•</span>
+                      <a href="buttweld.html" class="text-sm text-slate-700 hover:text-[#C9A227] transition-colors">
+                        CR – Cold Rolled
+                      </a>
+                    </li>
 
-                      <li class="flex items-start gap-2">
-                        <span class="text-[#D4AF37] leading-none">•</span>
-                        <a
-                          href="buttweld.html"
-                          class="text-sm text-slate-700 hover:text-[#C9A227] transition-colors"
-                        >
-                          Equal TEE
-                        </a>
-                      </li>
+                    <li class="flex items-start gap-2">
+                      <span class="text-[#D4AF37] leading-none">•</span>
+                      <a href="buttweld.html" class="text-sm text-slate-700 hover:text-[#C9A227] transition-colors">
+                        Equal TEE
+                      </a>
+                    </li>
 
-                      <li class="flex items-start gap-2">
-                        <span class="text-[#D4AF37] leading-none">•</span>
-                        <a
-                          href="buttweld.html"
-                          class="text-sm text-slate-700 hover:text-[#C9A227] transition-colors"
-                        >
-                          ER Reducer
-                        </a>
-                      </li>
+                    <li class="flex items-start gap-2">
+                      <span class="text-[#D4AF37] leading-none">•</span>
+                      <a href="buttweld.html" class="text-sm text-slate-700 hover:text-[#C9A227] transition-colors">
+                        ER Reducer
+                      </a>
+                    </li>
 
-                      <li class="flex items-start gap-2">
-                        <span class="text-[#D4AF37] leading-none">•</span>
-                        <a
-                          href="buttweld.html"
-                          class="text-sm text-slate-700 hover:text-[#C9A227] transition-colors"
-                        >
-                          LR 45 Elbow
-                        </a>
-                      </li>
+                    <li class="flex items-start gap-2">
+                      <span class="text-[#D4AF37] leading-none">•</span>
+                      <a href="buttweld.html" class="text-sm text-slate-700 hover:text-[#C9A227] transition-colors">
+                        LR 45 Elbow
+                      </a>
+                    </li>
 
-                      <li class="flex items-start gap-2">
-                        <span class="text-[#D4AF37] leading-none">•</span>
-                        <a
-                          href="buttweld.html"
-                          class="text-sm text-slate-700 hover:text-[#C9A227] transition-colors"
-                        >
-                          LR 90 Elbow
-                        </a>
-                      </li>
+                    <li class="flex items-start gap-2">
+                      <span class="text-[#D4AF37] leading-none">•</span>
+                      <a href="buttweld.html" class="text-sm text-slate-700 hover:text-[#C9A227] transition-colors">
+                        LR 90 Elbow
+                      </a>
+                    </li>
 
-                      <li class="flex items-start gap-2">
-                        <span class="text-[#D4AF37] leading-none">•</span>
-                        <a
-                          href="buttweld.html"
-                          class="text-sm text-slate-700 hover:text-[#C9A227] transition-colors"
-                        >
-                          Redu TEE
-                        </a>
-                      </li>
+                    <li class="flex items-start gap-2">
+                      <span class="text-[#D4AF37] leading-none">•</span>
+                      <a href="buttweld.html" class="text-sm text-slate-700 hover:text-[#C9A227] transition-colors">
+                        Redu TEE
+                      </a>
+                    </li>
 
-                      <li class="flex items-start gap-2">
-                        <span class="text-[#D4AF37] leading-none">•</span>
-                        <a
-                          href="buttweld.html"
-                          class="text-sm text-slate-700 hover:text-[#C9A227] transition-colors"
-                        >
-                          SR 45 Elbow
-                        </a>
-                      </li>
+                    <li class="flex items-start gap-2">
+                      <span class="text-[#D4AF37] leading-none">•</span>
+                      <a href="buttweld.html" class="text-sm text-slate-700 hover:text-[#C9A227] transition-colors">
+                        SR 45 Elbow
+                      </a>
+                    </li>
 
-                      <li class="flex items-start gap-2">
-                        <span class="text-[#D4AF37] leading-none">•</span>
-                        <a
-                          href="buttweld.html"
-                          class="text-sm text-slate-700 hover:text-[#C9A227] transition-colors"
-                        >
-                          SR 90 Elbow
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
+                    <li class="flex items-start gap-2">
+                      <span class="text-[#D4AF37] leading-none">•</span>
+                      <a href="buttweld.html" class="text-sm text-slate-700 hover:text-[#C9A227] transition-colors">
+                        SR 90 Elbow
+                      </a>
+                    </li>
+                  </ul>
+                </div>
 
-                  <!-- Column 3 -->
-                  <div class="px-2">
-                    <h3
-                      class="text-md font-medium font-editorial text-slate-900 mb-2 pb-1 border-b-2 border-[#D4AF37] transition-colors"
-                    >
-                      Forged Flanges
-                    </h3>
-                    <ul class="mt-2 space-y-1">
-                      <li class="flex items-start gap-2">
-                        <span class="text-[#D4AF37] leading-none">•</span>
-                        <a
-                          href="forgedflanges.html"
-                          class="text-sm text-slate-700 hover:text-[#C9A227] transition-colors"
-                        >
-                          Blind
-                        </a>
-                      </li>
+                <!-- Column 3 -->
+                <div class="px-2">
+                  <h3
+                    class="text-md font-medium font-editorial text-slate-900 mb-2 pb-1 border-b-2 border-[#D4AF37] transition-colors">
+                    Forged Flanges
+                  </h3>
+                  <ul class="mt-2 space-y-1">
+                    <li class="flex items-start gap-2">
+                      <span class="text-[#D4AF37] leading-none">•</span>
+                      <a href="forgedflanges.html"
+                        class="text-sm text-slate-700 hover:text-[#C9A227] transition-colors">
+                        Blind
+                      </a>
+                    </li>
 
-                      <li class="flex items-start gap-2">
-                        <span class="text-[#D4AF37] leading-none">•</span>
-                        <a
-                          href="forgedflanges.html"
-                          class="text-sm text-slate-700 hover:text-[#C9A227] transition-colors"
-                        >
-                          LAP
-                        </a>
-                      </li>
+                    <li class="flex items-start gap-2">
+                      <span class="text-[#D4AF37] leading-none">•</span>
+                      <a href="forgedflanges.html"
+                        class="text-sm text-slate-700 hover:text-[#C9A227] transition-colors">
+                        LAP
+                      </a>
+                    </li>
 
-                      <li class="flex items-start gap-2">
-                        <span class="text-[#D4AF37] leading-none">•</span>
-                        <a
-                          href="#"
-                          class="text-sm text-slate-700 hover:text-[#C9A227] transition-colors"
-                        >
-                          LWNRF
-                        </a>
-                      </li>
+                    <li class="flex items-start gap-2">
+                      <span class="text-[#D4AF37] leading-none">•</span>
+                      <a href="forgedflanges.html"
+                        class="text-sm text-slate-700 hover:text-[#C9A227] transition-colors">
+                        LWNRF
+                      </a>
+                    </li>
 
-                      <li class="flex items-start gap-2">
-                        <span class="text-[#D4AF37] leading-none">•</span>
-                        <a
-                          href="#"
-                          class="text-sm text-slate-700 hover:text-[#C9A227] transition-colors"
-                        >
-                          SORF
-                        </a>
-                      </li>
+                    <li class="flex items-start gap-2">
+                      <span class="text-[#D4AF37] leading-none">•</span>
+                      <a href="forgedflanges.html"
+                        class="text-sm text-slate-700 hover:text-[#C9A227] transition-colors">
+                        SORF
+                      </a>
+                    </li>
 
-                      <li class="flex items-start gap-2">
-                        <span class="text-[#D4AF37] leading-none">•</span>
-                        <a
-                          href="#"
-                          class="text-sm text-slate-700 hover:text-[#C9A227] transition-colors"
-                        >
-                          Spacer Blank
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
+                    <li class="flex items-start gap-2">
+                      <span class="text-[#D4AF37] leading-none">•</span>
+                      <a href="forgedflanges.html"
+                        class="text-sm text-slate-700 hover:text-[#C9A227] transition-colors">
+                        Spacer Blank
+                      </a>
+                    </li>
+
+                    <li class="flex items-start gap-2">
+                      <span class="text-[#D4AF37] leading-none">•</span>
+                      <a href="forgedflanges.html"
+                        class="text-sm text-slate-700 hover:text-[#C9A227] transition-colors">
+                        Specticale Blind
+                      </a>
+                    </li>
+
+                    <li class="flex items-start gap-2">
+                      <span class="text-[#D4AF37] leading-none">•</span>
+                      <a href="forgedflanges.html"
+                        class="text-sm text-slate-700 hover:text-[#C9A227] transition-colors">
+                        SWRF
+                      </a>
+                    </li>
+
+                    <li class="flex items-start gap-2">
+                      <span class="text-[#D4AF37] leading-none">•</span>
+                      <a href="forgedflanges.html"
+                        class="text-sm text-slate-700 hover:text-[#C9A227] transition-colors">
+                        THRF
+                      </a>
+                    </li>
+
+                    <li class="flex items-start gap-2">
+                      <span class="text-[#D4AF37] leading-none">•</span>
+                      <a href="forgedflanges.html"
+                        class="text-sm text-slate-700 hover:text-[#C9A227] transition-colors">
+                        WNRF
+                      </a>
+                    </li>
+                  </ul>
                 </div>
               </div>
             </div>
-
-            <!-- Materials Dropdown (Replacing Products) -->
-            <div class="dropdown-container text-[#1C1C1C] relative">
-              <button
-                class="nav-link flex items-center gap-1 hover:text-[#C9A227] transition-colors"
-              >
-                Materials
-                <svg
-                  class="w-3 h-3"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="3"
-                    d="M19 9l-7 7-7-7"
-                  ></path>
-                </svg>
-              </button>
-
-              <div
-                class="dropdown-menu absolute top-[120%] left-0 min-w-[200px] bg-white rounded-xl py-2 shadow-xl border border-slate-100 opacity-0 invisible transition-all duration-200 z-50"
-              >
-                <a
-                  href="stainless.html"
-                  class="block px-5 py-3 text-sm font-medium text-[#1C1C1C] border-b border-slate-200 hover:bg-slate-50 hover:text-[#C9A227] transition-colors"
-                >
-                  Stainless Steel
-                </a>
-
-                <a
-                  href="carbonsteel.html"
-                  class="block px-5 py-3 text-sm font-medium text-[#1C1C1C] border-b border-slate-200 hover:bg-slate-50 hover:text-[#C9A227] transition-colors"
-                >
-                  Carbon Steel
-                </a>
-
-                <a
-                  href="alloysteel.html"
-                  class="block px-5 py-3 text-sm font-medium text-[#1C1C1C] border-b border-slate-200 hover:bg-slate-50 hover:text-[#C9A227] transition-colors"
-                >
-                  Alloy Steel
-                </a>
-
-                <a
-                  href="nickelalloy.html"
-                  class="block px-5 py-3 text-sm font-medium text-[#1C1C1C] hover:bg-slate-50 hover:text-[#C9A227] transition-colors"
-                >
-                  Nickel Alloy
-                </a>
-              </div>
-            </div>
-            <a href="service.html" class="nav-link text-[#1C1C1C]">Service</a>
-          </nav>
-
-          <div class="flex items-center gap-4">
-            <a
-              href="contact.html"
-              class="hidden sm:block px-6 py-2.5 bg-slate-900 text-white text-sm font-bold rounded-xl hover:bg-slate-800 transition-all active:scale-95"
-            >
-              Contact Us
-            </a>
-
-            <button
-              id="hamburger"
-              class="hamburger lg:hidden relative w-8 h-8 focus:outline-none"
-            >
-              <span class="bg-slate-900"></span>
-              <span class="bg-slate-900"></span>
-              <span class="bg-slate-900"></span>
-            </button>
-          </div>
-        </div>
-      </div>
-    </header>
-
-    <div id="drawer-backdrop"></div>
-
-    <aside id="mobile-menu" class="lg:hidden">
-      <div class="p-6 h-full flex flex-col">
-        <div class="flex items-center justify-between mb-8">
-          <!-- Logo only -->
-          <img
-            src="logo.png"
-            alt="Naavera Solutions"
-            class="h-16 object-contain scale-125 origin-left"
-          />
-
-          <!-- Close button -->
-          <button
-            id="mobile-close"
-            class="text-slate-400 hover:text-slate-900 text-2xl transition"
-          >
-            ✕
-          </button>
-        </div>
-
-        <div class="space-y-2 overflow-y-auto flex-1">
-          <a
-            href="index.html"
-            class="block py-3 px-4 text-slate-900 font-bold bg-slate-50 rounded-xl"
-            >Home</a
-          >
-
-          <div class="py-1">
-            <button
-              class="mobile-dropdown-toggle w-full flex items-center justify-between py-3 px-4 text-slate-700 font-bold rounded-xl hover:bg-slate-50"
-            >
-              About
-              <svg
-                class="w-4 h-4 transition-transform"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M19 9l-7 7-7-7"
-                ></path>
-              </svg>
-            </button>
-            <div class="mobile-dropdown space-y-1 px-4">
-              <a
-                href="about.html"
-                class="block py-3 px-4 text-sm text-slate-600 border-l-2 border-slate-100 ml-2"
-                >Company Profile</a
-              >
-              <a
-                href="clients.html"
-                class="block py-3 px-4 text-sm text-slate-600 border-l-2 border-slate-100 ml-2"
-                >Clients</a
-              >
-
-              <a
-                href="certifications.html"
-                class="block py-3 px-4 text-sm text-slate-600 border-l-2 border-slate-100 ml-2"
-                >Certifications</a
-              >
-            </div>
           </div>
 
-          <div class="py-1">
-            <!-- Manufacturing main toggle -->
-            <button
-              class="mobile-dropdown-toggle w-full flex items-center justify-between py-3 px-4 text-slate-700 font-bold rounded-xl hover:bg-slate-50"
-            >
-              Manufacturing
-              <svg
-                class="w-4 h-4 transition-transform"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M19 9l-7 7-7-7"
-                />
-              </svg>
-            </button>
-
-            <!-- Manufacturing dropdown -->
-            <div class="mobile-dropdown space-y-2 px-4">
-              <!-- ================= Forged Fittings ================= -->
-              <div class="border-l-2 border-slate-100 ml-2">
-                <button
-                  class="subcategory-toggle w-full flex items-center justify-between py-3 px-4 text-sm font-semibold text-slate-700"
-                >
-                  Forged Fittings
-                  <svg
-                    class="w-4 h-4 transition-transform"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M19 9l-7 7-7-7"
-                    />
-                  </svg>
-                </button>
-
-                <ul
-                  class="subcategory hidden pl-6 pb-3 space-y-1 text-sm text-slate-600"
-                >
-                  <li class="flex gap-2">
-                    <span class="text-[#D4AF37]">•</span
-                    ><a href="../forgedfittings.html">45 Deg Elbow</a>
-                  </li>
-                  <li class="flex gap-2">
-                    <span class="text-[#D4AF37]">•</span
-                    ><a href="forged-90-deg-elbow.html">90 Deg Elbow</a>
-                  </li>
-                  <li class="flex gap-2">
-                    <span class="text-[#D4AF37]">•</span
-                    ><a href="bushing-threaded.html">Bushing Threaded</a>
-                  </li>
-                  <li class="flex gap-2">
-                    <span class="text-[#D4AF37]">•</span
-                    ><a href="forged-cap.html">Cap</a>
-                  </li>
-                  <li class="flex gap-2">
-                    <span class="text-[#D4AF37]">•</span
-                    ><a href="cross-forging.html">Cross Forging</a>
-                  </li>
-                  <li class="flex gap-2">
-                    <span class="text-[#D4AF37]">•</span
-                    ><a href="full-coupling.html">Full Coupling</a>
-                  </li>
-                  <li class="flex gap-2">
-                    <span class="text-[#D4AF37]">•</span
-                    ><a href="half-coupling.html">Half Coupling</a>
-                  </li>
-                  <li class="flex gap-2">
-                    <span class="text-[#D4AF37]">•</span
-                    ><a href="hex-head-bushing.html"
-                      >Hex Head Bushing Threaded</a
-                    >
-                  </li>
-                  <li class="flex gap-2">
-                    <span class="text-[#D4AF37]">•</span
-                    ><a href="hex-head-plug.html">Hex Head Plug</a>
-                  </li>
-                  <li class="flex gap-2">
-                    <span class="text-[#D4AF37]">•</span
-                    ><a href="redu-coupling.html">Redu Coupling</a>
-                  </li>
-                  <li class="flex gap-2">
-                    <span class="text-[#D4AF37]">•</span
-                    ><a href="reducing-tee.html">Reducing TEE</a>
-                  </li>
-                  <li class="flex gap-2">
-                    <span class="text-[#D4AF37]">•</span
-                    ><a href="round-head-plug.html">Round Head Plug</a>
-                  </li>
-                  <li class="flex gap-2">
-                    <span class="text-[#D4AF37]">•</span
-                    ><a href="sockolet.html">Sockolet</a>
-                  </li>
-                </ul>
-              </div>
-
-              <!-- ================= Buttweld Fittings ================= -->
-              <div class="border-l-2 border-slate-100 ml-2">
-                <button
-                  class="subcategory-toggle w-full flex items-center justify-between py-3 px-4 text-sm font-semibold text-slate-700"
-                >
-                  Buttweld Fittings
-                  <svg
-                    class="w-4 h-4 transition-transform"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M19 9l-7 7-7-7"
-                    />
-                  </svg>
-                </button>
-
-                <ul
-                  class="subcategory hidden pl-6 pb-3 space-y-1 text-sm text-slate-600"
-                >
-                  <li class="flex gap-2">
-                    <span class="text-[#D4AF37]">•</span
-                    ><a href="buttweld-cap.html">Cap</a>
-                  </li>
-                  <li class="flex gap-2">
-                    <span class="text-[#D4AF37]">•</span
-                    ><a href="cold-rolled.html">CR – Cold Rolled</a>
-                  </li>
-                  <li class="flex gap-2">
-                    <span class="text-[#D4AF37]">•</span
-                    ><a href="equal-tee.html">Equal TEE</a>
-                  </li>
-                  <li class="flex gap-2">
-                    <span class="text-[#D4AF37]">•</span
-                    ><a href="er-reducer.html">ER Reducer</a>
-                  </li>
-                  <li class="flex gap-2">
-                    <span class="text-[#D4AF37]">•</span
-                    ><a href="lr-45-elbow.html">LR 45 Elbow</a>
-                  </li>
-                  <li class="flex gap-2">
-                    <span class="text-[#D4AF37]">•</span
-                    ><a href="lr-90-elbow.html">LR 90 Elbow</a>
-                  </li>
-                  <li class="flex gap-2">
-                    <span class="text-[#D4AF37]">•</span
-                    ><a href="redu-tee.html">Redu TEE</a>
-                  </li>
-                  <li class="flex gap-2">
-                    <span class="text-[#D4AF37]">•</span
-                    ><a href="sr-45-elbow.html">SR 45 Elbow</a>
-                  </li>
-                  <li class="flex gap-2">
-                    <span class="text-[#D4AF37]">•</span
-                    ><a href="sr-90-elbow.html">SR 90 Elbow</a>
-                  </li>
-                </ul>
-              </div>
-
-              <!-- ================= Forged Flanges ================= -->
-              <div class="border-l-2 border-slate-100 ml-2">
-                <button
-                  class="subcategory-toggle w-full flex items-center justify-between py-3 px-4 text-sm font-semibold text-slate-700"
-                >
-                  Forged Flanges
-                  <svg
-                    class="w-4 h-4 transition-transform"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M19 9l-7 7-7-7"
-                    />
-                  </svg>
-                </button>
-
-                <ul
-                  class="subcategory hidden pl-6 pb-3 space-y-1 text-sm text-slate-600"
-                >
-                  <li class="flex gap-2">
-                    <span class="text-[#D4AF37]">•</span
-                    ><a href="blind-flange.html">Blind</a>
-                  </li>
-                  <li class="flex gap-2">
-                    <span class="text-[#D4AF37]">•</span
-                    ><a href="lap-flange.html">LAP</a>
-                  </li>
-                  <li class="flex gap-2">
-                    <span class="text-[#D4AF37]">•</span
-                    ><a href="lwnrf.html">LWNRF</a>
-                  </li>
-                  <li class="flex gap-2">
-                    <span class="text-[#D4AF37]">•</span
-                    ><a href="sorf.html">SORF</a>
-                  </li>
-                  <li class="flex gap-2">
-                    <span class="text-[#D4AF37]">•</span
-                    ><a href="spacer-blank.html">Spacer Blank</a>
-                  </li>
-                  <li class="flex gap-2">
-                    <span class="text-[#D4AF37]">•</span
-                    ><a href="spectacle-blind.html">Spectacle Blind</a>
-                  </li>
-                  <li class="flex gap-2">
-                    <span class="text-[#D4AF37]">•</span
-                    ><a href="swrf.html">SWRF</a>
-                  </li>
-                  <li class="flex gap-2">
-                    <span class="text-[#D4AF37]">•</span
-                    ><a href="thrf.html">THRF</a>
-                  </li>
-                  <li class="flex gap-2">
-                    <span class="text-[#D4AF37]">•</span
-                    ><a href="wnrf.html">WNRF</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="py-1">
-            <button
-              class="mobile-dropdown-toggle w-full flex items-center justify-between py-3 px-4 text-slate-700 font-bold rounded-xl hover:bg-slate-50"
-            >
+          <!-- Materials Dropdown (Replacing Products) -->
+          <div class="dropdown-container text-[#1C1C1C] relative">
+            <button class="nav-link flex items-center gap-1 hover:text-[#C9A227] transition-colors">
               Materials
-              <svg
-                class="w-4 h-4 transition-transform"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M19 9l-7 7-7-7"
-                ></path>
+              <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"></path>
               </svg>
             </button>
 
-            <div class="mobile-dropdown space-y-1 px-4">
-              <a
-                href="stainless.html"
-                class="block py-3 px-4 text-sm text-slate-600 border-l-2 border-slate-100 ml-2"
-              >
+            <div
+              class="dropdown-menu absolute top-[120%] left-0 min-w-[200px] bg-white rounded-xl py-2 shadow-xl border border-slate-100 opacity-0 invisible transition-all duration-200 z-50">
+              <a href="stainless.html"
+                class="block px-5 py-3 text-sm font-medium text-[#1C1C1C] border-b border-slate-200 hover:bg-slate-50 hover:text-[#C9A227] transition-colors">
                 Stainless Steel
               </a>
-              <a
-                href="carbonsteel.html"
-                class="block py-3 px-4 text-sm text-slate-600 border-l-2 border-slate-100 ml-2"
-              >
+
+              <a href="carbonsteel.html"
+                class="block px-5 py-3 text-sm font-medium text-[#1C1C1C] border-b border-slate-200 hover:bg-slate-50 hover:text-[#C9A227] transition-colors">
                 Carbon Steel
               </a>
-              <a
-                href="alloysteel.html"
-                class="block py-3 px-4 text-sm text-slate-600 border-l-2 border-slate-100 ml-2"
-              >
+
+              <a href="alloysteel.html"
+                class="block px-5 py-3 text-sm font-medium text-[#1C1C1C] border-b border-slate-200 hover:bg-slate-50 hover:text-[#C9A227] transition-colors">
                 Alloy Steel
               </a>
-              <a
-                href="nickelalloy.html"
-                class="block py-3 px-4 text-sm text-slate-600 border-l-2 border-slate-100 ml-2"
-              >
+
+              <a href="nickelalloy.html"
+                class="block px-5 py-3 text-sm font-medium text-[#1C1C1C] hover:bg-slate-50 hover:text-[#C9A227] transition-colors">
                 Nickel Alloy
               </a>
             </div>
           </div>
+          <a href="service.html" class="nav-link text-[#1C1C1C]">Service</a>
+        </nav>
 
-          <a
-            href="service.html"
-            class="block py-3 px-4 text-slate-700 font-bold rounded-xl hover:bg-slate-50"
-            >Service</a
-          >
+        <div class="flex items-center gap-4">
+          <a href="contact.html"
+            class="hidden sm:block px-6 py-2.5 bg-slate-900 text-white text-sm font-bold rounded-xl hover:bg-slate-800 transition-all active:scale-95">
+            Contact Us
+          </a>
 
-          <div class="pt-6 border-t border-slate-100 -mt-4">
-            <a
-              href="contact.html"
-              class="block w-full py-4 bg-slate-900 text-white font-bold rounded-2xl text-center shadow-lg"
-            >
-              Get Started
+          <button id="hamburger" class="hamburger lg:hidden relative w-8 h-8 focus:outline-none">
+            <span class="bg-slate-900"></span>
+            <span class="bg-slate-900"></span>
+            <span class="bg-slate-900"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div id="drawer-backdrop"></div>
+
+  <aside id="mobile-menu" class="lg:hidden">
+    <div class="p-6 h-full flex flex-col">
+      <div class="flex items-center justify-between mb-8">
+        <!-- Logo only -->
+        <img src="logo.png" alt="Naavera Solutions" class="h-16 object-contain scale-125 origin-left" />
+
+        <!-- Close button -->
+        <button id="mobile-close" class="text-slate-400 hover:text-slate-900 text-2xl transition">
+          ✕
+        </button>
+      </div>
+
+      <div class="space-y-2 overflow-y-auto flex-1">
+        <a href="index.html" class="block py-3 px-4 text-slate-900 font-bold bg-slate-50 rounded-xl">Home</a>
+
+        <div class="py-1">
+          <button
+            class="mobile-dropdown-toggle w-full flex items-center justify-between py-3 px-4 text-slate-700 font-bold rounded-xl hover:bg-slate-50">
+            About
+            <svg class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+          <div class="mobile-dropdown space-y-1 px-4">
+            <a href="about.html" class="block py-3 px-4 text-sm text-slate-600 border-l-2 border-slate-100 ml-2">Company
+              Profile</a>
+            <a href="clients.html"
+              class="block py-3 px-4 text-sm text-slate-600 border-l-2 border-slate-100 ml-2">Clients</a>
+
+            <a href="certifications.html"
+              class="block py-3 px-4 text-sm text-slate-600 border-l-2 border-slate-100 ml-2">Certifications</a>
+          </div>
+        </div>
+
+        <div class="py-1">
+          <!-- Manufacturing main toggle -->
+          <button
+            class="mobile-dropdown-toggle w-full flex items-center justify-between py-3 px-4 text-slate-700 font-bold rounded-xl hover:bg-slate-50">
+            Manufacturing
+            <svg class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+
+          <!-- Manufacturing dropdown -->
+          <div class="mobile-dropdown space-y-2 px-4">
+            <!-- ================= Forged Fittings ================= -->
+            <div class="border-l-2 border-slate-100 ml-2">
+              <button
+                class="subcategory-toggle w-full flex items-center justify-between py-3 px-4 text-sm font-semibold text-slate-700">
+                Forged Fittings
+                <svg class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+
+              <ul class="subcategory hidden pl-6 pb-3 space-y-1 text-sm text-slate-600">
+                <li class="flex gap-2">
+                  <span class="text-[#D4AF37]">•</span><a href="../forgedfittings.html">45 Deg Elbow</a>
+                </li>
+                <li class="flex gap-2">
+                  <span class="text-[#D4AF37]">•</span><a href="../forgedfittings.html">90 Deg Elbow</a>
+                </li>
+                <li class="flex gap-2">
+                  <span class="text-[#D4AF37]">•</span><a href="../forgedfittings.html">Bushing Threaded</a>
+                </li>
+                <li class="flex gap-2">
+                  <span class="text-[#D4AF37]">•</span><a href="../forgedfittings.html">Cap</a>
+                </li>
+                <li class="flex gap-2">
+                  <span class="text-[#D4AF37]">•</span><a href="../forgedfittings.html">Cross Forging</a>
+                </li>
+                <li class="flex gap-2">
+                  <span class="text-[#D4AF37]">•</span><a href="../forgedfittings.html">Full Coupling</a>
+                </li>
+                <li class="flex gap-2">
+                  <span class="text-[#D4AF37]">•</span><a href="../forgedfittings.html">Half Coupling</a>
+                </li>
+                <li class="flex gap-2">
+                  <span class="text-[#D4AF37]">•</span><a href="../forgedfittings.html">Hex Head Bushing Threaded</a>
+                </li>
+                <li class="flex gap-2">
+                  <span class="text-[#D4AF37]">•</span><a href="../forgedfittings.html">Hex Head Plug</a>
+                </li>
+                <li class="flex gap-2">
+                  <span class="text-[#D4AF37]">•</span><a href="../forgedfittings.html">Redu Coupling</a>
+                </li>
+                <li class="flex gap-2">
+                  <span class="text-[#D4AF37]">•</span><a href="../forgedfittings.html">Reducing TEE</a>
+                </li>
+                <li class="flex gap-2">
+                  <span class="text-[#D4AF37]">•</span><a href="../forgedfittings.html">Round Head Plug</a>
+                </li>
+                <li class="flex gap-2">
+                  <span class="text-[#D4AF37]">•</span><a href="../forgedfittings.html">Sockolet</a>
+                </li>
+                <li class="flex gap-2">
+                  <span class="text-[#D4AF37]">•</span><a href="../forgedfittings.html">Square Head Plug</a>
+                </li>
+                <li class="flex gap-2">
+                  <span class="text-[#D4AF37]">•</span><a href="../forgedfittings.html">Union</a>
+                </li>
+                <li class="flex gap-2">
+                  <span class="text-[#D4AF37]">•</span><a href="../forgedfittings.html">Union Hex</a>
+                </li>
+                <li class="flex gap-2">
+                  <span class="text-[#D4AF37]">•</span><a href="../forgedfittings.html">Weldolet</a>
+                </li>
+              </ul>
+            </div>
+
+            <!-- ================= Buttweld Fittings ================= -->
+            <div class="border-l-2 border-slate-100 ml-2">
+              <button
+                class="subcategory-toggle w-full flex items-center justify-between py-3 px-4 text-sm font-semibold text-slate-700">
+                Buttweld Fittings
+                <svg class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+
+              <ul class="subcategory hidden pl-6 pb-3 space-y-1 text-sm text-slate-600">
+                <li class="flex gap-2">
+                  <span class="text-[#D4AF37]">•</span><a href="../buttweld.html">Cap</a>
+                </li>
+                <li class="flex gap-2">
+                  <span class="text-[#D4AF37]">•</span><a href="../buttweld.html">CR – Cold Rolled</a>
+                </li>
+                <li class="flex gap-2">
+                  <span class="text-[#D4AF37]">•</span><a href="../buttweld.html">Equal TEE</a>
+                </li>
+                <li class="flex gap-2">
+                  <span class="text-[#D4AF37]">•</span><a href="../buttweld.html">ER Reducer</a>
+                </li>
+                <li class="flex gap-2">
+                  <span class="text-[#D4AF37]">•</span><a href="../buttweld.html">LR 45 Elbow</a>
+                </li>
+                <li class="flex gap-2">
+                  <span class="text-[#D4AF37]">•</span><a href="../buttweld.html">LR 90 Elbow</a>
+                </li>
+                <li class="flex gap-2">
+                  <span class="text-[#D4AF37]">•</span><a href="../buttweld.html">Redu TEE</a>
+                </li>
+                <li class="flex gap-2">
+                  <span class="text-[#D4AF37]">•</span><a href="../buttweld.html">SR 45 Elbow</a>
+                </li>
+                <li class="flex gap-2">
+                  <span class="text-[#D4AF37]">•</span><a href="../buttweld.html">SR 90 Elbow</a>
+                </li>
+              </ul>
+            </div>
+
+            <!-- ================= Forged Flanges ================= -->
+            <div class="border-l-2 border-slate-100 ml-2">
+              <button
+                class="subcategory-toggle w-full flex items-center justify-between py-3 px-4 text-sm font-semibold text-slate-700">
+                Forged Flanges
+                <svg class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+
+              <ul class="subcategory hidden pl-6 pb-3 space-y-1 text-sm text-slate-600">
+                <li class="flex gap-2">
+                  <span class="text-[#D4AF37]">•</span><a href="../forgedflanges.html">Blind</a>
+                </li>
+                <li class="flex gap-2">
+                  <span class="text-[#D4AF37]">•</span><a href="../forgedflanges.html">LAP</a>
+                </li>
+                <li class="flex gap-2">
+                  <span class="text-[#D4AF37]">•</span><a href="../forgedflanges.html">LWNRF</a>
+                </li>
+                <li class="flex gap-2">
+                  <span class="text-[#D4AF37]">•</span><a href="../forgedflanges.html">SORF</a>
+                </li>
+                <li class="flex gap-2">
+                  <span class="text-[#D4AF37]">•</span><a href="../forgedflanges.html">Spacer Blank</a>
+                </li>
+                <li class="flex gap-2">
+                  <span class="text-[#D4AF37]">•</span><a href="../forgedflanges.html">Spectacle Blind</a>
+                </li>
+                <li class="flex gap-2">
+                  <span class="text-[#D4AF37]">•</span><a href="../forgedflanges.html">SWRF</a>
+                </li>
+                <li class="flex gap-2">
+                  <span class="text-[#D4AF37]">•</span><a href="../forgedflanges.html">THRF</a>
+                </li>
+                <li class="flex gap-2">
+                  <span class="text-[#D4AF37]">•</span><a href="../forgedflanges.html">WNRF</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="py-1">
+          <button
+            class="mobile-dropdown-toggle w-full flex items-center justify-between py-3 px-4 text-slate-700 font-bold rounded-xl hover:bg-slate-50">
+            Materials
+            <svg class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+
+          <div class="mobile-dropdown space-y-1 px-4">
+            <a href="stainless.html" class="block py-3 px-4 text-sm text-slate-600 border-l-2 border-slate-100 ml-2">
+              Stainless Steel
+            </a>
+            <a href="carbonsteel.html" class="block py-3 px-4 text-sm text-slate-600 border-l-2 border-slate-100 ml-2">
+              Carbon Steel
+            </a>
+            <a href="alloysteel.html" class="block py-3 px-4 text-sm text-slate-600 border-l-2 border-slate-100 ml-2">
+              Alloy Steel
+            </a>
+            <a href="nickelalloy.html" class="block py-3 px-4 text-sm text-slate-600 border-l-2 border-slate-100 ml-2">
+              Nickel Alloy
             </a>
           </div>
         </div>
+
+        <a href="service.html" class="block py-3 px-4 text-slate-700 font-bold rounded-xl hover:bg-slate-50">Service</a>
+
+        <div class="pt-6 border-t border-slate-100 -mt-4">
+          <a href="contact.html"
+            class="block w-full py-4 bg-slate-900 text-white font-bold rounded-2xl text-center shadow-lg">
+            Get Started
+          </a>
+        </div>
       </div>
-    </aside>
+    </div>
+  </aside>
 
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        console.log("[INIT] DOMContentLoaded fired – starting script setup");
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      console.log("[INIT] DOMContentLoaded fired – starting script setup");
 
-        const hamburger = document.getElementById("hamburger");
-        const mobileMenu = document.getElementById("mobile-menu");
-        const backdrop = document.getElementById("drawer-backdrop");
-        const mobileClose = document.getElementById("mobile-close");
+      const hamburger = document.getElementById("hamburger");
+      const mobileMenu = document.getElementById("mobile-menu");
+      const backdrop = document.getElementById("drawer-backdrop");
+      const mobileClose = document.getElementById("mobile-close");
 
-        console.log("[INIT] Element lookup:", {
-          hamburger: !!hamburger,
-          mobileMenu: !!mobileMenu,
-          backdrop: !!backdrop,
-          mobileClose: !!mobileClose,
+      console.log("[INIT] Element lookup:", {
+        hamburger: !!hamburger,
+        mobileMenu: !!mobileMenu,
+        backdrop: !!backdrop,
+        mobileClose: !!mobileClose,
+      });
+
+      // Toggle Drawer
+      function toggleMenu() {
+        console.log("[toggleMenu] Called");
+        const isOpen = mobileMenu.classList.toggle("show");
+        console.log("[toggleMenu] Menu is now:", isOpen ? "OPEN" : "CLOSED");
+        hamburger.classList.toggle("open");
+        backdrop.classList.toggle("show");
+        document.body.style.overflow = isOpen ? "hidden" : "";
+        console.log(
+          "[toggleMenu] Body overflow set to:",
+          document.body.style.overflow,
+        );
+      }
+
+      function closeMenu() {
+        console.log("[closeMenu] Called");
+        mobileMenu.classList.remove("show");
+        hamburger.classList.remove("open");
+        backdrop.classList.remove("show");
+        document.body.style.overflow = "";
+        console.log("[closeMenu] Menu closed, body overflow reset");
+      }
+
+      if (hamburger) {
+        hamburger.addEventListener("click", () => {
+          console.log("[Hamburger] Click detected");
+          toggleMenu();
+        });
+      } else {
+        console.warn(
+          "[Hamburger] Element not found – click listener not attached",
+        );
+      }
+
+      if (backdrop)
+        backdrop.addEventListener("click", () => {
+          console.log("[Backdrop] Click detected – closing menu");
+          closeMenu();
+        });
+      if (mobileClose)
+        mobileClose.addEventListener("click", () => {
+          console.log("[Close button] Click detected – closing menu");
+          closeMenu();
         });
 
-        // Toggle Drawer
-        function toggleMenu() {
-          console.log("[toggleMenu] Called");
-          const isOpen = mobileMenu.classList.toggle("show");
-          console.log("[toggleMenu] Menu is now:", isOpen ? "OPEN" : "CLOSED");
-          hamburger.classList.toggle("open");
-          backdrop.classList.toggle("show");
-          document.body.style.overflow = isOpen ? "hidden" : "";
+      // Mobile main Accordion (About, Manufacturing, Materials)
+      console.log(
+        "[Main Accordion] Attaching listeners to .mobile-dropdown-toggle",
+      );
+      document
+        .querySelectorAll(".mobile-dropdown-toggle")
+        .forEach((toggle, i) => {
           console.log(
-            "[toggleMenu] Body overflow set to:",
-            document.body.style.overflow,
+            `[Main Accordion] Attaching listener to toggle #${i + 1}:`,
+            toggle.textContent.trim().slice(0, 30) + "...",
           );
-        }
 
-        function closeMenu() {
-          console.log("[closeMenu] Called");
-          mobileMenu.classList.remove("show");
-          hamburger.classList.remove("open");
-          backdrop.classList.remove("show");
-          document.body.style.overflow = "";
-          console.log("[closeMenu] Menu closed, body overflow reset");
-        }
-
-        if (hamburger) {
-          hamburger.addEventListener("click", () => {
-            console.log("[Hamburger] Click detected");
-            toggleMenu();
-          });
-        } else {
-          console.warn(
-            "[Hamburger] Element not found – click listener not attached",
-          );
-        }
-
-        if (backdrop)
-          backdrop.addEventListener("click", () => {
-            console.log("[Backdrop] Click detected – closing menu");
-            closeMenu();
-          });
-        if (mobileClose)
-          mobileClose.addEventListener("click", () => {
-            console.log("[Close button] Click detected – closing menu");
-            closeMenu();
-          });
-
-        // Mobile main Accordion (About, Manufacturing, Materials)
-        console.log(
-          "[Main Accordion] Attaching listeners to .mobile-dropdown-toggle",
-        );
-        document
-          .querySelectorAll(".mobile-dropdown-toggle")
-          .forEach((toggle, i) => {
+          toggle.addEventListener("click", function (e) {
             console.log(
-              `[Main Accordion] Attaching listener to toggle #${i + 1}:`,
-              toggle.textContent.trim().slice(0, 30) + "...",
+              "[Main Accordion] Click on:",
+              this.textContent.trim().slice(0, 30) + "...",
             );
-
-            toggle.addEventListener("click", function (e) {
-              console.log(
-                "[Main Accordion] Click on:",
-                this.textContent.trim().slice(0, 30) + "...",
-              );
-              e.preventDefault();
-              e.stopPropagation();
-
-              const dropdown = this.nextElementSibling;
-              const icon = this.querySelector("svg");
-              const isHidden = dropdown?.classList.contains("hidden");
-
-              console.log(
-                "[Main Accordion] Current dropdown hidden?",
-                isHidden,
-              );
-
-              document
-                .querySelectorAll(".mobile-dropdown")
-                .forEach((other, idx) => {
-                  if (other !== dropdown) {
-                    console.log(
-                      `[Main Accordion] Closing other dropdown #${idx + 1}`,
-                    );
-                    other.classList.add("hidden");
-                    const otherIcon =
-                      other.previousElementSibling?.querySelector("svg");
-                    if (otherIcon) otherIcon.style.transform = "rotate(0deg)";
-                  }
-                });
-
-              if (dropdown) {
-                if (isHidden) {
-                  console.log("[Main Accordion] Opening current dropdown");
-                  dropdown.classList.remove("hidden");
-                  if (icon) icon.style.transform = "rotate(180deg)";
-                } else {
-                  console.log("[Main Accordion] Closing current dropdown");
-                  dropdown.classList.add("hidden");
-                  if (icon) icon.style.transform = "rotate(0deg)";
-                }
-              } else {
-                console.warn("[Main Accordion] No nextElementSibling found");
-              }
-
-              // Close subcategories when main closes
-              if (!isHidden) {
-                console.log(
-                  "[Main Accordion] Closing all subcategories because main is being closed",
-                );
-                document.querySelectorAll(".subcategory").forEach((sub) => {
-                  sub.classList.add("hidden");
-                  console.log(
-                    "[Subcategory] Forced hidden on:",
-                    sub.previousElementSibling?.textContent.trim() || "unknown",
-                  );
-                });
-                document
-                  .querySelectorAll(".subcategory-toggle svg")
-                  .forEach((i) => {
-                    i.style.transform = "rotate(0deg)";
-                  });
-              }
-            });
-          });
-
-        // ── Subcategory delegated handler with full logging ──
-        const menuContainer = document.getElementById("mobile-menu");
-        if (menuContainer) {
-          console.log(
-            "[Subcategory] Mobile menu container found – attaching delegated listener",
-          );
-
-          menuContainer.addEventListener("click", function (e) {
-            const toggleBtn = e.target.closest(".subcategory-toggle");
-            if (!toggleBtn) {
-              // console.log("[Subcategory] Click somewhere in menu, but not on .subcategory-toggle");
-              return;
-            }
-
-            console.log(
-              "[Subcategory] CLICK CAPTURED on:",
-              toggleBtn.textContent.trim(),
-            );
-
-            // Visual debug
-            toggleBtn.style.backgroundColor = "#fed7aa";
-            setTimeout(() => {
-              toggleBtn.style.backgroundColor = "#fff3cd";
-            }, 400);
-
             e.preventDefault();
             e.stopPropagation();
 
-            const subcategoryList = toggleBtn.nextElementSibling;
-            if (!subcategoryList?.classList.contains("subcategory")) {
-              console.warn(
-                "[Subcategory] No valid .subcategory sibling found for:",
-                toggleBtn.textContent.trim(),
-              );
-              return;
-            }
+            const dropdown = this.nextElementSibling;
+            const icon = this.querySelector("svg");
+            const isHidden = dropdown?.classList.contains("hidden");
 
             console.log(
-              "[Subcategory] Found list – current hidden state:",
-              subcategoryList.classList.contains("hidden"),
+              "[Main Accordion] Current dropdown hidden?",
+              isHidden,
             );
 
-            const arrow = toggleBtn.querySelector("svg");
-
-            const becomingVisible = subcategoryList.classList.toggle("hidden");
-            console.log(
-              "[Subcategory] After toggle – becoming visible?",
-              !becomingVisible,
-            );
-
-            if (arrow) {
-              arrow.style.transform = becomingVisible
-                ? "rotate(0deg)"
-                : "rotate(180deg)";
-              console.log(
-                "[Subcategory] Arrow rotated to:",
-                becomingVisible ? "down" : "up",
-              );
-            }
-
-            // Force style override
-            subcategoryList.style.display = becomingVisible ? "none" : "block";
-            console.log(
-              "[Subcategory] Forced display to:",
-              subcategoryList.style.display,
-            );
-
-            // Close other subcategories
-            console.log("[Subcategory] Closing other subcategories");
-            menuContainer
-              .querySelectorAll(".subcategory-toggle")
+            document
+              .querySelectorAll(".mobile-dropdown")
               .forEach((other, idx) => {
-                if (other === toggleBtn) return;
-                const otherList = other.nextElementSibling;
-                const otherArrow = other.querySelector("svg");
-                if (otherList) {
-                  otherList.classList.add("hidden");
-                  otherList.style.display = "none";
-                  console.log(`[Subcategory] Closed sibling #${idx + 1}`);
+                if (other !== dropdown) {
+                  console.log(
+                    `[Main Accordion] Closing other dropdown #${idx + 1}`,
+                  );
+                  other.classList.add("hidden");
+                  const otherIcon =
+                    other.previousElementSibling?.querySelector("svg");
+                  if (otherIcon) otherIcon.style.transform = "rotate(0deg)";
                 }
-                if (otherArrow) otherArrow.style.transform = "rotate(0deg)";
               });
+
+            if (dropdown) {
+              if (isHidden) {
+                console.log("[Main Accordion] Opening current dropdown");
+                dropdown.classList.remove("hidden");
+                if (icon) icon.style.transform = "rotate(180deg)";
+              } else {
+                console.log("[Main Accordion] Closing current dropdown");
+                dropdown.classList.add("hidden");
+                if (icon) icon.style.transform = "rotate(0deg)";
+              }
+            } else {
+              console.warn("[Main Accordion] No nextElementSibling found");
+            }
+
+            // Close subcategories when main closes
+            if (!isHidden) {
+              console.log(
+                "[Main Accordion] Closing all subcategories because main is being closed",
+              );
+              document.querySelectorAll(".subcategory").forEach((sub) => {
+                sub.classList.add("hidden");
+                console.log(
+                  "[Subcategory] Forced hidden on:",
+                  sub.previousElementSibling?.textContent.trim() || "unknown",
+                );
+              });
+              document
+                .querySelectorAll(".subcategory-toggle svg")
+                .forEach((i) => {
+                  i.style.transform = "rotate(0deg)";
+                });
+            }
           });
-
-          const subcategoryCount = menuContainer.querySelectorAll(
-            ".subcategory-toggle",
-          ).length;
-          console.log(
-            `[Subcategory] Setup complete – ${subcategoryCount} subcategory toggles found`,
-          );
-        } else {
-          console.error("[Subcategory] #mobile-menu container NOT FOUND");
-        }
-
-        // Resize reset
-        window.addEventListener("resize", () => {
-          console.log("[Resize] Window resized to:", window.innerWidth);
-          if (window.innerWidth >= 1024) {
-            console.log(
-              "[Resize] Desktop size detected – closing mobile menu & resetting states",
-            );
-            closeMenu();
-            document
-              .querySelectorAll(".mobile-dropdown, .subcategory")
-              .forEach((el) => el.classList.add("hidden"));
-            document
-              .querySelectorAll(
-                ".mobile-dropdown-toggle svg, .subcategory-toggle svg",
-              )
-              .forEach((i) => (i.style.transform = "rotate(0deg)"));
-          }
         });
 
-        // Outside click close
-        document.addEventListener("click", function (e) {
-          const isRelevantClick =
-            e.target.closest(".mobile-dropdown-toggle") ||
-            e.target.closest(".subcategory-toggle") ||
-            e.target.closest(".mobile-dropdown") ||
-            e.target.closest(".subcategory");
-
-          if (!isRelevantClick) {
-            console.log(
-              "[Outside Click] Clicked outside dropdowns – closing all",
-            );
-            document
-              .querySelectorAll(".mobile-dropdown, .subcategory")
-              .forEach((el) => el.classList.add("hidden"));
-            document
-              .querySelectorAll(
-                ".mobile-dropdown-toggle svg, .subcategory-toggle svg",
-              )
-              .forEach((i) => (i.style.transform = "rotate(0deg)"));
-          }
-        });
-
+      // ── Subcategory delegated handler with full logging ──
+      const menuContainer = document.getElementById("mobile-menu");
+      if (menuContainer) {
         console.log(
-          "[INIT] All event listeners attached – waiting for user interaction",
+          "[Subcategory] Mobile menu container found – attaching delegated listener",
         );
+
+        menuContainer.addEventListener("click", function (e) {
+          const toggleBtn = e.target.closest(".subcategory-toggle");
+          if (!toggleBtn) {
+            // console.log("[Subcategory] Click somewhere in menu, but not on .subcategory-toggle");
+            return;
+          }
+
+          console.log(
+            "[Subcategory] CLICK CAPTURED on:",
+            toggleBtn.textContent.trim(),
+          );
+
+          // Visual debug
+          toggleBtn.style.backgroundColor = "#fed7aa";
+          setTimeout(() => {
+            toggleBtn.style.backgroundColor = "#fff3cd";
+          }, 400);
+
+          e.preventDefault();
+          e.stopPropagation();
+
+          const subcategoryList = toggleBtn.nextElementSibling;
+          if (!subcategoryList?.classList.contains("subcategory")) {
+            console.warn(
+              "[Subcategory] No valid .subcategory sibling found for:",
+              toggleBtn.textContent.trim(),
+            );
+            return;
+          }
+
+          console.log(
+            "[Subcategory] Found list – current hidden state:",
+            subcategoryList.classList.contains("hidden"),
+          );
+
+          const arrow = toggleBtn.querySelector("svg");
+
+          const becomingVisible = subcategoryList.classList.toggle("hidden");
+          console.log(
+            "[Subcategory] After toggle – becoming visible?",
+            !becomingVisible,
+          );
+
+          if (arrow) {
+            arrow.style.transform = becomingVisible
+              ? "rotate(0deg)"
+              : "rotate(180deg)";
+            console.log(
+              "[Subcategory] Arrow rotated to:",
+              becomingVisible ? "down" : "up",
+            );
+          }
+
+          // Force style override
+          subcategoryList.style.display = becomingVisible ? "none" : "block";
+          console.log(
+            "[Subcategory] Forced display to:",
+            subcategoryList.style.display,
+          );
+
+          // Close other subcategories
+          console.log("[Subcategory] Closing other subcategories");
+          menuContainer
+            .querySelectorAll(".subcategory-toggle")
+            .forEach((other, idx) => {
+              if (other === toggleBtn) return;
+              const otherList = other.nextElementSibling;
+              const otherArrow = other.querySelector("svg");
+              if (otherList) {
+                otherList.classList.add("hidden");
+                otherList.style.display = "none";
+                console.log(`[Subcategory] Closed sibling #${idx + 1}`);
+              }
+              if (otherArrow) otherArrow.style.transform = "rotate(0deg)";
+            });
+        });
+
+        const subcategoryCount = menuContainer.querySelectorAll(
+          ".subcategory-toggle",
+        ).length;
+        console.log(
+          `[Subcategory] Setup complete – ${subcategoryCount} subcategory toggles found`,
+        );
+      } else {
+        console.error("[Subcategory] #mobile-menu container NOT FOUND");
+      }
+
+      // Resize reset
+      window.addEventListener("resize", () => {
+        console.log("[Resize] Window resized to:", window.innerWidth);
+        if (window.innerWidth >= 1024) {
+          console.log(
+            "[Resize] Desktop size detected – closing mobile menu & resetting states",
+          );
+          closeMenu();
+          document
+            .querySelectorAll(".mobile-dropdown, .subcategory")
+            .forEach((el) => el.classList.add("hidden"));
+          document
+            .querySelectorAll(
+              ".mobile-dropdown-toggle svg, .subcategory-toggle svg",
+            )
+            .forEach((i) => (i.style.transform = "rotate(0deg)"));
+        }
       });
-    </script>
-  </body>
+
+      // Outside click close
+      document.addEventListener("click", function (e) {
+        const isRelevantClick =
+          e.target.closest(".mobile-dropdown-toggle") ||
+          e.target.closest(".subcategory-toggle") ||
+          e.target.closest(".mobile-dropdown") ||
+          e.target.closest(".subcategory");
+
+        if (!isRelevantClick) {
+          console.log(
+            "[Outside Click] Clicked outside dropdowns – closing all",
+          );
+          document
+            .querySelectorAll(".mobile-dropdown, .subcategory")
+            .forEach((el) => el.classList.add("hidden"));
+          document
+            .querySelectorAll(
+              ".mobile-dropdown-toggle svg, .subcategory-toggle svg",
+            )
+            .forEach((i) => (i.style.transform = "rotate(0deg)"));
+        }
+      });
+
+      console.log(
+        "[INIT] All event listeners attached – waiting for user interaction",
+      );
+    });
+  </script>
+</body>
+
 </html>
