@@ -1,0 +1,1225 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sprockets | Naavera - Precision Pipe Fittings</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet" />
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        heading: ['"Alan Sans"', "sans-serif"],
+                        serif: ['"DM Serif Text"', "serif"],
+                        body: ['"Noto Sans"', "sans-serif"],
+                        editorial: ['"Noto Serif"', "serif"],
+                    },
+                },
+            },
+        };
+    </script>
+
+    <style>
+        :root {
+            --primary: #1c1c1c;
+            --background: #f9f7f3;
+            --accent: #e6e2d8;
+            --headings: #111111;
+            --icon: #c9a227;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Inter", sans-serif;
+            background-color: var(--background);
+            color: var(--headings);
+            overflow-x: hidden;
+        }
+
+        /* Hide scrollbar for all browsers */
+        body::-webkit-scrollbar {
+            display: none;
+        }
+
+        body {
+            -ms-overflow-style: none;
+            /* IE and Edge */
+            scrollbar-width: none;
+            /* Firefox */
+        }
+
+        /* Banner Section */
+        .banner-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s ease;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right,
+                    rgba(0, 0, 0, 0.7) 0%,
+                    rgba(0, 0, 0, 0.3) 100%);
+        }
+
+        .banner-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            z-index: 10;
+            width: 90%;
+            max-width: 900px;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* New Banner Animations */
+        .fade-slide-up {
+            opacity: 0;
+            transform: translateY(40px);
+            animation: fadeSlideUp 1s ease forwards;
+        }
+
+        .zoom-in {
+            opacity: 0;
+            transform: scale(0.9);
+            animation: zoomIn 1.2s ease forwards;
+        }
+
+        .stagger-delay-1 {
+            animation-delay: 0.2s !important;
+        }
+
+        .stagger-delay-2 {
+            animation-delay: 0.4s !important;
+        }
+
+        .stagger-delay-3 {
+            animation-delay: 0.6s !important;
+        }
+
+        .stagger-delay-4 {
+            animation-delay: 0.8s !important;
+        }
+
+        @keyframes fadeSlideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes zoomIn {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Gold shimmer effect for highlighted text */
+        .gold-shimmer {
+            position: relative;
+            display: inline-block;
+            background: linear-gradient(90deg,
+                    #c9a227 0%,
+                    #ffd700 50%,
+                    #c9a227 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: shimmer 3s linear infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: 0% center;
+            }
+
+            100% {
+                background-position: 200% center;
+            }
+        }
+
+        /* Scroll animations */
+        .section-hidden {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .section-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Custom animations */
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Gradient text */
+        .gradient-text {
+            background: linear-gradient(135deg, var(--icon) 0%, #e6b800 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Stat counter animation */
+        .counter {
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* Responsive image containers */
+        .image-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+        }
+
+        .image-container img {
+            transition: transform 0.7s ease;
+        }
+
+        .image-container:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Card hover effects */
+        .hover-lift {
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease;
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(28, 28, 28, 0.12);
+        }
+
+        /* Section divider */
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg,
+                    transparent 0%,
+                    var(--accent) 20%,
+                    var(--accent) 80%,
+                    transparent 100%);
+        }
+
+        /* Timeline styling */
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -24px;
+            top: 8px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--icon);
+        }
+
+        /* Milestone counter */
+        .milestone-number {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1;
+            color: var(--icon);
+            position: relative;
+            display: inline-block;
+        }
+
+        .milestone-number::after {
+            content: "+";
+            font-size: 2rem;
+            position: absolute;
+            top: -10px;
+            right: -20px;
+        }
+
+        /* Loading animation for images */
+        .loading-img {
+            background: linear-gradient(90deg,
+                    var(--accent) 25%,
+                    #f0f0f0 50%,
+                    var(--accent) 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+        }
+
+        /* FIXED Banner text responsive sizing */
+        .banner-title {
+            font-size: clamp(2rem, 4.5vw, 3.5rem);
+            line-height: 1.1;
+            margin-bottom: 1rem;
+        }
+
+        .banner-subtitle {
+            font-size: clamp(0.9rem, 1.8vw, 1.1rem);
+            line-height: 1.5;
+            margin-bottom: 1.5rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Button responsive sizing */
+        .banner-button {
+            padding: 0.6rem 1.5rem;
+            font-size: clamp(0.8rem, 1.2vw, 0.9rem);
+            white-space: nowrap;
+        }
+
+        /* Mobile-specific adjustments */
+        @media (max-width: 768px) {
+            .banner-content {
+                padding: 15px;
+                width: 95%;
+            }
+
+            .banner-title {
+                font-size: 2rem;
+                line-height: 1.2;
+                margin-bottom: 0.8rem;
+            }
+
+            .banner-subtitle {
+                font-size: 0.95rem;
+                line-height: 1.4;
+                margin-bottom: 1.2rem;
+            }
+
+            .banner-button {
+                padding: 0.5rem 1.2rem;
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .banner-title {
+                font-size: 1.7rem;
+            }
+
+            .banner-subtitle {
+                font-size: 0.85rem;
+            }
+
+            .banner-button {
+                padding: 0.4rem 1rem;
+                font-size: 0.8rem;
+            }
+
+            .banner-content {
+                width: 98%;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-background">
+    <!-- COMMON HEADER -->
+    <div id="header"></div>
+
+    <!-- Hero Section - Split Text Reveal -->
+    <section class="pt-1 pb-6 bg-slate-50 px-1 sm:px-1">
+        <div class="relative max-w-7xl mx-auto h-[540px] rounded-3xl overflow-hidden shadow-2xl">
+            <!-- SINGLE BANNER SLIDE -->
+            <div class="relative w-full h-full">
+                <img src="images/sprocketsbanner.jpg" class="banner-img" alt="Naavera Precision Engineering" />
+                <div class="overlay"></div>
+                <div class="banner-content">
+                    <h1 class="banner-title font-semibold overflow-hidden">
+                        <span class="split-text slide-in-from-left">Industrial</span>
+                        <span class="split-text slide-in-from-right stagger-delay-1">Sprockets</span>
+                        <span class="split-text slide-in-from-left stagger-delay-2">&</span>
+                        <span class="split-text slide-in-from-right stagger-delay-3">Chain</span>
+                        <span class="split-text slide-in-from-left stagger-delay-4">Drive Systems</span>
+                    </h1>
+                    <p class="banner-subtitle text-white/90 font-light fade-scale-in stagger-delay-5">
+                        Durable sprockets, drive rings, and tension systems engineered for continuous industrial
+                        performance.
+                    </p>
+                    <div class="flex flex-wrap justify-center gap-3 mt-8">
+                        <a href="#specialized-types"
+                            class="banner-button bg-[#C9A227] text-white rounded-lg font-medium hover:bg-[#b8911f] transition-colors border-2 border-[#C9A227] slide-up-in stagger-delay-6">
+                            Explore Types
+                        </a>
+                        <a href="#tech-specs-section"
+                            class="banner-button bg-transparent border-2 border-white text-white rounded-lg font-medium hover:bg-white/10 transition-colors slide-up-in stagger-delay-7">
+                            View Engineering Specifications
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Animated Background Elements -->
+            <div
+                class="absolute top-1/4 left-10 w-64 h-64 rounded-full bg-gradient-to-r from-[#C9A227]/5 to-transparent blur-3xl -z-10">
+            </div>
+            <div
+                class="absolute bottom-1/4 right-10 w-80 h-80 rounded-full bg-gradient-to-l from-[#C9A227]/5 to-transparent blur-3xl -z-10">
+            </div>
+        </div>
+    </section>
+
+    <style>
+        /* Split Text Animation */
+        .split-text {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .slide-in-from-left {
+            animation: slideInFromLeft 0.8s ease forwards;
+        }
+
+        .slide-in-from-right {
+            animation: slideInFromRight 0.8s ease forwards;
+        }
+
+        .fade-scale-in {
+            opacity: 0;
+            transform: scale(0.9);
+            animation: fadeScaleIn 1s ease forwards;
+        }
+
+        .slide-up-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: slideUpIn 0.6s ease forwards;
+        }
+
+        .stagger-delay-5 {
+            animation-delay: 0.8s !important;
+        }
+
+        .stagger-delay-6 {
+            animation-delay: 1s !important;
+        }
+
+        .stagger-delay-7 {
+            animation-delay: 1.2s !important;
+        }
+
+        @keyframes slideInFromLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-100px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInFromRight {
+            from {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeScaleIn {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes slideUpIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+
+    <!-- Industry Challenge Section -->
+    <section class="pt-6 pb-12 md:pt-8 md:pb-14 lg:pt-10 lg:pb-16 bg-[#f9f7f3]">
+        <div class="container mx-auto px-5 max-w-7xl">
+
+            <!-- Header -->
+            <div class="text-center mb-8 md:mb-10">
+                <span
+                    class="inline-block px-5 py-1.5 mb-3 text-sm font-medium tracking-wider uppercase rounded-full bg-[#e6e2d8] text-[#1C1C1C]">
+                    The Industry Challenge
+                </span>
+
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-[#1C1C1C]">
+                    Built for the Toughest
+                    <span style="color: #C9A227;">Industrial Environments</span>
+                </h2>
+
+                <p class="text-base md:text-md max-w-3xl mx-auto text-[#555555] leading-relaxed">
+                    When production never stops, drive train components must deliver uncompromising reliability under
+                    extreme conditions.
+                </p>
+            </div>
+
+            <!-- Main Grid -->
+            <div class="grid lg:grid-cols-2 gap-8 lg:gap-10 items-start">
+
+                <!-- Left -->
+                <div class="space-y-6">
+
+                    <!-- Problem Card -->
+                    <div class="p-6 rounded-2xl shadow-md bg-white border-l-4 border-[#C9A227]">
+                        <h3 class="text-xl md:text-2xl font-bold mb-3 flex items-center gap-3 text-[#111111]">
+                            <svg class="w-6 h-6 flex-shrink-0 text-[#C9A227]" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92z" />
+                            </svg>
+                            Equipment Failure is Not an Option
+                        </h3>
+
+                        <p class="text-sm md:text-base leading-relaxed text-[#555555] mb-3">
+                            In cement production, mining, and bulk material handling, unplanned downtime costs millions.
+                            Reliable drive train components ensure operations continue smoothly.
+                        </p>
+
+                        <div class="text-sm font-semibold text-[#C9A227] flex items-center gap-2">
+                            <span>24/7 Production Reliability</span>
+                        </div>
+                    </div>
+
+                    <!-- Critical Components -->
+                    <div class="grid sm:grid-cols-2 gap-4">
+
+                        <!-- Sprockets -->
+                        <div class="p-5 rounded-xl bg-[#e6e2d8]/60 hover:bg-[#e6e2d8] transition-colors">
+                            <div
+                                class="w-10 h-10 rounded-lg flex items-center justify-center mb-3 bg-[#C9A227] text-white">
+                                ⚙️
+                            </div>
+
+                            <h4 class="text-base font-bold mb-1 text-[#111111]">
+                                Sprockets
+                            </h4>
+
+                            <p class="text-sm text-[#555555]">
+                                High-torque transmission for abrasive industrial environments.
+                            </p>
+                        </div>
+
+                        <!-- Drive Rings -->
+                        <div class="p-5 rounded-xl bg-[#e6e2d8]/60 hover:bg-[#e6e2d8] transition-colors">
+                            <div
+                                class="w-10 h-10 rounded-lg flex items-center justify-center mb-3 bg-[#C9A227] text-white">
+                                ⚙️
+                            </div>
+
+                            <h4 class="text-base font-bold mb-1 text-[#111111]">
+                                Drive Rings
+                            </h4>
+
+                            <p class="text-sm text-[#555555]">
+                                Precision rings for kilns, mills, and slow-speed drives.
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Right -->
+                <div class="space-y-4">
+
+                    <h3 class="text-xl md:text-2xl font-bold mb-4 text-[#111111]">
+                        Where Reliability Matters Most
+                    </h3>
+
+                    <!-- Cement -->
+                    <div
+                        class="flex items-start gap-3 p-4 rounded-xl bg-white border-l-4 border-[#C9A227] hover:shadow-md transition-shadow">
+
+                        <div class="w-9 h-9 rounded-full bg-[#e6e2d8] flex items-center justify-center text-[#C9A227]">
+                            <i class="fas fa-industry text-sm"></i>
+                        </div>
+
+                        <div>
+                            <h4 class="font-bold text-[#111111]">
+                                Cement Processing
+                            </h4>
+                            <p class="text-sm text-[#555555]">
+                                Abrasive materials and high-temperature kiln operations.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <!-- Mining -->
+                    <div
+                        class="flex items-start gap-3 p-4 rounded-xl bg-white border-l-4 border-[#C9A227] hover:shadow-md transition-shadow">
+
+                        <div class="w-9 h-9 rounded-full bg-[#e6e2d8] flex items-center justify-center text-[#C9A227]">
+                            <i class="fas fa-hill-rockslide text-sm"></i>
+                        </div>
+
+                        <div>
+                            <h4 class="font-bold text-[#111111]">
+                                Mining Operations
+                            </h4>
+                            <p class="text-sm text-[#555555]">
+                                High-torque drives operating in harsh mining environments.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <!-- Bulk -->
+                    <div
+                        class="flex items-start gap-3 p-4 rounded-xl bg-white border-l-4 border-[#C9A227] hover:shadow-md transition-shadow">
+
+                        <div class="w-9 h-9 rounded-full bg-[#e6e2d8] flex items-center justify-center text-[#C9A227]">
+                            <i class="fas fa-truck-ramp-box text-sm"></i>
+                        </div>
+
+                        <div>
+                            <h4 class="font-bold text-[#111111]">
+                                Bulk Material Handling
+                            </h4>
+                            <p class="text-sm text-[#555555]">
+                                Continuous conveyor systems moving large volumes 24/7.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <!-- Power Generation -->
+                    <div
+                        class="flex items-start gap-3 p-4 rounded-xl bg-white border-l-4 border-[#C9A227] hover:shadow-md transition-shadow">
+
+                        <div class="w-9 h-9 rounded-full bg-[#e6e2d8] flex items-center justify-center text-[#C9A227]">
+                            <i class="fas fa-bolt text-sm"></i>
+                        </div>
+
+                        <div>
+                            <h4 class="font-bold text-[#111111]">
+                                Power Generation
+                            </h4>
+                            <p class="text-sm text-[#555555]">
+                                Reliable coal handling and ash removal systems.
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- Stats -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-10 p-6 rounded-2xl bg-[#1C1C1C]">
+
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-[#C9A227]">24/7</div>
+                    <p class="text-xs uppercase tracking-wider mt-1 text-[#e6e2d8]">
+                        Continuous Operation
+                    </p>
+                </div>
+
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-[#C9A227]">1000°C+</div>
+                    <p class="text-xs uppercase tracking-wider mt-1 text-[#e6e2d8]">
+                        Extreme Temperatures
+                    </p>
+                </div>
+
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-[#C9A227]">40%</div>
+                    <p class="text-xs uppercase tracking-wider mt-1 text-[#e6e2d8]">
+                        Extended Wear Life
+                    </p>
+                </div>
+
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-[#C9A227]">Zero</div>
+                    <p class="text-xs uppercase tracking-wider mt-1 text-[#e6e2d8]">
+                        Failure Tolerance
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Partners Section -->
+    <section class="bg-[#FCF8F8] border-t border-b border-[#C9A227]/30 py-8 md:py-10 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+
+            <!-- Title -->
+            <div class="text-center mb-6 md:mb-8">
+                <h3 class="text-xs md:text-sm font-semibold tracking-[0.25em] uppercase text-[#C9A227] mb-2">
+                    THE PARTNERSHIP ADVANTAGE
+                </h3>
+                <h2 class="text-2xl md:text-3xl font-bold text-[#1C1C1C]">
+                    Why Industry Leaders Choose Us
+                </h2>
+            </div>
+
+            <!-- Main flex container -->
+            <div class="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12">
+
+                <!-- Features list -->
+                <div class="flex flex-wrap justify-center lg:justify-start gap-6 md:gap-10 text-[#1C1C1C]">
+
+                    <!-- Feature 1 -->
+                    <div class="flex items-center gap-3 group min-w-[180px]">
+                        <div
+                            class="w-10 h-10 rounded-full flex items-center justify-center bg-[#C9A227]/10 transition-transform duration-300 group-hover:scale-110 group-hover:bg-[#C9A227]/20">
+                            <svg class="w-5 h-5 text-[#C9A227]" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                        <div>
+                            <div class="font-semibold text-base">Custom Metallurgy</div>
+                            <div class="text-xs text-[#666666]">Heat & impact resistant alloys</div>
+                        </div>
+                    </div>
+
+                    <!-- Divider (desktop only) -->
+                    <div class="hidden lg:block w-px h-10 bg-[#C9A227]/30 self-center"></div>
+
+                    <!-- Feature 2 -->
+                    <div class="flex items-center gap-3 group min-w-[180px]">
+                        <div
+                            class="w-10 h-10 rounded-full flex items-center justify-center bg-[#C9A227]/10 transition-transform duration-300 group-hover:scale-110 group-hover:bg-[#C9A227]/20">
+                            <svg class="w-5 h-5 text-[#C9A227]" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zM4.332 8.027a6.012 6.012 0 011.912-2.706C6.5 5.36 7.168 5.5 8 5.5c.607 0 1.172-.247 1.585-.688A5.99 5.99 0 0110 4.5c.63 0 1.226.124 1.778.342.15-.06.306-.102.472-.122A5.978 5.978 0 0114 5.5c.74 0 1.45.155 2.092.434.636-.838 1.06-1.815 1.207-2.876a8 8 0 00-9.26-1.294c.083.182.144.375.176.577.138.863.212 1.74.224 2.627.127.172.266.332.416.48.495.495.852 1.1 1.05 1.775.188.54.286 1.116.294 1.704-.366.173-.758.297-1.17.364-.428.07-.866.108-1.306.114-.443-.065-.878-.166-1.297-.302-.554-.181-1.09-.417-1.6-.704-.47-.264-.92-.56-1.35-.88a3.32 3.32 0 01-.937-.975 5.97 5.97 0 00.062 2.264z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <div class="font-semibold text-base">Global Export Ready</div>
+                            <div class="text-xs text-[#666666]">ISO • ANSI • DIN compliant</div>
+                        </div>
+                    </div>
+
+                    <!-- Divider (desktop only) -->
+                    <div class="hidden lg:block w-px h-10 bg-[#C9A227]/30 self-center"></div>
+
+                    <!-- Feature 3 -->
+                    <div class="flex items-center gap-3 group min-w-[180px]">
+                        <div
+                            class="w-10 h-10 rounded-full flex items-center justify-center bg-[#C9A227]/10 transition-transform duration-300 group-hover:scale-110 group-hover:bg-[#C9A227]/20">
+                            <svg class="w-5 h-5 text-[#C9A227]" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                        <div>
+                            <div class="font-semibold text-base">40% Longer Life</div>
+                            <div class="text-xs text-[#666666]">Induction-hardened teeth</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CTA Button -->
+                <div class="flex-shrink-0 w-full lg:w-auto text-center lg:text-right">
+                    <a href="contact.html"
+                        class="group inline-flex items-center justify-center gap-3 bg-[#C9A227] text-[#1C1C1C] font-semibold text-base px-9 py-4 rounded-full shadow-md hover:shadow-xl transition-all duration-300 hover:bg-[#b08f1f] min-w-[220px]">
+                        <span>Partner With Us</span>
+                        <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Footer accent -->
+            <div class="text-center mt-6 text-xs tracking-wider text-[#C9A227] opacity-70">
+                ✦ 20+ years of metallurgical excellence ✦
+            </div>
+        </div>
+    </section>
+
+    <!--technical specification -->
+    <section id="tech-specs-section" class="pt-6 pb-12 md:pt-8 md:pb-14 bg-[#f9f7f3] relative">
+        <div class="max-w-6xl mx-auto px-5">
+
+            <!-- Section Header -->
+            <div class="text-center mb-8">
+                <h2 class="text-3xl md:text-4xl font-bold text-[#111111]">
+                    Technical Specifications &
+                    <span class="text-[#C9A227]">Engineering Excellence</span>
+                </h2>
+
+                <p class="text-[#555555] mt-2 max-w-3xl mx-auto">
+                    We manufacture to rigorous standards, ensuring every component meets the
+                    critical dimensions required for high-stress industrial environments.
+                </p>
+            </div>
+
+            <!-- Table Wrapper -->
+            <div class="relative overflow-x-auto bg-white rounded-2xl shadow-md border border-gray-200">
+
+                <!-- Watermark Logo -->
+                <img src="logo.png" alt="Company Logo"
+                    class="absolute inset-0 m-auto w-72 opacity-5 pointer-events-none select-none">
+
+                <!-- Table -->
+                <table class="w-full text-left border-collapse relative">
+
+                    <!-- Table Header -->
+                    <thead class="bg-[#1C1C1C] text-white">
+                        <tr>
+                            <th class="px-6 py-4 text-sm uppercase tracking-wider border-r border-gray-600">
+                                Feature
+                            </th>
+                            <th class="px-6 py-4 text-sm uppercase tracking-wider">
+                                Specification Details
+                            </th>
+                        </tr>
+                    </thead>
+
+                    <!-- Table Body -->
+                    <tbody class="text-[#333]">
+
+                        <tr class="hover:bg-gray-50 transition">
+                            <td class="px-6 py-4 font-semibold text-[#111111] border-r border-gray-200 border-b">
+                                Common Materials
+                            </td>
+                            <td class="px-6 py-4 border-b border-gray-200">
+                                C-45 / EN-19 / 42CrMo4 Alloy Steel
+                            </td>
+                        </tr>
+
+                        <tr class="hover:bg-gray-50 transition">
+                            <td class="px-6 py-4 font-semibold text-[#111111] border-r border-gray-200 border-b">
+                                Heat Treatment
+                            </td>
+                            <td class="px-6 py-4 border-b border-gray-200">
+                                Induction Hardening on teeth and working areas
+                                <span class="text-[#C9A227] font-medium">(Surface Hardness: 54–58 HRC)</span>
+                            </td>
+                        </tr>
+
+                        <tr class="hover:bg-gray-50 transition">
+                            <td class="px-6 py-4 font-semibold text-[#111111] border-r border-gray-200 border-b">
+                                Case Depth
+                            </td>
+                            <td class="px-6 py-4 border-b border-gray-200">
+                                Precision controlled between <strong>3 mm – 6 mm</strong>
+                                depending on load requirements
+                            </td>
+                        </tr>
+
+                        <tr class="hover:bg-gray-50 transition">
+                            <td class="px-6 py-4 font-semibold text-[#111111] border-r border-gray-200 border-b">
+                                Precision
+                            </td>
+                            <td class="px-6 py-4 border-b border-gray-200">
+                                Machined with strict <strong>PCD (Pitch Circle Diameter)</strong>
+                                tolerances up to <strong>±0.2 mm</strong>
+                            </td>
+                        </tr>
+
+                        <tr class="hover:bg-gray-50 transition">
+                            <td class="px-6 py-4 font-semibold text-[#111111] border-r border-gray-200">
+                                Configurations
+                            </td>
+                            <td class="px-6 py-4">
+                                Available in <strong>Solid</strong> or
+                                <strong>Split-Segment Designs</strong> (2–3 segments)
+                                for easy installation and maintenance
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Specialized Types -->
+    <section id="specialized-types" class="py-12 px-6 -mt-6 bg-gradient-to-b from-[#f9f7f3] via-[#f9f7f3] to-[#e6e2d8]">
+        <div class="max-w-7xl mx-auto">
+
+            <!-- Section Heading -->
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-[#111]">
+                    Specialized <span class="text-[#C9A227]">Sprocket Types</span>
+                </h2>
+                <p class="text-gray-600 mt-3">
+                    Engineered configurations designed for demanding industrial applications.
+                </p>
+            </div>
+
+            <!-- MAIN RECTANGLE CONTAINER -->
+            <div class="relative bg-white border border-gray-200 rounded-2xl p-8 shadow-sm overflow-hidden">
+
+                <div class="grid lg:grid-cols-[320px_1fr] gap-10 items-start">
+
+                    <!-- LEFT SIDE TYPES -->
+                    <div class="space-y-3">
+
+                        <button onclick="showType('segmented', this)"
+                            class="type-btn w-full text-left p-4 rounded-lg border border-[#C9A227] bg-[#faf7ef] transition">
+                            Segmented Sprockets
+                        </button>
+
+                        <button onclick="showType('drive', this)"
+                            class="type-btn w-full text-left p-4 rounded-lg border border-gray-200 hover:border-[#C9A227] hover:bg-[#faf7ef] transition">
+                            Drive Rings
+                        </button>
+
+                        <button onclick="showType('tension', this)"
+                            class="type-btn w-full text-left p-4 rounded-lg border border-gray-200 hover:border-[#C9A227] hover:bg-[#faf7ef] transition">
+                            Tension Rings
+                        </button>
+
+                        <button onclick="showType('pitch', this)"
+                            class="type-btn w-full text-left p-4 rounded-lg border border-gray-200 hover:border-[#C9A227] hover:bg-[#faf7ef] transition">
+                            Induction Hardened Sprockets
+                        </button>
+
+                        <button onclick="showType('multi', this)"
+                            class="type-btn w-full text-left p-4 rounded-lg border border-gray-200 hover:border-[#C9A227] hover:bg-[#faf7ef] transition">
+                            Multi-Strand Sprockets
+                        </button>
+
+                    </div>
+
+                    <!-- RIGHT SIDE CONTENT -->
+                    <div id="type-content">
+
+                        <div class="grid md:grid-cols-2 gap-8 items-center">
+
+                            <!-- TEXT INFO -->
+                            <div>
+
+                                <h3 id="type-title" class="text-2xl font-semibold text-[#111] mb-5">
+                                    Segmented Sprockets
+                                </h3>
+
+                                <div class="space-y-5 text-gray-600">
+
+                                    <div>
+                                        <p class="font-semibold text-[#C9A227] mb-1">Best For:</p>
+
+                                        <ul id="type-best" class="list-disc pl-5 space-y-1 text-gray-600"></ul>
+                                    </div>
+
+                                    <div>
+                                        <p class="font-semibold text-[#C9A227] mb-1">Key Features:</p>
+
+                                        <ul id="type-feature" class="list-disc pl-5 space-y-1 text-gray-600"></ul>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <!-- DIAGRAM -->
+                            <div
+                                class="bg-gray-50 border rounded-xl p-4 w-[320px] h-[240px] flex items-center justify-center">
+                                <img id="type-img" src="images/segment1.png"
+                                    class="max-h-[220px] max-w-full object-contain" alt="diagram">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Design & Reliability Section -->
+    <section class="bg-[#f9f7f3] py-16 px-6 md:px-20 flex flex-col md:flex-row items-center gap-12">
+        <!-- Image -->
+        <div class="md:w-1/2">
+            <img src="./images/desgin section.png" alt="Engineering Design and Reliability"
+                class="rounded-xl shadow-xl w-full object-cover">
+        </div>
+
+        <!-- Text Content -->
+        <div class="md:w-1/2 flex flex-col gap-4">
+            <h2 class="text-4xl font-bold text-[#1C1C1C]">Design & Reliability: The Engineering Edge</h2>
+            <p class="text-[#111111] font-light italic text-lg">“A chain is only as strong as its weakest link, and a
+                link is only as reliable as the sprocket that drives it.”</p>
+            <p class="text-[#111111] font-normal leading-relaxed text-base">
+                Our designs incorporate
+                <span class="font-semibold text-[#C9A227]">Split Gaps</span> and
+                <span class="font-semibold text-[#C9A227]">Matching Marks (AA, BB, CC)</span>
+                to ensure that even large-scale segmented rings maintain perfect circularity and load distribution once
+                bolted.
+                Every component undergoes rigorous
+                <span class="font-semibold text-[#C9A227]">stress relief</span>
+                and <span class="font-semibold text-[#C9A227]">final machining</span> after fabrication to prevent
+                warping during high-temperature operations.
+            </p>
+        </div>
+    </section>
+    <!-- CTA Section -->
+    <!-- <section class="py-20">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto text-center">
+          <div
+            class="bg-gradient-to-r from-[#1C1C1C] to-[#111111] rounded-2xl p-12 section-hidden"
+            data-animation="fadeInUp"
+          >
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
+              Partner With Excellence
+            </h2>
+            <p class="text-gray-300 mb-8 max-w-2xl mx-auto">
+              Join thousands of satisfied clients who trust Naavera for their
+              precision pipe fitting needs.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href="contact.html"
+                class="bg-[#C9A227] text-white px-8 py-3 rounded-lg font-medium hover:bg-[#b8911f] transition-colors"
+              >
+                Contact Us
+              </a>
+              <a
+                href="products.html"
+                class="bg-transparent border border-white text-white px-8 py-3 rounded-lg font-medium hover:bg-white/10 transition-colors"
+              >
+                Browse Products
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section> -->
+
+    <!-- Footer -->
+    <div id="footer"></div>
+
+    <script>
+        // Banner animations - automatically trigger on page load
+        document.addEventListener("DOMContentLoaded", () => {
+            // Trigger banner animations immediately
+            const bannerElements = document.querySelectorAll(
+                ".zoom-in, .fade-slide-up",
+            );
+            bannerElements.forEach((el) => {
+                el.style.animationPlayState = "running";
+            });
+
+            // Initialize scroll animations
+            initializeScrollAnimations();
+            initializeCounters();
+        });
+
+        // Scroll animations for other sections
+        function initializeScrollAnimations() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px",
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        const element = entry.target;
+                        const animation = element.getAttribute("data-animation");
+                        const delay = element.getAttribute("data-delay") || 0;
+
+                        setTimeout(() => {
+                            element.classList.add("section-visible");
+                            if (animation) {
+                                element.style.animation = `${animation} 0.8s ease forwards`;
+                            }
+                        }, parseInt(delay));
+
+                        observer.unobserve(element);
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all animated sections
+            document.querySelectorAll(".section-hidden").forEach((section) => {
+                observer.observe(section);
+            });
+        }
+
+        //Specification data for specialized sprocket types
+
+        const sprocketTypes = {
+
+            segmented: {
+                title: "Segmented Sprockets",
+
+                best: [
+                    "Heavy-duty industrial conveyors",
+                    "Cement & mining material handling systems",
+                    "Maintenance-heavy zones requiring quick replacement"
+                ],
+
+                feature: [
+                    "3-piece segmented design for easy installation",
+                    "Individual segments replaceable without removing shaft assembly",
+                    "Significantly reduces maintenance downtime"
+                ],
+
+                img: "images/segment1.png"
+            },
+
+            drive: {
+                title: "Drive Rings (Girth Gears)",
+
+                best: [
+                    "Rotary kilns and large drum systems",
+                    "Ball mills and rotary processing equipment",
+                    "High-torque industrial drive systems"
+                ],
+
+                feature: [
+                    "Massive diameters up to 1000+ mm OD",
+                    "Acts as girth gear for rotating kilns or drums",
+                    "Designed for high torque transmission and durability"
+                ],
+
+                img: "images/drive-1.png"
+            },
+
+            tension: {
+                title: "Tension Rings",
+
+                best: [
+                    "Rotary kiln tyre assemblies",
+                    "High-temperature kiln support systems",
+                    "Large rotating drum equipment"
+                ],
+
+                feature: [
+                    "Prevents axial movement of kiln tyres",
+                    "Maintains alignment during thermal expansion",
+                    "Ensures stable kiln shell positioning"
+                ],
+
+                img: "images/tension-1.png"
+            },
+
+            pitch: {
+                title: "Induction Hardened Sprockets",
+
+                best: [
+                    "Abrasive material handling systems",
+                    "Cement and mining conveyors",
+                    "Dust and grit heavy environments"
+                ],
+
+                feature: [
+                    "Induction hardened teeth for wear resistance",
+                    "Surface hardness up to 54–58 HRC",
+                    "Longer life in abrasive conditions"
+                ],
+
+                img: "images/induction-1.png"
+            },
+
+            multi: {
+                title: "Multi-Strand Sprockets",
+
+                best: [
+                    "High-load power transmission systems",
+                    "Heavy-duty conveyor drives",
+                    "Applications using multiple chain rows"
+                ],
+
+                feature: [
+                    "Drives multiple chain strands simultaneously",
+                    "Improves load distribution across chains",
+                    "Handles higher torque and power capacity"
+                ],
+
+                img: "images/multi-1.png"
+            }
+        };
+
+        function showType(type, btn) {
+
+            const data = sprocketTypes[type];
+
+            document.getElementById("type-title").innerText = data.title;
+            document.getElementById("type-img").src = data.img;
+
+
+            /* BEST FOR LIST */
+            const best = document.getElementById("type-best");
+            best.innerHTML = "";
+            data.best.forEach(item => {
+                const li = document.createElement("li");
+                li.textContent = item;
+                best.appendChild(li);
+            });
+
+
+            /* FEATURE LIST */
+            const feature = document.getElementById("type-feature");
+            feature.innerHTML = "";
+            data.feature.forEach(item => {
+                const li = document.createElement("li");
+                li.textContent = item;
+                feature.appendChild(li);
+            });
+
+
+            /* ACTIVE BUTTON */
+            document.querySelectorAll(".type-btn").forEach(b => {
+                b.classList.remove("border-[#C9A227]", "bg-[#faf7ef]");
+                b.classList.add("border-gray-200");
+            });
+
+            btn.classList.remove("border-gray-200");
+            btn.classList.add("border-[#C9A227]", "bg-[#faf7ef]");
+
+        }
+
+
+        /* default load */
+        showType("segmented", document.querySelector(".type-btn"));
+
+
+
+    </script>
+
+    <script src="header/header.js"></script>
+    <script src="footer/footer.js"></script>
+</body>
+
+</html>
